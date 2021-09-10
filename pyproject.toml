@@ -20,6 +20,10 @@ notebook = "^6.4.3"
 nbconvert = "^6.1.0"
 mysql-connector = "^2.2.9"
 pysqlite3 = "^0.4.6"
+neo4j-driver = "^4.3.4"
+matplotlib = "^3.4.3"
+sklearn = "^0.0"
+ipython-cypher = "^0.2.6"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"

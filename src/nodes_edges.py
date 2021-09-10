@@ -10,6 +10,7 @@ sqlite3/create_sqlite3_db.sh will create a SQLite database within same directory
 """
 
 import sys
+import os
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
@@ -17,15 +18,16 @@ if not sys.warnoptions:
 import numpy as np
 import pandas as pd
 import sqlite3
-import getpass
+
+# import getpass
 # import mysql.connector # Need for a MySQL connection
 # import psycopg2 # Need for a postgresSQL connection
 # from sqlalchemy import create_engine # Need for a postgresSQL connection
 
 # **************************************
 # Database connection parameters
-user = getpass.getuser()
-password = getpass.getpass()
+# user = getpass.getuser()
+# password = getpass.getpass()
 # host = 'localhost' # Need for MySQL & PostgresSQL connection
 # **************************************
 
@@ -34,7 +36,10 @@ password = getpass.getpass()
 #     url=f"postgresql+psycopg2://{user}:{password}@{host}/postgres")
 
 # Establish database connection using local sqlite3 (using sqlite3 in this script)
-conn = sqlite3.connect("../sqlite3/umls.db")
+SQLITE_DB_NAME = "umls.db"
+RELATIVE_PATH_TO_DB = "../sqlite3"
+conn = sqlite3.connect(os.path.join(RELATIVE_PATH_TO_DB, SQLITE_DB_NAME))
+# conn = sqlite3.connect("../sqlite3/umls.db")
 
 # Establish database connection using MySQL ** to do **
 

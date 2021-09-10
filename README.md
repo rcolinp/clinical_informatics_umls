@@ -97,7 +97,7 @@ This project has an included `pyproject.toml` as the python packaging and depend
 --nodes='import/attributeNode.csv' \
 --relationships='import/has_sty.csv' \
 --relationships='import/is_sty_of.csv' \
---relationships='import/has_umls_aui.csv' \
+--relationships='import/has_umls_atom.csv' \
 --relationships='import/has_cui.csv' \
 --relationships='import/has_child_code.csv' \
 --relationships='import/code_has_attribute.csv' \

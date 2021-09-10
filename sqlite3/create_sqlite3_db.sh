@@ -1,8 +1,7 @@
 # !/bin/sh
-
+#
 #  Create a UMLS SQLite database.
-
-# *Please note this is a variant/modified script*.
+# ** Usage of this script requires that you are a U
 #   --> Please reference following link for original source -> https://github.com/chb/py-umls/blob/master/databases/umls.sh
 
 if [ ! -e umls.db ]; then
