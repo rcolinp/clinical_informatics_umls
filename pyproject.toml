@@ -22,9 +22,9 @@ mysql-connector = "^2.2.9"
 pysqlite3 = "^0.4.6"
 
 [tool.poetry.dev-dependencies]
-autopep8 = "*"
 pyproject-toml = "^0.0.11"
 toml = "^0.10.2"
+autopep8 = "^1.5.7"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
