@@ -31,7 +31,7 @@ host = 'localhost'
 
 # Establish database connection using postgresSQL
 # engine = create_engine(
-#     url=f"postgresql+psycopg2://{user}:{password}@localhost/postgres")
+#     url=f"postgresql+psycopg2://{user}:{password}@{host}/postgres")
 
 # Establish database connection using local sqlite3 (using sqlite3 in this script)
 conn = sqlite3.connect("../sqlite3/umls.db")
