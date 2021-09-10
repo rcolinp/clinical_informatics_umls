@@ -24,6 +24,10 @@ neo4j-driver = "^4.3.4"
 matplotlib = "^3.4.3"
 sklearn = "^0.0"
 ipython-cypher = "^0.2.6"
+opencypher = "^0.3.0"
+jedi = "0.18.0"
+networkx = "^2.6.3"
+pyvis = "^0.1.9"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"
