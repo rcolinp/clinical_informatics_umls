@@ -18,15 +18,15 @@ import numpy as np
 import pandas as pd
 import sqlite3
 import getpass
-# import mysql.connector
-# import psycopg2
-# from sqlalchemy import create_engine
+# import mysql.connector # Need for a MySQL connection
+# import psycopg2 # Need for a postgresSQL connection
+# from sqlalchemy import create_engine # Need for a postgresSQL connection
 
 # **************************************
 # Database connection parameters
 user = getpass.getuser()
 password = getpass.getpass()
-host = 'localhost'
+# host = 'localhost' # Need for MySQL & PostgresSQL connection
 # **************************************
 
 # Establish database connection using postgresSQL
