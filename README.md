@@ -71,4 +71,45 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
     - NIH/UMLS Vocabulary Documentation:
       - [SNOMEDCT_US (SNOMED CT, US Edition) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/SNOMEDCT_US/index.html)
 
-#### Environment Setup
+#### Python Environment Setup
+
+This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the offical documentation provided.
+
+- Create a virtual environment within project directory:
+`python3 -m venv venv`
+
+- Activate the virtual environment:
+`source venv/bin/activate`
+
+- Install all python packaging and dependencies into virtual environment:
+`poetry install`
+
+##### Neo4j Desktop Setup & Data Import
+
+- Data Import:
+
+```SHELL
+./bin/neo4j-admin import \
+--database=neo4j \
+--max-memory=100G \
+--nodes='import/conceptNode.csv' \
+--nodes='import/atomNode import/atomNode.csv' \
+--nodes='import/codeNode.csv' \
+--nodes='import/semanticTypeNode.csv' \
+--nodes='import/attributeNode.csv' \
+--relationships='import/has_sty.csv' \
+--relationships='import/is_sty_of.csv' \
+--relationships='import/has_umls_aui.csv' \
+--relationships='import/has_cui.csv' \
+--relationships='import/has_child_code.csv' \
+--relationships='import/has_child_atom.csv' \
+--relationships='import/code_has_attribute.csv' \
+--relationships='import/sty_isa.csv' \
+--relationships='import/cui_cui_rel.csv' \
+--skip-bad-relationships=true \
+--skip-duplicate-nodes=true \
+--processors=12 \
+--high-io=true \
+--cache-on-heap=true \
+--trim-strings=true
+```
