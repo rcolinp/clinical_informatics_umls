@@ -89,11 +89,9 @@ This project has an included `pyproject.toml` as the python packaging and depend
 - Data Import:
 
 ```SHELL
-./bin/neo4j-admin import \
---database=neo4j \
---max-memory=100G \
+./bin/neo4j-admin import --database=neo4j --max-memory=100G \
 --nodes='import/conceptNode.csv' \
---nodes='import/atomNode import/atomNode.csv' \
+--nodes='import/atomNode.csv' \
 --nodes='import/codeNode.csv' \
 --nodes='import/semanticTypeNode.csv' \
 --nodes='import/attributeNode.csv' \
@@ -102,7 +100,6 @@ This project has an included `pyproject.toml` as the python packaging and depend
 --relationships='import/has_umls_aui.csv' \
 --relationships='import/has_cui.csv' \
 --relationships='import/has_child_code.csv' \
---relationships='import/has_child_atom.csv' \
 --relationships='import/code_has_attribute.csv' \
 --relationships='import/sty_isa.csv' \
 --relationships='import/cui_cui_rel.csv' \
