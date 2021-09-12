@@ -1,13 +1,22 @@
 """
+SUMMARY
+-------
 
-This .py assumes you are querying the SQLite database found at the relative path ->../sqlite/umls.db. This database is created via the following shell script located wthin that same directory. -->../create_sqlite_db. The sqlite3 database created contains two tables NOT created via UMLS® MetamorphoSys 
-(available to only UMLS license holders). **to do: write SQL DDL to create equivalent view for MySQL & PostgresSQL dataabse setups**
+This .py assumes you are querying the SQLite database found at the relative path ->../sqlite/umls.db. 
+This database is created via the following shell script located wthin that same directory. -->../create_sqlite_db. 
+
+The sqlite3 database created contains two tables NOT created via UMLS® MetamorphoSys 
+(available to only UMLS license holders). 
+    to do: write SQL DDL to create equivalent view or table for MySQL & PostgresSQL dataabse setups
 
 The two additional tables are as follows: [HIERARCHY, MRCONREL]. 
-    -> This optiomization reduces dependency of several expensive joins on 3 of the 4 largest tables within UMLS -> [MRHIER, MRREL, MRCONSO]. Please note this will require more local disk space. **to do: Include more expensive queries using MRHIER, MRREL & MRCONSO rather than HIERARCHY & MRCONREL.** 
+    -> This optiomization reduces dependency of several expensive joins on 3 of the 4 largest tables within UMLS 
+    -> [MRHIER, MRREL, MRCONSO]. Please note this will require more local disk space. 
+    to do: Include more expensive queries using MRHIER, MRREL & MRCONSO rather than HIERARCHY & MRCONREL.
 
-** PLEASE NOTE **
-../sqlite/create_sqlite_db.sh will create a SQLite database within same directory of the shell script & will require ~20GiB of disk space. All indexes are not required. Database size ~20GiB.
+../sqlite/create_sqlite_db.sh will create a SQLite database within same directory as the script itself.
+Additional the database requires ~20GiB available disk space.
+
 
 """
 
