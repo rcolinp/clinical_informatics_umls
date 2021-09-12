@@ -27,7 +27,11 @@ share/python-wheels/
 *.egg
 MANIFEST
 .vscode/
+.idea
 umls.db
+neo4j.cypher
+docker-compose.yml
+.DS_Store
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

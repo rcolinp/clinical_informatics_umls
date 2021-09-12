@@ -1,52 +1,54 @@
 """
 
-This python script will query a **SQLite database** loaded with UMLS 2021AA subset (generated via UMLS Metamorphosys for UMLS License Holders only).
+This .py assumes you are querying the SQLite database found at the relative path ->../sqlite/umls.db. This database is created via the following shell script located wthin that same directory. -->../create_sqlite_db. The sqlite3 database created contains two tables NOT created via UMLS® MetamorphoSys 
+(available to only UMLS license holders). **to do: write SQL DDL to create equivalent view for MySQL & PostgresSQL dataabse setups**
 
-Use the shell script provided (sqlite3/create_sqlite3_db.sh) to create SQLite database used in this script. 
+The two additional tables are as follows: [HIERARCHY, MRCONREL]. 
+    -> This optiomization reduces dependency of several expensive joins on 3 of the 4 largest tables within UMLS -> [MRHIER, MRREL, MRCONSO]. Please note this will require more local disk space. **to do: Include more expensive queries using MRHIER, MRREL & MRCONSO rather than HIERARCHY & MRCONREL.** 
 
 ** PLEASE NOTE **
-sqlite3/create_sqlite3_db.sh will create a SQLite database within same directory of the shell script & will require ~20GiB of disk space. All indexes are not required. But have been included as "recommended".
+../sqlite/create_sqlite_db.sh will create a SQLite database within same directory of the shell script & will require ~20GiB of disk space. All indexes are not required. Database size ~20GiB.
 
 """
 
 import sys
 import os
-if not sys.warnoptions:
+if not sys.warnoptions:               # Do not output warnings unless involves system
     import warnings
     warnings.simplefilter("ignore")
-
 import numpy as np
 import pandas as pd
 import sqlite3
 
-# import getpass
-# import mysql.connector # Need for a MySQL connection
-# import psycopg2 # Need for a postgresSQL connection
+# import getpass                       # Use to hide creds when using below connections
+# import mysql.connector               # MySQL connection
+# import psycopg2                      # postgresSQL connection
 # from sqlalchemy import create_engine # Need for a postgresSQL connection
 
+# Database Connection Creds & Params:
 # **************************************
-# Database connection parameters
-# user = getpass.getuser()
-# password = getpass.getpass()
-# host = 'localhost' # Need for MySQL & PostgresSQL connection
+# user = getpass.getuser()             # Requires getpass (getpass2 from PyPi)
+# password = getpass.getpass()         # Requires getpass (getpass2 from PyPi)
+# host = ""
+# dbname = ""
 # **************************************
 
 # Establish database connection using postgresSQL
 # engine = create_engine(
 #     url=f"postgresql+psycopg2://{user}:{password}@{host}/postgres")
 
-# Establish database connection using local sqlite3 (using sqlite3 in this script)
-SQLITE_DB_NAME = "umls.db"
-RELATIVE_PATH_TO_DB = "../sqlite3"
-conn = sqlite3.connect(os.path.join(RELATIVE_PATH_TO_DB, SQLITE_DB_NAME))
-# conn = sqlite3.connect("../sqlite3/umls.db")
+# Establish database connection using MySQL -> to do: Add code for connection object (conn) for MySQL database connection
 
-# Establish database connection using MySQL ** to do **
+
+# Establish database connection using local sqlite3 (using sqlite3 in this script)
+db_name = "umls.db"
+relative_path_to_sqlite = "../sqlite3/"
+conn = sqlite3.connect(os.path.join(relative_path_to_sqlite, db_name))
+
 
 # **************************************************************
 # GRAPH LABELS & NODES
 # **************************************************************
-
 # Label: SemanticType
 # import: semanticsNode.csv
 semantic_node = """
@@ -67,7 +69,6 @@ semanticTypeNode.to_csv(path_or_buf="../import/semanticTypeNode.csv",
 print("SemanticTypeNode.csv successfully written out...")
 
 # **************************************************************
-
 # Label: Concept
 # import: conceptNode.csv
 concept_node = """
@@ -120,7 +121,6 @@ atomNode.to_csv(path_or_buf="../import/atomNode.csv",
 print("atomNode.csv successfully written out...")
 
 # **************************************************************
-
 # Label: Code
 # import: codeNode.csv
 code_node = """
@@ -147,7 +147,6 @@ codeNode.to_csv(path_or_buf="../import/codeNode.csv",
 print("codeNode.csv successfully written out...")
 
 # **************************************************************
-
 # Labels: ['ICDO3Code', 'ENSEMBLGENE_ID', 'ENTREZGENE_ID', 'NDC']
 # import: attributeNode.csv
 atui_node = """
@@ -162,7 +161,7 @@ atui_node = """
                                    END                              AS ":LABEL"
                FROM MRSAT sat
                        JOIN MRCONSTY c ON sat.CUI = c.CUI
-               WHERE ATN IN ('ENSEMBLGENE_ID', 'ENTREZGENE_ID', 'ICD-O-3_CODE', 'NDC')
+               WHERE ATN IN ('ICD-O-3_CODE', 'NDC')
                    AND sat.SUPPRESS = 'N'
                    AND sat.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
                                    'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
@@ -175,11 +174,41 @@ attributeNode.to_csv(path_or_buf='../import/attributeNode.csv',
                      header=True,
                      index=False)
 print("attributeNode.csv successfully written out...")
+# **************************************************************
+# Labels:
+# import: attributeNode.csv
+defintion_node = """
+
+                  With CUIlist as (
+                        SELECT DISTINCT CUI 
+                        FROM MRCONSO 
+                        WHERE ISPREF = 'Y' 
+                            AND MRCONSO.STT = 'PF' 
+                            AND MRCONSO.TS = 'P' 
+                            AND MRCONSO.LAT = 'ENG') 
+                  SELECT DISTINCT MRDEF.ATUI
+                                , MRDEF.SAB
+                                , MRDEF.DEF
+                                , 'Defintion' AS ":LABEL"
+                  FROM MRDEF inner join CUIlist on MRDEF.CUI = CUIlist.CUI 
+                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS',
+                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                    AND SUPPRESS = 'N'
+                    AND MRDEF.SAB != 'MSH'
+                    AND MRDEF.SAB != 'MDR';
+                    
+                    """
+defNode = pd.read_sql_query(defintion_node, conn)
+defNode.columns = ['DefinitionId:ID', 'ontology', 'definition', ':LABEL']
+defNode.to_csv(path_or_buf='../import/defNode.csv',
+               header=True,
+               index=False)
+print("defNode.csv successfulLY written out...")
 
 # **************************************************************
 # GRAPH EDGES
 # **************************************************************
-
 # has_sty.csv & sty_of.csv
 has_sty_rel = """
 
@@ -217,7 +246,7 @@ has_umls_aui = """
 
                   SELECT DISTINCT SAB || '#' || CODE     AS ":START_ID"
                                 , AUI                    AS ":END_ID"
-                                , 'HAS_UMLS_ATOM'         AS ":TYPE"
+                                , 'HAS_UMLS_AUI'         AS ":TYPE"
                   FROM MRCONSO
                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
@@ -259,7 +288,7 @@ has_child = """
 
               SELECT DISTINCT (SAB || '#' || CODE)   AS ":START_ID"
                             , (SAB2 || '#' || CODE2) AS ":END_ID"
-                            , 'HAS_CHILD_CODE'       AS ":TYPE"
+                            , 'HAS_CHILD'            AS ":TYPE"
               FROM HIERARCHY
               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
                             'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
@@ -275,22 +304,20 @@ has_child_code.to_csv(path_or_buf='../import/has_child_code.csv',
 print("has_child_code.csv successfully written out...")
 
 # **************************************************************
-
 # code_has_attribute.csv
 has_attr = """
 
-              SELECT DISTINCT ATUI                 AS ":END_ID"
-                           , (SAB || '#' || CODE) AS ":START_ID"
+              SELECT DISTINCT ATUI                           AS ":END_ID"
+                           , (SAB || '#' || CODE)            AS ":START_ID"
                            , CASE 
                                WHEN ATN = 'ICD-O-3_CODE' 
                                    THEN 'ICDO3Code' 
-                                ELSE ATN 
-                                END                  AS ":TYPE"
+                                ELSE ATN END                  AS ":TYPE"
               FROM MRSAT
               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'ICD9CM', 
                             'ICD10CM', 'ICD10PCS', 'MDR', 'MED-RT', 
                             'NCI', 'RXNORM', 'SNOMEDCT_US')
-                  AND ATN IN ('ENSEMBLGENE_ID', 'ENTREZGENE_ID', 'ICD-O-3_CODE', 'NDC')
+                  AND ATN IN ('ICD-O-3_CODE', 'NDC')
                   AND SUPPRESS = 'N';
                   
                   """
@@ -321,6 +348,31 @@ sty_isa.to_csv(path_or_buf="../import/sty_isa.csv",
 print("sty_isa.csv successfully written out...")
 
 # **************************************************************
+# cui_cui_re = """
+
+#                 SELECT DISTINCT CUI2
+#                               , CUI
+#                               , CASE
+#                                     WHEN RELA = ''
+#                                 THEN REL
+#                                 ELSE RELA END AS ":TYPE"
+#                 FROM MRCONREL
+#                 WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
+#                              'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+#                              'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#                     AND SAB2 IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
+#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+#                                 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#                     AND ISPREF = 'Y'
+#                     AND ISPREF2 = 'Y'
+#                     AND TS = 'P'
+#                     AND TS2 = 'P'
+#                     AND STT = 'PF'
+#                     AND STT2 = 'PF'
+#                     AND REL NOT IN ('SIB', 'SY');
+
+#                     """
+
 # #cui_cui_rel.csv
 cui_cui_re = """
                 
@@ -362,3 +414,43 @@ cui_cui_rel_final.to_csv(path_or_buf="../import/cui_cui_rel.csv",
                          index=False)
 print("cui_cui_rel.csv successfully written out...")
 # **************************************************************
+# cui_def_rel.csv
+cui_defintion_rel = """
+                   
+                   SELECT DISTINCT ATUI
+                                 , CUI
+                                 , 'CUI_HAS_ATTRIBUTE' AS ":TYPE"
+                   FROM MRDEF 
+                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                       AND SUPPRESS = 'N';
+                   
+                   """
+cui_def_rel = pd.read_sql_query(
+    cui_defintion_rel, conn).drop_duplicates().replace(np.nan, '')
+cui_def_rel.columns = [':END_ID', ':START_ID', ':TYPE']
+cui_def_rel.to_csv(path_or_buf='../import/cui_def_rel.csv',
+                   header=True,
+                   index=False)
+print("cui_def_rel.csv successfully written out...")
+# **************************************************************
+# def_aui_rel.csv
+defintion_aui_rel = """
+                   
+                   SELECT DISTINCT ATUI
+                                 , AUI
+                                 , 'ATTRIBUTE_HAS_AUI' AS ":TYPE"
+                   FROM MRDEF 
+                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                       AND SUPPRESS = 'N';
+                   
+                   """
+def_aui_rel = pd.read_sql_query(
+    defintion_aui_rel, conn).drop_duplicates().replace(np.nan, '')
+def_aui_rel.columns = [':START_ID', ':END_ID', ':TYPE']
+def_aui_rel.to_csv(path_or_buf='../import/def_aui_rel.csv',
+                   header=True,
+                   index=False)

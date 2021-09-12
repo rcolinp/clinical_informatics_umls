@@ -95,6 +95,7 @@ This project has an included `pyproject.toml` as the python packaging and depend
 --nodes='import/codeNode.csv' \
 --nodes='import/semanticTypeNode.csv' \
 --nodes='import/attributeNode.csv' \
+--nodes='import/defNode.csv' \
 --relationships='import/has_sty.csv' \
 --relationships='import/is_sty_of.csv' \
 --relationships='import/has_umls_atom.csv' \
@@ -103,6 +104,8 @@ This project has an included `pyproject.toml` as the python packaging and depend
 --relationships='import/code_has_attribute.csv' \
 --relationships='import/sty_isa.csv' \
 --relationships='import/cui_cui_rel.csv' \
+--relationships='import/cui_def_rel.csv' \
+--relationships='import/def_aui_rel.csv' \
 --skip-bad-relationships=true \
 --skip-duplicate-nodes=true \
 --processors=12 \
