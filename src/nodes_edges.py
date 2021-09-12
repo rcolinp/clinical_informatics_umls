@@ -72,7 +72,7 @@ semantic_node = """
 semanticTypeNode = pd.read_sql_query(
     semantic_node, conn).drop_duplicates().replace(np.nan, '')
 semanticTypeNode.columns = ["SemanticTypeId:ID", "sty", "stn", ":LABEL"]
-semanticTypeNode.to_csv(path_or_buf="../import/semanticTypeNode.csv",
+semanticTypeNode.to_csv(path_or_buf="../../../../import/isemanticTypeNode.csv",
                         header=True,
                         index=False)
 print("SemanticTypeNode.csv successfully written out...")
@@ -96,7 +96,7 @@ concept_node = """
                       """
 conceptNode = pd.read_sql_query(
     concept_node, conn).drop_duplicates().replace(np.nan, '')
-conceptNode.to_csv(path_or_buf="../import/conceptNode.csv",
+conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                    header=True,
                    index=False)
 print("conceptNode.csv successfully written out...")
@@ -122,7 +122,7 @@ atom_node = """
                 """
 atomNode = pd.read_sql_query(atom_node, conn).drop_duplicates([
     'AtomId:ID']).replace(np.nan, "")
-atomNode.to_csv(path_or_buf="../import/atomNode.csv",
+atomNode.to_csv(path_or_buf="../../../../import/atomNode.csv",
                 header=True,
                 index=False)
 print("atomNode.csv successfully written out...")
@@ -147,7 +147,7 @@ code_node = """
 codeNode = pd.read_sql_query(code_node, conn).drop_duplicates(
     ['CodeId:ID', 'STR']).replace(np.nan, "")
 codeNode.columns = ["CodeId:ID", "ontology", "name", "code", "tty", ":LABEL"]
-codeNode.to_csv(path_or_buf="../import/codeNode.csv",
+codeNode.to_csv(path_or_buf="../../../../import/codeNode.csv",
                 header=True,
                 index=False)
 print("codeNode.csv successfully written out...")
@@ -175,7 +175,7 @@ atui_node = """
                                    """
 attributeNode = pd.read_sql_query(atui_node, conn).drop_duplicates().replace(
     np.nan, '').sort_values('AtuiId:ID')
-attributeNode.to_csv(path_or_buf='../import/attributeNode.csv',
+attributeNode.to_csv(path_or_buf="../../../../import/attributeNode.csv",
                      header=True,
                      index=False)
 print("attributeNode.csv successfully written out...")
@@ -206,7 +206,7 @@ defintion_node = """
                     """
 defNode = pd.read_sql_query(defintion_node, conn)
 defNode.columns = ['DefinitionId:ID', 'ontology', 'definition', ':LABEL']
-defNode.to_csv(path_or_buf='../import/defNode.csv',
+defNode.to_csv(path_or_buf="../../../../import/defNode.csv",
                header=True,
                index=False)
 print("defNode.csv successfulLY written out...")
@@ -239,7 +239,7 @@ has_sty.to_csv(path_or_buf='../import/has_sty.csv',
                header=True,
                index=False)
 print("has_sty.csv successfully written out...")
-is_sty_of.to_csv(path_or_buf='../import/is_sty_of.csv',
+is_sty_of.to_csv(path_or_buf="../../../../import/is_sty_of.csv",
                  header=True,
                  index=False)
 print("is_sty_of.csv successfully written out...")
@@ -259,7 +259,7 @@ has_umls_aui = """
                       """
 has_umls_aui_rel = pd.read_sql_query(
     has_umls_aui, conn).drop_duplicates().replace(np.nan, '')
-has_umls_aui_rel.to_csv(path_or_buf="../import/has_umls_atom.csv",
+has_umls_aui_rel.to_csv(path_or_buf="../../../../import/has_umls_atom.csv",
                         header=True,
                         index=False)
 print("has_umls_atom.csv successfully written out...")
@@ -279,7 +279,7 @@ has_cui = """
                  """
 has_cui_rel = pd.read_sql_query(
     has_cui, conn).drop_duplicates().replace(np.nan, '')
-has_cui_rel.to_csv(path_or_buf="../import/has_cui.csv",
+has_cui_rel.to_csv(path_or_buf="../../../../import/has_cui.csv",
                    header=True,
                    index=False)
 print("has_cui.csv successfully written out...")
@@ -299,7 +299,7 @@ has_child = """
                   """
 has_child_code = pd.read_sql_query(
     has_child, conn).drop_duplicates().replace(np.nan, '')
-has_child_code.to_csv(path_or_buf='../import/has_child_code.csv',
+has_child_code.to_csv(path_or_buf="../../../../import/has_child_code.csv",
                       header=True,
                       index=False)
 print("has_child_code.csv successfully written out...")
@@ -323,7 +323,7 @@ has_attr = """
                   """
 code_has_attribute = pd.read_sql_query(
     has_attr, conn).drop_duplicates().replace(np.nan, '')
-code_has_attribute.to_csv(path_or_buf='../import/code_has_attribute.csv',
+code_has_attribute.to_csv(path_or_buf="../../../../import/code_has_attribute.csv",
                           header=True,
                           index=False)
 print("code_has_attribute.csv successfully written out...")
@@ -341,7 +341,7 @@ sty_isa_rel = """
                  WHERE UI2 = 'T186';"""
 sty_isa = pd.read_sql_query(
     sty_isa_rel, conn).drop_duplicates().replace(np.nan, "")
-sty_isa.to_csv(path_or_buf="../import/sty_isa.csv",
+sty_isa.to_csv(path_or_buf="../../../../import/sty_isa.csv",
                header=True,
                index=False)
 print("sty_isa.csv successfully written out...")
@@ -407,7 +407,7 @@ cui_cui_rel_df2 = cui_cui_rel_df[(cui_cui_rel_df[':TYPE'] != 'SY') & (
 cui_cui_rel_df2[":TYPE"] = cui_cui_rel_df2[":TYPE"].str.upper()
 cui_cui_rel_final = cui_cui_rel_df2[(cui_cui_rel_df2[':START_ID']) != (
     cui_cui_rel_df2[':END_ID'])].drop_duplicates().replace(np.nan, '')
-cui_cui_rel_final.to_csv(path_or_buf="../import/cui_cui_rel.csv",
+cui_cui_rel_final.to_csv(path_or_buf="../../../../import/cui_cui_rel.csv",
                          header=True,
                          index=False)
 print("cui_cui_rel.csv successfully written out...")
@@ -428,7 +428,7 @@ cui_defintion_rel = """
 cui_def_rel = pd.read_sql_query(
     cui_defintion_rel, conn).drop_duplicates().replace(np.nan, '')
 cui_def_rel.columns = [':END_ID', ':START_ID', ':TYPE']
-cui_def_rel.to_csv(path_or_buf='../import/cui_def_rel.csv',
+cui_def_rel.to_csv(path_or_buf='../../../import/cui_def_rel.csv',
                    header=True,
                    index=False)
 print("cui_def_rel.csv successfully written out...")
@@ -449,7 +449,7 @@ defintion_aui_rel = """
 def_aui_rel = pd.read_sql_query(
     defintion_aui_rel, conn).drop_duplicates().replace(np.nan, '')
 def_aui_rel.columns = [':START_ID', ':END_ID', ':TYPE']
-def_aui_rel.to_csv(path_or_buf='../import/def_aui_rel.csv',
+def_aui_rel.to_csv(path_or_buf="../../../../import/def_aui_rel.csv",
                    header=True,
                    index=False)
 # **************************************************************
