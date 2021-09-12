@@ -1,6 +1,7 @@
-/*
-Indexes & constraints - not exhaustive but comprehensive
+/* 
+ PLEASE REFERENCE https://www.nlm.nih.gov/research/umls/implementation_resources/scripts/index.html for additional details regarding .sql script. This is source documentation provided by NIH for UMLS License holders.
  */
+ 
 CREATE INDEX X_MRCONSO_CUI ON MRCONSO (CUI);
 
 ;

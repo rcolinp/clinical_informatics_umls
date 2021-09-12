@@ -85,9 +85,9 @@ concept_node = """
                                 , STR       AS name
                                 , 'Concept' AS ":LABEL"
                   FROM MRCONSO
-                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 
+                                'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                       AND SUPPRESS = 'N'
                       AND ISPREF = 'Y'
                       AND TS = 'P'
@@ -114,9 +114,9 @@ atom_node = """
                           , TS                     AS ts
                           , 'Atom'                 AS ":LABEL"
             FROM MRCONSO 
-            WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                          'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                          'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+            WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                          'ICD9CM', 'ICD10CM', 'ICD10PCS', 
+                          'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                 AND SUPPRESS = 'N';
                 
                 """
@@ -138,9 +138,9 @@ code_node = """
                              , TTY
                              , ('Code' || ';' || SAB)  AS ":LABEL"
                FROM MRCONSO
-               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                             'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                             'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                             'ICD9CM', 'ICD10CM', 'ICD10PCS', 
+                             'MED-RT','MSH','NCI', 'RXNORM', 'SNOMEDCT_US')
                   AND SUPPRESS = 'N';
                   
                   """
@@ -166,11 +166,11 @@ atui_node = """
                                    END                              AS ":LABEL"
                FROM MRSAT sat
                        JOIN MRCONSTY c ON sat.CUI = c.CUI
-               WHERE ATN IN ('ICD-O-3_CODE', 'NDC')
+               WHERE ATN IN ('ICD-O-3_CODE', 'NDC', 'ENSEMBLGENE_ID', 'ENTREZGENE_ID', 'IS_DRUG_CLASS')
                    AND sat.SUPPRESS = 'N'
-                   AND sat.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                                   'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
-                                   'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US');
+                   AND sat.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                                   'ICD9CM', 'ICD10CM', 'ICD10PCS',  
+                                   'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US');
                                    
                                    """
 attributeNode = pd.read_sql_query(atui_node, conn).drop_duplicates().replace(
@@ -179,37 +179,7 @@ attributeNode.to_csv(path_or_buf="../../../../import/attributeNode.csv",
                      header=True,
                      index=False)
 print("attributeNode.csv successfully written out...")
-# **************************************************************
-# Labels:
-# import: attributeNode.csv
-defintion_node = """
 
-                  With CUIlist as (
-                        SELECT DISTINCT CUI 
-                        FROM MRCONSO 
-                        WHERE ISPREF = 'Y' 
-                            AND MRCONSO.STT = 'PF' 
-                            AND MRCONSO.TS = 'P' 
-                            AND MRCONSO.LAT = 'ENG') 
-                  SELECT DISTINCT MRDEF.ATUI
-                                , MRDEF.SAB
-                                , MRDEF.DEF
-                                , 'Defintion' AS ":LABEL"
-                  FROM MRDEF inner join CUIlist on MRDEF.CUI = CUIlist.CUI 
-                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS',
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-                    AND SUPPRESS = 'N'
-                    AND MRDEF.SAB != 'MSH'
-                    AND MRDEF.SAB != 'MDR';
-                    
-                    """
-defNode = pd.read_sql_query(defintion_node, conn)
-defNode.columns = ['DefinitionId:ID', 'ontology', 'definition', ':LABEL']
-defNode.to_csv(path_or_buf="../../../../import/defNode.csv",
-               header=True,
-               index=False)
-print("defNode.csv successfulLY written out...")
 # **************************************************************
 # GRAPH EDGES
 # **************************************************************
@@ -221,9 +191,9 @@ has_sty_rel = """
                                , 'HAS_STY'      AS ":TYPE"
                  FROM MRSTY s
                          JOIN MRCONSO c ON s.CUI = c.CUI
-                 WHERE c.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                                 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                 WHERE c.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                                 'ICD9CM', 'ICD10CM', 'ICD10PCS',  
+                                 'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                      AND c.SUPPRESS = 'N'
                      AND c.ISPREF = 'Y'
                      AND c.TS = 'P'
@@ -235,7 +205,7 @@ has_sty = pd.read_sql_query(
 is_sty_of = has_sty[[':END_ID', ':START_ID', ':TYPE']]
 is_sty_of[':TYPE'] = 'IS_STY_OF'
 is_sty_of.columns = [':START_ID', ':END_ID', ':TYPE']
-has_sty.to_csv(path_or_buf='../import/has_sty.csv',
+has_sty.to_csv(path_or_buf='../../../../import/has_sty.csv',
                header=True,
                index=False)
 print("has_sty.csv successfully written out...")
@@ -251,9 +221,9 @@ has_umls_aui = """
                                 , AUI                    AS ":END_ID"
                                 , 'HAS_UMLS_AUI'         AS ":TYPE"
                   FROM MRCONSO
-                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                  WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS',
+                                'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                       AND SUPPRESS = 'N';
                       
                       """
@@ -271,9 +241,9 @@ has_cui = """
                            , CUI           AS ":END_ID"
                            , 'HAS_CUI'     AS ":TYPE"
              FROM MRCONSO
-             WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                           'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
-                           'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+             WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+                           'ICD9CM', 'ICD10CM', 'ICD10PCS', 
+                           'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                  AND SUPPRESS = 'N';
                  
                  """
@@ -292,8 +262,8 @@ has_child = """
                             , 'HAS_CHILD'            AS ":TYPE"
               FROM HIERARCHY
               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-                            'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR', 
-                            'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                            'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO', 
+                            'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                   AND CODE != CODE2;
                   
                   """
@@ -315,8 +285,8 @@ has_attr = """
                                 ELSE ATN END                  AS ":TYPE"
               FROM MRSAT
               WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'ICD9CM', 
-                            'ICD10CM', 'ICD10PCS', 'MDR', 'MED-RT', 
-                            'NCI', 'RXNORM', 'SNOMEDCT_US')
+                            'ICD10CM', 'ICD10PCS', 'HPO', 'MED-RT', 
+                            'NCI', 'MSH', 'RXNORM', 'SNOMEDCT_US')
                   AND ATN IN ('ICD-O-3_CODE', 'NDC')
                   AND SUPPRESS = 'N';
                   
@@ -356,10 +326,10 @@ print("sty_isa.csv successfully written out...")
 #                                 ELSE RELA END AS ":TYPE"
 #                 FROM MRCONREL
 #                 WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-#                              'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+#                              'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO',
 #                              'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
 #                     AND SAB2 IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
-#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
+#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO',
 #                                 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
 #                     AND ISPREF = 'Y'
 #                     AND ISPREF2 = 'Y'
@@ -384,11 +354,11 @@ cui_cui_re = """
                          INNER JOIN MRCONSO c ON r.CUI2 = c.CUI
                          INNER JOIN MRCONSO c2 ON r.CUI1 = c2.CUI
                 WHERE c.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO',
+                                'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
                     AND c2.SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'ICD9CM', 
-                                   'ICD10CM', 'ICD10PCS', 'MDR', 'MED-RT', 
-                                   'NCI', 'RXNORM', 'SNOMEDCT_US')
+                                   'ICD10CM', 'ICD10PCS', 'HPO', 'MED-RT', 
+                                   'NCI', 'MSH', 'RXNORM', 'SNOMEDCT_US')
                     AND c.SUPPRESS = 'N'
                     AND c.TS = 'P'
                     AND c.STT = 'PF'
@@ -411,45 +381,77 @@ cui_cui_rel_final.to_csv(path_or_buf="../../../../import/cui_cui_rel.csv",
                          header=True,
                          index=False)
 print("cui_cui_rel.csv successfully written out...")
+
+# **************************************************************
+# # Labels:
+# # import: attributeNode.csv
+# defintion_node = """
+
+#                   With CUIlist as (
+#                         SELECT DISTINCT CUI
+#                         FROM MRCONSO
+#                         WHERE ISPREF = 'Y'
+#                             AND MRCONSO.STT = 'PF'
+#                             AND MRCONSO.TS = 'P'
+#                             AND MRCONSO.LAT = 'ENG')
+#                   SELECT DISTINCT MRDEF.ATUI
+#                                 , MRDEF.SAB
+#                                 , MRDEF.DEF
+#                                 , 'Defintion' AS ":LABEL"
+#                   FROM MRDEF inner join CUIlist on MRDEF.CUI = CUIlist.CUI
+#                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 'HPO',
+#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS',
+#                                 'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#                     AND SUPPRESS = 'N'
+#                     AND MRDEF.SAB != 'MSH'
+#                     AND MRDEF.SAB != 'MDR';
+
+#                     """
+# defNode = pd.read_sql_query(defintion_node, conn)
+# defNode.columns = ['DefinitionId:ID', 'ontology', 'definition', ':LABEL']
+# defNode.to_csv(path_or_buf="../../../../import/defNode.csv",
+#                header=True,
+#                index=False)
+# print("defNode.csv successfulLY written out...")
 # **************************************************************
 # cui_def_rel.csv
-cui_defintion_rel = """
-                   
-                   SELECT DISTINCT ATUI
-                                 , CUI
-                                 , 'CUI_HAS_ATTRIBUTE' AS ":TYPE"
-                   FROM MRDEF 
-                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-                       AND SUPPRESS = 'N';
-                   
-                   """
-cui_def_rel = pd.read_sql_query(
-    cui_defintion_rel, conn).drop_duplicates().replace(np.nan, '')
-cui_def_rel.columns = [':END_ID', ':START_ID', ':TYPE']
-cui_def_rel.to_csv(path_or_buf='../../../import/cui_def_rel.csv',
-                   header=True,
-                   index=False)
-print("cui_def_rel.csv successfully written out...")
-# **************************************************************
-# def_aui_rel.csv
-defintion_aui_rel = """
-                   
-                   SELECT DISTINCT ATUI
-                                 , AUI
-                                 , 'ATTRIBUTE_HAS_AUI' AS ":TYPE"
-                   FROM MRDEF 
-                   WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC', 
-                                'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MDR',
-                                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-                       AND SUPPRESS = 'N';
-                   
-                   """
-def_aui_rel = pd.read_sql_query(
-    defintion_aui_rel, conn).drop_duplicates().replace(np.nan, '')
-def_aui_rel.columns = [':START_ID', ':END_ID', ':TYPE']
-def_aui_rel.to_csv(path_or_buf="../../../../import/def_aui_rel.csv",
-                   header=True,
-                   index=False)
-# **************************************************************
+# cui_defintion_rel = """
+
+#                    SELECT DISTINCT ATUI
+#                                  , CUI
+#                                  , 'CUI_HAS_DEF' AS ":TYPE"
+#                    FROM MRDEF
+#                    WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
+#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO',
+#                                 'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#                        AND SUPPRESS = 'N';
+
+#                    """
+# cui_def_rel = pd.read_sql_query(
+#     cui_defintion_rel, conn).drop_duplicates().replace(np.nan, '')
+# cui_def_rel.columns = [':END_ID', ':START_ID', ':TYPE']
+# cui_def_rel.to_csv(path_or_buf='../../../../import/cui_def_rel.csv',
+#                    header=True,
+#                    index=False)
+# print("cui_def_rel.csv successfully written out...")
+# # **************************************************************
+# # def_aui_rel.csv
+# defintion_aui_rel = """
+
+#                    SELECT DISTINCT ATUI
+#                                  , AUI
+#                                  , 'DEF_HAS_AUI' AS ":TYPE"
+#                    FROM MRDEF
+#                    WHERE SAB IN ('ATC', 'DRUGBANK', 'GO', 'HGNC',
+#                                 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'HPO',
+#                                 'MED-RT', 'MSH', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#                        AND SUPPRESS = 'N';
+
+#                    """
+# def_aui_rel = pd.read_sql_query(
+#     defintion_aui_rel, conn).drop_duplicates().replace(np.nan, '')
+# def_aui_rel.columns = [':START_ID', ':END_ID', ':TYPE']
+# def_aui_rel.to_csv(path_or_buf="../../../../import/def_aui_rel.csv",
+#                    header=True,
+#                    index=False)
+# # **************************************************************

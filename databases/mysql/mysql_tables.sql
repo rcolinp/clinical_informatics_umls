@@ -1,5 +1,5 @@
-/*
- MySQL Database Create Tables .sql (NOTE: Please Modify path to .RRF files)
+/* 
+ PLEASE REFERENCE https://www.nlm.nih.gov/research/umls/implementation_resources/scripts/index.html for additional details regarding .sql script. This is source documentation provided by NIH for UMLS License holders.
  */
 
 DROP TABLE IF EXISTS MRCOLS;
