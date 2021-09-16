@@ -32,6 +32,7 @@ umls.db
 neo4j.cypher
 docker-compose.yml
 .DS_Store
+venv/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

@@ -1,9 +1,14 @@
 # !/bin/sh
-#
-#  Create a UMLS SQLite database.
-# ** Usage of this script requires that you are a U
-#   --> Please reference following link for original source -> https://github.com/chb/py-umls/blob/master/databases/umls.sh
+###################################################################################################################
+# Create a UMLS SQLite database from raw release format (.RRF files) generated via UMLS® MetamorphoSys
 
+# Execute script via 'sh create_sqlite_db.sh <path to 2021AA directory>' (root directory to META direcotry)
+# For example --> sh create_sqlite_db.sh ../UMLS/subset/2021AA
+
+# Disclaimer: ~20GiB disk space required -> will vary based on index choices)
+# --> Pease update indexes per user preference (uncomment/comment etc)
+# --> This script assumes you are a UMLS License holder & have generated a 'susbet' of RRF files via MetamorphoSys
+####################################################################################################################
 if [ ! -e umls.db ]; then
     if [ ! -d "$1" ]; then
         echo "Provide the path to the UMLS install directory as first argument when invoking this script. Download the latest version here: http://www.nlm.nih.gov/research/umls/licensedcontent/umlsknowledgesources.html (should check which file is needed)"
@@ -138,6 +143,11 @@ if [ ! -e umls.db ]; then
         CVF varchar
     )"
 
+    # init the database for MRCONREL
+    sqlite3 umls.db "CREATE TABLE MRCONREL(
+        
+    )"
+
     # import tables
     for f in "$1/META/"*.pipe; do
         table=$(basename ${f%.pipe})
@@ -154,7 +164,7 @@ if [ ! -e umls.db ]; then
     sqlite3 umls.db "CREATE INDEX X_TUI_MRSTY ON MRSTY(TUI);"
     sqlite3 umls.db "CREATE INDEX X_CUI_MRHIER ON MRHIER(CUI);"
     sqlite3 umls.db "CREATE INDEX X_AUI_MRHIER ON MRHIER(AUI);"
-    sqlite3 umls.db "CREATE INDEX X_SAB_MRHIER ON MRHIER(SAB);"
+    # sqlite3 umls.db "CREATE INDEX X_SAB_MRHIER ON MRHIER(SAB);"
     sqlite3 umls.db "CREATE INDEX X_PAUI_MRHIER ON MRHIER(PAUI);"
     sqlite3 umls.db "CREATE INDEX X_CUI1_MRREL ON MRREL(CUI1);"
     sqlite3 umls.db "CREATE INDEX X_AUI1_MRREL ON MRREL(AUI1);"
@@ -164,90 +174,97 @@ if [ ! -e umls.db ]; then
     sqlite3 umls.db "CREATE INDEX X_CUI_MRSAT ON MRSAT(CUI);"
     sqlite3 umls.db "CREATE INDEX X_SAB_MRSAT ON MRSAT(SAB);"
     sqlite3 umls.db "CREATE INDEX X_ATN_MRSAT ON MRSAT(ATN);"
-    sqlite3 umls.db "CREATE INDEX X_CODE_MRSAT ON MRSAT(CODE);"
+    # sqlite3 umls.db "CREATE INDEX X_CODE_MRSAT ON MRSAT(CODE);"
     echo "-> successfully indexed inherited tables"
 
     # create faster lookup table for parent/child relationships (hierarchies)
     echo "-> begin to create an 'optimized' parent/child table -> 'HIERARCHY'..."
-    sqlite3 umls.db """CREATE TABLE HIERARCHY AS SELECT DISTINCT h.PTR   AS PTR 
-                                                               , h.PAUI  AS PAUI
-                                                               , c2.CUI  AS CUI
-                                                               , c2.SAB  AS SAB
-                                                               , c2.CODE AS CODE
-                                                               , c2.STR  AS STR
-                                                               , c2.TTY  AS TTY
-                                                               , h.RELA  AS RELA
-                                                               , c.AUI   AS AUI2
-                                                               , c.CUI   as CUI2
-                                                               , c.SAB   AS SAB2
-                                                               , c.CODE  AS CODE2
-                                                               , c.STR   AS STR2
-                                                               , c.TTY   AS TTY2
-                                                 FROM MRHIER h
-                                                        JOIN MRCONSO c ON h.AUI = c.AUI
-                                                        JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-                                                 WHERE c.SUPPRESS = 'N'
-                                                    AND c2.SUPPRESS = 'N';"""
+    sqlite3 umls.db "DROP TABLE IF EXISTS HIERARCHY AS
+SELECT DISTINCT h.PAUI               AS PAUI,
+                c2.CUI               AS CUI,
+                c2.SUI               AS SUI,
+                c2.SAB               AS SAB,
+                c2.CODE              AS CODE,
+                c2.SCUI              AS SCUI,
+                c2.STR               AS STR,
+                h.RELA               AS RELA,
+                c.AUI                AS AUI2,
+                c.CUI                as CUI2,
+                c.SUI                as SUI2,
+                c.SAB                AS SAB2,
+                c.CODE               AS CODE2,
+                c.SCUI               AS SCUI2,
+                c.STR                AS STR2
+FROM MRHIER h
+         JOIN MRCONSO c ON h.AUI = c.AUI
+         JOIN MRCONSO c2 ON h.PAUI = c2.AUI
+WHERE c.SUPPRESS = 'N'
+  AND c.ISPREF = 'Y'
+  AND c.TS = 'P'
+  AND c.STT = 'PF'
+  AND c.LAT = 'ENG'
+  AND c2.SUPPRESS = 'N'
+  AND c2.ISPREF = 'Y'
+  AND c2.TS = 'P'
+  AND c2.STT = 'PF'
+  AND c2.LAT = 'ENG';"""
     echo "-> successfully created HIERARCHY table."
 
     echo "-> begin to index HIERARCHY table..."
-    # sqlite3 umls.db "CREATE INDEX X_CUI_HIERARCHY ON HIERARCHY(CUI2);"
-    sqlite3 umls.db "CREATE INDEX X_CODE_HIERARCHY ON HIERARCHY(CODE2);"
-    sqlite3 umls.db "CREATE INDEX X_AUI_HIERARCHY ON HIERARCHY(AUI2);"
-    # sqlite3 umls.db "CREATE INDEX X_CUI2_HIERARCHY ON HIERARCHY(CUI);"
-    sqlite3 umls.db "CREATE INDEX X_CODE2_HIERARCHY ON HIERARCHY(CODE);"
-    sqlite3 umls.db "CREATE INDEX X_PAUI_HIERARCHY ON HIERARCHY(PAUI);"
+    sqlite3 umls.db "CREATE INDEX X_CUI_HIERARCHY ON HIERARCHY(CUI2);"
+    # sqlite3 umls.db "CREATE INDEX X_CODE_HIERARCHY ON HIERARCHY(CODE2);"
+    # sqlite3 umls.db "CREATE INDEX X_AUI_HIERARCHY ON HIERARCHY(AUI2);"
+    sqlite3 umls.db "CREATE INDEX X_CUI2_HIERARCHY ON HIERARCHY(CUI);"
+    # sqlite3 umls.db "CREATE INDEX X_CODE2_HIERARCHY ON HIERARCHY(CODE);"
+    # sqlite3 umls.db "CREATE INDEX X_PAUI_HIERARCHY ON HIERARCHY(PAUI);"
     echo "-> successfully completed indexing HIERARCHY table."
 
     echo "-> begin to create an 'optimized' semantic relationship table -> 'MRCONREL'."
-    sqlite3 umls.db """CREATE TABLE MRCONREL AS SELECT DISTINCT c2.AUI    AS AUI
-                                                              , c2.CUI    AS CUI
-                                                              , c2.SUI    AS SUI
-                                                              , c2.SAB    AS SAB
-                                                              , c2.CODE   AS CODE
-                                                              , c2.SCUI   AS SCUI
-                                                              , c2.STR    AS STR
-                                                              , c2.TTY    AS TTY
-                                                              , c2.ISPREF AS ISPREF
-                                                              , c2.TS     AS TS
-                                                              , c2.STT    AS STT
-                                                              , r.STYPE1  AS STYPE1
-                                                              , r.STYPE2  AS STYPE2
-                                                              , r.REL     AS REL
-                                                              , r.RELA    AS RELA
-                                                              , r.SAB     AS rSAB
-                                                              , r.rg      AS RG
-                                                              , c.AUI     AS AUI2
-                                                              , c.CUI     AS CUI2
-                                                              , c.SUI     AS SUI2
-                                                              , c.SAB     AS SAB2
-                                                              , c.CODE    AS CODE2
-                                                              , c.SCUI    AS SCUI2
-                                                              , c.STR     AS STR2
-                                                              , c.TTY     AS TTY2
-                                                              , c.ISPREF  AS ISPREF2
-                                                              , c.TS      AS TS2
-                                                              , c.STT     AS STT2
-                                                FROM MRCONSO c
-                                                        JOIN MRREL r ON c.AUI = r.AUI1
-                                                        JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
-                                                WHERE c.SUPPRESS = 'N' 
-                                                    AND c2.SUPPRESS = 'N';"""
+    sqlite3 umls.db """CREATE TABLE IF NOT EXISTS MRCONREL AS
+SELECT DISTINCT c2.AUI AS AUI,
+    c2.CUI AS CUI,
+    c2.SUI AS SUI,
+    c2.SAB AS SAB,
+    c2.CODE AS CODE,
+    c2.SCUI AS SCUI,
+    c2.STR AS STR,
+    c2.TTY AS TTY,
+    c2.ISPREF AS ISPREF,
+    c2.TS AS TS,
+    c2.STT AS STT,
+    r.STYPE1 AS STYPE1,
+    r.STYPE2 AS STYPE2,
+    r.REL AS REL,
+    r.RELA AS RELA,
+    r.SAB AS rSAB,
+    r.rg AS RG,
+    c.AUI AS AUI2,
+    c.CUI AS CUI2,
+    c.SUI AS SUI2,
+    c.SAB AS SAB2,
+    c.CODE AS CODE2,
+    c.SCUI AS SCUI2,
+    c.STR AS STR2,
+    c.TTY AS TTY2,
+    c.ISPREF AS ISPREF2,
+    c.TS AS TS2,
+    c.STT AS STT2
+FROM MRCONSO c
+    JOIN MRREL r ON c.AUI = r.AUI1
+    JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
+WHERE c.SUPPRESS = 'N'
+    AND c2.SUPPRESS = 'N';"""
     echo "-> successfully created table MRCONREL."
 
     echo "-> begin indexing table MRCONREL..."
     sqlite3 umls.db "CREATE INDEX X_CUI_MRCONREL ON MRCONREL(CUI2);"
-    # sqlite3 umls.db "CREATE INDEX X_AUI_MRCONREL ON MRCONREL(AUI2);"
     sqlite3 umls.db "CREATE INDEX X_CUI2_MRCONREL ON MRCONREL(CUI);"
-    # sqlite3 umls.db "CREATE INDEX X_AUI_MRCONREL ON MRCONREL(AUI);"
     echo "-> successfully indexed table MRCONREL."
-
-    # create optimized lookup table for concepts & semantic type -> 'MRCONSTY'
-    echo "-> Creating 'optimized' table which includes contents from MRCONSO & MRSTY -> 'MRCONSTY'."
-    sqlite3 umls.db """CREATE TABLE MRCONSTY AS SELECT AUI, CUI, SUI, LUI, SAB, CODE, SCUI, STR, TTY FROM MRCONSO WHERE SUPPRESS = 'N' AND TS = 'P' AND ISPREF = 'Y' AND STT = 'PF';"""
-    sqlite3 umls.db "ALTER TABLE MRCONSTY ADD COLUMN STY TEXT"
-    sqlite3 umls.db "CREATE INDEX X_CUI_MRCONSTY ON MRCONSTY(CUI)"
-    sqlite3 umls.db "UPDATE MRCONSTY SET STY = (SELECT GROUP_CONCAT(MRSTY.STY, ';') FROM MRSTY WHERE MRSTY.CUI = MRCONSTY.CUI GROUP BY MRSTY.CUI"
+    echo "-> Done -> umls.db has been created."
 else
     echo "=> umls.db already exists."
 fi
+###########################################################################
+# References: https://github.com/chb/py-umls/blob/master/databases/umls.sh
+###########################################################################
+
