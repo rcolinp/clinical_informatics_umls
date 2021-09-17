@@ -32,8 +32,12 @@ umls.db
 neo4j.cypher
 docker-compose.yml
 .DS_Store
-venv/
-
+venv
+wip_*
+docker-entrypoint.sh
+Dockerfile
+neo4jlabs_plugins.json
+parquet_to_csv.py
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

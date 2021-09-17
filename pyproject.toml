@@ -44,6 +44,7 @@ ipython = {extras = ["all"], version = "^7.27.0"}
 pymantic = "^0.3.0"
 SPARQLWrapper = "^1.8.5"
 docker = "^5.0.2"
+jupyter-client = "^7.0.3"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"

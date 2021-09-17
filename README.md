@@ -146,8 +146,9 @@ This project has an included `pyproject.toml` as the python packaging and depend
 Docker Image:
 
 ```shell
-docker run -it --name=<NAME YOUR CONTAINER> -d \
-    --publish="7474:7474" --publish="7687:7687" \
+docker run \
+    --detach \
+    --publish=7474:7474 --publish=7687:7687 \
     --volume=$HOME/neo4j:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
@@ -156,7 +157,8 @@ docker run -it --name=<NAME YOUR CONTAINER> -d \
     --env=apoc_export_file_enabled=true \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science"]' \
-    --env=NEO4J_AUTH=neo4j/<insert a password> \
+    --env=NEO4J_AUTH=neo4j/<INSERT PWD> \
+    --env=NEO4J_dbms_memory_pagecache_size=4G \
     neo4j:4.3-enterprise
 ```
 
