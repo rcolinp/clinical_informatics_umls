@@ -187,7 +187,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.0.5"
+version = "2.0.6"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "main"
 optional = false
@@ -789,14 +789,14 @@ test = ["pexpect"]
 
 [[package]]
 name = "jupyter-core"
-version = "4.7.1"
+version = "4.8.1"
 description = "Jupyter core package. A base package on which Jupyter projects rely."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-pywin32 = {version = ">=1.0", markers = "sys_platform == \"win32\""}
+pywin32 = {version = ">=1.0", markers = "sys_platform == \"win32\" and platform_python_implementation != \"PyPy\""}
 traitlets = "*"
 
 [[package]]
@@ -1586,14 +1586,6 @@ requests = "*"
 testing = ["betamax", "nose", "coverage"]
 
 [[package]]
-name = "pymedtermino"
-version = "0.3.3"
-description = "Medical Terminologies for Python: SNOMED CT, ICD10, MedDRA, CDF, UMLS and VCM icons"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
@@ -1732,20 +1724,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "pyvis"
-version = "0.1.9"
-description = "A Python network visualization library"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-ipython = ">=5.3.0"
-jinja2 = ">=2.9.6"
-jsonpickle = ">=1.4.1"
-networkx = ">=1.11"
-
-[[package]]
 name = "pywin32"
 version = "227"
 description = "Python for Window Extensions"
@@ -1821,7 +1799,7 @@ python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*"
 
 [[package]]
 name = "rdflib"
-version = "6.0.0"
+version = "6.0.1"
 description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information."
 category = "main"
 optional = false
@@ -1834,11 +1812,11 @@ pyparsing = "*"
 [package.extras]
 docs = ["sphinx (<5)", "sphinxcontrib-apidoc"]
 html = ["html5lib"]
-tests = ["html5lib", "networkx", "nose (==1.3.7)", "nose-timer", "coverage", "black (==21.7b0)", "flake8", "doctest-ignore-unicode (==0.1.2)"]
+tests = ["html5lib", "networkx", "nose (==1.3.7)", "nose-timer", "coverage", "black (==21.6b0)", "flake8", "doctest-ignore-unicode (==0.1.2)"]
 
 [[package]]
 name = "rdflib-jsonld"
-version = "0.6.1"
+version = "0.6.2"
 description = "rdflib extension adding JSON-LD parser and serializer"
 category = "main"
 optional = false
@@ -2399,7 +2377,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8,<3.11"
-content-hash = "3331c29767a71918a5bcd20d2a6e1ff095ce1f3d71e4bbd174274345d4851460"
+content-hash = "da0dbbbb450cb6874741ae6c0fe60d44af9c4c69b526dc3e0a490b97f7580006"
 
 [metadata.files]
 alabaster = [
@@ -2521,8 +2499,8 @@ chardet = [
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.0.5.tar.gz", hash = "sha256:7098e7e862f6370a2a8d1a6398cd359815c45d12626267652c3f13dec58e2367"},
-    {file = "charset_normalizer-2.0.5-py3-none-any.whl", hash = "sha256:fa471a601dfea0f492e4f4fca035cd82155e65dc45c9b83bf4322dfab63755dd"},
+    {file = "charset-normalizer-2.0.6.tar.gz", hash = "sha256:5ec46d183433dcbd0ab716f2d7f29d8dee50505b3fdb40c6b985c7c4f5a3591f"},
+    {file = "charset_normalizer-2.0.6-py3-none-any.whl", hash = "sha256:5d209c0a931f215cee683b6445e2d77677e7e75e159f78def0db09d68fafcaa6"},
 ]
 click = [
     {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
@@ -2860,8 +2838,8 @@ jupyter-console = [
     {file = "jupyter_console-6.4.0.tar.gz", hash = "sha256:242248e1685039cd8bff2c2ecb7ce6c1546eb50ee3b08519729e6e881aec19c7"},
 ]
 jupyter-core = [
-    {file = "jupyter_core-4.7.1-py3-none-any.whl", hash = "sha256:8c6c0cac5c1b563622ad49321d5ec47017bd18b94facb381c6973a0486395f8e"},
-    {file = "jupyter_core-4.7.1.tar.gz", hash = "sha256:79025cb3225efcd36847d0840f3fc672c0abd7afd0de83ba8a1d3837619122b4"},
+    {file = "jupyter_core-4.8.1-py3-none-any.whl", hash = "sha256:8dd262ec8afae95bd512518eb003bc546b76adbf34bf99410e9accdf4be9aa3a"},
+    {file = "jupyter_core-4.8.1.tar.gz", hash = "sha256:ef210dcb4fca04de07f2ead4adf408776aca94d17151d6f750ad6ded0b91ea16"},
 ]
 jupyterlab-pygments = [
     {file = "jupyterlab_pygments-0.1.2-py2.py3-none-any.whl", hash = "sha256:abfb880fd1561987efaefcb2d2ac75145d2a5d0139b1876d5be806e32f630008"},
@@ -3433,9 +3411,6 @@ pymantic = [
     {file = "pymantic-0.3.0-py3-none-any.whl", hash = "sha256:01902bd7c938a40c50a2f16b995220407f6319ce6fe9e4400ed77ed8439ead5f"},
     {file = "pymantic-0.3.0.tar.gz", hash = "sha256:e5ba3ad4b5560dfe5355727003d51b90028bc2034f9b837dccf08f9dd2027051"},
 ]
-pymedtermino = [
-    {file = "PyMedTermino-0.3.3.tar.gz", hash = "sha256:0f07c6382c5ee91670cf5e3ce3a1648342325c7a4821315c4aa82b19b6b1353b"},
-]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
@@ -3493,10 +3468,6 @@ python-dateutil = [
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
     {file = "pytz-2021.1.tar.gz", hash = "sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da"},
-]
-pyvis = [
-    {file = "pyvis-0.1.9-py3-none-any.whl", hash = "sha256:4d7cab58f120db544e668ac53194fbb3f312e5ba691d7843e2048a43981b1356"},
-    {file = "pyvis-0.1.9.tar.gz", hash = "sha256:f9ea603025f31f02155760be638e6c443d992050a2e6942496fbba0586170cbf"},
 ]
 pywin32 = [
     {file = "pywin32-227-cp27-cp27m-win32.whl", hash = "sha256:371fcc39416d736401f0274dd64c2302728c9e034808e37381b5e1b22be4a6b0"},
@@ -3602,12 +3573,12 @@ qtpy = [
     {file = "QtPy-1.11.1.tar.gz", hash = "sha256:d471fcb9cf96315b564ad3b42ca830d0286d1049d6a44c578d3dc3836381bb91"},
 ]
 rdflib = [
-    {file = "rdflib-6.0.0-py3-none-any.whl", hash = "sha256:bb24f0058070d5843503e15b37c597bc3858d328d11acd9476efad3aa62f555d"},
-    {file = "rdflib-6.0.0.tar.gz", hash = "sha256:7ce4d757eb26f4dd43205ec340d8c097f29e5adfe45d6ea20238c731dc679879"},
+    {file = "rdflib-6.0.1-py3-none-any.whl", hash = "sha256:a775069ab1c3d38b7e04666603666fb8a31937a4671a5afc91ca136109f8047a"},
+    {file = "rdflib-6.0.1.tar.gz", hash = "sha256:f071caff0b68634e4a7bd1d66ea3416ac98f1cc3b915938147ea899c32608728"},
 ]
 rdflib-jsonld = [
-    {file = "rdflib-jsonld-0.6.1.tar.gz", hash = "sha256:eda5a42a2e09f80d4da78e32b5c684bccdf275368f1541e6b7bcddfb1382a0e0"},
-    {file = "rdflib_jsonld-0.6.1-py2.py3-none-any.whl", hash = "sha256:bcf84317e947a661bae0a3f2aee1eced697075fc4ac4db6065a3340ea0f10fc2"},
+    {file = "rdflib-jsonld-0.6.2.tar.gz", hash = "sha256:107cd3019d41354c31687e64af5e3fd3c3e3fa5052ce635f5ce595fd31853a63"},
+    {file = "rdflib_jsonld-0.6.2-py2.py3-none-any.whl", hash = "sha256:011afe67672353ca9978ab9a4bee964dff91f14042f2d8a28c22a573779d2f8b"},
 ]
 readme-renderer = [
     {file = "readme_renderer-29.0-py2.py3-none-any.whl", hash = "sha256:63b4075c6698fcfa78e584930f07f39e05d46f3ec97f65006e430b595ca6348c"},
