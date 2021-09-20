@@ -25,14 +25,6 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
   - Abbreviation -> **ATC**
     - NIH/UMLS Vocabulary Documentation:
       - [ATC (Anatomical Therapeutic Chemical Classification System) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ATC/index.html)
-- **Vaccines Administered:**
-  - Abbreviation -> **CVX**
-    - NIH/UMLS Vocabulary Documentation:
-      - [CVX (Vaccines Administered) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/CVX/index.html)
-- **DrugBank:**
-  - Abbreviation -> **DRUGBANK**
-    - NIH/UMLS Vocabulary Documentation:
-      - [DRUGBANK (DrugBank) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/DRUGBANK/index.html)
 - **Gene Ontology:**
   - Abbreviation -> **GO**
     - NIH/UMLS Vocabulary Documentation:
@@ -57,7 +49,7 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
   - Abbreviation -> **ICD10PCS**
     - NIH/UMLS Vocabulary Documentation:
       - [ICD10PCS (ICD-10 Procedure Coding System) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS/index.html)
-- LOINC:
+- **LOINC:**
   - Abbreviation -> **LNC**
     - NIH/UMLS Vocabulary Documentation:
       - [LNC (LOINC) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/LNC/index.html)
@@ -69,22 +61,10 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
   - Abbreviation -> **MED-RT**
     - NIH/UMLS Vocabulary Documentation:
       - [MED-RT (Medication Reference Terminology) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/MED-RT/index.html)
-- **Multum:**
-  - Abbreviation -> **MMSL**
-    - NIH/UMLS Vocabulary Documentation:
-      - [MMSL (Multum) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/MMSL/index.html)
-- **Micromedex:**
-  - Abbreviation -> **MMX**
-    - NIH/UMLS Vocabulary Documentation:
-      - [MMX (Micromedex) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/MMX/index.html)
 - **MeSH:**
   - Abbreviation -> **MSH**
     - NIH/UMLS Vocabulary Documentation:
       - [MSH (MeSH) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/MSH/index.html)
-- **Manufacturers of Vaccines:**
-  - Abbreviation -> **MVX**
-    - NIH/UMLS Vocabulary Documentation:
-      - [MVX (Manufacturers of Vaccines) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/MVX/index.html)
 - **NCBI Taxonomy:**
   - Abbreviation -> **NCBI**
     - NIH/UMLS Vocabulary Documentation:
@@ -93,10 +73,6 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
   - Abbreviation -> **NCI**
     - NIH/UMLS Vocabulary Documentation:
       - [NCI (NCI Thesaurus) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NCI/index.html)
-- **FDB MedKnowledge:**
-  - Abbreviation -> **NDDF**
-    - NIH/UMLS Vocabulary Documentation:
-      - [NDDF (FDB MedKnowledge) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF/index.html)
 - **Physician Data Query:**
   - Abbreviation -> **PDQ**
     - NIH/UMLS Vocabulary Documentation:
@@ -105,7 +81,6 @@ A subset of the UMLS® 2021AA full release (available as of 05/03/2021), contain
   - Abbreviation -> **RXNORM**
     - NIH/UMLS Vocabulary Documentation:
       - [RXNORM (RXNORM) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/RXNORM/index.html)
-
 - **SNOMED CT, US Edition:**
   - Abbreviation -> **SNOMEDCT_US**
     - NIH/UMLS Vocabulary Documentation:
@@ -122,11 +97,11 @@ Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy
 - Python >=3.8 required based on `pyproject.toml`
 
 - Python v3.8.6 with version management via [pyenv](https://github.com/pyenv/pyenv) & python packing packing and dependency management via [Poetry](https://python-poetry.org/).
-  - [pyenv](https://github.com/pyenv/pyenv) strongly recommeneded to allow flexibility of which version of python you are using (general recomendation for anyone using Python aswell `:)`!
+  - [pyenv](https://github.com/pyenv/pyenv) strongly recommended to allow flexibility of which version of python you are using (general recommendation for anyone using Python as-well `:)`!
     - If unfamiliar with [pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
-      - Check out repective links if unfamiliar as [pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/) setup & use will not be covered within this repository.
+      - Check out respective links if unfamiliar as [pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/) setup & use will not be covered within this repository.
 
-This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the offical documentation provided.
+This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the official documentation provided.
 
 - Create a virtual environment within project directory:
 `python3 -m venv venv`
@@ -157,9 +132,10 @@ docker run \
     --env=apoc_export_file_enabled=true \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science"]' \
-    --env=NEO4J_AUTH=neo4j/<INSERT PWD> \
-    --env=NEO4J_dbms_memory_pagecache_size=4G \
-    neo4j:4.3-enterprise
+    --env=NEO4J_AUTH=neo4j/<insert password> \
+    --env=NEO4J_dbms_memory_heap_initial__size=1.002G \
+    --env=NEO4J_dbms_memory_heap_max__size=1.002G \
+    neo4j:enterprise
 ```
 
 ##### Import Data Into Neo4j Graph
@@ -174,7 +150,7 @@ docker run \
 
     - Your terminal should appear as follows:
 
-      - `root@<CONATAINER ID>:/var/lib/neo4j#`
+      - `root@<CONTAINER ID>:/var/lib/neo4j#`
 
       - The character string following `root@` should be the Docker `CONTAINER ID`.
 
@@ -202,6 +178,7 @@ docker run \
     --relationships='import/is_sty_of.csv' \
     --relationships='import/has_umls_atom.csv' \
     --relationships='import/has_cui.csv' \
+    --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_child_code.csv' \
     --relationships='import/code_has_attribute.csv' \
     --relationships='import/sty_isa.csv' \
@@ -230,6 +207,7 @@ Here are a few snippets of what the above commands should look like (including b
     --relationships='import/is_sty_of.csv' \
     --relationships='import/has_umls_atom.csv' \
     --relationships='import/has_cui.csv' \
+    --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_child_code.csv' \
     --relationships='import/code_has_attribute.csv' \
     --relationships='import/sty_isa.csv' \
@@ -238,7 +216,7 @@ Here are a few snippets of what the above commands should look like (including b
     --relationships='import/attribute_aui_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
-    --trim-strings=true
+    --trim-strings=true 
 ```
 
 Output:
@@ -258,6 +236,7 @@ Relationships:
   /var/lib/neo4j/import/is_sty_of.csv
   /var/lib/neo4j/import/has_umls_atom.csv
   /var/lib/neo4j/import/has_cui.csv
+  /var/lib/neo4j/import/has_aui_rel.csv
   /var/lib/neo4j/import/has_child_code.csv
   /var/lib/neo4j/import/code_has_attribute.csv
   /var/lib/neo4j/import/sty_isa.csv
