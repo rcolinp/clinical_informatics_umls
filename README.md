@@ -1,12 +1,18 @@
 # Clinical Informatics UMLS®
 
-In this repository, a thorough exploration of some of the largest and/or most relevant biomedical ontologies within the Unified Medical Language System® (UMLS®) pertaining to oncology will be done.
+In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies (within the Unified Medical Language System® (UMLS®)).
 
-The scope of material covered in this repository will pertain specifically to healthcare, biotechnology & pharmaceutics, with a heavy focus around oncology & cancer.
+**Disclaimer** - while this repository is open to anyone & has been created to share knowledge, educate & provide to open source community. In order to access the data covered, you must be a UMLS® license holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more!  
 
-The UMLS® ontologies within the scope of this repository contain rich semantics, concept hierarchies & semantic relationships which put them on the forefront of empowering AI & subject matter experts towards smarter treatment decisions & interoperability of biomedical data within healthcare.
+The scope of material covered in this repository will pertain specifically to healthcare, biotechnology & pharmaceutics. Largely in regards to oncology.
 
-A subset of the UMLS® 2021AA full release (available as of 05/03/2021), containing pertinent present day industry standard biomedical ontologies have been chosen for this project (complete list to follow in next section). The relational structure of UMLS® will be transformed from its native Rich Release Format (RRF) to more intuitive relational structures in addition to noSQL graphs. Specifically using the worlds leading graph data model, Neo4j (label property graph).
+The UMLS® ontologies/vocabularies within the scope of this repository has been limited due to the enormous size of UMLS® (containing >200+ vocabularies). Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interopability to healthcare. These ontologies contain rich semantics such as concept hierarchies and semantic relationships which leave them at the forefront of industry use.
+
+As described above, a "subset" of the UMLS® 2021AA full release (available as of 05/03/2021 -> next release (2021AB will be available Novemeber, 2021), containing pertinent present day industry standard biomedical ontologies have been chosen for this project (complete list to follow in next section). UMLS® License holders are provided an ability to create "subsets" of the data within the UMLS®. These subsets are provided in their native rich release format (RRF) & a relational database structure. 
+
+A part of this repository will dedicated to how a subset of UMLS® can be transformed from its native Rich Release Format (RRF) to more intuitive and common relational structures such as MySQL, PostgresSQL & SQLite (all covered in this repository). Additionally, this repository will explore how the relational structure built can be modeled as a noSQL graph (will be using [Neo4j](https://neo4j.com/) - a label property graph & the world's leading graph database). 
+
+The UMLS® provides a robust collection of interconnected data. In effort of studying this rich collection of "interconnected data", this repository will explore first creating a UMLS® subset as a relational database (SQLite, MySQL & PostgresSQL), querying that relational model & how to transform the relational model to a Neo4j graph database. 
 
 ## What is the UMLS® & Why is it Important?
 
@@ -259,7 +265,8 @@ Peak memory usage: 232.4MiB
 
 Exit docker command-line via:
 
-- `exit;`
+- `exit`
+
 Need to restart the container:
 
 - `docker restart <CONTAINER ID>`
