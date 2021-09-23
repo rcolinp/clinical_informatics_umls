@@ -261,21 +261,30 @@ print("has_aui.csv successfully written out...")
 # **************************************************************
 # code_has_child.csv
 has_child = '''
-              SELECT DISTINCT (SAB || '#' || CODE)   AS ":START_ID"
-                            , (SAB2 || '#' || CODE2) AS ":END_ID"
-                            , 'HAS_CHILD'            AS ":TYPE"
-              FROM HIERARCHY
-              WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD10CM', 
-                            'ICD10PCS', 'LNC', 'MDR', 'MED-RT', 'MSH', 
-                            'NCBI', 'NCI', 'OMIM', 'PDQ', 'RXNORM', 
-                            'SNOMEDCT_US', 'SRC')
-              AND CODE != CODE2;
-              '''
-has_child_code = pd.read_sql_query(
-    has_child, conn).drop_duplicates().replace(np.nan, "")
-has_child_code.to_csv(path_or_buf="../../../../import/has_child_code.csv",
-                      header=True,
-                      index=False)
+              SELECT DISTINCT (c2.SAB || '#' || c2.CODE)  AS ":START_ID"
+                            , (c.SAB || '#' || c.CODE)    AS ":END_ID"
+                            , 'HAS_CHILD'                 AS ":TYPE"
+              FROM MRCONSO c
+                      JOIN MRHIER h ON c.AUI = h.AUI
+                      JOIN MRCONSO c2 ON h.PAUI = c2.AUI
+              WHERE c.SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD10CM', 
+                              'ICD10PCS', 'LNC', 'MDR', 'MED-RT', 'MSH', 
+                              'NCBI', 'NCI', 'OMIM', 'PDQ', 'RXNORM', 
+                              'SNOMEDCT_US', 'SRC')
+                  AND c2.SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD10CM', 
+                             'ICD10PCS', 'LNC', 'MDR', 'MED-RT', 'MSH', 
+                             'NCBI', 'NCI', 'OMIM', 'PDQ', 'RXNORM', 
+                             'SNOMEDCT_US', 'SRC')
+                  AND c.SUPPRESS = 'N'
+                  AND c2.SUPPRESS = 'N';
+                  '''
+has_child_code = pd.read_sql_query(has_child, conn)
+has_child_code_df = has_child_code[has_child_code[':START_ID'] !=
+                                   has_child_code[':END_ID']].drop_duplicates().replace(np.nan, '')
+
+has_child_code_df.to_csv(path_or_buf="../../../../import/has_child_code.csv",
+                         header=True,
+                         index=False)
 print("has_child_code.csv successfully written out...")
 # **************************************************************
 # code_has_attribute.csv

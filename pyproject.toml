@@ -33,6 +33,8 @@ ipywidgets = "^7.6.5"
 ipython = {extras = ["all"], version = "^7.27.0"}
 docker = "^5.0.2"
 jupyter-client = "^7.0.3"
+docker-compose = "^1.29.2"
+compose = "^1.2.5"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"
