@@ -447,4 +447,6 @@ df.to_csv(path_or_buf='./import/cui_code_rel.csv',
           index=False)
 # **************************************************************
 # NOTE: Please run `python edges_part2.py` to ensure all nodes/edges have been accounted for prior to importing .csv data
-# --> 'edges_part2.py' will create all PARENT AUI (PAUI) --> AUI relationships for all vocabularies included in the graph. This requires exploding MRHIER.RRF to get all 'paths to root' for all atoms & their associated context views (for provided vocabularies). This script will create 1 .csv file named 'paui_of.csv' for the edge 'PAUI_OF' (AKA PARENT_AUI_OF).
+# --> 'edges_part2.py' will create all PARENT AUI (PAUI) --> AUI relationships for all vocabularies included in the graph.
+# This requires exploding MRHIER.RRF to get all 'paths to root' for all atoms & their associated context views (for provided vocabularies).
+# This script will create 1 .csv file named 'paui_of.csv' for the edge 'PAUI_OF' (AKA PARENT_AUI_OF).
