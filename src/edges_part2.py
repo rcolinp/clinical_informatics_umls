@@ -7,7 +7,7 @@ import pandas as pd
 
 
 # Read MRHIER.RRF using pandas read_csv()
-mrhier = pd.read_csv('/Users/robpiombino/Documents/UMLS/2021_09_13_subset/2021AA/META/MRHIER.RRF',
+mrhier = pd.read_csv('/Users/robpiombino/Documents/UMLS/subset/2021AA/META/MRHIER.RRF',
                      sep='|',
                      header=None,
                      dtype=object)
