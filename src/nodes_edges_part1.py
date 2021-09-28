@@ -413,29 +413,31 @@ print("cui_code_rel.csv successfully written out...")
 # **************************************************************
 query = '''
            SELECT DISTINCT ATV
-                         , (SAB||'#'||CODE)
-                         , CASE
-                            WHEN SAB = 'NCI'
-                                THEN SAB = 'ICDO3'
-                            WHEN SAB = 'RXNORM
+                        , (SAB||'#'||CODE)
+                        , SAB
            FROM MRSAT 
            WHERE SAB = 'NCI' 
-               AND ATN IN ('ICD-O-3_CODE') 
+               AND ATN = 'ICD-O-3_CODE'
                AND SUPPRESS = 'N'
                AND ATV != '0000/0';
                '''
-               
+
 df = pd.read_sql_query(query, conn).drop_duplicates().replace(
-    np.nan, '').sort_values('ATV')
+    np.nan, '')
 
 df.columns = ['code', ':END_ID', 'vocab']
 df['vocab'] = 'ICDO3'
-df['CodeId:ID'] = df['SAB'] + "#" + df['CODE']
+df['CodeId:ID'] = df['vocab'] + "#" + df['code']
 df[':LABEL'] = ('Code' + ';' + df['vocab'])
-df[['CodeId:ID', 'vocab', 'code', ':LABEL']].to_csv(path_or_buf='./import/codeNode.csv', mode='a', header=False, index=False)
-
-df = df.merge(has_source_code_copy, how='inner', on=':END_ID')
+df[['CodeId:ID', 'vocab', 'code', ':LABEL']].to_csv(path_or_buf='./import/codeNode.csv',
+                                                    mode='a',
+                                                    header=False,
+                                                    index=False)
+df = df.merge(has_source_code_copy,
+              how='inner',
+              on=':END_ID')
 df[':TYPE'] = 'HAS_SOURCE_CODE'
+# df2
 df = df[[':START_ID', 'CodeId:ID', ':TYPE']].rename(
     {'CodeId:ID': ':END_ID'}, axis=1).drop_duplicates().replace(np.nan, '')
 
@@ -443,6 +445,6 @@ df.to_csv(path_or_buf='./import/cui_code_rel.csv',
           mode='a',
           header=False,
           index=False)
-
+# **************************************************************
 # NOTE: Please run `python edges_part2.py` to ensure all nodes/edges have been accounted for prior to importing .csv data
 # --> 'edges_part2.py' will create all PARENT AUI (PAUI) --> AUI relationships for all vocabularies included in the graph. This requires exploding MRHIER.RRF to get all 'paths to root' for all atoms & their associated context views (for provided vocabularies). This script will create 1 .csv file named 'paui_of.csv' for the edge 'PAUI_OF' (AKA PARENT_AUI_OF).
