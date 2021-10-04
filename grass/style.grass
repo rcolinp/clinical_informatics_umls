@@ -1,0 +1,138 @@
+node {
+  diameter: 50px;
+  color: #424242;
+  border-color: #9AA1AC;
+  border-width: 2px;
+  text-color-internal: #fafafa;
+  font-size: 8px;
+  text-color-external: #424242;
+  caption: "{name}";
+}
+relationship {
+  color: #424242;
+  shaft-width: 2px;
+  font-size: 8px;
+  padding: 1px;
+  text-color-external: #424242;
+  text-color-internal: #fafafa;
+  caption: "<type>";
+}
+
+node.Concept {
+  color: #c341d8;
+  caption: "{ConceptId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.Atom {
+  color: #569480;
+  caption: "{name}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.SemanticType {
+  color: #FFC454;
+  caption: "{sty}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.Code {
+  color: #02b3e4;
+  defaultCaption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.ATC {
+  color: #e91e63;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.CVX {
+  color: #4C8EDA;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.GO {
+  color: #4caf50;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.HGNC {
+  color: #4caf50;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.ICD10PCS {
+  color: #D9C8AE;
+  border-color: #c0a378;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+}
+
+node.ICD9CM {
+  color: #D9C8AE;
+  border-color: #c0a378;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.ICD10CM {
+  color: #D9C8AE;
+  border-color: #c0a378;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.LNC {
+  color: #DA7194;
+  border-color: #cc3c6c;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.MED-RT {
+  color: #e91e63;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+}
+
+node.MVX {
+  color: #4C8EDA;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.NCI {
+  color: #fa750f;
+  border-color: #f36924;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.SNOMEDCT_US {
+  color: #02b3e4;
+  border-color: #447666;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
+node.RXNORM {
+  color: #4C8EDA;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
