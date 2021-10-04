@@ -227,17 +227,6 @@ if [ ! -e umls.db ]; then
 	# sqlite3 umls.db "CREATE INDEX X_ATN_MRSAT ON MRSAT(ATN);"
 	# sqlite3 umls.db "CREATE INDEX X_CODE_MRSAT ON MRSAT(CODE);"
 	echo "-> successfully finished creating desired indexes"
-
-	# Create a better hierarchy table to minimize joins with MRHIER
-	echo "-> Begin to construct a optimized MRHIER (hierarchy) Table via joining MRHIER on MRCONSO x2"
-	sqlite3 umls.db "CREATE TABLE hierarchy AS SELECT DISTINCT h.PAUI AS PAUI, c2.CUI AS CUI, c2.SAB AS SAB, c2.CODE AS CODE, c2.STR  AS STR, c2.TTY AS TTY, h.RELA AS RELA, c.AUI AS AUI2, c.CUI AS CUI2, c.SAB AS SAB2, c.CODE  AS CODE2, c.STR AS STR2, c.TTY AS TTY2 FROM MRHIER h JOIN MRCONSO c ON h.AUI = c.AUI JOIN MRCONSO c2 ON h.PAUI = c2.AUI WHERE h.SAB IN ('ATC','GO','HGNC','HPO','ICD10CM','ICD10PCS','LNC','MDR','MED-RT','MSH','NCBI','NCI','OMIM','PDQ','RXNORM','SNOMEDCT_US','SRC') AND c.TS = 'P' AND c.ISPREF = 'Y' AND c.STT = 'PF' AND c.SUPPRESS = 'N'  AND c2.TS = 'P' AND c2.ISPREF = 'Y' AND c2.STT = 'PF' AND c2.SUPPRESS = 'N'"
-	echo "-> successfully completed construction of optimized MRHIER table"
-	# create faster lookup table
-	echo "-> Creating fast lookup table"
-	sqlite3 umls.db "CREATE TABLE lookup AS SELECT AUI,CUI,SUI,SAB,CODE,SCUI,SDUI,TTY,STR FROM MRCONSO WHERE SAB IN ('ATC','GO','HGNC','HPO','ICD10CM','ICD10PCS','LNC','MDR','MED-RT','MSH','NCBI','NCI','OMIM','PDQ','RXNORM','SNOMEDCT_US','SRC') AND SUPPRESS = 'N' AND TS = 'P' AND ISPREF = 'Y' AND STT = 'PF'"
-	sqlite3 umls.db "ALTER TABLE lookup ADD COLUMN TUI varchar"
-	sqlite3 umls.db "CREATE INDEX X_CUI_lookup ON lookup (CUI)"
-	sqlite3 umls.db "UPDATE lookup SET TUI = (SELECT GROUP_CONCAT(MRSTY.TUI, '|') FROM MRSTY WHERE MRSTY.CUI = lookup.CUI GROUP BY MRSTY.CUI)"
 	echo "-> UMLS 2021AA local sqlite3 database build job succesfully complete."
 else
 	echo "=> umls.db already exists"
