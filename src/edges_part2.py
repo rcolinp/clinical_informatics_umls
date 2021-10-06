@@ -8,7 +8,7 @@ Please note: This script may take upwards of ~25 minutes to complete.
     -> Run time will vary largely depending on personal subset created via UMLS MetamorphoSys.
        -> relative directory ../conf/config.prop contains properties file used at creation of this script.
 
-The file created will be large depending on sab_list. Writing out to a .parquet file will save quite a bit of disk space if the .csv will not be used for import immediately. (.csv is required for import so .parquet will need to converted back to .csv upon creation of db etc...)
+The file created will be large depending on sab_list. Writing out to a .parquet file will limit eating up disk space. A .parquet cannot be used for import though.
 
 """
 
@@ -29,7 +29,7 @@ home = getpass.getuser()  # home directory (using getpass2 library)
 
 # Read MRHIER.RRF using pandas read_csv()
 # Script assumes MRHIER.RRF is located in the relative directory -> ../UMLS/subset/2021AA/META/MRHIER.RRF
-mrhier = pd.read_csv('../../../UMLS/2021_09_13_subset/2021AA/META/MRHIER.RRF',
+mrhier = pd.read_csv('../UMLS/subset/2021AA/META/MRHIER.RRF',
                      sep='|',
                      header=None,
                      dtype=str)
