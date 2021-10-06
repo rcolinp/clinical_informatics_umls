@@ -85,17 +85,18 @@ def explode_mrhier_write_csv(root: str, home: str = home, mrhier: DataFrame = mr
     hier = pd.DataFrame(mrhier.PTR.str.split(
         '.').to_list(), index=mrhier.AUI).stack()
 
-# PTR variable is currently labeled 0 (index)
+    # PTR variable is currently labeled 0 (index)
     hier_df = hier.reset_index()[[0, 'AUI']]
 
-# rename to ":START_ID", ":END_ID" to prep file for import into Neo4j
-    hier_df.columns = ['PTR', 'AUI']
-# Add a ":TYPE" column where each PTR (:START_ID) is the immediate atomic parent to the :END_ID
+    # rename to ":START_ID", ":END_ID" to prep file for import into Neo4j
+    # START_ID -> PTR & END_ID -> AUI
+    hier_df.columns = [':START_ID', ':END_ID']
+    # Add a ":TYPE" column where each PTR (:START_ID) is the immediate atomic parent to the :END_ID
     hier_df[':TYPE'] = 'CHILD_OF'
 
     hier_df.columns = hier_df[[':START_ID', ':END_ID', ':TYPE']]
 
-# Ensure :START_ID != :END_ID & write to .csv -> file is now ready to be imported
+    # Ensure :START_ID != :END_ID & write to .csv -> file is now ready to be imported
     child_of_rel = hier_df[hier_df[':START_ID'] !=
                            hier_df[':END_ID']].drop_duplicates().replace(np.nan, "")
     child_of_rel.to_csv(path_or_buf=f"/{root}/{home}/import/child_of_rel.csv",
