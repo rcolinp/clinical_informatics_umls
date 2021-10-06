@@ -1,36 +1,46 @@
 """
-This .py assumes you have created an output directory named 'import' at your root directory (i.e. $HOME/import).
+This .py assumes you have created an output directory named 'import' at your root directory (i.e. /Users/rob/import/).
+    -> (this folder will be mounted outside the neo4j directory when creating neo4j database. The 'import' directory's location does not matter, it just cannot be mounted within the container itself & the docker run --volume mounts need to reflect this behavior.)
 This .py assumes you are a UMLS license holder & MRHIER.RRF is located at the relative directory -> ../UMLS/subset/2021AA/META/
 
 Please note: This script may take upwards of ~25 minutes to complete.
     -> This script can be broken down into smaller components and/or leverage more a more efficient python library/libraries (rather than pandas).
     -> Run time will vary largely depending on personal subset created via UMLS MetamorphoSys.
        -> relative directory ../conf/config.prop contains properties file used at creation of this script.
-    
+
+The file created will be large depending on sab_list. Writing out to a .parquet file will save quite a bit of disk space if the .csv will not be used for import immediately. (.csv is required for import so .parquet will need to converted back to .csv upon creation of db etc...)
+
 """
 
 import sys
+
+from pandas.core.frame import DataFrame
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
 import numpy as np
 import pandas as pd
+import getpass
 
-print("Reading MRHIER.RRF...")
+####################################################################
+root = 'Users'           # root directory
+home = getpass.getuser()  # home directory (using getpass2 library)
+####################################################################
+
 # Read MRHIER.RRF using pandas read_csv()
-mrhier = pd.read_csv('../UMLS/subset/2021AA/META/MRHIER.RRF',
+# Script assumes MRHIER.RRF is located in the relative directory -> ../UMLS/subset/2021AA/META/MRHIER.RRF
+mrhier = pd.read_csv('../../../UMLS/2021_09_13_subset/2021AA/META/MRHIER.RRF',
                      sep='|',
                      header=None,
-                     dtype=object)
-print("Complete - MRHIER.RRF read in as .csv and empty column dropped")
+                     dtype=str)
 
 # Define list containing vocabularies (UMLS.MRHIER.SAB) which will be included.
 # All SABs could be included, but will increase run time, size, etc...
 # --> sab_list contains same vocabularies used in `nodes_edges_part1.py`
-sab_list = ['ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'LNC', 'CVX', 'MVX',
+sab_list = ['ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM',
             'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US']
 
-# Where axis=1 the 9th index (column) is a 'dummy'/empty column
+# Where axis=1 drop 9th index (align columns correctly -> .RRF has extra column that needs to be dropped)
 mrhier = mrhier.drop(9, axis=1)
 print("Complete - MRHIER.RRF read in as .csv and empty column dropped")
 
@@ -38,33 +48,60 @@ print("Complete - MRHIER.RRF read in as .csv and empty column dropped")
 mrhier.columns = ['CUI', 'AUI', 'CXN', 'PAUI',
                   'SAB', 'RELA', 'PTR', 'HCD', 'CVF']
 
-print("Beginning filtering SAB to desired sab_list & subsetting df")
 # Filter mrhier to only include SAB (vocabularies) defined in the list defined above 'sab_list'
+# Define this sab_list to be in accordance to how nodes_edges_part1.py was ran
 mrhier = mrhier[mrhier['SAB'].isin(
-    sab_list)].drop_duplicates().replace(np.nan, '')
+    sab_list)].drop_duplicates().replace(np.nan, "")
 
 # We are only interested in the AUI & PTR cols --> filter dataframe accordingly
+# PTR is a column containing '.' delimited AUIs where left -> right is the descendant path of root node to PAUI (PARENT AUI).
+# -> The AUI column associated to each PTR column would be the next AUI in the descendant path.
 mrhier = mrhier[['AUI', 'PTR']]
+
+# Create df via str.split('.') on delimited list (PTR column & add this to a list. Index via AUI & use .stack())
+# -> This will explode the dataframe and increase table size by providing each row per PTR value that was split and added to list.
 print("Complete. Beginning transforming table. (this may take ~15min)...")
 
-hier = pd.DataFrame(data=mrhier.PTR.str.split('.').to_list(),
-                    index=mrhier.AUI.reset_index(drop=True)).stack()
+# Simple function to take in root directory, home directory & MRHIER DataFrame to explode
 
-print("Complete! Applying required formatting requirements & writing to .csv")
-hier_df = hier.reset_index(drop=False)
 
-hier_df.columns = ['PTR', 'index', 'AUI']
+def explode_mrhier_write_csv(root: str, home: str = home, mrhier: DataFrame = mrhier):
+    """
+    Summary:
+    --------
+    Provided a root and home directory along with the mrhier dataframe, 'mrhier'
+    df will be exploded to provide a 1:1 mapping of atomic parent -> immediate child to atomic parent. 
 
-hier_final_df = hier_df[['PTR', 'AUI']]
+    Parameters:
+    -----------
+    root : str.
+        The root directory name as a string.
+    home : str
+        Home directory name as a string.
+    mrhier : dataframe.
+        Two column DataFrame 'mrhier' (columns=['AUI', 'PTR']) created via former part of script.
 
-hier_final_df[':TYPE'] = 'PAUI_OF'
+    """
+    hier = pd.DataFrame(mrhier.PTR.str.split(
+        '.').to_list(), index=mrhier.AUI).stack()
 
-hier_final_df.columns = [':START_ID', ':END_ID', ':TYPE']
+# PTR variable is currently labeled 0 (index)
+    hier_df = hier.reset_index()[[0, 'AUI']]
 
-paui_of_df = hier_final_df[hier_final_df[':START_ID'] !=
-                           hier_final_df[':END_ID']].drop_duplicates().replace(np.nan, '')
+# rename to ":START_ID", ":END_ID" to prep file for import into Neo4j
+    hier_df.columns = ['PTR', 'AUI']
+# Add a ":TYPE" column where each PTR (:START_ID) is the immediate atomic parent to the :END_ID
+    hier_df[':TYPE'] = 'CHILD_OF'
 
-paui_of_df.to_csv(path_or_buf='$HOME/import/paui_of.csv',
-                  header=True,
-                  index=False)
-print("Complete! paui_of.csv has been saved to $HOME/import/paui_of.csv and is ready for import.")
+    hier_df.columns = hier_df[[':START_ID', ':END_ID', ':TYPE']]
+
+# Ensure :START_ID != :END_ID & write to .csv -> file is now ready to be imported
+    child_of_rel = hier_df[hier_df[':START_ID'] !=
+                           hier_df[':END_ID']].drop_duplicates().replace(np.nan, "")
+    child_of_rel.to_csv(path_or_buf=f"/{root}/{home}/import/child_of_rel.csv",
+                        header=True,
+                        index=False)
+
+
+explode_mrhier_write_csv(root=root, home=home, mrhier=mrhier)
+print("Complete! child_of_rel.csv has been saved to /Users/home/import/child_of_rel.csv and is ready for import.")
