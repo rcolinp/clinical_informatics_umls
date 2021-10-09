@@ -9,8 +9,8 @@ There are 4 main elements within the graph which have been extracted from UMLS a
 
 - The UMLS atomic unique identifier (AUI - Atom)
 - The UMLS concept unique identifier (CUI - Concept)
-- The UMLS semantic unique identifier (TUI/STY/STN)
-- The source vocabulary concept unique identifier (CODE - Code)
+- The UMLS semantic unique identifier (TUI - SemanticType)
+- The source vocabulary concept unique identifier (CODE - SourceVocabulary)
   - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. NCI Thesaurus (NCI), SNOMEDCT_US, ICDO3, ICD10CM, GO, RXNORM, ATC, etc...
 
 This schema is only one method of representing the UMLS as a label property graph. Key design features of the graph:
