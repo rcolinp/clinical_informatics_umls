@@ -1,23 +1,47 @@
 # Clinical Informatics UMLS®
 
-Preview of v1 Neo4j UMLS Graph to be created:
+**Preview of v1 Neo4j UMLS Graph to be created: (Graph is a Work in Progress)**
 ![UMLS Graph Schema](images/schema_dark.png)
+
+Schema Overview:
+
+There are 4 main elements within the graph which have been extracted from UMLS and portrayed as a Neo4j Property Graph.
+
+- The UMLS atomic unique identifier (AUI - Atom)
+- The UMLS concept unique identifier (CUI - Concept)
+- The UMLS semantic unique identifier (TUI/STY/STN)
+- The source vocabulary concept unique identifier (CODE - Code)
+  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. NCI Thesaurus (NCI), SNOMEDCT_US, ICDO3, ICD10CM, GO, RXNORM, ATC, etc...
+
+This schema is only one method of representing the UMLS as a label property graph. Key design features of the graph:
+
+- This design leverages the primary key within UMLS (umls_aui - Atom) as a bridge to crosswalk source vocabulary concepts to common concept unique identifiers (umls_cui - Concept) which are shared between other source vocabularies contained in the graph. Additionally, both intra and inter hierarchial relationships from each distinct source vocabulary & from a vocabulary agnostic point of view can be traversed and queried.
+
+- The entire UMLS semantic network has been integrated into the graph via directed relationships to & from Concept & SemanticType. The semantic network being the semantic relations across UMLS's SemanticTypes. See below a visualization of the UMLS's semantic network in context of `Amino Acid, Peptide, or Protein` shortest path to the `top concept of` -> `Entity`. (Via following cypher query:
+  - `match p = (a:SemanticType {sty: "Entity"})<-[:ISA*]-(b:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) return p`
+    - Distinct from the ISA relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
+
+![UMLS Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
+
+- This provides a unique ability to leverage UMLS's semantic network in relation to its hierarchial and concept-concept/code-code relationships.
+
+## Unified Medical Language System® (UMLS) & Interoperability
 
 In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies (within the Unified Medical Language System® (UMLS®)).
 
-**Disclaimer** - while this repository is open to anyone & has been created to share knowledge, educate & provide to open source community. In order to access the data covered, you must be a UMLS® license holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more!  
+**Disclaimer** - while this repository is open to anyone & has been created to share knowledge, educate & provide to open source community. In order to access the data covered, you must be a UMLS® license holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more.
 
 The scope of material covered in this repository will pertain specifically to healthcare, biotechnology & pharmaceutics. Largely in regards to oncology.
 
-The UMLS® ontologies/vocabularies within the scope of this repository has been limited due to the enormous size of UMLS® (containing >200+ vocabularies). Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interopability to healthcare. These ontologies contain rich semantics such as concept hierarchies and semantic relationships which leave them at the forefront of industry use.
+The UMLS® ontologies/vocabularies within the scope of this repository has been limited due to the enormous size of UMLS® (containing >200+ vocabularies). Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interoperability to healthcare. These ontologies contain rich semantics such as concept hierarchies and semantic relationships which leave them at the forefront of industry use.
 
-As described above, a "subset" of the UMLS® 2021AA full release (available as of 05/03/2021 -> next release (2021AB will be available Novemeber, 2021), containing pertinent present day industry standard biomedical ontologies have been chosen for this project (complete list to follow in next section). UMLS® License holders are provided an ability to create "subsets" of the data within the UMLS®. These subsets are provided in their native rich release format (RRF) & a relational database structure.
+As described above, a "subset" of the UMLS® 2021AA full release (available as of 05/03/2021 -> next release (2021AB will be available November, 2021), containing pertinent present day industry standard biomedical ontologies have been chosen for this project (complete list to follow in next section). UMLS® License holders are provided an ability to create "subsets" of the data within the UMLS®. These subsets are provided in their native rich release format (RRF) & a relational database structure.
 
 A part of this repository will dedicated to how a subset of UMLS® can be transformed from its native Rich Release Format (RRF) to more intuitive and common relational structures such as MySQL, PostgresSQL & SQLite (all covered in this repository). Additionally, this repository will explore how the relational structure built can be modeled as a noSQL graph (will be using [Neo4j](https://neo4j.com/) - a label property graph & the world's leading graph database).
 
 The UMLS® provides a robust collection of interconnected data. In effort of studying this rich collection of "interconnected data", this repository will explore first creating a UMLS® subset as a relational database (SQLite, MySQL & PostgresSQL), querying that relational model & how to transform the relational model to a Neo4j graph database.
 
-## What is the UMLS® & Why is it Important?
+### What is the UMLS® & Why is it Important?
 
 - "The UMLS® integrates and distributes key terminology, classification and coding standards, and associated resources to promote creation of more effective and interoperable biomedical information systems and services, including electronic health records."
   - [UMLS®](https://www.nlm.nih.gov/research/umls/index.html)
@@ -28,7 +52,7 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
 - UMLS® contains over 200+ industry standard biomedical vocabularies & ontologies. Check out contents (ontologies/vocabularies) contained within UMLS® via following link:
   - [UMLS® Release Ontologies & Vocabularies](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html)
 
-### Ontologies Within Scope of Repository
+#### Ontologies Within Scope of Repository
 
 - **Anatomical Therapeutic Chemical Classification System:**
   - Abbreviation -> **ATC**
@@ -99,7 +123,7 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
     - NIH/UMLS Vocabulary Documentation:
       - [SRC (Source Terminology Names (UMLS)) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/SRC/index.html)
 
-#### Python Environment Setup
+##### Python Environment Setup
 
 Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy switches between multiple versions of Python.
 
