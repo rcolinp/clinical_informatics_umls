@@ -53,13 +53,6 @@ node.ATC {
   text-color-internal: #FFFFFF;
 }
 
-node.CVX {
-  color: #4C8EDA;
-  caption: "{CodeId}";
-  border-color: #d7a013;
-  text-color-internal: #FFFFFF;
-}
-
 node.GO {
   color: #4caf50;
   caption: "{CodeId}";
@@ -95,13 +88,6 @@ node.ICD10CM {
   defaultCaption: "{CodeId}";
 }
 
-node.LNC {
-  color: #DA7194;
-  border-color: #cc3c6c;
-  text-color-internal: #FFFFFF;
-  defaultCaption: "{CodeId}";
-}
-
 node.MED-RT {
   color: #e91e63;
   border-color: #2870c2;
@@ -109,9 +95,9 @@ node.MED-RT {
   defaultCaption: "<id>";
 }
 
-node.MVX {
-  color: #4C8EDA;
-  border-color: #2870c2;
+node.ICDO3 {
+  color: #DA7194;
+  border-color: #cc3c6c;
   text-color-internal: #FFFFFF;
   defaultCaption: "{CodeId}";
 }
