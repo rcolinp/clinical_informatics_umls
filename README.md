@@ -18,7 +18,7 @@ This schema is only one method of representing the UMLS as a label property grap
 - This design leverages the primary key within UMLS (umls_aui - Atom) as a bridge to crosswalk source vocabulary concepts to common concept unique identifiers (umls_cui - Concept) which are shared between other source vocabularies contained in the graph. Additionally, both intra and inter hierarchial relationships from each distinct source vocabulary & from a vocabulary agnostic point of view can be traversed and queried.
 
 - The entire UMLS semantic network has been integrated into the graph via directed relationships to & from Concept & SemanticType. The semantic network being the semantic relations across UMLS's SemanticTypes. See below a visualization of the UMLS's semantic network in context of `Amino Acid, Peptide, or Protein` shortest path to the `top concept of` -> `Entity`. (Via following cypher query:
-  - `match p = (a:SemanticType {sty: "Entity"})<-[:ISA*]-(b:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) return p`
+  - `match path = (a:SemanticType {sty: "Entity"})<-[:ISA*]-(b:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) return path`
     - Distinct from the ISA relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
