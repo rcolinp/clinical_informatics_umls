@@ -52,7 +52,7 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
 - UMLS® contains over 200+ industry standard biomedical vocabularies & ontologies. Check out contents (ontologies/vocabularies) contained within UMLS® via following link:
   - [UMLS® Release Ontologies & Vocabularies](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html)
 
-#### Ontologies Within Scope of Repository
+#### Terminologies within Scope of Repository (list subject to change)
 
 - **Anatomical Therapeutic Chemical Classification System:**
   - Abbreviation -> **ATC**
