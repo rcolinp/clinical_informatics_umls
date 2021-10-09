@@ -256,11 +256,11 @@ WHERE s2.UI IS NOT NULL
   '''
 
 tui_tui_rel_df = pd.read_sql_query(
-    tui_tui, conn).drop_duplicates().replace(np.nan, "").sort_values(['RL'])
+    tui_tui, conn).drop_duplicates().replace(np.nan, "")
 
 tui_tui_rel_df.columns = [":START_ID", ':END_ID', ":TYPE"]
 tui_tui_rel = tui_tui_rel_df[tui_tui_rel_df[':START_ID'] != tui_tui_rel_df[':END_ID']].drop_duplicates(
-).replace(np.nan, '').reset_index(drop=True)
+).replace(np.nan, '')
 tui_tui_rel[':TYPE'] = tui_tui_rel[':TYPE'].str.upper()
 
 tui_tui_rel.to_csv(path_or_buf="../../../../import/tui_tui_rel.csv",
@@ -323,51 +323,51 @@ cui_cui_rel.to_csv(path_or_buf="../../../import/cui_cui_rel.csv",
                    index=False)
 print("cui_cui_rel.csv successfully written out...")
 # **************************************************************
-aui_aui = '''
-WITH q AS (
-    SELECT DISTINCT SAB
-    FROM MRCONSO
-    WHERE SUPPRESS = 'N'
-      AND SAB IN (
-                  'ATC',
-                  'GO',
-                  'HGNC',
-                  'ICD9CM',
-                  'ICD10CM',
-                  'ICD10PCS',
-                  'MED-RT',
-                  'NCI',
-                  'RXNORM',
-                  'SNOMEDCT_US'
-        )
-)
-SELECT DISTINCT r.AUI2
-              , r.AUI1
-              , CASE
-                    WHEN r.RELA = ''
-                        THEN r.REL
-                    ELSE r.RELA END AS ":TYPE"
-              , r.SAB
-FROM MRREL r
-         INNER JOIN q ON r.SAB = q.SAB
-WHERE r.SUPPRESS = 'N'
-  AND r.REL != 'SIB';
-  '''
-aui_aui_rel_df = pd.read_sql_query(aui_aui, conn)
+# aui_aui = '''
+# WITH q AS (
+#     SELECT DISTINCT SAB
+#     FROM MRCONSO
+#     WHERE SUPPRESS = 'N'
+#       AND SAB IN (
+#                   'ATC',
+#                   'GO',
+#                   'HGNC',
+#                   'ICD9CM',
+#                   'ICD10CM',
+#                   'ICD10PCS',
+#                   'MED-RT',
+#                   'NCI',
+#                   'RXNORM',
+#                   'SNOMEDCT_US'
+#         )
+# )
+# SELECT DISTINCT r.AUI2
+#               , r.AUI1
+#               , CASE
+#                     WHEN r.RELA = ''
+#                         THEN r.REL
+#                     ELSE r.RELA END AS ":TYPE"
+#               , r.SAB
+# FROM MRREL r
+#          INNER JOIN q ON r.SAB = q.SAB
+# WHERE r.SUPPRESS = 'N'
+#   AND r.REL != 'SIB';
+#   '''
+# aui_aui_rel_df = pd.read_sql_query(aui_aui, conn)
 
-aui_aui_rel_df.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
+# aui_aui_rel_df.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
 
-# start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
-aui_aui_rel = aui_aui_rel_df[aui_aui_rel_df[":START_ID"] !=
-                             aui_aui_rel_df[":END_ID"]].drop_duplicates().replace(np.nan, "")
+# # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
+# aui_aui_rel = aui_aui_rel_df[aui_aui_rel_df[":START_ID"] !=
+#                              aui_aui_rel_df[":END_ID"]].drop_duplicates().replace(np.nan, "")
 
-aui_aui_rel[":TYPE"] = aui_aui_rel[":TYPE"].str.upper()
-aui_aui_rel[':TYPE'] = aui_aui_rel[':TYPE'].str.replace('-', '_')
+# aui_aui_rel[":TYPE"] = aui_aui_rel[":TYPE"].str.upper()
+# aui_aui_rel[':TYPE'] = aui_aui_rel[':TYPE'].str.replace('-', '_')
 
-aui_aui_rel.to_csv(path_or_buf="../../../import/aui_aui_rel.csv",
-                   header=True,
-                   index=False)
-print("aui_aui_rel.csv successfully written out...")
+# aui_aui_rel.to_csv(path_or_buf="../../../import/aui_aui_rel.csv",
+#                    header=True,
+#                    index=False)
+# print("aui_aui_rel.csv successfully written out...")
 # **************************************************************
 # cui_code_rel.csv
 cui_code_rel = '''
