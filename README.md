@@ -1,7 +1,7 @@
 # Clinical Informatics UMLS®
 
-**Preview of v1 Neo4j UMLS Graph to be created: (Graph is a Work in Progress)**
-![UMLS Graph Schema](images/schema_dark.png)
+**Preview of v1 Neo4j UMLS Graph to be created: (Repo/Graph is a work in progress)**
+![UMLS® Neo4j Graph Schema](images/schema_dark.png)
 
 Schema Overview:
 
@@ -21,11 +21,11 @@ This schema is only one method of representing the UMLS as a label property grap
   - `match p = (a:SemanticType {sty: "Entity"})<-[:ISA*]-(b:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) return p`
     - Distinct from the ISA relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
 
-![UMLS Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
+![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
 - This provides a unique ability to leverage UMLS's semantic network in relation to its hierarchial and concept-concept/code-code relationships.
 
-## Unified Medical Language System® (UMLS) & Interoperability
+## Unified Medical Language System® (UMLS®) & Interoperability
 
 In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies (within the Unified Medical Language System® (UMLS®)).
 
