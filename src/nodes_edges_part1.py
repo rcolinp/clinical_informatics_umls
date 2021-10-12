@@ -389,6 +389,39 @@ cui_code_rel_append.to_csv(path_or_buf='../../../../import/cui_code_rel.csv',
                            header=False,
                            index=False)
 # **************************************************************
+# child_of_rel.csv (alternative to edges_part2.py)
+child_of = '''
+SELECT DISTINCT h.PAUI     AS PAUI,
+                c.AUI      AS AUI2,
+                'CHILD_OF' AS ":TYPE"
+FROM MRHIER h
+         JOIN MRCONSO c ON h.AUI = c.AUI
+         JOIN MRCONSO c2 ON h.PAUI = c2.AUI
+WHERE h.SAB IN
+      ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US', 'SRC')
+  AND c.TS = 'P'
+  AND c.ISPREF = 'Y'
+  AND c.STT = 'PF'
+  AND c.SUPPRESS = 'N'
+  AND c2.TS = 'P'
+  AND c2.ISPREF = 'Y'
+  AND c2.SUPPRESS = 'N'
+  AND c2.STT = 'PF';
+  '''
+
+child_of_rel = pd.read_sql_query(child_of, conn)
+
+child_of_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
+
+# start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
+child_of_rel = child_of_rel[child_of_rel[':START_ID'] !=
+                            child_of_rel[':END_ID']].drop_duplicates().replace(np.nan, "")
+
+child_of_rel.to_csv(path_or_buf="../../../../import/child_of_rel.csv",
+                    header=True,
+                    index=False)
+print("child_of_rel.csv successfully written out...")
+# **************************************************************
 # NOTE: Please run `python edges_part2.py` to ensure all nodes/edges have been accounted for prior to importing .csv data
 
 # 'edges_part2.py' will create 1 .csv file containing all PARENT AUI (PAUI) --> AUI relationships and vocabularies. A CHILD_OF relationship at the atom level of UMLS.
