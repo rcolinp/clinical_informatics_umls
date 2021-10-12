@@ -55,9 +55,9 @@ conn = sqlite3.connect(os.path.join(relative_path_to_sqlite, db_name))
 
 # **************************************************************
 # GRAPH LABELS:
-# LABELS = ["SemanticType", "Code", "Atom", "Concept", "Attribute",
-#           "ATC", "CVX", "GO", "HGNC", "ICD10CM", "ICDO3", "MED-RT",
-#           "MVX", "NCI", "RXNORM", "SNOMEDCT_US"]
+# LABELS = ["SemanticType", "Code", "Atom", "Concept", ATC", "GO",
+#           "HGNC", "ICD9CM", "ICD10CM", "ICD10PCS", "ICDO3", "MED-RT",
+#           "NCI", "RXNORM", "SNOMEDCT_US"]
 # **************************************************************
 
 # Label: SemanticType
@@ -84,17 +84,17 @@ print("semanticTypeNode.csv successfully written out...")
 # Label: Concept
 # import: conceptNode.csv
 concept_node = '''
-                 SELECT DISTINCT CUI
-                               , STR
-                               , 'Concept' AS ":LABEL"
-                 FROM MRCONSO
-                 WHERE ISPREF = 'Y'
-                     AND STT = 'PF'
-                     AND TS = 'P'
-                     AND SUPPRESS = 'N'
-                     AND SAB IN
-                         ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US');
-                         '''
+SELECT DISTINCT CUI
+              , STR
+              , 'Concept' AS ":LABEL"
+FROM MRCONSO
+WHERE ISPREF = 'Y'
+    AND STT = 'PF'
+    AND TS = 'P'
+    AND SUPPRESS = 'N'
+    AND SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    AND LAT = 'ENG';
+    '''
 
 conceptNode = pd.read_sql_query(
     concept_node, conn).drop_duplicates().replace(np.nan, '')
@@ -120,7 +120,8 @@ SELECT DISTINCT AUI
               , 'Atom' AS ":LABEL"
 FROM MRCONSO
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-  AND SUPPRESS = 'N';
+  AND SUPPRESS = 'N'
+  AND LAT = 'ENG';
   '''
 
 atomNode = pd.read_sql_query(atom_node, conn).drop_duplicates(
@@ -140,7 +141,10 @@ code = '''
 WITH cuis AS (SELECT DISTINCT CUI
               FROM MRCONSO
               WHERE MRCONSO.ISPREF = 'Y'
-                AND MRCONSO.SUPPRESS = 'N')
+                AND MRCONSO.SUPPRESS = 'N'
+                AND MRCONSO.LAT = 'ENG'
+                AND MRCONSO.TS = 'P'
+                AND MRCONSO.STT = 'PF')
 SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE) AS "CodeId:ID"
               , MRCONSO.SAB
               , MRCONSO.CODE
@@ -148,9 +152,10 @@ SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE) AS "CodeId:ID"
 FROM MRCONSO
          INNER JOIN cuis
                     ON MRCONSO.CUI = cuis.CUI
-WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 
+              'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
   AND MRCONSO.SUPPRESS = 'N';
-'''
+  '''
 codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
     np.nan, '')
 codeNode.columns = ['CodeId:ID', 'vocab', 'code', ':LABEL']
@@ -226,7 +231,11 @@ SELECT DISTINCT AUI
 FROM MRCONSO
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM',
               'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-  AND SUPPRESS = 'N';
+  AND SUPPRESS = 'N'
+  AND LAT = 'ENG'
+  AND ISPREF = 'Y'
+  AND TS = 'P'
+  AND STT = 'PF';
   '''
 
 has_cui_rel = pd.read_sql_query(
@@ -316,58 +325,11 @@ cui_cui_rel = cui_cui_rel_df[cui_cui_rel_df[':START_ID'] !=
 
 cui_cui_rel[":TYPE"] = cui_cui_rel[":TYPE"].str.upper()
 cui_cui_rel[':TYPE'] = cui_cui_rel[':TYPE'].str.replace('-', '_')
-cui_cui_rel_copy = cui_cui_rel.copy()
 
-cui_cui_rel.to_csv(path_or_buf="../../../import/cui_cui_rel.csv",
+cui_cui_rel.to_csv(path_or_buf="../../../../import/cui_cui_rel.csv",
                    header=True,
                    index=False)
 print("cui_cui_rel.csv successfully written out...")
-# **************************************************************
-# aui_aui = '''
-# WITH q AS (
-#     SELECT DISTINCT SAB
-#     FROM MRCONSO
-#     WHERE SUPPRESS = 'N'
-#       AND SAB IN (
-#                   'ATC',
-#                   'GO',
-#                   'HGNC',
-#                   'ICD9CM',
-#                   'ICD10CM',
-#                   'ICD10PCS',
-#                   'MED-RT',
-#                   'NCI',
-#                   'RXNORM',
-#                   'SNOMEDCT_US'
-#         )
-# )
-# SELECT DISTINCT r.AUI2
-#               , r.AUI1
-#               , CASE
-#                     WHEN r.RELA = ''
-#                         THEN r.REL
-#                     ELSE r.RELA END AS ":TYPE"
-#               , r.SAB
-# FROM MRREL r
-#          INNER JOIN q ON r.SAB = q.SAB
-# WHERE r.SUPPRESS = 'N'
-#   AND r.REL != 'SIB';
-#   '''
-# aui_aui_rel_df = pd.read_sql_query(aui_aui, conn)
-
-# aui_aui_rel_df.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
-
-# # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
-# aui_aui_rel = aui_aui_rel_df[aui_aui_rel_df[":START_ID"] !=
-#                              aui_aui_rel_df[":END_ID"]].drop_duplicates().replace(np.nan, "")
-
-# aui_aui_rel[":TYPE"] = aui_aui_rel[":TYPE"].str.upper()
-# aui_aui_rel[':TYPE'] = aui_aui_rel[':TYPE'].str.replace('-', '_')
-
-# aui_aui_rel.to_csv(path_or_buf="../../../import/aui_aui_rel.csv",
-#                    header=True,
-#                    index=False)
-# print("aui_aui_rel.csv successfully written out...")
 # **************************************************************
 # cui_code_rel.csv
 cui_code_rel = '''
