@@ -33,7 +33,8 @@ This schema is only one method of representing the UMLS as a label property grap
     - You can find the .rdf file here:
       - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
     - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/), in addition to the .png representing the graph as RDF.
-    - ![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
+  
+![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
 
 ## Unified Medical Language System® (UMLS®) & Interoperability
 
@@ -169,17 +170,22 @@ docker run --name=umls \
     -d \
     --volume=$HOME/neo4j/data:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
+    --volume=$HOME/neo4j/conf:/conf \
+    --volume=$HOME/neo4j/logs:/logs \
     --volume=$HOME/neo4j/plugins:/plugins \
+    --volume=$HOME/neo4j/backups:/backups \
+    --volume=$HOME/neo4j/data/rdf:/data/rdf \
     --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
     --env=NEO4J_dbms_backup_enabled=true \
     --env=apoc_import_file_enabled=true \
     --env=apoc_export_file_enabled=true \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=apoc_export_file_use_neo4j__config=true \
-    --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science"]' \
+    --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
-    --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian
-    --env=NEO4J_AUTH=neo4j/<INSERT PWD> \
+    --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
+    --env=NEO4J_AUTH=neo4j/<insert a pwd> \
+    --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
     neo4j:enterprise
 ```
 
