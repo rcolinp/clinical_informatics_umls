@@ -138,3 +138,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+settings.py
+src/tests/graph_test.ttl
+src/tests/neo4j_to_rdf_serialization_output_sample.trig
+src/tests/neo4j_to_rdf_serialization_output_sample.ttl
+src/tests/neo_turtle_test.ttl
+src/tests/rdf_test.rdf
+src/tests/rdf_test.ttl
+src/tests/sample_neo4j_to_rdf_serialization.rdf
+src/tests/sample_neo4j_to_rdf_serialization.ttl
