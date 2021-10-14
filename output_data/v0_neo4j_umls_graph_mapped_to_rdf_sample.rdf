@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="neo4j://graph.schema#">
+
+  <rdf:Description rdf:about="neo4j://graph.individuals#143008">
+    <rdf:type rdf:resource="neo4j://graph.schema#Concept"/>
+    <ns0:ConceptId>C1275859</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3341722">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#399466007</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2761518">
+            <ns0:AtomId>A3543673</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#368208">
+                <ns0:ConceptId>C1521918</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Low-grade intraurothelial neoplasia</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>399466007</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Low-grade intraurothelial neoplasia</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>SY</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>399466007</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Transitional cell dysplasia</ns0:name>
+  </rdf:Description>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#164562">
+    <ns0:ConceptId>C1282947</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3105287">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#359631009</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2627604">
+            <ns0:AtomId>A7874324</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#269403">
+                <ns0:ConceptId>C0563629</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>M0 - Acute myeloblastic leukemia - undifferentiated</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>359631009</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>M0 - Acute myeloblastic leukemia - undifferentiated</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>SY</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>359631009</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Acute myeloid leukemia, minimal differentiation, FAB M0</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#20331">
+    <ns0:ConceptId>C1621719</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3185772">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#3172003</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2704724">
+            <ns0:AtomId>A3625775</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#329551">
+                <ns0:ConceptId>C1337079</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Peripheral T-cell lymphoma, large cell</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>3172003</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Peripheral T-cell lymphoma, large cell</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>SY</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>3172003</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Lymphoepithelioid lymphoma (clinical)</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#29727">
+    <ns0:ConceptId>C1643209</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3317074">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#419317000</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2760275">
+            <ns0:AtomId>A9379539</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#363527">
+                <ns0:ConceptId>C0686484</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Neoplasm of uncertain behavior of lacrimal duct</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>419317000</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Neoplasm of uncertain behavior of lacrimal duct</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>SY</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>419317000</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Neoplasm of uncertain behavior of lacrimal drainage structure</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#374223">
+    <ns0:ConceptId>C1536700</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3251254">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#95181001</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2326877">
+            <ns0:AtomId>A3048409</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#335660">
+                <ns0:ConceptId>C0345714</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Neoplasm of uncertain behavior of vocal cord</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>95181001</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Neoplasm of uncertain behavior of vocal cord</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>PT</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>95181001</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Tumor of vocal cord</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#374256">
+    <ns0:ConceptId>C1541058</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3251437">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#271323007</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2231647">
+            <ns0:AtomId>A3041449</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#56286">
+                <ns0:ConceptId>C0178247</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Malignant neoplasm of lip, oral cavity and pharynx</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>271323007</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Malignant neoplasm of lip, oral cavity and pharynx</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>PT</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>271323007</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Malignant neoplasm of lip, oral cavity and/or pharynx</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Concept rdf:about="neo4j://graph.individuals#80935">
+    <ns0:ConceptId>C1261358</ns0:ConceptId>
+    <ns0:HAS_SOURCE_CODE>
+      <ns0:Code rdf:about="neo4j://graph.individuals#3212891">
+        <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+        <ns0:CodeId>SNOMEDCT_US#87992000</ns0:CodeId>
+        <ns0:HAS_UMLS_AUI>
+          <ns0:Atom rdf:about="neo4j://graph.individuals#2486668">
+            <ns0:AtomId>A3025564</ns0:AtomId>
+            <ns0:HAS_CUI>
+              <ns0:Concept rdf:about="neo4j://graph.individuals#303590">
+                <ns0:ConceptId>C0334452</ns0:ConceptId>
+                <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+                <ns0:name>Giant cell sarcoma (except of Bone, M-92503)</ns0:name>
+              </ns0:Concept>
+            </ns0:HAS_CUI>
+
+            <ns0:code>87992000</ns0:code>
+            <ns0:ispref>Y</ns0:ispref>
+            <ns0:name>Giant cell sarcoma (except of Bone, M-92503)</ns0:name>
+            <ns0:stt>PF</ns0:stt>
+            <ns0:ts>P</ns0:ts>
+            <ns0:tty>PT</ns0:tty>
+            <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+          </ns0:Atom>
+        </ns0:HAS_UMLS_AUI>
+
+        <ns0:code>87992000</ns0:code>
+        <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+      </ns0:Code>
+    </ns0:HAS_SOURCE_CODE>
+
+    <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+    <ns0:name>Giant cell sarcoma</ns0:name>
+  </ns0:Concept>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2488352">
+    <ns0:AtomId>A3312900</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#303662">
+        <ns0:ConceptId>C0334645</ns0:ConceptId>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Diffuse malignant lymphoma - small non-cleaved cell</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>188674006</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Diffuse malignant lymphoma - small non-cleaved cell</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>PT</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2781026">
+    <ns0:AtomId>A3040962</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#374231">
+        <ns0:ConceptId>C1536816</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3213198"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Malignant lymphoma - undifferentiated cell type</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>188674006</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Malignant lymphoma - undifferentiated cell type</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>SY</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2781027">
+    <ns0:AtomId>A3312516</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#374232">
+        <ns0:ConceptId>C1536817</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3213198"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Non-Burkitt's malignant lymphoma - undifferentiated cell</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>188674006</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Non-Burkitt's malignant lymphoma - undifferentiated cell</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>SY</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2813244">
+    <ns0:AtomId>A3616418</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#97264">
+        <ns0:ConceptId>C1266038</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3275547"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Papillomatosis, glandular</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>128663007</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Papillomatosis, glandular</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>PT</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2817376">
+    <ns0:AtomId>A3715481</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#97303">
+        <ns0:ConceptId>C1266134</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3275702"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Spindle cell rhabdomyosarcoma</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>128749008</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Spindle cell rhabdomyosarcoma</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>PT</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2876747">
+    <ns0:AtomId>A3810793</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#77611">
+        <ns0:ConceptId>C1879344</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3275547"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Biliary papillomatosis</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>128663007</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Biliary papillomatosis</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>SY</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:Atom rdf:about="neo4j://graph.individuals#2952170">
+    <ns0:AtomId>A24086642</ns0:AtomId>
+    <ns0:HAS_CUI>
+      <ns0:Concept rdf:about="neo4j://graph.individuals#780746">
+        <ns0:ConceptId>C4048700</ns0:ConceptId>
+        <ns0:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#3275702"/>
+        <ns0:HAS_STY rdf:resource="neo4j://graph.individuals#3887199"/>
+        <ns0:name>Sclerosing rhabdomyosarcoma</ns0:name>
+      </ns0:Concept>
+    </ns0:HAS_CUI>
+
+    <ns0:code>128749008</ns0:code>
+    <ns0:ispref>Y</ns0:ispref>
+    <ns0:name>Sclerosing rhabdomyosarcoma</ns0:name>
+    <ns0:stt>PF</ns0:stt>
+    <ns0:ts>P</ns0:ts>
+    <ns0:tty>SY</ns0:tty>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Atom>
+
+  <ns0:SemanticType rdf:about="neo4j://graph.individuals#3887122">
+    <ns0:SemanticTypeId>T047</ns0:SemanticTypeId>
+    <ns0:stn>B2.2.1.2.1</ns0:stn>
+    <ns0:sty>Disease or Syndrome</ns0:sty>
+  </ns0:SemanticType>
+
+  <ns0:Code rdf:about="neo4j://graph.individuals#3213198">
+    <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+    <ns0:CodeId>SNOMEDCT_US#188674006</ns0:CodeId>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2488352"/>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2781026"/>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2781027"/>
+    <ns0:code>188674006</ns0:code>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Code>
+
+  <ns0:Code rdf:about="neo4j://graph.individuals#3275547">
+    <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+    <ns0:CodeId>SNOMEDCT_US#128663007</ns0:CodeId>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2813244"/>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2876747"/>
+    <ns0:code>128663007</ns0:code>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Code>
+
+  <ns0:Code rdf:about="neo4j://graph.individuals#3275702">
+    <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+    <ns0:CodeId>SNOMEDCT_US#128749008</ns0:CodeId>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2817376"/>
+    <ns0:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#2952170"/>
+    <ns0:code>128749008</ns0:code>
+    <ns0:vocab>SNOMEDCT_US</ns0:vocab>
+  </ns0:Code>
+
+  <ns0:SemanticType rdf:about="neo4j://graph.individuals#3887199">
+    <ns0:ISA rdf:resource="neo4j://graph.individuals#3887122"/>
+    <ns0:SemanticTypeId>T191</ns0:SemanticTypeId>
+    <ns0:stn>B2.2.1.2.1.2</ns0:stn>
+    <ns0:sty>Neoplastic Process</ns0:sty>
+  </ns0:SemanticType>
+
+</rdf:RDF>

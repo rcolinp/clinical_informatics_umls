@@ -25,6 +25,16 @@ This schema is only one method of representing the UMLS as a label property grap
 
 - This provides a unique ability to leverage UMLS's semantic network in relation to its hierarchial and concept-concept/code-code relationships.
 
+## (In Progress) - Neo4j Schema Mapped to RDF - The W3C Standard Model for Data Interchange on the Web
+
+- An on-going additional objective is to be able to appropriately map this Neo4j UMLS Graph (label property graph) to the W3C standard model for data interchange on the web - RDF (Resource Description Framework)
+
+  - Here is a sample (very small sample) of a v0 W3C validated RDF representation of this Neo4j Graph of UMLS created in this repository.
+    - You can find the .rdf file here:
+      - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
+    - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/), in addition to the .png representing the graph as RDF.
+    - ![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
+
 ## Unified Medical Language System® (UMLS®) & Interoperability
 
 In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies (within the Unified Medical Language System® (UMLS®)).

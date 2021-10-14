@@ -1,0 +1,311 @@
+subject,predicate,object
+neo4j://graph.individuals#143008,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#143008,neo4j://graph.schema#ConceptId,C1275859
+neo4j://graph.individuals#143008,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3341722
+neo4j://graph.individuals#143008,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#143008,neo4j://graph.schema#name,Transitional cell dysplasia
+neo4j://graph.individuals#164562,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#164562,neo4j://graph.schema#ConceptId,C1282947
+neo4j://graph.individuals#164562,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3105287
+neo4j://graph.individuals#164562,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#164562,neo4j://graph.schema#name,"Acute myeloid leukemia, minimal differentiation, FAB M0"
+neo4j://graph.individuals#20331,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#20331,neo4j://graph.schema#ConceptId,C1621719
+neo4j://graph.individuals#20331,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3185772
+neo4j://graph.individuals#20331,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#20331,neo4j://graph.schema#name,Lymphoepithelioid lymphoma (clinical)
+neo4j://graph.individuals#2231647,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2231647,neo4j://graph.schema#AtomId,A3041449
+neo4j://graph.individuals#2231647,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#56286
+neo4j://graph.individuals#2231647,neo4j://graph.schema#code,271323007
+neo4j://graph.individuals#2231647,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2231647,neo4j://graph.schema#name,"Malignant neoplasm of lip, oral cavity and pharynx"
+neo4j://graph.individuals#2231647,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2231647,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2231647,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2231647,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2326877,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2326877,neo4j://graph.schema#AtomId,A3048409
+neo4j://graph.individuals#2326877,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#335660
+neo4j://graph.individuals#2326877,neo4j://graph.schema#code,95181001
+neo4j://graph.individuals#2326877,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2326877,neo4j://graph.schema#name,Neoplasm of uncertain behavior of vocal cord
+neo4j://graph.individuals#2326877,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2326877,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2326877,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2326877,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2486668,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2486668,neo4j://graph.schema#AtomId,A3025564
+neo4j://graph.individuals#2486668,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#303590
+neo4j://graph.individuals#2486668,neo4j://graph.schema#code,87992000
+neo4j://graph.individuals#2486668,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2486668,neo4j://graph.schema#name,"Giant cell sarcoma (except of Bone, M-92503)"
+neo4j://graph.individuals#2486668,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2486668,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2486668,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2486668,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2488352,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2488352,neo4j://graph.schema#AtomId,A3312900
+neo4j://graph.individuals#2488352,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#303662
+neo4j://graph.individuals#2488352,neo4j://graph.schema#code,188674006
+neo4j://graph.individuals#2488352,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2488352,neo4j://graph.schema#name,Diffuse malignant lymphoma - small non-cleaved cell
+neo4j://graph.individuals#2488352,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2488352,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2488352,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2488352,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2627604,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2627604,neo4j://graph.schema#AtomId,A7874324
+neo4j://graph.individuals#2627604,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#269403
+neo4j://graph.individuals#2627604,neo4j://graph.schema#code,359631009
+neo4j://graph.individuals#2627604,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2627604,neo4j://graph.schema#name,M0 - Acute myeloblastic leukemia - undifferentiated
+neo4j://graph.individuals#2627604,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2627604,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2627604,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2627604,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#269403,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#269403,neo4j://graph.schema#ConceptId,C0563629
+neo4j://graph.individuals#269403,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#269403,neo4j://graph.schema#name,M0 - Acute myeloblastic leukemia - undifferentiated
+neo4j://graph.individuals#2704724,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2704724,neo4j://graph.schema#AtomId,A3625775
+neo4j://graph.individuals#2704724,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#329551
+neo4j://graph.individuals#2704724,neo4j://graph.schema#code,3172003
+neo4j://graph.individuals#2704724,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2704724,neo4j://graph.schema#name,"Peripheral T-cell lymphoma, large cell"
+neo4j://graph.individuals#2704724,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2704724,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2704724,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2704724,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2760275,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2760275,neo4j://graph.schema#AtomId,A9379539
+neo4j://graph.individuals#2760275,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#363527
+neo4j://graph.individuals#2760275,neo4j://graph.schema#code,419317000
+neo4j://graph.individuals#2760275,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2760275,neo4j://graph.schema#name,Neoplasm of uncertain behavior of lacrimal duct
+neo4j://graph.individuals#2760275,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2760275,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2760275,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2760275,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2761518,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2761518,neo4j://graph.schema#AtomId,A3543673
+neo4j://graph.individuals#2761518,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#368208
+neo4j://graph.individuals#2761518,neo4j://graph.schema#code,399466007
+neo4j://graph.individuals#2761518,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2761518,neo4j://graph.schema#name,Low-grade intraurothelial neoplasia
+neo4j://graph.individuals#2761518,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2761518,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2761518,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2761518,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2781026,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2781026,neo4j://graph.schema#AtomId,A3040962
+neo4j://graph.individuals#2781026,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#374231
+neo4j://graph.individuals#2781026,neo4j://graph.schema#code,188674006
+neo4j://graph.individuals#2781026,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2781026,neo4j://graph.schema#name,Malignant lymphoma - undifferentiated cell type
+neo4j://graph.individuals#2781026,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2781026,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2781026,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2781026,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2781027,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2781027,neo4j://graph.schema#AtomId,A3312516
+neo4j://graph.individuals#2781027,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#374232
+neo4j://graph.individuals#2781027,neo4j://graph.schema#code,188674006
+neo4j://graph.individuals#2781027,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2781027,neo4j://graph.schema#name,Non-Burkitt's malignant lymphoma - undifferentiated cell
+neo4j://graph.individuals#2781027,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2781027,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2781027,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2781027,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2813244,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2813244,neo4j://graph.schema#AtomId,A3616418
+neo4j://graph.individuals#2813244,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#97264
+neo4j://graph.individuals#2813244,neo4j://graph.schema#code,128663007
+neo4j://graph.individuals#2813244,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2813244,neo4j://graph.schema#name,"Papillomatosis, glandular"
+neo4j://graph.individuals#2813244,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2813244,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2813244,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2813244,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2817376,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2817376,neo4j://graph.schema#AtomId,A3715481
+neo4j://graph.individuals#2817376,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#97303
+neo4j://graph.individuals#2817376,neo4j://graph.schema#code,128749008
+neo4j://graph.individuals#2817376,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2817376,neo4j://graph.schema#name,Spindle cell rhabdomyosarcoma
+neo4j://graph.individuals#2817376,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2817376,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2817376,neo4j://graph.schema#tty,PT
+neo4j://graph.individuals#2817376,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2876747,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2876747,neo4j://graph.schema#AtomId,A3810793
+neo4j://graph.individuals#2876747,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#77611
+neo4j://graph.individuals#2876747,neo4j://graph.schema#code,128663007
+neo4j://graph.individuals#2876747,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2876747,neo4j://graph.schema#name,Biliary papillomatosis
+neo4j://graph.individuals#2876747,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2876747,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2876747,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2876747,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#2952170,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Atom
+neo4j://graph.individuals#2952170,neo4j://graph.schema#AtomId,A24086642
+neo4j://graph.individuals#2952170,neo4j://graph.schema#HAS_CUI,neo4j://graph.individuals#780746
+neo4j://graph.individuals#2952170,neo4j://graph.schema#code,128749008
+neo4j://graph.individuals#2952170,neo4j://graph.schema#ispref,Y
+neo4j://graph.individuals#2952170,neo4j://graph.schema#name,Sclerosing rhabdomyosarcoma
+neo4j://graph.individuals#2952170,neo4j://graph.schema#stt,PF
+neo4j://graph.individuals#2952170,neo4j://graph.schema#ts,P
+neo4j://graph.individuals#2952170,neo4j://graph.schema#tty,SY
+neo4j://graph.individuals#2952170,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#29727,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#29727,neo4j://graph.schema#ConceptId,C1643209
+neo4j://graph.individuals#29727,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3317074
+neo4j://graph.individuals#29727,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#29727,neo4j://graph.schema#name,Neoplasm of uncertain behavior of lacrimal drainage structure
+neo4j://graph.individuals#303590,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#303590,neo4j://graph.schema#ConceptId,C0334452
+neo4j://graph.individuals#303590,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#303590,neo4j://graph.schema#name,"Giant cell sarcoma (except of Bone, M-92503)"
+neo4j://graph.individuals#303662,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#303662,neo4j://graph.schema#ConceptId,C0334645
+neo4j://graph.individuals#303662,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#303662,neo4j://graph.schema#name,Diffuse malignant lymphoma - small non-cleaved cell
+neo4j://graph.individuals#3105287,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3105287,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3105287,neo4j://graph.schema#CodeId,SNOMEDCT_US#359631009
+neo4j://graph.individuals#3105287,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2627604
+neo4j://graph.individuals#3105287,neo4j://graph.schema#code,359631009
+neo4j://graph.individuals#3105287,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3185772,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3185772,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3185772,neo4j://graph.schema#CodeId,SNOMEDCT_US#3172003
+neo4j://graph.individuals#3185772,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2704724
+neo4j://graph.individuals#3185772,neo4j://graph.schema#code,3172003
+neo4j://graph.individuals#3185772,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3212891,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3212891,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3212891,neo4j://graph.schema#CodeId,SNOMEDCT_US#87992000
+neo4j://graph.individuals#3212891,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2486668
+neo4j://graph.individuals#3212891,neo4j://graph.schema#code,87992000
+neo4j://graph.individuals#3212891,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3213198,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3213198,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3213198,neo4j://graph.schema#CodeId,SNOMEDCT_US#188674006
+neo4j://graph.individuals#3213198,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2488352
+neo4j://graph.individuals#3213198,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2781026
+neo4j://graph.individuals#3213198,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2781027
+neo4j://graph.individuals#3213198,neo4j://graph.schema#code,188674006
+neo4j://graph.individuals#3213198,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3251254,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3251254,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3251254,neo4j://graph.schema#CodeId,SNOMEDCT_US#95181001
+neo4j://graph.individuals#3251254,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2326877
+neo4j://graph.individuals#3251254,neo4j://graph.schema#code,95181001
+neo4j://graph.individuals#3251254,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3251437,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3251437,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3251437,neo4j://graph.schema#CodeId,SNOMEDCT_US#271323007
+neo4j://graph.individuals#3251437,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2231647
+neo4j://graph.individuals#3251437,neo4j://graph.schema#code,271323007
+neo4j://graph.individuals#3251437,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3275547,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3275547,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3275547,neo4j://graph.schema#CodeId,SNOMEDCT_US#128663007
+neo4j://graph.individuals#3275547,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2813244
+neo4j://graph.individuals#3275547,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2876747
+neo4j://graph.individuals#3275547,neo4j://graph.schema#code,128663007
+neo4j://graph.individuals#3275547,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3275702,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3275702,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3275702,neo4j://graph.schema#CodeId,SNOMEDCT_US#128749008
+neo4j://graph.individuals#3275702,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2817376
+neo4j://graph.individuals#3275702,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2952170
+neo4j://graph.individuals#3275702,neo4j://graph.schema#code,128749008
+neo4j://graph.individuals#3275702,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#329551,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#329551,neo4j://graph.schema#ConceptId,C1337079
+neo4j://graph.individuals#329551,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#329551,neo4j://graph.schema#name,"Peripheral T-cell lymphoma, large cell"
+neo4j://graph.individuals#3317074,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3317074,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3317074,neo4j://graph.schema#CodeId,SNOMEDCT_US#419317000
+neo4j://graph.individuals#3317074,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2760275
+neo4j://graph.individuals#3317074,neo4j://graph.schema#code,419317000
+neo4j://graph.individuals#3317074,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#3341722,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Code
+neo4j://graph.individuals#3341722,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SNOMEDCT_US
+neo4j://graph.individuals#3341722,neo4j://graph.schema#CodeId,SNOMEDCT_US#399466007
+neo4j://graph.individuals#3341722,neo4j://graph.schema#HAS_UMLS_AUI,neo4j://graph.individuals#2761518
+neo4j://graph.individuals#3341722,neo4j://graph.schema#code,399466007
+neo4j://graph.individuals#3341722,neo4j://graph.schema#vocab,SNOMEDCT_US
+neo4j://graph.individuals#335660,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#335660,neo4j://graph.schema#ConceptId,C0345714
+neo4j://graph.individuals#335660,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#335660,neo4j://graph.schema#name,Neoplasm of uncertain behavior of vocal cord
+neo4j://graph.individuals#363527,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#363527,neo4j://graph.schema#ConceptId,C0686484
+neo4j://graph.individuals#363527,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#363527,neo4j://graph.schema#name,Neoplasm of uncertain behavior of lacrimal duct
+neo4j://graph.individuals#368208,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#368208,neo4j://graph.schema#ConceptId,C1521918
+neo4j://graph.individuals#368208,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#368208,neo4j://graph.schema#name,Low-grade intraurothelial neoplasia
+neo4j://graph.individuals#374223,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#374223,neo4j://graph.schema#ConceptId,C1536700
+neo4j://graph.individuals#374223,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3251254
+neo4j://graph.individuals#374223,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#374223,neo4j://graph.schema#name,Tumor of vocal cord
+neo4j://graph.individuals#374231,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#374231,neo4j://graph.schema#ConceptId,C1536816
+neo4j://graph.individuals#374231,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3213198
+neo4j://graph.individuals#374231,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#374231,neo4j://graph.schema#name,Malignant lymphoma - undifferentiated cell type
+neo4j://graph.individuals#374232,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#374232,neo4j://graph.schema#ConceptId,C1536817
+neo4j://graph.individuals#374232,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3213198
+neo4j://graph.individuals#374232,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#374232,neo4j://graph.schema#name,Non-Burkitt's malignant lymphoma - undifferentiated cell
+neo4j://graph.individuals#374256,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#374256,neo4j://graph.schema#ConceptId,C1541058
+neo4j://graph.individuals#374256,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3251437
+neo4j://graph.individuals#374256,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#374256,neo4j://graph.schema#name,"Malignant neoplasm of lip, oral cavity and/or pharynx"
+neo4j://graph.individuals#3887122,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SemanticType
+neo4j://graph.individuals#3887122,neo4j://graph.schema#SemanticTypeId,T047
+neo4j://graph.individuals#3887122,neo4j://graph.schema#stn,B2.2.1.2.1
+neo4j://graph.individuals#3887122,neo4j://graph.schema#sty,Disease or Syndrome
+neo4j://graph.individuals#3887199,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#SemanticType
+neo4j://graph.individuals#3887199,neo4j://graph.schema#ISA,neo4j://graph.individuals#3887122
+neo4j://graph.individuals#3887199,neo4j://graph.schema#SemanticTypeId,T191
+neo4j://graph.individuals#3887199,neo4j://graph.schema#stn,B2.2.1.2.1.2
+neo4j://graph.individuals#3887199,neo4j://graph.schema#sty,Neoplastic Process
+neo4j://graph.individuals#56286,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#56286,neo4j://graph.schema#ConceptId,C0178247
+neo4j://graph.individuals#56286,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#56286,neo4j://graph.schema#name,"Malignant neoplasm of lip, oral cavity and pharynx"
+neo4j://graph.individuals#77611,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#77611,neo4j://graph.schema#ConceptId,C1879344
+neo4j://graph.individuals#77611,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3275547
+neo4j://graph.individuals#77611,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#77611,neo4j://graph.schema#name,Biliary papillomatosis
+neo4j://graph.individuals#780746,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#780746,neo4j://graph.schema#ConceptId,C4048700
+neo4j://graph.individuals#780746,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3275702
+neo4j://graph.individuals#780746,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#780746,neo4j://graph.schema#name,Sclerosing rhabdomyosarcoma
+neo4j://graph.individuals#80935,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#80935,neo4j://graph.schema#ConceptId,C1261358
+neo4j://graph.individuals#80935,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3212891
+neo4j://graph.individuals#80935,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#80935,neo4j://graph.schema#name,Giant cell sarcoma
+neo4j://graph.individuals#97264,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#97264,neo4j://graph.schema#ConceptId,C1266038
+neo4j://graph.individuals#97264,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3275547
+neo4j://graph.individuals#97264,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#97264,neo4j://graph.schema#name,"Papillomatosis, glandular"
+neo4j://graph.individuals#97303,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,neo4j://graph.schema#Concept
+neo4j://graph.individuals#97303,neo4j://graph.schema#ConceptId,C1266134
+neo4j://graph.individuals#97303,neo4j://graph.schema#HAS_SOURCE_CODE,neo4j://graph.individuals#3275702
+neo4j://graph.individuals#97303,neo4j://graph.schema#HAS_STY,neo4j://graph.individuals#3887199
+neo4j://graph.individuals#97303,neo4j://graph.schema#name,Spindle cell rhabdomyosarcoma
