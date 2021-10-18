@@ -1,5 +1,11 @@
 # Clinical Informatics UMLS®
 
+**The "long" TL;DR:** 
+
+An exploratory, tutorial and analytical view of the Unified Medical Language System (UMLS) & the software/technologies provided via being a free UMLS license holder. This repo will subset 2021AA UMLS native release, introduce/build upon UMLS provided tools to load a configured subset into first a relational database (load scripts included for --> MySQL, MariaDB, SQLite & Postgres). Next the UMLS subset which is stored in a relational DB will be queried, modeled and lastly loaded into a defined Neo4j label property graph. Lastly, Neo4j database containing UMLS 2021AA subset in schema promoting ituitive analysis and rich visualization will become the central datastore for analysis. The datastore contains ~5 million distinct nodes & >40 million distinct relationships (edges). Currently, Neo4j is running via Docker but deployment options are NOT limited to Docker. If choosing to deploy via Neo4j Aura, server, Neo4j Desktop, VM etc... Please note and be aware of the specific volumes and environment variables specified within this repository (docker run). The ability for the loaded Neo4j Graph to interact with RDF data (i.e. import/export RDF data to and from Neo4j) may not be possible via all Neo4j deployment avenues (i.e. Neo4j Aura currently does not support RDF integration that is demonstrated in this repository). 
+
+Note: All functionalities mentioned above currently exist, function & are here to share. Watch the repo for updates, as they will be made over time. Repository is under construction and IS NOT in its final form.
+
 **Preview of v1 Neo4j UMLS Graph to be created: (Repo/Graph is a work in progress)**
 ![UMLS® Neo4j Graph Schema](images/schema_dark.png)
 
