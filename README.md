@@ -1,8 +1,8 @@
 # Clinical Informatics UMLS®
 
-**Repository Summary:** 
+**Repository Summary:**
 
-An exploratory, tutorial and analytical view of the Unified Medical Language System (UMLS) & the software/technologies provided via being a free UMLS license holder. This repo will subset 2021AA UMLS native release, introduce/build upon UMLS provided tools to load a configured subset into first a relational database (load scripts included for --> MySQL, MariaDB, SQLite & Postgres). Next the UMLS subset which is stored in a relational DB will be queried, modeled and lastly loaded into a defined Neo4j label property graph. Lastly, Neo4j database containing UMLS 2021AA subset in schema promoting ituitive analysis and rich visualization will become the central datastore for analysis. The datastore contains ~5 million distinct nodes & >40 million distinct relationships (edges). Currently, Neo4j is running via Docker but deployment options are NOT limited to Docker. If choosing to deploy via Neo4j Aura, server, Neo4j Desktop, VM etc... Please note and be aware of the specific volumes and environment variables specified within this repository (docker run). The ability for the loaded Neo4j Graph to interact with RDF data (i.e. import/export RDF data to and from Neo4j) may not be possible via all Neo4j deployment avenues (i.e. Neo4j Aura currently does not support RDF integration that is demonstrated in this repository). 
+An exploratory, tutorial and analytical view of the Unified Medical Language System (UMLS) & the software/technologies provided via being a free UMLS license holder. This repo will subset 2021AA UMLS native release, introduce/build upon UMLS provided tools to load a configured subset into first a relational database (load scripts included for --> MySQL, MariaDB, SQLite & Postgres). Next the UMLS subset which is stored in a relational DB will be queried, modeled and lastly loaded into a defined Neo4j label property graph. Lastly, Neo4j database containing UMLS 2021AA subset in schema promoting intuitive analysis and rich visualization will become the central datastore for analysis. The datastore contains ~5 million distinct nodes & >40 million distinct relationships (edges). Currently, Neo4j is running via Docker but deployment options are NOT limited to Docker. If choosing to deploy via Neo4j Aura, server, Neo4j Desktop, VM etc... Please note and be aware of the specific volumes and environment variables specified within this repository (docker run). The ability for the loaded Neo4j Graph to interact with RDF data (i.e. import/export RDF data to and from Neo4j) may not be possible via all Neo4j deployment avenues (i.e. Neo4j Aura currently does not support RDF integration that is demonstrated in this repository).
 
 Note: All functionalities mentioned above currently exist, function & are here to share. Watch the repo for updates, as they will be made over time. Repository is under construction and IS NOT in its final form.
 
@@ -171,7 +171,7 @@ This project has an included `pyproject.toml` as the python packaging and depend
 Docker Image:
 
 ```shell
-docker run --name=umls \
+docker run --name=<insert a container name> \
     --publish=7474:7474 --publish=7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
@@ -218,6 +218,7 @@ docker run --name=umls \
 - **While inside docker containers command-line, execute the following prior to import:**
   - `rm -rf data/databases/`
   - `rm -rf data/transactions/`
+  - Please be aware that is best to execute above two commands twice prior to running `neo4j-admin import`
 - **NOTE:** This is a required step when using `neo4j-admin import`.
   - By invoking this command to import data, the database for your data must not already exist as well.
 
@@ -239,7 +240,8 @@ docker run --name=umls \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
-    --trim-strings=true 
+    --trim-strings=true \
+    --max-memory=60G
 ```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
@@ -269,8 +271,9 @@ Here are a few snippets of what the above commands should look like (including b
 Output:
 
 ```shell  
-Neo4j version: 4.3.5
-Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
+Selecting JVM - Version:11.0.12, Name:OpenJDK 64-Bit Server VM, Vendor:Oracle Corporation
+Neo4j version: 4.3.6
+Importing the contents of these files into /data/databases/neo4j:
 Nodes:
   /var/lib/neo4j/import/conceptNode.csv
   /var/lib/neo4j/import/atomNode.csv
@@ -287,12 +290,13 @@ Relationships:
   /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
-  Estimated number of nodes: 5.01 M
-  Estimated number of node properties: 27.24 M
-  Estimated number of relationships: 37.23 M
-  Estimated number of relationship properties: 15.80 M
-  Estimated disk space usage: 2.567GiB
-  Estimated required memory usage: 1.058GiB
+  Import starting 2021-10-20 04:45:08.430+0000
+  Estimated number of nodes: 11.16 M
+  Estimated number of node properties: 56.72 M
+  Estimated number of relationships: 31.82 M
+  Estimated number of relationship properties: 13.29 M
+  Estimated disk space usage: 3.146GiB
+  Estimated required memory usage: 1.133GiB
   ...
 (1/4) Nodes import
   ...
@@ -302,12 +306,11 @@ Relationships:
   ...
 (4/4) Post processing
   ...
-IMPORT DONE in 2m 47s 283ms. 
+IMPORT DONE in 3m 5s 58ms. 
 Imported:
-  4112426 nodes
-  18522117 relationships
-  25868020 properties
-Peak memory usage: 1.071GiB
+  11252941 nodes
+  23668993 relationships
+  64098320 properties
 ```
 
 Exit docker command-line via:
