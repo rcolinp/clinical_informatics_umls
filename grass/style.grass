@@ -67,11 +67,25 @@ node.HGNC {
   text-color-internal: #FFFFFF;
 }
 
+node.HPO {
+  color: #4caf50;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
+}
+
+node.ICDO3 {
+  color: #DA7194;
+  border-color: #cc3c6c;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "{CodeId}";
+}
+
 node.ICD10PCS {
   color: #D9C8AE;
   border-color: #c0a378;
   text-color-internal: #FFFFFF;
-  defaultCaption: "<id>";
+  defaultCaption: "<CodeId>";
 }
 
 node.ICD9CM {
@@ -88,18 +102,25 @@ node.ICD10CM {
   defaultCaption: "{CodeId}";
 }
 
+node.LNC {
+  color: light-pink;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<CodeId>";
+}
+
 node.MED-RT {
   color: #e91e63;
   border-color: #2870c2;
   text-color-internal: #FFFFFF;
-  defaultCaption: "<id>";
+  defaultCaption: "<CodeId>";
 }
 
-node.ICDO3 {
-  color: #DA7194;
-  border-color: #cc3c6c;
+node.MDR {
+  color: red;
+  border-color: #2870c2;
   text-color-internal: #FFFFFF;
-  defaultCaption: "{CodeId}";
+  defaultCaption: "<CodeId>";
 }
 
 node.NCI {
@@ -107,6 +128,13 @@ node.NCI {
   border-color: #f36924;
   text-color-internal: #FFFFFF;
   defaultCaption: "{CodeId}";
+}
+
+node.NCBI {
+  color: #4caf50;
+  caption: "{CodeId}";
+  border-color: #d7a013;
+  text-color-internal: #FFFFFF;
 }
 
 node.SNOMEDCT_US {
