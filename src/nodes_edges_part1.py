@@ -92,7 +92,9 @@ WHERE ISPREF = 'Y'
     AND STT = 'PF'
     AND TS = 'P'
     AND SUPPRESS = 'N'
-    AND SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+                'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
     AND LAT = 'ENG';
     '''
 
@@ -101,7 +103,7 @@ conceptNode = pd.read_sql_query(
 
 conceptNode.columns = ["ConceptId:ID", "name", ":LABEL"]
 
-conceptNode.to_csv(path_or_buf='../../../../import/conceptNode.csv',
+conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                    header=True,
                    index=False)
 print("conceptNode.csv successfully written out...")
@@ -119,7 +121,9 @@ SELECT DISTINCT AUI
               , STT
               , 'Atom' AS ":LABEL"
 FROM MRCONSO
-WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
   AND SUPPRESS = 'N'
   AND LAT = 'ENG';
   '''
@@ -152,14 +156,15 @@ SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE) AS "CodeId:ID"
 FROM MRCONSO
          INNER JOIN cuis
                     ON MRCONSO.CUI = cuis.CUI
-WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 
-              'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
   AND MRCONSO.SUPPRESS = 'N';
   '''
 codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
     np.nan, '')
 codeNode.columns = ['CodeId:ID', 'vocab', 'code', ':LABEL']
-codeNode.to_csv(path_or_buf='../../../../import/codeNode.csv',
+codeNode.to_csv(path_or_buf="../../../../import/codeNode.csv",
                 header=True,
                 index=False)
 print("codeNode.csv successfully written out...")
@@ -188,10 +193,10 @@ is_sty_of_rel = pd.read_sql_query(
 has_sty_rel.columns = [':START_ID', ':END_ID', ':TYPE']
 is_sty_of_rel.columns = [':START_ID', ':END_ID', ':TYPE']
 
-has_sty_rel.to_csv(path_or_buf='../../../../import/has_sty.csv',
+has_sty_rel.to_csv(path_or_buf="../../../../import/has_sty.csv",
                    header=True,
                    index=False)
-is_sty_of_rel.to_csv(path_or_buf='../../../../import/is_sty_of.csv',
+is_sty_of_rel.to_csv(path_or_buf="../../../../import/is_sty_of.csv",
                      header=True,
                      index=False)
 print("is_sty_of.csv & has_sty.csv successfully written out...")
@@ -202,8 +207,9 @@ SELECT DISTINCT (SAB || '#' || CODE) AS ":START_ID"
               , AUI                  AS ":END_ID"
               , 'HAS_UMLS_AUI'       AS ":TYPE"
 FROM MRCONSO
-WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM',
-              'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
   AND SUPPRESS = 'N';
   '''
 
@@ -229,8 +235,9 @@ SELECT DISTINCT AUI
               , CUI
               , 'HAS_CUI' AS ":TYPE"
 FROM MRCONSO
-WHERE SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM',
-              'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
   AND SUPPRESS = 'N'
   AND LAT = 'ENG'
   AND ISPREF = 'Y'
@@ -288,20 +295,10 @@ cui_cui = """
 WITH q AS (
     SELECT DISTINCT SAB
     FROM MRCONSO
-    WHERE SAB IN (
-                  'ATC',
-                  'GO',
-                  'HGNC',
-                  'ICD9CM',
-                  'ICD10CM',
-                  'ICD10PCS',
-                  'MED-RT',
-                  'NCI',
-                  'RXNORM',
-                  'SNOMEDCT_US'
-        )
-      AND SUPPRESS = 'N'
-)
+    WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+                  'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+                  'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
+        AND SUPPRESS = 'N')
 SELECT DISTINCT r.CUI2
               , r.CUI1
               , CASE
@@ -338,8 +335,9 @@ SELECT DISTINCT CUI
               , 'HAS_SOURCE_CODE'     AS ":TYPE" 
 FROM MRCONSO 
 WHERE SUPPRESS = 'N' 
-    AND SAB IN ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 
-                'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US');
+    AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+                'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US');
                 '''
 
 has_source_code = pd.read_sql_query(
@@ -347,7 +345,7 @@ has_source_code = pd.read_sql_query(
 
 has_source_code.columns = [':START_ID', ':END_ID', ':TYPE']
 
-has_source_code.to_csv(path_or_buf='../../../../import/cui_code_rel.csv',
+has_source_code.to_csv(path_or_buf="../../../../import/cui_code_rel.csv",
                        header=True,
                        index=False)
 
@@ -372,7 +370,7 @@ icdo_df.columns = ['code', ':END_ID', 'vocab']
 icdo_df['vocab'] = 'ICDO3'
 icdo_df['CodeId:ID'] = icdo_df['vocab'] + "#" + icdo_df['code']
 icdo_df[':LABEL'] = ('Code' + ';' + icdo_df['vocab'])
-icdo_df[['CodeId:ID', 'vocab', 'code', ':LABEL']].to_csv(path_or_buf='../../../../import/codeNode.csv',
+icdo_df[['CodeId:ID', 'vocab', 'code', ':LABEL']].to_csv(path_or_buf="../../../../import/codeNode.csv",
                                                          mode='a',
                                                          header=False,
                                                          index=False)
@@ -384,7 +382,7 @@ cui_code_rel_icdo_append[':TYPE'] = 'HAS_SOURCE_CODE'
 cui_code_rel_append = cui_code_rel_icdo_append[[':START_ID', 'CodeId:ID', ':TYPE']].rename(
     {'CodeId:ID': ':END_ID'}, axis=1).drop_duplicates().replace(np.nan, '')
 
-cui_code_rel_append.to_csv(path_or_buf='../../../../import/cui_code_rel.csv',
+cui_code_rel_append.to_csv(path_or_buf="../../../../import/cui_code_rel.csv",
                            mode='a',
                            header=False,
                            index=False)
@@ -397,8 +395,9 @@ SELECT DISTINCT h.PAUI     AS PAUI,
 FROM MRHIER h
          JOIN MRCONSO c ON h.AUI = c.AUI
          JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-WHERE h.SAB IN
-      ('ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US', 'SRC')
+WHERE h.SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+                'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
   AND c.TS = 'P'
   AND c.ISPREF = 'Y'
   AND c.STT = 'PF'

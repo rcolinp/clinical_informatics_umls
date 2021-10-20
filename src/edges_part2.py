@@ -32,13 +32,14 @@ home = getpass.getuser()  # home directory (using getpass2 library)
 mrhier = pd.read_csv('../UMLS/subset/2021AA/META/MRHIER.RRF',
                      sep='|',
                      header=None,
-                     dtype=str)
+                     dtype=object)
 
 # Define list containing vocabularies (UMLS.MRHIER.SAB) which will be included.
 # All SABs could be included, but will increase run time, size, etc...
 # --> sab_list contains same vocabularies used in `nodes_edges_part1.py`
-sab_list = ['ATC', 'GO', 'HGNC', 'ICD9CM', 'ICD10CM',
-            'ICD10PCS', 'MED-RT', 'NCI', 'RXNORM', 'SNOMEDCT_US']
+sab_list = ['ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM',
+            'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT',
+            'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US']
 
 # Where axis=1 drop 9th index (align columns correctly -> .RRF has extra column that needs to be dropped)
 mrhier = mrhier.drop(9, axis=1)
@@ -105,4 +106,4 @@ def explode_mrhier_write_csv(root: str, home: str = home, mrhier: DataFrame = mr
 
 
 explode_mrhier_write_csv(root=root, home=home, mrhier=mrhier)
-print("Complete! child_of_rel.csv has been saved to /Users/home/import/child_of_rel.csv and is ready for import.")
+print("child_of_rel.csv has been written out to /Users/home/import/child_of_rel.csv and is ready for import.")
