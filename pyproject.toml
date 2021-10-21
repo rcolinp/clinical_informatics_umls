@@ -36,6 +36,7 @@ SPARQLWrapper = "^1.8.5"
 Owlready2 = "^0.35"
 requests = "^2.26.0"
 kglab = "^0.4.0"
+dockerfile = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"
