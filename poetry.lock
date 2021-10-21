@@ -360,18 +360,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "dnspython"
-version = "1.16.0"
-description = "DNS toolkit"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.extras]
-DNSSEC = ["pycryptodome", "ecdsa (>=0.13)"]
-IDNA = ["idna (>=2.1)"]
-
-[[package]]
 name = "docker"
 version = "5.0.3"
 description = "A Python library for the Docker Engine API."
@@ -389,14 +377,6 @@ ssh = ["paramiko (>=2.4.2)"]
 tls = ["pyOpenSSL (>=17.5.0)", "cryptography (>=3.4.7)", "idna (>=2.0.0)"]
 
 [[package]]
-name = "dockerfile"
-version = "3.2.0"
-description = "Parse a dockerfile into a high-level representation using the official go parser."
-category = "main"
-optional = false
-python-versions = ">=3.6.1"
-
-[[package]]
 name = "entrypoints"
 version = "0.3"
 description = "Discover and load entry points from installed packages."
@@ -411,19 +391,6 @@ description = "An implementation of lxml.xmlfile for the standard library"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[[package]]
-name = "eventlet"
-version = "0.32.0"
-description = "Highly concurrent networking library"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-dnspython = ">=1.15.0"
-greenlet = ">=0.3"
-six = ">=1.10.0"
 
 [[package]]
 name = "executing"
@@ -763,19 +730,6 @@ qtconsole = ["qtconsole"]
 test = ["nose (>=0.10.1)", "requests", "testpath", "pygments", "nbformat", "ipykernel", "numpy (>=1.17)"]
 
 [[package]]
-name = "ipython-cypher"
-version = "0.2.6"
-description = "Neo4j Cypher cell and line magic for IPython, Pandas, NetworkX and matplotlib"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-ipython = ">=1.0"
-neo4jrestclient = ">=2.1.0"
-prettytable = "*"
-
-[[package]]
 name = "ipython-genutils"
 version = "0.2.0"
 description = "Vestigial utilities from IPython"
@@ -1096,7 +1050,7 @@ tqdm = ">=4.56"
 urlpath = ">=1.1.7"
 
 [package.extras]
-base = ["chocolate (>=0.0.2)", "csvwlib (>=0.3.2)", "decorator (>=4.4.2)", "fsspec[gs,s3] (>=0.8.5)", "gcsfs (>=0.7.1)", "gensim (>=3.8.3)", "icecream (>=2.0)", "matplotlib (>=3.3.4)", "networkx (>=2.5)", "numpy (>=1.19.2)", "owlrl (>=5.2.1)", "pandas (>=1.1.5)", "pslpython (>=2.2.2)", "pyarrow (>=2.0.0)", "pygments (>=2.7.4)", "pylev (>=1.3)", "pynvml (>=8.0.4)", "pyshacl (>=0.14.2)", "python-dateutil (>=2.8)", "pyvis (>=0.1.7.0)", "rdflib-jsonld (>=0.5.0)", "rdflib (>=5.0.0)", "requests (>=2.25.1)", "scikit-learn (>=0.20.2)", "statsmodels (>=0.12)", "torch (>=1.8)", "tqdm (>=4.56)", "urlpath (>=1.1.7)"]
+base = ["chocolate (>=0.0.2)", "csvwlib (>=0.3.2)", "decorator (>=4.4.2)", "fsspec[s3,gs] (>=0.8.5)", "gcsfs (>=0.7.1)", "gensim (>=3.8.3)", "icecream (>=2.0)", "matplotlib (>=3.3.4)", "networkx (>=2.5)", "numpy (>=1.19.2)", "owlrl (>=5.2.1)", "pandas (>=1.1.5)", "pslpython (>=2.2.2)", "pyarrow (>=2.0.0)", "pygments (>=2.7.4)", "pylev (>=1.3)", "pynvml (>=8.0.4)", "pyshacl (>=0.14.2)", "python-dateutil (>=2.8)", "pyvis (>=0.1.7.0)", "rdflib-jsonld (>=0.5.0)", "rdflib (>=5.0.0)", "requests (>=2.25.1)", "scikit-learn (>=0.20.2)", "statsmodels (>=0.12)", "torch (>=1.8)", "tqdm (>=4.56)", "urlpath (>=1.1.7)"]
 docs = ["bandit", "codespell", "coverage", "flask", "grayskull", "jupyterlab", "mkdocs-git-revision-date-plugin", "mkdocs-material", "mknotebooks", "mypy", "nbconvert", "notebook (>=6.1.5)", "pipdeptree", "pre-commit", "pygments (>=2.7.4)", "pylint (>=2.7.0)", "pymdown-extensions", "pytest", "selenium", "twine", "wheel"]
 
 [[package]]
@@ -1311,17 +1265,6 @@ python-versions = ">=3.5"
 pytz = "*"
 
 [[package]]
-name = "neo4jrestclient"
-version = "2.1.1"
-description = "Object-oriented Python library to interact with Neo4j standalone REST server"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-requests = ">=2.1.0"
-
-[[package]]
 name = "nest-asyncio"
 version = "1.5.1"
 description = "Patch asyncio to allow nested event loops"
@@ -1395,17 +1338,6 @@ signals = ["blinker (>=1.4.0)"]
 signedtoken = ["cryptography (>=3.0.0,<4)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
-name = "opencypher"
-version = "0.3.0"
-description = "OpenCypher AST and Builder API"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-test = ["parameterized (>=0.6.1)"]
-
-[[package]]
 name = "openpyxl"
 version = "3.0.9"
 description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
@@ -1415,14 +1347,6 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 et-xmlfile = "*"
-
-[[package]]
-name = "owlready2"
-version = "0.35"
-description = "A package for ontology-oriented programming in Python: load OWL 2.0 ontologies as Python objects, modify them, save them, and perform reasoning via HermiT. Includes an optimized RDF quadstore."
-category = "main"
-optional = false
-python-versions = ">=3.6"
 
 [[package]]
 name = "owlrl"
@@ -1571,20 +1495,6 @@ python-versions = ">=3.6"
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
-
-[[package]]
-name = "prettytable"
-version = "2.2.1"
-description = "A simple Python library for easily displaying tabular data in a visually appealing ASCII table format"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-wcwidth = "*"
-
-[package.extras]
-tests = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "prometheus-client"
@@ -2122,22 +2032,6 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
-name = "sparql-client"
-version = "3.8"
-description = "Python API to query a SPARQL endpoint"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-dnspython = "<2.0.0"
-eventlet = "*"
-six = "*"
-
-[package.extras]
-test = ["mock"]
-
-[[package]]
 name = "sparqlwrapper"
 version = "1.8.5"
 description = "SPARQL Endpoint interface to Python"
@@ -2446,7 +2340,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8,<3.11"
-content-hash = "ef53beeaff30fd5c8b5a5286b206e58d4ff36af0bed3bac17712ac816e8db7bb"
+content-hash = "ac7100a7d1b89843e4ca712cdede848c073cebefa39a9e6338c3c6a5996bffd9"
 
 [metadata.files]
 aiobotocore = [
@@ -2685,18 +2579,9 @@ distlib = [
     {file = "distlib-0.3.3-py2.py3-none-any.whl", hash = "sha256:c8b54e8454e5bf6237cc84c20e8264c3e991e824ef27e8f1e81049867d861e31"},
     {file = "distlib-0.3.3.zip", hash = "sha256:d982d0751ff6eaaab5e2ec8e691d949ee80eddf01a62eaa96ddb11531fe16b05"},
 ]
-dnspython = [
-    {file = "dnspython-1.16.0-py2.py3-none-any.whl", hash = "sha256:f69c21288a962f4da86e56c4905b49d11aba7938d3d740e80d9e366ee4f1632d"},
-    {file = "dnspython-1.16.0.zip", hash = "sha256:36c5e8e38d4369a08b6780b7f27d790a292b2b08eea01607865bf0936c558e01"},
-]
 docker = [
     {file = "docker-5.0.3-py2.py3-none-any.whl", hash = "sha256:7a79bb439e3df59d0a72621775d600bc8bc8b422d285824cb37103eab91d1ce0"},
     {file = "docker-5.0.3.tar.gz", hash = "sha256:d916a26b62970e7c2f554110ed6af04c7ccff8e9f81ad17d0d40c75637e227fb"},
-]
-dockerfile = [
-    {file = "dockerfile-3.2.0-cp36-abi3-macosx_10_14_x86_64.whl", hash = "sha256:e6e00b82b82042fb4df569ae00bd2648ac6c8823f51c406da31ab01c728926c2"},
-    {file = "dockerfile-3.2.0-cp36-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:e6bd64408386b7ba2259d85820e0fe90de1b6b8269f560f18aba100c6aa40b7d"},
-    {file = "dockerfile-3.2.0.tar.gz", hash = "sha256:e13fd3768216a788189e0667521e1435a273a4129119a8453085d897fc34aac8"},
 ]
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},
@@ -2705,10 +2590,6 @@ entrypoints = [
 et-xmlfile = [
     {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},
     {file = "et_xmlfile-1.1.0.tar.gz", hash = "sha256:8eb9e2bc2f8c97e37a2dc85a09ecdcdec9d8a396530a6d5a33b30b9a92da0c5c"},
-]
-eventlet = [
-    {file = "eventlet-0.32.0-py2.py3-none-any.whl", hash = "sha256:a3a67b02f336e97a1894b277bc33b695831525758781eb024f4da00e75ce5e25"},
-    {file = "eventlet-0.32.0.tar.gz", hash = "sha256:2f0bb8ed0dc0ab21d683975d5d8ab3c054d588ce61def9faf7a465ee363e839b"},
 ]
 executing = [
     {file = "executing-0.8.2-py2.py3-none-any.whl", hash = "sha256:32fc6077b103bd19e6494a72682d66d5763cf20a106d5aa7c5ccbea4e47b0df7"},
@@ -2896,9 +2777,6 @@ ipykernel = [
 ipython = [
     {file = "ipython-7.28.0-py3-none-any.whl", hash = "sha256:f16148f9163e1e526f1008d7c8d966d9c15600ca20d1a754287cf96d00ba6f1d"},
     {file = "ipython-7.28.0.tar.gz", hash = "sha256:2097be5c814d1b974aea57673176a924c4c8c9583890e7a5f082f547b9975b11"},
-]
-ipython-cypher = [
-    {file = "ipython-cypher-0.2.6.tar.gz", hash = "sha256:e0cb60954829100af8380dcc189434859ceea69bbb659e962e19899f31fcd5b0"},
 ]
 ipython-genutils = [
     {file = "ipython_genutils-0.2.0-py2.py3-none-any.whl", hash = "sha256:72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c61fab8"},
@@ -3242,9 +3120,6 @@ neo4j = [
 neo4j-driver = [
     {file = "neo4j-driver-4.3.6.tar.gz", hash = "sha256:59e16752c1bdd72b43f26786183a7b47c17e16c2ec6afd819390623988dff4ff"},
 ]
-neo4jrestclient = [
-    {file = "neo4jrestclient-2.1.1.tar.gz", hash = "sha256:b585ffdddc23d7cb54ddf2ae0bc35cdb445ff576c15f07b3e8ffde811ac087cf"},
-]
 nest-asyncio = [
     {file = "nest_asyncio-1.5.1-py3-none-any.whl", hash = "sha256:76d6e972265063fe92a90b9cc4fb82616e07d586b346ed9d2c89a4187acea39c"},
     {file = "nest_asyncio-1.5.1.tar.gz", hash = "sha256:afc5a1c515210a23c461932765691ad39e8eba6551c055ac8d5546e69250d0aa"},
@@ -3296,15 +3171,9 @@ oauthlib = [
     {file = "oauthlib-3.1.1-py2.py3-none-any.whl", hash = "sha256:42bf6354c2ed8c6acb54d971fce6f88193d97297e18602a3a886603f9d7730cc"},
     {file = "oauthlib-3.1.1.tar.gz", hash = "sha256:8f0215fcc533dd8dd1bee6f4c412d4f0cd7297307d43ac61666389e3bc3198a3"},
 ]
-opencypher = [
-    {file = "opencypher-0.3.0.tar.gz", hash = "sha256:a4ff374c0abce993eb94eb93cb9b013cb35f2e6f3ee635bda408bfe8097bd2d9"},
-]
 openpyxl = [
     {file = "openpyxl-3.0.9-py2.py3-none-any.whl", hash = "sha256:8f3b11bd896a95468a4ab162fc4fcd260d46157155d1f8bfaabb99d88cfcf79f"},
     {file = "openpyxl-3.0.9.tar.gz", hash = "sha256:40f568b9829bf9e446acfffce30250ac1fa39035124d55fc024025c41481c90f"},
-]
-owlready2 = [
-    {file = "Owlready2-0.35.tar.gz", hash = "sha256:93f798ea16b8ca08a09922678ca680b61443f1d29ba30475a491610068a68ea0"},
 ]
 owlrl = [
     {file = "owlrl-5.2.3-py3-none-any.whl", hash = "sha256:0514239bfbf72fa67f3e5813a40bcc5bd88fd16093d9f76b45a0d4c84ee1c5e2"},
@@ -3415,10 +3284,6 @@ platformdirs = [
 pluggy = [
     {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
-]
-prettytable = [
-    {file = "prettytable-2.2.1-py3-none-any.whl", hash = "sha256:09fb2c7f93e4f93e0235f05ae199ac3f16da3a251b2cfa1c7108b34ede298fa3"},
-    {file = "prettytable-2.2.1.tar.gz", hash = "sha256:6d465005573a5c058d4ca343449a5b28c21252b86afcdfa168cdc6a440f0b24c"},
 ]
 prometheus-client = [
     {file = "prometheus_client-0.11.0-py2.py3-none-any.whl", hash = "sha256:b014bc76815eb1399da8ce5fc84b7717a3e63652b0c0f8804092c9363acab1b2"},
@@ -3877,9 +3742,6 @@ smart-open = [
 sniffio = [
     {file = "sniffio-1.2.0-py3-none-any.whl", hash = "sha256:471b71698eac1c2112a40ce2752bb2f4a4814c22a54a3eed3676bc0f5ca9f663"},
     {file = "sniffio-1.2.0.tar.gz", hash = "sha256:c4666eecec1d3f50960c6bdf61ab7bc350648da6c126e3cf6898d8cd4ddcd3de"},
-]
-sparql-client = [
-    {file = "sparql-client-3.8.zip", hash = "sha256:aacb89e5ffe92fa6a00a2758728c24b2c7e897f57fad76343bc4d6d8c64d95a4"},
 ]
 sparqlwrapper = [
     {file = "SPARQLWrapper-1.8.5-py2-none-any.whl", hash = "sha256:357ee8a27bc910ea13d77836dbddd0b914991495b8cc1bf70676578155e962a8"},
