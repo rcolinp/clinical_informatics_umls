@@ -240,9 +240,8 @@ docker run -it --name=<insert a container name> \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
-    --trim-strings=true \
-    --max-memory=60G
-```
+    --trim-strings=true
+    ```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
 
