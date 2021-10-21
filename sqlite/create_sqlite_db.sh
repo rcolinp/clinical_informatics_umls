@@ -23,7 +23,7 @@ if [ ! -e umls.db ]; then
 		current=$(pwd)
 		cd "$1/META"
 		echo "-> Converting RRF files for SQLite"
-		for f in MRDEF.RRF MRDOC.RRF SRDEF SRSTRE1 MRSAB.RRF MRCONSO.RRF MRRANK.RRF MRSTY.RRF MRREL.RRF MRSAT.RRF MRHIER.RRF ; do
+		for f in MRDEF.RRF MRDOC.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRCONSO.RRF MRRANK.RRF MRSTY.RRF MRREL.RRF MRSAT.RRF MRHIER.RRF ; do
 				sed -e 's/.$//' -e 's/"//g' "$f" > "${f%RRF}pipe"
 		done
 		cd $current
@@ -112,7 +112,7 @@ if [ ! -e umls.db ]; then
     sqlite3 umls.db "CREATE TABLE SRDEF (
         RT varchar,
         UI varchar,
-        STY_RL varchar,
+        STY_RL TEXT,
 		STN_RTN varchar,
 		DEF TEXT,
 		EX varchar,
@@ -121,6 +121,16 @@ if [ ! -e umls.db ]; then
 		ABR varchar,
 		RIN varchar
 	)"
+	
+	# init the database for SRSTR
+	sqlite3 umls.db "CREATE TABLE SRSTR (
+		STY_RL1 TEXT,
+		RL varchar,
+		STY_RL2 TEXT,
+		LS varchar
+	)"
+
+
 
     # init the database for SRSTRE1
     sqlite3 umls.db "CREATE TABLE SRSTRE1 (
@@ -128,6 +138,13 @@ if [ ! -e umls.db ]; then
     	UI2 varchar,
     	UI3 varchar
     )"
+
+	# init the database for SRSTRE2
+	sqlite3 umls.db "CREATE TABLE SRSTRE2(
+		STY1 TEXT,
+		RL varchar,
+		STY2 TEXT,
+	)"
 
 	# init the database for MRRANK
 	sqlite3 umls.db "CREATE TABLE MRRANK (
@@ -142,7 +159,7 @@ if [ ! -e umls.db ]; then
 		CUI varchar,
 		TUI varchar,
 		STN varchar,
-		STY text,
+		STY TEXT,
 		ATUI varchar,
 		CVF varchar
 	)"
@@ -227,7 +244,12 @@ if [ ! -e umls.db ]; then
 	# sqlite3 umls.db "CREATE INDEX X_ATN_MRSAT ON MRSAT(ATN);"
 	# sqlite3 umls.db "CREATE INDEX X_CODE_MRSAT ON MRSAT(CODE);"
 	echo "-> successfully finished creating desired indexes"
-	echo "-> UMLS 2021AA local sqlite3 database build job succesfully complete."
+	# create faster lookup table
+	echo "-> Creating fast lookup table"
+	sqlite3 umls.db "CREATE TABLE lookup AS SELECT DISTINCT AUI, SUI, LUI, CUI, SCUI, SDUI, SAB, CODE, STR, TTY, ISPREF, TS, STT FROM MRCONSO WHERE SUPPRESS = 'N' AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'LNC', 'MDR', 'MED-RT', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')"
+	sqlite3 umls.db "ALTER TABLE lookup ADD COLUMN STY TEXT"
+	sqlite3 umls.db "CREATE INDEX X_CUI_lookup ON lookup (CUI)"
+	sqlite3 umls.db "UPDATE lookup SET STY = (SELECT DISTINCT GROUP_CONCAT(MRSTY.STY, '|') FROM MRSTY WHERE MRSTY.CUI = lookup.CUI GROUP BY MRSTY.CUI)"
 else
 	echo "=> umls.db already exists"
 fi

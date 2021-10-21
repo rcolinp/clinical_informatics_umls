@@ -171,7 +171,7 @@ This project has an included `pyproject.toml` as the python packaging and depend
 Docker Image:
 
 ```shell
-docker run --name=<insert a container name> \
+docker run -it --name=<insert a container name> \
     --publish=7474:7474 --publish=7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
@@ -192,7 +192,7 @@ docker run --name=<insert a container name> \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
     --env=NEO4J_AUTH=neo4j/<insert a pwd> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
-    neo4j:enterprise
+    neo4j:4.3.4-enterprise
 ```
 
 ##### Import Data Into Neo4j Graph
@@ -233,7 +233,7 @@ docker run --name=<insert a container name> \
     --nodes='import/SemanticTypeNode.csv' \
     --relationships='import/has_sty.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui.csv' \
+    --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --relationships='import/cui_cui_rel.csv' \
@@ -258,21 +258,21 @@ Here are a few snippets of what the above commands should look like (including b
     --nodes='import/SemanticTypeNode.csv' \
     --relationships='import/has_sty.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui.csv' \
+    --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --relationships='import/cui_cui_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
-    --trim-strings=true 
+    --trim-strings=true
 ```
 
 Output:
 
 ```shell  
 Selecting JVM - Version:11.0.12, Name:OpenJDK 64-Bit Server VM, Vendor:Oracle Corporation
-Neo4j version: 4.3.6
+Neo4j version: 4.3.4
 Importing the contents of these files into /data/databases/neo4j:
 Nodes:
   /var/lib/neo4j/import/conceptNode.csv
@@ -283,21 +283,20 @@ Nodes:
 Relationships:
   /var/lib/neo4j/import/has_sty.csv
   /var/lib/neo4j/import/has_umls_aui.csv
-  /var/lib/neo4j/import/has_cui.csv
+  /var/lib/neo4j/import/has_cui_rel.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
   /var/lib/neo4j/import/child_of_rel.csv
   /var/lib/neo4j/import/cui_cui_rel.csv
   /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
-  Import starting 2021-10-20 04:45:08.430+0000
-  Estimated number of nodes: 11.16 M
-  Estimated number of node properties: 56.72 M
-  Estimated number of relationships: 31.82 M
+  Estimated number of nodes: 11.40 M
+  Estimated number of node properties: 54.07 M
+  Estimated number of relationships: 34.02 M
   Estimated number of relationship properties: 13.29 M
-  Estimated disk space usage: 3.146GiB
-  Estimated required memory usage: 1.133GiB
-  ...
+  Estimated disk space usage: 3.062GiB
+  Estimated required memory usage: 1.136GiB
+
 (1/4) Nodes import
   ...
 (2/4) Relationship import
@@ -306,11 +305,11 @@ Relationships:
   ...
 (4/4) Post processing
   ...
-IMPORT DONE in 3m 5s 58ms. 
+IMPORT DONE in 4m 44s 299ms. 
 Imported:
-  11252941 nodes
-  23668993 relationships
-  64098320 properties
+  11538923 nodes
+  32808004 relationships
+  67671273 properties
 ```
 
 Exit docker command-line via:

@@ -1,19 +1,14 @@
 """
 SUMMARY
 -------
-
 This .py assumes you are querying the SQLite database found at the relative path ->../sqlite/umls.db. 
 This database is created via the following shell script located within that same directory. -->..sqlite/create_sqlite_db.sh.
   --> invoke that shell script via `sh create_sqlite_db_.sh ../UMLS/subset/2021AA` (where the path argument is path to local .RRF files) 
-
 Note: If using MySQL, Oracle or PostgreSQL, you'll need to adjust the connection object ('conn') appropriately to your datasource. Dependencies for MySQL, PostgreSQL and MariaDB are all included in the pyproject.toml file. (i.e. mysql.connector, psycopg2-binary, SQLAlchemy, mariadb, pymysql, etc...).
 An example connection object for MySQL & PostgresSQL connection have been included below for reference.
-
 ****************************************************
 MySQL connection: 
-
 import mysql.connector
-
 mconn = mysql.connector.connect(
     host=hostname,
     user=username,
@@ -22,9 +17,7 @@ mconn = mysql.connector.connect(
 )
 ****************************************************
 PostgresSQL connection (using psycopg2):
-
 import psycopg2
-
 pgconn = psycopg2.connect(
     host=host,
     user=username,
@@ -84,24 +77,17 @@ print("semanticTypeNode.csv successfully written out...")
 # Label: Concept
 # import: conceptNode.csv
 concept_node = '''
-SELECT DISTINCT CUI
-              , STR
-              , 'Concept' AS ":LABEL"
+SELECT DISTINCT CUI, 'Concept' AS ":LABEL"
 FROM MRCONSO
-WHERE ISPREF = 'Y'
-    AND STT = 'PF'
-    AND TS = 'P'
-    AND SUPPRESS = 'N'
-    AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
-                'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
-                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-    AND LAT = 'ENG';
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
+    AND SUPPRESS = 'N';
     '''
 
-conceptNode = pd.read_sql_query(
-    concept_node, conn).drop_duplicates().replace(np.nan, '')
+conceptNode = pd.read_sql_query(concept_node, conn).drop_duplicates().replace(np.nan, '')
 
-conceptNode.columns = ["ConceptId:ID", "name", ":LABEL"]
+conceptNode.columns = ["ConceptId:ID", ":LABEL"]
 
 conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                    header=True,
@@ -171,36 +157,42 @@ print("codeNode.csv successfully written out...")
 # **************************************************************
 # GRAPH EDGES/RELATIONSHIPS
 # **************************************************************
-# has_sty.csv & sty_of.csv
+# has_sty.csv
 has_sty = '''
 SELECT DISTINCT CUI
               , TUI
               , 'HAS_STY' AS ":TYPE" 
 FROM MRSTY;
 '''
-is_sty_of = '''
-SELECT DISTINCT TUI
-              , CUI
-              , 'IS_STY_OF' AS ":TYPE" 
-FROM MRSTY;
-'''
 
 has_sty_rel = pd.read_sql_query(
     has_sty, conn).drop_duplicates().replace(np.nan, '')
-is_sty_of_rel = pd.read_sql_query(
-    is_sty_of, conn).drop_duplicates().replace(np.nan, '')
 
 has_sty_rel.columns = [':START_ID', ':END_ID', ':TYPE']
-is_sty_of_rel.columns = [':START_ID', ':END_ID', ':TYPE']
 
 has_sty_rel.to_csv(path_or_buf="../../../../import/has_sty.csv",
                    header=True,
                    index=False)
-is_sty_of_rel.to_csv(path_or_buf="../../../../import/is_sty_of.csv",
-                     header=True,
-                     index=False)
-print("is_sty_of.csv & has_sty.csv successfully written out...")
-# **************************************************************
+print("has_sty.csv successfully written out...")
+##**************************************************************
+## is_sty_of.csv 
+# is_sty_of = '''
+# SELECT DISTINCT TUI
+#               , CUI
+#               , 'IS_STY_OF' AS ":TYPE" 
+# FROM MRSTY;
+# '''
+
+#  is_sty_of_rel = pd.read_sql_query(
+#     is_sty_of, conn).drop_duplicates().replace(np.nan, '')
+
+# is_sty_of_rel.columns = [':START_ID', ':END_ID', ':TYPE']
+
+# is_sty_of_rel.to_csv(path_or_buf="../../../../import/is_sty_of.csv",
+#                      header=True,
+#                      index=False)
+print("has_sty.csv successfully written out...")
+##**************************************************************
 # has_umls_atom.csv
 has_umls_aui = '''
 SELECT DISTINCT (SAB || '#' || CODE) AS ":START_ID"
@@ -226,28 +218,21 @@ print("has_umls_aui.csv successfully written out...")
 # AUI -> CUI is a many:1 mapping
 # CUI -> AUI is a 1:many mapping
 
-# Since it is preferable in a graph model to specify direction & has_aui/has_cui semantically are same we will only create 1 relationship
-# We will create (AUI) - [HAS_CUI] -> (CUI) as the ':END_ID' preferably should be distinct.
-# Creation of both directions will not benefit query traversals but will just will create a redundant rel & require larger disk space
+# It is preferable in a graph model to specify direction only when direction has a semantic meaning (i.e. forward doesn't imply backward)
+# Since 'HAS_CUI' implies 'HAS_AUI' (inverse) -> there is minimal/no value in including both 'HAS_CUI' & 'HAS_AUI'.
+# --> Adding only 'HAS_CUI' (AUI)-[HAS_CUI]->(CUI) OR exact cypher being: `(Atom)-[:HAS_CUI]->(Concept)`
 
 has_cui = '''
 SELECT DISTINCT AUI
               , CUI
-              , 'HAS_CUI' AS ":TYPE"
-FROM MRCONSO
+              , 'HAS_CUI' AS ":TYPE" 
+FROM MRCONSO 
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
               'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
               'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-  AND SUPPRESS = 'N'
-  AND LAT = 'ENG'
-  AND ISPREF = 'Y'
-  AND TS = 'P'
-  AND STT = 'PF';
-  '''
-
-has_cui_rel = pd.read_sql_query(
-    has_cui, conn).drop_duplicates().replace(np.nan, "")
-
+    AND SUPPRESS = 'N';
+    '''
+has_cui_rel = pd.read_sql_query(has_cui, conn).drop_duplicates().replace(np.nan, '')
 has_cui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
 has_cui_rel.to_csv(path_or_buf="../../../../import/has_cui.csv",
