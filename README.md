@@ -310,11 +310,10 @@ Relationships:
   ...
 (4/4) Post processing
   ...
-IMPORT DONE in 4m 44s 299ms. 
 Imported:
-  11538923 nodes
-  32808004 relationships
-  67671273 properties
+  16439195 nodes
+  41592856 relationships
+  77470879 properties
 ```
 
 Exit docker command-line via:
