@@ -171,8 +171,8 @@ This project has an included `pyproject.toml` as the python packaging and depend
 Docker Image:
 
 ```shell
-docker run -it --name=<insert a container name> \
-    --publish=7474:7474 --publish=7687:7687 \
+docker run -it --name=<insert container name> \
+    -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
@@ -188,9 +188,7 @@ docker run -it --name=<insert a container name> \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=apoc_export_file_use_neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
-    --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
-    --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
-    --env=NEO4J_AUTH=neo4j/<insert a pwd> \
+    --env=NEO4J_AUTH=neo4j/<insert pwd> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
     neo4j:4.3.4-enterprise
 ```
@@ -231,9 +229,12 @@ docker run -it --name=<insert a container name> \
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
     --nodes='import/SemanticTypeNode.csv' \
+    --nodes='import/suiNode.csv' \
     --relationships='import/has_sty.csv' \
+    --relationships='import/code_sui_rel.csv' \
+    --relationships='import/cui_sui_rel.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui_rel.csv' \
+    --relationships='import/has_cui.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --relationships='import/cui_cui_rel.csv' \
@@ -255,9 +256,12 @@ Here are a few snippets of what the above commands should look like (including b
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
     --nodes='import/SemanticTypeNode.csv' \
+    --nodes='import/suiNode.csv' \
     --relationships='import/has_sty.csv' \
+    --relationships='import/code_sui_rel.csv' \
+    --relationships='import/cui_sui_rel.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui_rel.csv' \
+    --relationships='import/has_cui.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --relationships='import/cui_cui_rel.csv' \
@@ -270,7 +274,6 @@ Here are a few snippets of what the above commands should look like (including b
 Output:
 
 ```shell  
-Selecting JVM - Version:11.0.12, Name:OpenJDK 64-Bit Server VM, Vendor:Oracle Corporation
 Neo4j version: 4.3.4
 Importing the contents of these files into /data/databases/neo4j:
 Nodes:
@@ -278,23 +281,26 @@ Nodes:
   /var/lib/neo4j/import/atomNode.csv
   /var/lib/neo4j/import/codeNode.csv
   /var/lib/neo4j/import/SemanticTypeNode.csv
+  /var/lib/neo4j/import/suiNode.csv
 
 Relationships:
   /var/lib/neo4j/import/has_sty.csv
+  /var/lib/neo4j/import/code_sui_rel.csv
+  /var/lib/neo4j/import/cui_sui_rel.csv
   /var/lib/neo4j/import/has_umls_aui.csv
-  /var/lib/neo4j/import/has_cui_rel.csv
+  /var/lib/neo4j/import/has_cui.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
   /var/lib/neo4j/import/child_of_rel.csv
   /var/lib/neo4j/import/cui_cui_rel.csv
   /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
-  Estimated number of nodes: 11.40 M
-  Estimated number of node properties: 54.07 M
-  Estimated number of relationships: 34.02 M
+  Estimated number of nodes: 16.60 M
+  Estimated number of node properties: 64.78 M
+  Estimated number of relationships: 42.58 M
   Estimated number of relationship properties: 13.29 M
-  Estimated disk space usage: 3.062GiB
-  Estimated required memory usage: 1.136GiB
+  Estimated disk space usage: 3.942GiB
+  Estimated required memory usage: 833.8MiB
 
 (1/4) Nodes import
   ...

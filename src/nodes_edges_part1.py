@@ -1,3 +1,5 @@
+#!/bin/bash/env/python
+
 """
 SUMMARY
 -------
@@ -49,12 +51,12 @@ conn = sqlite3.connect(os.path.join(relative_path_to_sqlite, db_name))
 # **************************************************************
 # GRAPH LABELS:
 # LABELS = ["SemanticType", "Code", "Atom", "Concept", ATC", "GO",
-#           "HGNC", "ICD9CM", "ICD10CM", "ICD10PCS", "ICDO3", "MED-RT",
-#           "NCI", "RXNORM", "SNOMEDCT_US"]
+#           "HGNC", "HPO", "ICD9CM", "ICD10CM", "ICD10PCS", "ICDO3",
+#           "LNC", "MDR", "MED-RT", "NCBI", "NCI", "RXNORM", "SNOMEDCT_US"]
 # **************************************************************
 
 # Label: SemanticType
-# import: semanticTypeNode.csv
+# Import: semanticTypeNode.csv
 semantic_node = '''
 SELECT DISTINCT TUI
               , STY
@@ -75,17 +77,20 @@ print("semanticTypeNode.csv successfully written out...")
 
 # **************************************************************
 # Label: Concept
-# import: conceptNode.csv
+# Import: conceptNode.csv
 concept_node = '''
-SELECT DISTINCT CUI, 'Concept' AS ":LABEL"
+SELECT DISTINCT CUI
+              , 'Concept' AS ":LABEL"
 FROM MRCONSO
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
               'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
               'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-    AND SUPPRESS = 'N';
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     '''
 
-conceptNode = pd.read_sql_query(concept_node, conn).drop_duplicates().replace(np.nan, '')
+conceptNode = pd.read_sql_query(
+    concept_node, conn).drop_duplicates().replace(np.nan, '')
 
 conceptNode.columns = ["ConceptId:ID", ":LABEL"]
 
@@ -94,8 +99,29 @@ conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                    index=False)
 print("conceptNode.csv successfully written out...")
 # **************************************************************
+# Label: StringForm
+# Import: suiNode.csv
+sui_node = '''
+SELECT DISTINCT SUI
+              , STR
+              , 'StringForm' AS ":LABEL"
+FROM MRCONSO 
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US') 
+    AND SUPPRESS = 'N' 
+    AND LAT = 'ENG';
+    '''
+suiNode = pd.read_sql_query(
+    sui_node, conn).drop_duplicates().replace(np.nan, "")
+suiNode.columns = ["SuiId:ID", "name", ":LABEL"]
+suiNode.to_csv(path_or_buf='../../../../import/suiNode.csv',
+               header=True,
+               index=False)
+print("suiNode.csv successfully written out...")
+# **************************************************************
 # Label: Atom
-# import: atomNode.csv
+# Import: atomNode.csv
 atom_node = '''
 SELECT DISTINCT AUI
               , STR
@@ -117,8 +143,8 @@ WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM',
 atomNode = pd.read_sql_query(atom_node, conn).drop_duplicates(
     subset=['AUI']).replace(np.nan, "")
 
-atomNode.columns = ["AtomId:ID", "name", "vocab",
-                    "code", "tty", "ispref", "ts", "stt", ":LABEL"]
+atomNode.columns = ["AtomId:ID", "name", "vocab", "code",
+                    "termType", "isPref", "ts", "stt", ":LABEL"]
 
 atomNode.to_csv(path_or_buf="../../../../import/atomNode.csv",
                 header=True,
@@ -126,7 +152,7 @@ atomNode.to_csv(path_or_buf="../../../../import/atomNode.csv",
 print("atomNode.csv successfully written out...")
 # **************************************************************
 # Label: Code
-# import: codeNode.csv
+# Import: codeNode.csv
 code = '''
 WITH cuis AS (SELECT DISTINCT CUI
               FROM MRCONSO
@@ -149,7 +175,7 @@ WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM',
   '''
 codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
     np.nan, '')
-codeNode.columns = ['CodeId:ID', 'vocab', 'code', ':LABEL']
+codeNode.columns = ['SourceCodeId:ID', 'vocab', 'code', ':LABEL']
 codeNode.to_csv(path_or_buf="../../../../import/codeNode.csv",
                 header=True,
                 index=False)
@@ -174,25 +200,58 @@ has_sty_rel.to_csv(path_or_buf="../../../../import/has_sty.csv",
                    header=True,
                    index=False)
 print("has_sty.csv successfully written out...")
-##**************************************************************
-## is_sty_of.csv 
-# is_sty_of = '''
-# SELECT DISTINCT TUI
-#               , CUI
-#               , 'IS_STY_OF' AS ":TYPE" 
-# FROM MRSTY;
-# '''
-
-#  is_sty_of_rel = pd.read_sql_query(
-#     is_sty_of, conn).drop_duplicates().replace(np.nan, '')
-
-# is_sty_of_rel.columns = [':START_ID', ':END_ID', ':TYPE']
-
-# is_sty_of_rel.to_csv(path_or_buf="../../../../import/is_sty_of.csv",
-#                      header=True,
-#                      index=False)
-print("has_sty.csv successfully written out...")
-##**************************************************************
+# **************************************************************
+# import: code_sui_rel.csv
+sui_code = '''
+SELECT DISTINCT c.SUI
+              , (c.SAB || '#' || c.CODE)
+              , c.TTY
+FROM mrrank rank
+   , mrconso c
+WHERE c.SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+                'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
+    AND c.TTY NOT IN ('CCS', 'MTH_OS', 'XM', 'MTH_SYGB', 'SB', 
+                      'PTGB', 'SYGB', 'MTH_LN', 'MTH_PTGB', 
+                      'MTH_FN', 'MTH_SMQ', 'MTH_HX', 'MTH_HG', 
+                      'MTH_HT', 'MTH_LLT', 'MTH_CN', 'MTH_ACR', 
+                      'MTH_ET', 'MTH_PT', 'MTH_SY')
+    AND c.SUPPRESS = 'N'
+    AND c.SAB = rank.SAB
+    AND c.TTY = rank.TTY
+    AND c.SUPPRESS = rank.SUPPRESS
+    AND c.LAT = 'ENG';
+    '''
+code_sui_rel = pd.read_sql_query(
+    sui_code, conn).drop_duplicates().replace(np.nan, "")
+code_sui_rel.columns = [':END_ID', ':START_ID', ':TYPE']
+code_sui_rel.to_csv(path_or_buf='../../../../import/code_sui_rel.csv',
+                    header=True,
+                    index=False)
+print("code_sui_rel.csv successfully written out...")
+# **************************************************************
+cui_sui = '''
+SELECT DISTINCT CUI
+              , SUI
+              , 'HAS_STRING_FORM' AS ":TYPE" 
+FROM MRCONSO 
+WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
+              'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
+              'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND ISPREF = 'Y' 
+    AND STT = 'PF' 
+    AND TS = 'P' 
+    AND LAT = 'ENG';
+    '''
+cui_sui_rel = pd.read_sql_query(
+    cui_sui, conn).drop_duplicates().replace(np.nan, "")
+cui_sui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
+cui_sui_rel.to_csv(path_or_buf='../../../../import/cui_sui_rel.csv',
+                   header=True,
+                   index=False)
+print("cui_sui_rel.csv successfully written out...")
+# **************************************************************
 # has_umls_atom.csv
 has_umls_aui = '''
 SELECT DISTINCT (SAB || '#' || CODE) AS ":START_ID"
@@ -202,7 +261,8 @@ FROM MRCONSO
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
               'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
               'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-  AND SUPPRESS = 'N';
+  AND SUPPRESS = 'N'
+  AND LAT = 'ENG';
   '''
 
 has_umls_aui_rel = pd.read_sql_query(
@@ -215,8 +275,10 @@ print("has_umls_aui.csv successfully written out...")
 # **************************************************************
 # has_cui.csv
 # Each umls_aui within UMLS has 1 distinct umls_cui -> umls_aui is primary key in UMLS.MRCONSO
-# AUI -> CUI is a many:1 mapping
-# CUI -> AUI is a 1:many mapping
+# Each row of UMLS.MRCONSO represents each UMLS Atom (AUI) -> 1 Atom (AUI) can only map to a single UMLS Concept (CUI).
+# Furthermore, each UMLS Concept (CUI) is not limited to mapping to >=1 UMLS Atom (AUI)
+# AUI -> CUI is a 1:many mapping (*including this*)
+# CUI -> AUI is a many:many mapping (*not including this*)
 
 # It is preferable in a graph model to specify direction only when direction has a semantic meaning (i.e. forward doesn't imply backward)
 # Since 'HAS_CUI' implies 'HAS_AUI' (inverse) -> there is minimal/no value in including both 'HAS_CUI' & 'HAS_AUI'.
@@ -230,9 +292,11 @@ FROM MRCONSO
 WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
               'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
               'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-    AND SUPPRESS = 'N';
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     '''
-has_cui_rel = pd.read_sql_query(has_cui, conn).drop_duplicates().replace(np.nan, '')
+has_cui_rel = pd.read_sql_query(
+    has_cui, conn).drop_duplicates().replace(np.nan, '')
 has_cui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
 has_cui_rel.to_csv(path_or_buf="../../../../import/has_cui.csv",
@@ -253,7 +317,7 @@ WHERE s2.UI IS NOT NULL
   AND s2.STY_RL != s3.STY_RL
   AND s2.UI != s3.UI
   AND s2.RT = 'STY'
-  AND s3.RT = 'STY';
+  AND s3.RT = 'STY'
   '''
 
 tui_tui_rel_df = pd.read_sql_query(
@@ -283,7 +347,8 @@ WITH q AS (
     WHERE SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
                   'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
                   'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-        AND SUPPRESS = 'N')
+        AND SUPPRESS = 'N'
+        AND LAT = 'ENG')
 SELECT DISTINCT r.CUI2
               , r.CUI1
               , CASE
@@ -322,8 +387,9 @@ FROM MRCONSO
 WHERE SUPPRESS = 'N' 
     AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
                 'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
-                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US');
-                '''
+                'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
+    AND LAT = 'ENG';
+    '''
 
 has_source_code = pd.read_sql_query(
     cui_code_rel, conn).drop_duplicates().replace(np.nan, '')
@@ -338,6 +404,8 @@ has_source_code.to_csv(path_or_buf="../../../../import/cui_code_rel.csv",
 has_source_code_copy = has_source_code.copy()
 print("cui_code_rel.csv successfully written out...")
 # **************************************************************
+# Append both codeNode.csv & cui_code_rel.csv w/ ICDO3 Topography & Morphology Codes that are attributes of NCI Thesaurus (NCI)
+# to do: Incorporate all of ICDO3 via its native release and not UMLS. UMLS is not complete (~90% complete).
 icdo = '''
 SELECT DISTINCT ATV
               , (SAB||'#'||CODE)
@@ -372,7 +440,7 @@ cui_code_rel_append.to_csv(path_or_buf="../../../../import/cui_code_rel.csv",
                            header=False,
                            index=False)
 # **************************************************************
-# child_of_rel.csv (alternative to edges_part2.py)
+# child_of_rel.csv -> alternative option to running edges_part2.py
 child_of = '''
 SELECT DISTINCT h.PAUI     AS PAUI,
                 c.AUI      AS AUI2,
@@ -383,14 +451,11 @@ FROM MRHIER h
 WHERE h.SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 
                 'ICD10CM', 'ICD10PCS', 'LNC', 'MED-RT', 
                 'MDR', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')
-  AND c.TS = 'P'
-  AND c.ISPREF = 'Y'
-  AND c.STT = 'PF'
   AND c.SUPPRESS = 'N'
-  AND c2.TS = 'P'
-  AND c2.ISPREF = 'Y'
   AND c2.SUPPRESS = 'N'
-  AND c2.STT = 'PF';
+  AND c.LAT = 'ENG'
+  AND c2.LAT = 'ENG'
+  AND c.CODE != c2.CODE;
   '''
 
 child_of_rel = pd.read_sql_query(child_of, conn)
@@ -406,9 +471,4 @@ child_of_rel.to_csv(path_or_buf="../../../../import/child_of_rel.csv",
                     index=False)
 print("child_of_rel.csv successfully written out...")
 # **************************************************************
-# NOTE: Please run `python edges_part2.py` to ensure all nodes/edges have been accounted for prior to importing .csv data
-
-# 'edges_part2.py' will create 1 .csv file containing all PARENT AUI (PAUI) --> AUI relationships and vocabularies. A CHILD_OF relationship at the atom level of UMLS.
-
-# This requires exploding MRHIER.RRF to get all paths from 'root atom (top concept of) to atom' for all atoms & their associated context views.
-# The script will create 1 .csv file named 'child_of.csv' for the edge 'CHILD_OF' i.e. -> (Atom)-[CHILD_OF]->(Atom)
+# NOTE: Do not include both output of `edges_part2.py` and the last output .csv via this .py. Both are redundant but one or other should be included.
