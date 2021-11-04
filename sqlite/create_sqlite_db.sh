@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# Create a UMLS 2021AA SQLite Database.
+# Create a UMLS 2021AB SQLite Database.
 
 # Invoke script as follows:
-# -> sh create_umls_2021AA_sqlite3.sh < insert absolute OR relative path to UMLS .RRF directory >
-# i.e. `sh create_umls_2021AA_sqlite3.sh `../UMLS/subset/2021AA` 
+# -> sh create_umls_2021AB_sqlite3.sh < insert absolute OR relative path to UMLS .RRF directory >
+# i.e. `sh create_umls_2021AB_sqlite3.sh `../UMLS/subset/2021AB` 
 
 # Note: 4 files - SRDEF, SRSTR, SRSTRE1 & SRSTRE2 need to be moved into the `META` directory from the`NET` directory s/p MetamorphoSys. 
-# Both `META` and `NET` should be located via relative path ../UMLS/subset/2021AA/
+# Both `META` and `NET` should be located via relative path ../UMLS/subset/2021AB/
 
 if [ ! -e umls.db ]; then
 	if [ ! -d "$1" ]; then

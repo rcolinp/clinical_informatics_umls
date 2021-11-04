@@ -28,7 +28,6 @@ share/python-wheels/
 MANIFEST
 .vscode/
 .idea
-umls.db
 neo4j.cypher
 docker-compose.yml
 .DS_Store
@@ -43,6 +42,9 @@ parquet_to_csv.py
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+UMLS/
+venv/
+umls.db
 
 # Installer logs
 pip-log.txt
@@ -61,8 +63,8 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-UMLS/
-venv/
+
+
 
 # Translations
 *.mo
