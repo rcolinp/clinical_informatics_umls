@@ -42,7 +42,6 @@ parquet_to_csv.py
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-UMLS/
 venv/
 umls.db
 
