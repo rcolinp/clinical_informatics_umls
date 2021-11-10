@@ -25,7 +25,7 @@ pgconn = psycopg2.connect(
     user=username,
     password=password,
     database=database
-    )
+)
 
 """
 
@@ -316,7 +316,7 @@ def extract_nodes_edges():
                            index=False)
     print("has_concept_rel.csv successfully written out...")
     # **************************************************************
-    # tui_tui_rel.csv
+    # import: tui_tui_rel.csv
     tui_tui = """
     SELECT DISTINCT s2.UI
                   , s3.UI
@@ -345,7 +345,7 @@ def extract_nodes_edges():
                        index=False)
     print("tui_tui_rel.csv successfully written out...")
     # **************************************************************
-    # concept_concept_rel.csv
+    # import: concept_concept_rel.csv
 
     # We will filter out REL = 'SIB' as the relationship in UMLS does not provide much utility & will increase size of graph considerably
     # UMLS.MRREL.RELA is sometimes NULL but UMLS.MRREL.REL & UMLS.MRREL.RELA cannot both be null (1 has to exist)
@@ -391,7 +391,7 @@ def extract_nodes_edges():
                                index=False)
     print("concept_concept_rel.csv successfully written out...")
     # **************************************************************
-    # cui_code_rel.csv
+    # import: cui_code_rel.csv
     cui_code_rel = """
     SELECT DISTINCT CUI
                   , (SAB || '#' || CODE)  AS ":END_ID"
@@ -454,7 +454,7 @@ def extract_nodes_edges():
                                header=False,
                                index=False)
     # **************************************************************
-    # child_of_rel.csv -> alternative option to running edges_part2.py
+    # import: child_of_rel.csv -> alternative option to running edges_part2.py
     child_of = """
     SELECT DISTINCT h.PAUI     AS PAUI
                   , c.AUI      AS AUI2
