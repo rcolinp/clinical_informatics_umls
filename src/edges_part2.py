@@ -1,7 +1,7 @@
 # !/bin/bash/env/python
 """
 This .py assumes you have created an output directory named 'import' at your root directory (i.e. $HOME/import).
-This .py assumes you are a UMLS license holder & MRHIER.RRF is located at the relative directory -> ../UMLS/subset/2021AA/META/
+This .py assumes you are a UMLS license holder & MRHIER.RRF is located at the relative path -> ../UMLS/subset/2021AB/META/MRHIER.RRF
 
 Note: script run time will range from 30 seconds to 20 minutes depending on vocabularies included in sab_list.
     -> This script can be broken down into smaller components and/or leverage more a more efficient python library/libraries (rather than pandas).
@@ -23,10 +23,21 @@ home = getpass.getuser()  # home directory (using getpass2 library)
 ####################################################################
 
 # Read MRHIER.RRF
-# Script assumes MRHIER.RRF is located in the relative directory -> ../UMLS/subset/2021AA/META/MRHIER.RRF
+# Script assumes MRHIER.RRF is located in the relative directory -> ../UMLS/subset/2021AB/META/MRHIER.RRF
 
 
 def read_transform_mrhier():
+    """
+    Summary:
+    --------
+
+    Parameters:
+    -----------
+
+    Returns:
+    --------
+
+    """
     mrhier_rrf = pd.read_csv('../UMLS/subset/2021AB/META/MRHIER.RRF',
                              sep='|',
                              header=None,
@@ -84,13 +95,16 @@ def explode_write_mrhier(root: str, home: str, mrhier: pd.DataFrame):
     hier = pd.DataFrame(mrhier.PTR.str.split('.').to_list(),
                         index=mrhier.AUI).stack()
     hier_df = hier.reset_index()[[0, 'AUI']]
+
     # START_ID -> PTR & END_ID -> AUI
     hier_df.columns = [':START_ID', ':END_ID']
     hier_df[':TYPE'] = 'CHILD_OF'
     hier_df = hier_df[[':START_ID', ':END_ID', ':TYPE']]
+
     # START_ID should not equal END_ID -> drop if exist
     child_of_rel_ptr = hier_df[hier_df[':START_ID'] !=
                                hier_df[':END_ID']].drop_duplicates().replace(np.nan, "")
+
     child_of_rel_ptr.to_csv(path_or_buf=f"/{root}/{home}/import/child_of_rel_ptr.csv",
                             header=True,
                             index=False)  # file ready for import
