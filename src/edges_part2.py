@@ -27,7 +27,7 @@ home = getpass.getuser()  # home directory (using getpass2 library)
 
 
 def read_transform_mrhier():
-    mrhier_rrf = pd.read_csv('../../../UMLS/subset/2021AB/META/MRHIER.RRF',
+    mrhier_rrf = pd.read_csv('../UMLS/subset/2021AB/META/MRHIER.RRF',
                              sep='|',
                              header=None,
                              dtype=object)
