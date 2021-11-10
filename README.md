@@ -9,14 +9,15 @@ Note: All functionalities mentioned above currently exist, function & are here t
 **Preview of v1 Neo4j UMLS Graph to be created: (Repo/Graph is a work in progress)**
 ![UMLS® Neo4j Graph Schema](images/schema_dark.png)
 
-Schema Overview:
+**Schema Overview:**
 
-There are 4 main elements within the graph which have been extracted from UMLS and portrayed as a Neo4j Property Graph.
+There are 5 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Property Graph.
 
-- The UMLS atomic unique identifier (AUI - Atom)
-- The UMLS concept unique identifier (CUI - Concept)
-- The UMLS semantic unique identifier (TUI - SemanticType)
-- The source vocabulary concept unique identifier (CODE - SourceVocabulary)
+- The UMLS string unique identifier (`UMLS.MRCONSO.SUI` - `StringForm`)
+- The UMLS atomic unique identifier (`UMLS.MRCONSO.AUI` - `Atom`)
+- The UMLS concept unique identifier (`UMLS.MRCONSO.CUI` - `Concept`)
+- The UMLS semantic unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
+- The source vocabulary concept unique identifier (`UMLS.MRCONSO.CODE` - `Code`)
   - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. NCI Thesaurus (NCI), SNOMEDCT_US, ICDO3, ICD10CM, GO, RXNORM, ATC, etc...
 
 This schema is only one method of representing the UMLS as a label property graph. Key design features of the graph:
@@ -171,7 +172,7 @@ This project has an included `pyproject.toml` as the python packaging and depend
 Docker Image:
 
 ```shell
-docker run -it --name=<insert container name> \
+docker run --name=<insert container name> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
@@ -188,7 +189,11 @@ docker run -it --name=<insert container name> \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=apoc_export_file_use_neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
-    --env=NEO4J_AUTH=neo4j/<insert pwd> \
+    --env=NEO4J_dbms_security_procedures__whitelist=gds.\\\*,apoc.\\\*,n10s.\\\* \
+    --env=NEO4J_dbms_security_procedures__unrestricted=gds.\\\*,apoc.\\\*,n10s.\\\* \
+    --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
+    --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
+    --env=NEO4J_AUTH=neo4j/<insert password> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
     neo4j:4.3.4-enterprise
 ```
@@ -225,20 +230,20 @@ docker run -it --name=<insert container name> \
 ```shell
     ./bin/neo4j-admin import \
     --database=neo4j \
+    --nodes='import/semanticTypeNode.csv' \
     --nodes='import/conceptNode.csv' \
+    --nodes='import/stringNode.csv' \
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
-    --nodes='import/SemanticTypeNode.csv' \
-    --nodes='import/suiNode.csv' \
     --relationships='import/has_sty.csv' \
-    --relationships='import/code_sui_rel.csv' \
-    --relationships='import/cui_sui_rel.csv' \
+    --relationships='import/code_string_rel.csv' \
+    --relationships='import/concept_string_rel.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui.csv' \
+    --relationships='import/has_concept_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
-    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/concept_concept_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
+    --relationships='import/child_of_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
@@ -252,20 +257,20 @@ Here are a few snippets of what the above commands should look like (including b
 /var/lib/neo4j# rm -rf data/transactions/
 /var/lib/neo4j# ./bin/neo4j-admin import \
     --database=neo4j \
+    --nodes='import/semanticTypeNode.csv' \
     --nodes='import/conceptNode.csv' \
+    --nodes='import/stringNode.csv' \
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
-    --nodes='import/SemanticTypeNode.csv' \
-    --nodes='import/suiNode.csv' \
     --relationships='import/has_sty.csv' \
-    --relationships='import/code_sui_rel.csv' \
-    --relationships='import/cui_sui_rel.csv' \
+    --relationships='import/code_string_rel.csv' \
+    --relationships='import/concept_string_rel.csv' \
     --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_cui.csv' \
+    --relationships='import/has_concept_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
-    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/concept_concept_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
+    --relationships='import/child_of_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
@@ -275,32 +280,32 @@ Output:
 
 ```shell  
 Neo4j version: 4.3.4
-Importing the contents of these files into /data/databases/neo4j:
+Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
+  /var/lib/neo4j/import/semanticTypeNode.csv
   /var/lib/neo4j/import/conceptNode.csv
+  /var/lib/neo4j/import/stringNode.csv
   /var/lib/neo4j/import/atomNode.csv
   /var/lib/neo4j/import/codeNode.csv
-  /var/lib/neo4j/import/SemanticTypeNode.csv
-  /var/lib/neo4j/import/suiNode.csv
 
 Relationships:
   /var/lib/neo4j/import/has_sty.csv
-  /var/lib/neo4j/import/code_sui_rel.csv
-  /var/lib/neo4j/import/cui_sui_rel.csv
+  /var/lib/neo4j/import/code_string_rel.csv
+  /var/lib/neo4j/import/concept_string_rel.csv
   /var/lib/neo4j/import/has_umls_aui.csv
-  /var/lib/neo4j/import/has_cui.csv
+  /var/lib/neo4j/import/has_concept_rel.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
-  /var/lib/neo4j/import/child_of_rel.csv
-  /var/lib/neo4j/import/cui_cui_rel.csv
+  /var/lib/neo4j/import/concept_concept_rel.csv
   /var/lib/neo4j/import/cui_code_rel.csv
+  /var/lib/neo4j/import/child_of_rel.csv
   ...
 
-  Estimated number of nodes: 16.60 M
-  Estimated number of node properties: 64.78 M
-  Estimated number of relationships: 42.58 M
-  Estimated number of relationship properties: 13.29 M
-  Estimated disk space usage: 3.942GiB
-  Estimated required memory usage: 833.8MiB
+  Estimated number of nodes: 17.01 M
+  Estimated number of node properties: 66.68 M
+  Estimated number of relationships: 49.20 M
+  Estimated number of relationship properties: 18.33 M
+  Estimated disk space usage: 4.408GiB
+  Estimated required memory usage: 880.4MiB
 
 (1/4) Nodes import
   ...
@@ -311,9 +316,9 @@ Relationships:
 (4/4) Post processing
   ...
 Imported:
-  16439195 nodes
-  41592856 relationships
-  77470879 properties
+  16838348 nodes
+  42934606 relationships
+  79579572 properties
 ```
 
 Exit docker command-line via:
