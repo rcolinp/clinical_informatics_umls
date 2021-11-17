@@ -25,7 +25,7 @@ if [ ! -e umls.db ]; then
 		cd "$1/META"
 		echo "-> Converting RRF files for SQLite"
 		for f in MRDOC.RRF MRCONSO.RRF MRHIER.RRF MRRANK.RRF MRREL.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRSTY.RRF MRSAT.RRF; do
-			sed -e 's/.$//' -e 's/"//g' "$f" >"${f%RRF}pipe"
+				sed -e 's/.$//' -e 's/"//g' "$f" >"${f%RRF}pipe"
 		done
 		cd $current
 	fi
@@ -84,7 +84,7 @@ if [ ! -e umls.db ]; then
 		SSN text,
 		SCIT text
 	)"
-	
+
 	# init the database for MRCONSO
 	# Skip the constraint (primary key) on AUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRCONSO (
@@ -109,12 +109,12 @@ if [ ! -e umls.db ]; then
 		SUPPRESS varchar,
 		CVF varchar
 	)"
-	
+
 	# init the database for SRDEF
 	sqlite3 umls.db "CREATE TABLE SRDEF (
-    		RT varchar,
-   	    	UI varchar,
-   	    	STY_RL text,
+    	RT varchar,
+   	    UI varchar,
+   	    STY_RL text,
 		STN_RTN varchar,
 		DEF text,
 		EX varchar,
@@ -122,7 +122,7 @@ if [ ! -e umls.db ]; then
 		NH varchar,
 		ABR varchar,
 		RIN varchar
-    	)"
+    )"
 	
 	# init the database for SRSTR
 	sqlite3 umls.db "CREATE TABLE SRSTR (
@@ -131,20 +131,20 @@ if [ ! -e umls.db ]; then
 		STY_RL2 text,
 		LS varchar
 	)"
-	
+
 	# init the database for SRSTRE1
 	sqlite3 umls.db "CREATE TABLE SRSTRE1 (
-    		UI1 varchar,
-    		UI2 varchar,
-    		UI3 varchar
+    	UI1 varchar,
+    	UI2 varchar,
+    	UI3 varchar
 	)"
-	
+
 	# init the database for SRSTRE2
 	sqlite3 umls.db "CREATE TABLE SRSTRE2 (
 		STY1 text,
 		RL varchar,
 		STY2 text
-    	)"
+    )"
 	
 	# init the database for MRRANK
 	sqlite3 umls.db "CREATE TABLE MRRANK (
@@ -152,7 +152,7 @@ if [ ! -e umls.db ]; then
 		SAB varchar,
 		TTY varchar,
 		SUPPRESS varchar
-    	)"
+    )"
 	
 	# init the database for MRSTY
 	# Skip the constraint (primary key) on ATUI for quicker loading
@@ -165,7 +165,7 @@ if [ ! -e umls.db ]; then
 			constraint MRSTY_pk
 				primary key,
 		CVF varchar
-    	)"
+    )"
 	
 	# init the database for MRREL
 	# Skip the constraint (primary key) on RUI for quicker loading
@@ -188,7 +188,7 @@ if [ ! -e umls.db ]; then
 		DIR varchar,
 		SUPPRESS varchar,
 		CVF varchar
-    	)"
+    )"
 	
 	# init the database for MRSAT
 	# Skip the constraint (primary key) on ATUI for quicker loading
@@ -208,7 +208,7 @@ if [ ! -e umls.db ]; then
 		ATV varchar,
 		SUPPRESS varchar,
 		CVF varchar
-    	)"
+    )"
 	
 	# init the database for MRHIER
 	sqlite3 umls.db "CREATE TABLE MRHIER (
@@ -221,13 +221,13 @@ if [ ! -e umls.db ]; then
 		PTR varchar,
 		HCD varchar,
 		CVF varchar
-	)"
-	 
+   	)"
+
 	# import tables
 	for f in "$1/META/"*.pipe; do
-		table=$(basename ${f%.pipe})
-		echo "-> Importing $table"
-		sqlite3 umls.db ".import '$f' '$table'"
+			table=$(basename ${f%.pipe})
+			echo "-> Importing $table"
+			sqlite3 umls.db ".import '$f' '$table'"
 	done
 
 	# create indexes
