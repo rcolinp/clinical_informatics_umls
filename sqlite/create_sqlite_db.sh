@@ -24,8 +24,8 @@ if [ ! -e umls.db ]; then
 		current=$(pwd)
 		cd "$1/META"
 		echo "-> Converting RRF files for SQLite"
-		for f in MRCONSO.RRF MRHIER.RRF MRRANK.RRF MRREL.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRSTY.RRF MRSAT.RRF; do
-				sed -e 's/.$//' -e 's/"//g' "$f" > "${f%RRF}pipe"
+		for f in MRDOC.RRF MRCONSO.RRF MRHIER.RRF MRRANK.RRF MRREL.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRSTY.RRF MRSAT.RRF; do
+			sed -e 's/.$//' -e 's/"//g' "$f" >"${f%RRF}pipe"
 		done
 		cd $current
 	fi
@@ -36,15 +36,15 @@ if [ ! -e umls.db ]; then
 		CUI varchar,
 		AUI varchar,
 		ATUI varchar
-		  constraint MRDEF_pk
-			  primary key,
+			constraint MRDEF_pk
+			  	primary key,
 		SATUI varchar,
 		SAB varchar,
 		DEF text,
 		SUPPRESS varchar,
 		CVF varchar
     )"
-
+	
 	# init the database for MRDOC
 	# table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
 	sqlite3 umls.db "CREATE TABLE MRDOC (
@@ -53,7 +53,7 @@ if [ ! -e umls.db ]; then
 		TYPE varchar,
 		EXPL varchar
     )"
-
+	
 	# init the database for MRSAB
 	sqlite3 umls.db "CREATE TABLE MRSAB (
 		VCUI varchar,
@@ -83,8 +83,8 @@ if [ ! -e umls.db ]; then
 		SABIN varchar,
 		SSN text,
 		SCIT text
-    )"
-
+	)"
+	
 	# init the database for MRCONSO
 	# Skip the constraint (primary key) on AUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRCONSO (
@@ -96,7 +96,7 @@ if [ ! -e umls.db ]; then
 		SUI varchar,
 		ISPREF varchar,
 		AUI varchar
-		  constraint MRCONSO_pk
+			constraint MRCONSO_pk
 				primary key,
 		SAUI varchar,
 		SCUI varchar,
@@ -108,13 +108,13 @@ if [ ! -e umls.db ]; then
 		SRL varchar,
 		SUPPRESS varchar,
 		CVF varchar
-	  )"
-
+	)"
+	
 	# init the database for SRDEF
 	sqlite3 umls.db "CREATE TABLE SRDEF (
-    RT varchar,
-    UI varchar,
-    STY_RL text,
+    	RT varchar,
+   	    UI varchar,
+   	    STY_RL text,
 		STN_RTN varchar,
 		DEF text,
 		EX varchar,
@@ -123,29 +123,29 @@ if [ ! -e umls.db ]; then
 		ABR varchar,
 		RIN varchar
     )"
-
+	
 	# init the database for SRSTR
 	sqlite3 umls.db "CREATE TABLE SRSTR (
 		STY_RL1 text,
 		RL varchar,
 		STY_RL2 text,
 		LS varchar
-	  )"
-
+	)"
+	
 	# init the database for SRSTRE1
 	sqlite3 umls.db "CREATE TABLE SRSTRE1 (
-    UI1 varchar,
-    UI2 varchar,
-    UI3 varchar
-    )"
-
+    	UI1 varchar,
+    	UI2 varchar,
+    	UI3 varchar
+	)"
+	
 	# init the database for SRSTRE2
 	sqlite3 umls.db "CREATE TABLE SRSTRE2 (
 		STY1 text,
 		RL varchar,
 		STY2 text
     )"
-
+	
 	# init the database for MRRANK
 	sqlite3 umls.db "CREATE TABLE MRRANK (
 		MRRANK_RANK varchar,
@@ -153,7 +153,7 @@ if [ ! -e umls.db ]; then
 		TTY varchar,
 		SUPPRESS varchar
     )"
-
+	
 	# init the database for MRSTY
 	# Skip the constraint (primary key) on ATUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRSTY (
@@ -166,7 +166,7 @@ if [ ! -e umls.db ]; then
 				primary key,
 		CVF varchar
     )"
-
+	
 	# init the database for MRREL
 	# Skip the constraint (primary key) on RUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRREL (
@@ -189,7 +189,7 @@ if [ ! -e umls.db ]; then
 		SUPPRESS varchar,
 		CVF varchar
     )"
-
+	
 	# init the database for MRSAT
 	# Skip the constraint (primary key) on ATUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRSAT (
@@ -209,7 +209,7 @@ if [ ! -e umls.db ]; then
 		SUPPRESS varchar,
 		CVF varchar
     )"
-
+	
 	# init the database for MRHIER
 	sqlite3 umls.db "CREATE TABLE MRHIER (
 		CUI varchar,
@@ -221,13 +221,13 @@ if [ ! -e umls.db ]; then
 		PTR varchar,
 		HCD varchar,
 		CVF varchar
-    )"
-
+   	 )"
+	 
 	# import tables
 	for f in "$1/META/"*.pipe; do
-			table=$(basename ${f%.pipe})
-			echo "-> Importing $table"
-			sqlite3 umls.db ".import '$f' '$table'"
+		table=$(basename ${f%.pipe})
+		echo "-> Importing $table"
+		sqlite3 umls.db ".import '$f' '$table'"
 	done
 
 	# create indexes
