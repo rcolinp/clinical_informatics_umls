@@ -43,7 +43,7 @@ if [ ! -e umls.db ]; then
 		DEF text,
 		SUPPRESS varchar,
 		CVF varchar
-    )"
+    	)"
 	
 	# init the database for MRDOC
 	# table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
@@ -52,7 +52,7 @@ if [ ! -e umls.db ]; then
 		VALUE varchar,
 		TYPE varchar,
 		EXPL varchar
-    )"
+    	)"
 	
 	# init the database for MRSAB
 	sqlite3 umls.db "CREATE TABLE MRSAB (
@@ -112,9 +112,9 @@ if [ ! -e umls.db ]; then
 	
 	# init the database for SRDEF
 	sqlite3 umls.db "CREATE TABLE SRDEF (
-    	RT varchar,
-   	    UI varchar,
-   	    STY_RL text,
+    		RT varchar,
+   	    	UI varchar,
+   	    	STY_RL text,
 		STN_RTN varchar,
 		DEF text,
 		EX varchar,
@@ -122,7 +122,7 @@ if [ ! -e umls.db ]; then
 		NH varchar,
 		ABR varchar,
 		RIN varchar
-    )"
+    	)"
 	
 	# init the database for SRSTR
 	sqlite3 umls.db "CREATE TABLE SRSTR (
@@ -134,9 +134,9 @@ if [ ! -e umls.db ]; then
 	
 	# init the database for SRSTRE1
 	sqlite3 umls.db "CREATE TABLE SRSTRE1 (
-    	UI1 varchar,
-    	UI2 varchar,
-    	UI3 varchar
+    		UI1 varchar,
+    		UI2 varchar,
+    		UI3 varchar
 	)"
 	
 	# init the database for SRSTRE2
@@ -144,7 +144,7 @@ if [ ! -e umls.db ]; then
 		STY1 text,
 		RL varchar,
 		STY2 text
-    )"
+    	)"
 	
 	# init the database for MRRANK
 	sqlite3 umls.db "CREATE TABLE MRRANK (
@@ -152,7 +152,7 @@ if [ ! -e umls.db ]; then
 		SAB varchar,
 		TTY varchar,
 		SUPPRESS varchar
-    )"
+    	)"
 	
 	# init the database for MRSTY
 	# Skip the constraint (primary key) on ATUI for quicker loading
@@ -165,7 +165,7 @@ if [ ! -e umls.db ]; then
 			constraint MRSTY_pk
 				primary key,
 		CVF varchar
-    )"
+    	)"
 	
 	# init the database for MRREL
 	# Skip the constraint (primary key) on RUI for quicker loading
@@ -188,7 +188,7 @@ if [ ! -e umls.db ]; then
 		DIR varchar,
 		SUPPRESS varchar,
 		CVF varchar
-    )"
+    	)"
 	
 	# init the database for MRSAT
 	# Skip the constraint (primary key) on ATUI for quicker loading
@@ -208,7 +208,7 @@ if [ ! -e umls.db ]; then
 		ATV varchar,
 		SUPPRESS varchar,
 		CVF varchar
-    )"
+    	)"
 	
 	# init the database for MRHIER
 	sqlite3 umls.db "CREATE TABLE MRHIER (
@@ -221,7 +221,7 @@ if [ ! -e umls.db ]; then
 		PTR varchar,
 		HCD varchar,
 		CVF varchar
-   	 )"
+	)"
 	 
 	# import tables
 	for f in "$1/META/"*.pipe; do
