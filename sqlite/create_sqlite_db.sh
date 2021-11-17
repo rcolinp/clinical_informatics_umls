@@ -4,9 +4,9 @@
 
 # Invoke script as follows:
 # -> sh create_umls_2021AB_sqlite3.sh < insert absolute OR relative path to UMLS .RRF directory >
-# i.e. `sh create_umls_2021AB_sqlite3.sh `../UMLS/subset/2021AB` 
+# i.e. `sh create_umls_2021AB_sqlite3.sh `../UMLS/subset/2021AB`
 
-# Note: 4 files - SRDEF, SRSTR, SRSTRE1 & SRSTRE2 need to be moved into the `META` directory from the`NET` directory s/p MetamorphoSys. 
+# Note: 4 files - SRDEF, SRSTR, SRSTRE1 & SRSTRE2 need to be moved into the `META` directory from the`NET` directory s/p MetamorphoSys.
 # Both `META` and `NET` should be located via relative path ../UMLS/subset/2021AB/
 
 if [ ! -e umls.db ]; then
@@ -25,11 +25,11 @@ if [ ! -e umls.db ]; then
 		cd "$1/META"
 		echo "-> Converting RRF files for SQLite"
 		for f in MRCONSO.RRF MRHIER.RRF MRRANK.RRF MRREL.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRSTY.RRF MRSAT.RRF; do
-				sed -e 's/.$//' -e 's/"//g' "$f" > "${f%RRF}pipe"
+			sed -e 's/.$//' -e 's/"//g' "$f" >"${f%RRF}pipe"
 		done
 		cd $current
 	fi
-	
+
 	# init the database for MRDEF
 	# # table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
 	# sqlite3 umls.db "CREATE TABLE MRDEF (
@@ -43,7 +43,7 @@ if [ ! -e umls.db ]; then
 	# 	DEF text,
 	# 	SUPPRESS varchar,
 	# 	CVF varchar
-    # )"
+	# )"
 
 	# # init the database for MRDOC
 	# # table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
@@ -52,7 +52,7 @@ if [ ! -e umls.db ]; then
 	# 	VALUE varchar,
 	# 	TYPE varchar,
 	# 	EXPL varchar
-    # )"
+	# )"
 
 	# init the database for MRSAB
 	sqlite3 umls.db "CREATE TABLE MRSAB (
@@ -225,9 +225,9 @@ if [ ! -e umls.db ]; then
 
 	# import tables
 	for f in "$1/META/"*.pipe; do
-			table=$(basename ${f%.pipe})
-			echo "-> Importing $table"
-			sqlite3 umls.db ".import '$f' '$table'"
+		table=$(basename ${f%.pipe})
+		echo "-> Importing $table"
+		sqlite3 umls.db ".import '$f' '$table'"
 	done
 
 	# create indexes
