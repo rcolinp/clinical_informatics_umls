@@ -35,9 +35,7 @@ if [ ! -e umls.db ]; then
 	sqlite3 umls.db "CREATE TABLE MRDEF (
 			CUI varchar,
 			AUI varchar,
-			ATUI varchar 
-				constraint MRDEF_pk 
-					primary key,
+			ATUI varchar,
 			SATUI varchar,
 			SAB varchar,
 			DEF text,
@@ -58,9 +56,7 @@ if [ ! -e umls.db ]; then
 	sqlite3 umls.db "CREATE TABLE MRSAB (
 			VCUI varchar,
 			RCUI varchar,
-			VSAB varchar
-				constraint MRSAB_pk
-					primary key,
+			VSAB varchar,
 			RSAB varchar,
 			SON text,
 			SF varchar,
@@ -95,9 +91,7 @@ if [ ! -e umls.db ]; then
 			STT varchar,
 			SUI varchar,
 			ISPREF varchar,
-			AUI varchar
-				constraint MRCONSO_pk
-					primary key,
+			AUI varchar,
 			SAUI varchar,
 			SCUI varchar,
 			SDUI varchar,
@@ -161,9 +155,7 @@ if [ ! -e umls.db ]; then
 			TUI varchar,
 			STN varchar,
 			STY text,
-			ATUI varchar
-				constraint MRSTY_pk
-					primary key,
+			ATUI varchar,
 			CVF varchar
 	)"
 	
@@ -178,9 +170,7 @@ if [ ! -e umls.db ]; then
 			AUI2 varchar,
 			STYPE2 varchar,
 			RELA varchar,
-			RUI varchar
-				constraint MRREL_pk
-					primary key,
+			RUI varchar,
 			SRUI varchar,
 			SAB varchar,
 			SL varchar,
@@ -199,9 +189,7 @@ if [ ! -e umls.db ]; then
 			METAUI varchar,
 			STYPE varchar,
 			CODE varchar,
-			ATUI varchar
-				constraint MRSAT_pk
-					primary key,
+			ATUI varchar,
 			SATUI varchar,
 			ATN varchar,
 			SAB varchar,
