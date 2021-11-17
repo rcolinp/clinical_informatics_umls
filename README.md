@@ -6,31 +6,44 @@ An exploratory, tutorial and analytical view of the Unified Medical Language Sys
 
 Note: All functionalities mentioned above currently exist, function & are here to share. Watch the repo for updates, as they will be made over time. Repository is under construction and IS NOT in its final form.
 
-**Preview of v1 Neo4j UMLS Graph to be created: (Repo/Graph is a work in progress)**
+## Neo4j Schema Visualized
+
 ![UMLS® Neo4j Graph Schema](images/schema_dark.png)
 
 **Schema Overview:**
 
-There are 5 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Property Graph.
+Note: The relationship `HAS_SOURCE_CODE` (Concept -> SourceCode relationship) shown in the schema can either be omitted or included per user preference.
 
-- The UMLS string unique identifier (`UMLS.MRCONSO.SUI` - `StringForm`)
+There are 4 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Property Graph.
+
 - The UMLS atomic unique identifier (`UMLS.MRCONSO.AUI` - `Atom`)
 - The UMLS concept unique identifier (`UMLS.MRCONSO.CUI` - `Concept`)
 - The UMLS semantic unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
-- The source vocabulary concept unique identifier (`UMLS.MRCONSO.CODE` - `Code`)
-  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. NCI Thesaurus (NCI), SNOMEDCT_US, ICDO3, ICD10CM, GO, RXNORM, ATC, etc...
+- The source vocabulary concept unique identifier (`UMLS.MRCONSO.CODE` - `SourceCode`)
+  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `GO`, `RXNORM`, `ATC`, etc...
 
-This schema is only one method of representing the UMLS as a label property graph. Key design features of the graph:
-
-- This design leverages the primary key within UMLS (umls_aui - Atom) as a bridge to crosswalk source vocabulary concepts to common concept unique identifiers (umls_cui - Concept) which are shared between other source vocabularies contained in the graph. Additionally, both intra and inter hierarchial relationships from each distinct source vocabulary & from a vocabulary agnostic point of view can be traversed and queried.
-
-- The entire UMLS semantic network has been integrated into the graph via directed relationships to and from concepts within UMLS's semantic network. The semantic network being the semantic relations across UMLS's semantic types (`UMLS.MRSTY.STY`). Below is a code snipped (cypher query) and its associated out visualization of UMLS's semantic network within the context of what the shortest path within the graph is from the descendant semantic type -> `Amino Acid, Peptide, or Protein` to the `topConceptOf` or `root` concept -> `Entity`. Check out following cypher query:
+- The entire UMLS semantic network has been integrated into the graph via directed relationships to and from concepts within UMLS's semantic network. The semantic network being the semantic relations across UMLS's semantic types (`UMLS.MRSTY.STY`).
+  
+- Below is a snippet (cypher query) and its associated output visualization demonstrating the utility of the UMLS's semantic network.
+  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf` or `root` `SemanticType` -> `Entity`. Check out following cypher query:
   - `MATCH path = (to:SemanticType {sty: "Entity"})<-[:ISA*]-(from:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) RETURN path`
-  - Distinct from the ISA relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
+    - Distinct from the `ISA` relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
-- This provides a unique ability to leverage UMLS's semantic network in relation to its hierarchial and concept-concept/code-code relationships.
+## UMLS Semantic Network
+
+Below is the exact semantic network provided by [UMLS® Semantic Network Reference](https://uts.nlm.nih.gov/semanticnetwork.html) that has been modeled in this Neo4j LPG and briefly illustrated above.
+
+![UMLS Semantic Network](https://www.ncbi.nlm.nih.gov/books/NBK9679/bin/ch05-Image003.jpg)
+
+- All `ISA` and `NON-ISA` relations seen in image above exist within this Neo4j schema of UMLS.
+
+  - A noteworthy disclaimer provided by NIH is that the semantic relationships within the semantic network may or may not may hold true at the concept point of view AND/OR perspective.
+    - For example, the relationship `Clinical Drug` `causes` `Disease or Syndrome` does not hold at the concept level for `Aspirin` and `Cancer`. (Aspirin does not cause Cancer)
+      - This is anticipated, as within the semantic network produced by UMLS, Clinical Drug(s) are related to Diseases and Syndromes via multiple relationships (one of those being `causes`).
+        - When this specific relationship is examined at the concept level, it can be assumed aspirin does not cause cancer. This is not to be a problem or cause confusion. Rather, the semantic network's ability to interrelate all concepts within the UMLS under 127 'broad' semantic types provides a useful means for labeling, categorizing AND/OR creating subgraphs of concepts based on semantic criteria.
+          - The semantic network should only help navigate the graph of concepts and not for explicit relationship creation of between concepts.
 
 ## (In Progress) - Neo4j Schema Mapped to RDF - The W3C Standard Model for Data Interchange on the Web
 
@@ -59,7 +72,7 @@ A part of this repository will dedicated to how a subset of UMLS® can be transf
 
 The UMLS® provides a robust collection of interconnected data. In effort of studying this rich collection of "interconnected data", this repository will explore first creating a UMLS® subset as a relational database (SQLite, MySQL & PostgresSQL), querying that relational model & how to transform the relational model to a Neo4j graph database.
 
-### What is the UMLS® & Why is it Important?
+## What is the UMLS® & Why is it Important?
 
 - "The UMLS® integrates and distributes key terminology, classification and coding standards, and associated resources to promote creation of more effective and interoperable biomedical information systems and services, including electronic health records."
   - [UMLS®](https://www.nlm.nih.gov/research/umls/index.html)
@@ -70,7 +83,7 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
 - UMLS® contains over 200+ industry standard biomedical vocabularies & ontologies. Check out contents (ontologies/vocabularies) contained within UMLS® via following link:
   - [UMLS® Release Ontologies & Vocabularies](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html)
 
-#### Terminologies within Scope of Repository (list subject to change)
+## Terminologies within Scope of Repository (list subject to change)
 
 - **Anatomical Therapeutic Chemical Classification System:**
   - Abbreviation -> **ATC**
@@ -141,7 +154,7 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
     - NIH/UMLS Vocabulary Documentation:
       - [SRC (Source Terminology Names (UMLS)) - Synopsis](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/SRC/index.html)
 
-##### Python Environment Setup
+## Python Environment Setup
 
 Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy switches between multiple versions of Python.
 
@@ -154,31 +167,26 @@ Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy
 
 This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the official documentation provided.
 
-- Create a virtual environment within project directory:
-`python3 -m venv venv`
+- Execute following command to create a virtual environment within project's root directory: (Note: when using `poetry shell` it will create a virtual environment called `.venv` within projects root directory.)
 
-- Activate the virtual environment:
-`source venv/bin/activate`
+  - `poetry shell`
+    - This will create a venv called `.venv` for the project and will be activated immediately within your terminal.
 
-- Install all python packaging and dependencies into virtual environment:
-`poetry install`
+  - Install all python packaging and dependencies into the virtual environment via:
+  - `poetry install`
+    - This will install all packaging requirements/dependencies from the `pyproject.toml`.
+      - If unfamiliar with Poetry, the `pyproject.toml` file is a bit 'similar' to a `Pipfile` when using pipenv or `environment.yml` file when using a conda environment etc...
 
-- Or execute `poetry shell` to create & activate a virtual environment.
-
-- Install packaging and dependencies into that environment via `poetry install`
-
-##### Neo4j Docker Setup & Data Import
+## Neo4j Docker Setup & Data Import
 
 Docker Image:
 
 ```shell
-docker run --name=<insert container name> \
+docker run -it --name=<insert container name> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
-    --volume=$HOME/neo4j/conf:/conf \
-    --volume=$HOME/neo4j/logs:/logs \
     --volume=$HOME/neo4j/plugins:/plugins \
     --volume=$HOME/neo4j/backups:/backups \
     --volume=$HOME/neo4j/data/rdf:/data/rdf \
@@ -189,16 +197,14 @@ docker run --name=<insert container name> \
     --env=apoc_import_file_use_neo4j__config=true \
     --env=apoc_export_file_use_neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
-    --env=NEO4J_dbms_security_procedures__whitelist=gds.\\\*,apoc.\\\*,n10s.\\\* \
-    --env=NEO4J_dbms_security_procedures__unrestricted=gds.\\\*,apoc.\\\*,n10s.\\\* \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
-    --env=NEO4J_AUTH=neo4j/<insert password> \
+    --env=NEO4J_AUTH=neo4j/<insert pwd> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
     neo4j:4.3.4-enterprise
 ```
 
-##### Import Data Into Neo4j Graph
+## Import Data Into Neo4j Graph
 
 - Importing the .csv files will require use of Neo4j's `neo4j-admin import` tool
 
@@ -232,17 +238,13 @@ docker run --name=<insert container name> \
     --database=neo4j \
     --nodes='import/semanticTypeNode.csv' \
     --nodes='import/conceptNode.csv' \
-    --nodes='import/stringNode.csv' \
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
-    --relationships='import/has_sty.csv' \
-    --relationships='import/code_string_rel.csv' \
-    --relationships='import/concept_string_rel.csv' \
-    --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_concept_rel.csv' \
+    --relationships='import/has_sty_rel.csv' \
+    --relationships='import/has_aui_rel.csv' \
+    --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/cui_code_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
@@ -259,17 +261,13 @@ Here are a few snippets of what the above commands should look like (including b
     --database=neo4j \
     --nodes='import/semanticTypeNode.csv' \
     --nodes='import/conceptNode.csv' \
-    --nodes='import/stringNode.csv' \
     --nodes='import/atomNode.csv' \
     --nodes='import/codeNode.csv' \
-    --relationships='import/has_sty.csv' \
-    --relationships='import/code_string_rel.csv' \
-    --relationships='import/concept_string_rel.csv' \
-    --relationships='import/has_umls_aui.csv' \
-    --relationships='import/has_concept_rel.csv' \
+    --relationships='import/has_sty_rel.csv' \
+    --relationships='import/has_aui_rel.csv' \
+    --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/cui_code_rel.csv' \
     --relationships='import/child_of_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
@@ -279,24 +277,19 @@ Here are a few snippets of what the above commands should look like (including b
 Output:
 
 ```shell  
-Neo4j version: 4.3.4
 Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
   /var/lib/neo4j/import/semanticTypeNode.csv
   /var/lib/neo4j/import/conceptNode.csv
-  /var/lib/neo4j/import/stringNode.csv
   /var/lib/neo4j/import/atomNode.csv
   /var/lib/neo4j/import/codeNode.csv
 
 Relationships:
   /var/lib/neo4j/import/has_sty.csv
-  /var/lib/neo4j/import/code_string_rel.csv
-  /var/lib/neo4j/import/concept_string_rel.csv
-  /var/lib/neo4j/import/has_umls_aui.csv
-  /var/lib/neo4j/import/has_concept_rel.csv
+  /var/lib/neo4j/import/has_aui_rel.csv
+  /var/lib/neo4j/import/has_cui_rel.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
   /var/lib/neo4j/import/concept_concept_rel.csv
-  /var/lib/neo4j/import/cui_code_rel.csv
   /var/lib/neo4j/import/child_of_rel.csv
   ...
 
@@ -333,6 +326,6 @@ Need to restart the container:
   - user: `neo4j` (default is `neo4j` -> set in `--env=NEO4J_AUTH=neo4j/<password>`)
   - pass: `<password>` -> set prior via `--env=NEO4J_AUTH=neo4j/<password>`)
 
-##### Querying the UMLS as a Neo4j Graph
+## Querying the UMLS as a Neo4j Graph
 
 Checkout the notebooks directory where the graph will be queried via both official `neo4j` python driver & community supported python driver `py2neo`.
