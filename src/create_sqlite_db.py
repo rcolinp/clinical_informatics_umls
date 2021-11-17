@@ -117,13 +117,12 @@ def create_db():
     global MRSAT_TABLE_FILE
 
     print("\ncreating umls_py.db")
-    # connect to the .db file we are creating.
     db_path = '../sqlite/umls_py.db'
     conn = sqlite3.connect(db_path)
     conn.text_factory = StringIO
 
     print("opening files")
-    # load data in files.
+    # load data in UMLS RRF files.
 
     try:
         mrsty_path = os.path.join(umls_tables, 'MRSTY.RRF')
@@ -220,14 +219,13 @@ def create_db():
     c.execute("CREATE TABLE SRSTRE1( UI1 varchar, UI2 varchar, UI3 varchar ) ;")
     c.execute("CREATE TABLE SRSTRE2( STY1 text, RL varchar, STY2 text ) ;")
     c.execute("CREATE TABLE MRSAB( VCUI varchar, RCUI varchar, VSAB varchar, RSAB varchar, SON varchar, SF varchar, SVER varchar, VSTART varchar, VEND varchar, IMETA varchar, RMETA varchar, SLC varchar, SCC varchar, SRL varchar, TRF varchar, CFR varchar, CXTY varchar, TTYL varchar, ATNL varchar, LAT varchar, CENC varchar, CURVER varchar, SABIN varchar, SSN varchar, SCIT varchar ) ;")
-    c.execute("""CREATE TABLE MRSAT( CUI varchar, LUI varchar, SUI varchar, METAUI varchar, STYPE varchar, CODE varchar, ATUI varchar, SATUI varchar, ATN varchar, SAB varchar, ATV varchar, SUPPRESS varchar, CVF varchar ) ;""")
+    c.execute("CREATE TABLE MRSAT( CUI varchar, LUI varchar, SUI varchar, METAUI varchar, STYPE varchar, CODE varchar, ATUI varchar, SATUI varchar, ATN varchar, SAB varchar, ATV varchar, SUPPRESS varchar, CVF varchar ) ;")
 
     print("Inserting data into MRSTY table")
     for line in MRSTY_TABLE_FILE:
         line = line.strip('\n')
         assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
         line = line.split('|')
-        # end will always be empty str
         line.pop()
         assert len(line) == 6
         c.execute(
@@ -238,7 +236,6 @@ def create_db():
         line = line.strip('\n')
         assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
         line = line.split('|')
-        # end will always be empty str
         line.pop()
         assert len(line) == 18
         c.execute("""INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, 
@@ -251,7 +248,6 @@ def create_db():
         line = line.strip('\n')
         assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
         line = line.split('|')
-        # end will always be empty str
         line.pop()
         assert len(line) == 16
         c.execute("""INSERT INTO MRREL(  CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2, 
@@ -276,7 +272,6 @@ def create_db():
         line = line.strip('\n')
         assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
         line = line.split('|')
-        # end will always be empty str
         line.pop()
         assert len(line) == 4
         c.execute(
@@ -361,7 +356,7 @@ def create_db():
     c.execute("CREATE INDEX X_mrhier_paui ON MRHIER (PAUI);")
     c.execute("CREATE INDEX X_mrsat_cui ON MRSAT (CUI);")
 
-    # save changes to umls_py.db
+    # Commit changes to umls_py.db
     conn.commit()
 
     success = True
