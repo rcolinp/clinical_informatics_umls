@@ -98,7 +98,7 @@ testing = ["pytest", "pytest-flake8", "pytest-cov", "pytest-black (>=0.3.7)", "p
 
 [[package]]
 name = "black"
-version = "21.10b0"
+version = "21.11b0"
 description = "The uncompromising code formatter."
 category = "dev"
 optional = false
@@ -542,7 +542,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "imageio"
-version = "2.10.4"
+version = "2.10.5"
 description = "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats."
 category = "main"
 optional = false
@@ -558,11 +558,28 @@ dev = ["invoke", "pytest", "pytest-cov", "black", "flake8"]
 docs = ["sphinx", "numpydoc", "pydata-sphinx-theme"]
 ffmpeg = ["imageio-ffmpeg", "psutil"]
 fits = ["astropy"]
-full = ["astropy", "black", "flake8", "gdal", "imageio-ffmpeg", "invoke", "itk", "numpydoc", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx", "wheel"]
+full = ["astropy", "black", "flake8", "gdal", "imageio-ffmpeg", "invoke", "itk", "numpydoc", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx", "tifffile", "wheel"]
 gdal = ["gdal"]
 itk = ["itk"]
 linting = ["black", "flake8"]
 test = ["invoke", "pytest", "pytest-cov"]
+tifffile = ["tifffile"]
+
+[[package]]
+name = "importlib-metadata"
+version = "4.8.2"
+description = "Read metadata from Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+zipp = ">=0.5"
+
+[package.extras]
+docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
+perf = ["ipython"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
 
 [[package]]
 name = "importlib-resources"
@@ -891,7 +908,7 @@ test = ["coverage", "pytest (>=6.0)", "pytest-cov", "pytest-mock", "requests", "
 
 [[package]]
 name = "jupyterlab"
-version = "3.2.3"
+version = "3.2.4"
 description = "JupyterLab computational environment"
 category = "dev"
 optional = false
@@ -999,11 +1016,14 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "markdown"
-version = "3.3.5"
+version = "3.3.6"
 description = "Python implementation of Markdown."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.dependencies]
+importlib-metadata = {version = ">=4.4", markers = "python_version < \"3.10\""}
 
 [package.extras]
 testing = ["coverage", "pyyaml"]
@@ -1199,17 +1219,6 @@ python-versions = ">=3.5"
 pytz = "*"
 
 [[package]]
-name = "neo4j-driver"
-version = "4.4.0"
-description = "Neo4j Bolt driver for Python"
-category = "main"
-optional = false
-python-versions = ">=3.5"
-
-[package.dependencies]
-pytz = "*"
-
-[[package]]
 name = "neographviz"
 version = "0.4.6"
 description = "Graph display package for py2neo graphs forked from https://github.com/nicolewhite/neo4j-jupyter"
@@ -1250,7 +1259,7 @@ test = ["pytest (>=6.2)", "pytest-cov (>=2.12)", "codecov (>=2.1)"]
 
 [[package]]
 name = "notebook"
-version = "6.4.5"
+version = "6.4.6"
 description = "A web-based notebook environment for interactive computing"
 category = "main"
 optional = false
@@ -1265,9 +1274,10 @@ jupyter-client = ">=5.3.4"
 jupyter-core = ">=4.6.1"
 nbconvert = "*"
 nbformat = "*"
+nest-asyncio = ">=1.5"
 prometheus-client = "*"
 pyzmq = ">=17"
-Send2Trash = ">=1.5.0"
+Send2Trash = ">=1.8.0"
 terminado = ">=0.8.3"
 tornado = ">=6.1"
 traitlets = ">=4.2.1"
@@ -2238,7 +2248,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8,<3.10"
-content-hash = "84c171398ee073339eb2a221a27d12a86202ea5f9643cdefe317c57f01b2b4e3"
+content-hash = "5fde89f531a6678c5f35cb666e9b935270c7c9477d04c3febf9dbe2a481c394f"
 
 [metadata.files]
 anyio = [
@@ -2283,8 +2293,8 @@ backcall = [
     {file = "backports.entry_points_selectable-1.1.1.tar.gz", hash = "sha256:914b21a479fde881635f7af5adc7f6e38d6b274be32269070c53b698c60d5386"},
 ]
 black = [
-    {file = "black-21.10b0-py3-none-any.whl", hash = "sha256:6eb7448da9143ee65b856a5f3676b7dda98ad9abe0f87fce8c59291f15e82a5b"},
-    {file = "black-21.10b0.tar.gz", hash = "sha256:a9952229092e325fe5f3dae56d81f639b23f7131eb840781947e4b2886030f33"},
+    {file = "black-21.11b0-py3-none-any.whl", hash = "sha256:0b1f66cbfadcd332ceeaeecf6373d9991d451868d2e2219ad0ac1213fb701117"},
+    {file = "black-21.11b0.tar.gz", hash = "sha256:83f3852301c8dcb229e9c444dd79f573c8d31c7c2dad9bbaaa94c808630e32aa"},
 ]
 bleach = [
     {file = "bleach-4.1.0-py2.py3-none-any.whl", hash = "sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994"},
@@ -2524,8 +2534,12 @@ idna = [
     {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},
 ]
 imageio = [
-    {file = "imageio-2.10.4-py3-none-any.whl", hash = "sha256:3b0ce2bdf380c38d2686694870a85e92adc31c736bb8071596325b64d790661b"},
-    {file = "imageio-2.10.4.tar.gz", hash = "sha256:ec90094501fdb1ba3cc256f4cefbcefe0ad63ea9cf360a476383f97666b16c66"},
+    {file = "imageio-2.10.5-py3-none-any.whl", hash = "sha256:68457947e29c0341f12ff459d63019e386bf4dadc38c11ffa15941fe6d55f40e"},
+    {file = "imageio-2.10.5.tar.gz", hash = "sha256:f3f6e9a73d62f12348f098364219f4fc64462760bc07abfe16d14db0e4974845"},
+]
+importlib-metadata = [
+    {file = "importlib_metadata-4.8.2-py3-none-any.whl", hash = "sha256:53ccfd5c134223e497627b9815d5030edf77d2ed573922f7a0b8f8bb81a1c100"},
+    {file = "importlib_metadata-4.8.2.tar.gz", hash = "sha256:75bdec14c397f528724c1bfd9709d660b33a4d2e77387a3358f20b848bb5e5fb"},
 ]
 importlib-resources = [
     {file = "importlib_resources-5.4.0-py3-none-any.whl", hash = "sha256:33a95faed5fc19b4bc16b29a6eeae248a3fe69dd55d4d229d2b480e23eeaad45"},
@@ -2605,8 +2619,8 @@ jupyter-server = [
     {file = "jupyter_server-1.11.2.tar.gz", hash = "sha256:c1f32e0c1807ab2de37bf70af97a36b4436db0bc8af3124632b1f4441038bf95"},
 ]
 jupyterlab = [
-    {file = "jupyterlab-3.2.3-py3-none-any.whl", hash = "sha256:7d7f0280654a8472c47a9d7b5164b74a961a8095ad4ce7fb26ef539ea1d7efd1"},
-    {file = "jupyterlab-3.2.3.tar.gz", hash = "sha256:7d74593e52d4dbfacbb98e14cac4bc765ea2cffb1b980675f44930d622871705"},
+    {file = "jupyterlab-3.2.4-py3-none-any.whl", hash = "sha256:b2375626001ab48af85e5da542a56a163ac8b490828642757e4e0e5e8c5af59d"},
+    {file = "jupyterlab-3.2.4.tar.gz", hash = "sha256:f692e0d95338d60f72dde660f16f3955a087775c59ec541ddb25952e3f97e9b1"},
 ]
 jupyterlab-pygments = [
     {file = "jupyterlab_pygments-0.1.2-py2.py3-none-any.whl", hash = "sha256:abfb880fd1561987efaefcb2d2ac75145d2a5d0139b1876d5be806e32f630008"},
@@ -2769,8 +2783,8 @@ mariadb = [
     {file = "mariadb-1.0.8.zip", hash = "sha256:4b7b1b307a30a3cb12272d9b1dca0d13b66bd3d415b4aceb0a407f0983f341a3"},
 ]
 markdown = [
-    {file = "Markdown-3.3.5-py3-none-any.whl", hash = "sha256:0d2d09f75cb8d1ffc6770c65c61770b23a61708101f47bda416a002a0edbc480"},
-    {file = "Markdown-3.3.5.tar.gz", hash = "sha256:26e9546bfbcde5fcd072bd8f612c9c1b6e2677cb8aadbdf65206674f46dde069"},
+    {file = "Markdown-3.3.6-py3-none-any.whl", hash = "sha256:9923332318f843411e9932237530df53162e29dc7a4e2b91e35764583c46c9a3"},
+    {file = "Markdown-3.3.6.tar.gz", hash = "sha256:76df8ae32294ec39dcf89340382882dfa12975f87f45c3ed1ecdb1e8cefc7006"},
 ]
 markupsafe = [
     {file = "MarkupSafe-2.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d8446c54dc28c01e5a2dbac5a25f071f6653e6e40f3a8818e8b45d790fe6ef53"},
@@ -2957,9 +2971,6 @@ nbformat = [
 neo4j = [
     {file = "neo4j-4.4.0.tar.gz", hash = "sha256:7fac86ecd4191248030a2bf7822547207648ed8e0ee38cf10bbd7c7dc6ca596f"},
 ]
-neo4j-driver = [
-    {file = "neo4j-driver-4.4.0.tar.gz", hash = "sha256:ec2808dc0e0d97425404b865c49d6b211b443a8532ef6ba6200881543ec49410"},
-]
 neographviz = [
     {file = "neographviz-0.4.6-py3-none-any.whl", hash = "sha256:9ae6e6da32a5171fc5ff6f601ad8f6e83c98e671a46b98916d588ae97ca368f1"},
     {file = "neographviz-0.4.6.tar.gz", hash = "sha256:02fcca978c736c9d049ba103c21c43ddae7d382bdbaac0dcd5989780c45645c8"},
@@ -2973,8 +2984,8 @@ networkx = [
     {file = "networkx-2.6.3.tar.gz", hash = "sha256:c0946ed31d71f1b732b5aaa6da5a0388a345019af232ce2f49c766e2d6795c51"},
 ]
 notebook = [
-    {file = "notebook-6.4.5-py3-none-any.whl", hash = "sha256:f7b4362698fed34f44038de0517b2e5136c1e7c379797198c1736121d3d597bd"},
-    {file = "notebook-6.4.5.tar.gz", hash = "sha256:872e20da9ae518bbcac3e4e0092d5bd35454e847dedb8cb9739e9f3b68406be0"},
+    {file = "notebook-6.4.6-py3-none-any.whl", hash = "sha256:5cad068fa82cd4fb98d341c052100ed50cd69fbfb4118cb9b8ab5a346ef27551"},
+    {file = "notebook-6.4.6.tar.gz", hash = "sha256:7bcdf79bd1cda534735bd9830d2cbedab4ee34d8fe1df6e7b946b3aab0902ba3"},
 ]
 numba = [
     {file = "numba-0.53.1-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:b23de6b6837c132087d06b8b92d343edb54b885873b824a037967fbd5272ebb7"},
