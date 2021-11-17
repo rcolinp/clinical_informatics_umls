@@ -15,7 +15,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 from io import StringIO
 
-umls_tables = "/Users/robpiombino/Documents/UMLS/subset/2021AB/META/"
+umls_tables = "/../UMLS/subset/2021AB/META/"
 success = False
 db_path = '../sqlite/umls_py.db'
 conn = None
