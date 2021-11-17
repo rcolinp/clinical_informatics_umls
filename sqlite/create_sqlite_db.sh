@@ -24,43 +24,43 @@ if [ ! -e umls.db ]; then
 		current=$(pwd)
 		cd "$1/META"
 		echo "-> Converting RRF files for SQLite"
-		for f in MRDEF.RRF MRDOC.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRCONSO.RRF MRRANK.RRF MRSTY.RRF MRREL.RRF MRSAT.RRF MRHIER.RRF; do
-			sed -e 's/.$//' -e 's/"//g' "$f" >"${f%RRF}pipe"
+		for f in MRCONSO.RRF MRHIER.RRF MRRANK.RRF MRREL.RRF SRDEF SRSTR SRSTRE1 SRSTRE2 MRSAB.RRF MRSTY.RRF MRSAT.RRF; do
+				sed -e 's/.$//' -e 's/"//g' "$f" > "${f%RRF}pipe"
 		done
 		cd $current
 	fi
-
+	
 	# init the database for MRDEF
-	# table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
-	sqlite3 umls.db "CREATE TABLE MRDEF (
-		CUI varchar,
-		AUI varchar,
-		ATUI varchar
-		     constraint MRDEF_pk
-				      primary key,
-		SATUI varchar,
-		SAB varchar,
-		DEF text,
-		SUPPRESS varchar,
-		CVF varchar
-    )"
+	# # table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
+	# sqlite3 umls.db "CREATE TABLE MRDEF (
+	# 	CUI varchar,
+	# 	AUI varchar,
+	# 	ATUI varchar
+	# 		constraint MRDEF_pk
+	# 			primary key,
+	# 	SATUI varchar,
+	# 	SAB varchar,
+	# 	DEF text,
+	# 	SUPPRESS varchar,
+	# 	CVF varchar
+    # )"
 
-	# init the database for MRDOC
-	# table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
-	sqlite3 umls.db "CREATE TABLE MRDOC (
-		DOCKEY varchar,
-		VALUE varchar,
-		TYPE varchar,
-		EXPL varchar
-    )"
+	# # init the database for MRDOC
+	# # table structure here: http://www.ncbi.nlm.nih.gov/books/NBK9685/
+	# sqlite3 umls.db "CREATE TABLE MRDOC (
+	# 	DOCKEY varchar,
+	# 	VALUE varchar,
+	# 	TYPE varchar,
+	# 	EXPL varchar
+    # )"
 
 	# init the database for MRSAB
 	sqlite3 umls.db "CREATE TABLE MRSAB (
 		VCUI varchar,
 		RCUI varchar,
 		VSAB varchar
-			    constraint MRSAB_pk
-					primary key,
+			constraint MRSAB_pk
+				primary key,
 		RSAB varchar,
 		SON text,
 		SF varchar,
@@ -86,7 +86,7 @@ if [ ! -e umls.db ]; then
     )"
 
 	# init the database for MRCONSO
-	# Note: Adding contraint will slow data-loading
+	# Skip the constraint (primary key) on AUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRCONSO (
 		CUI varchar,
 		LAT varchar,
@@ -96,8 +96,8 @@ if [ ! -e umls.db ]; then
 		SUI varchar,
 		ISPREF varchar,
 		AUI varchar
-				constraint MRCONSO_pk
-					primary key,
+			constraint MRCONSO_pk
+				primary key,
 		SAUI varchar,
 		SCUI varchar,
 		SDUI varchar,
@@ -108,17 +108,17 @@ if [ ! -e umls.db ]; then
 		SRL varchar,
 		SUPPRESS varchar,
 		CVF varchar
-    )"
+	)"
 
 	# init the database for SRDEF
 	sqlite3 umls.db "CREATE TABLE SRDEF (
         RT varchar,
         UI varchar,
-        STY_RL TEXT,
+        STY_RL text,
 		STN_RTN varchar,
-		DEF TEXT,
+		DEF text,
 		EX varchar,
-		UN TEXT,
+		UN text,
 		NH varchar,
 		ABR varchar,
 		RIN varchar
@@ -126,9 +126,9 @@ if [ ! -e umls.db ]; then
 
 	# init the database for SRSTR
 	sqlite3 umls.db "CREATE TABLE SRSTR (
-		STY_RL1 TEXT,
+		STY_RL1 text,
 		RL varchar,
-		STY_RL2 TEXT,
+		STY_RL2 text,
 		LS varchar
 	)"
 
@@ -140,10 +140,10 @@ if [ ! -e umls.db ]; then
     )"
 
 	# init the database for SRSTRE2
-	sqlite3 umls.db "CREATE TABLE SRSTRE2(
-		STY1 TEXT,
+	sqlite3 umls.db "CREATE TABLE SRSTRE2 (
+		STY1 text,
 		RL varchar,
-		STY2 TEXT,
+		STY2 text
     )"
 
 	# init the database for MRRANK
@@ -155,28 +155,32 @@ if [ ! -e umls.db ]; then
     )"
 
 	# init the database for MRSTY
-	# Including primary key constraint on ATUI - optional. Loading data into table will be slower.
+	# Skip the constraint (primary key) on ATUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRSTY (
 		CUI varchar,
 		TUI varchar,
 		STN varchar,
-		STY TEXT,
-		ATUI varchar,
+		STY text,
+		ATUI varchar
+			constraint MRSTY_pk
+				primary key,
 		CVF varchar
     )"
 
 	# init the database for MRREL
-	# MRREL too large of table to add constraint on RUI (primary key) prior to loading
+	# Skip the constraint (primary key) on RUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRREL (
 		CUI1 varchar,
 		AUI1 varchar,
 		STYPE1 varchar,
 		REL varchar,
 		CUI2 varchar,
-		AUI2 text,
+		AUI2 varchar,
 		STYPE2 varchar,
 		RELA varchar,
-		RUI varchar,
+		RUI varchar
+			constraint MRREL_pk
+				primary key,
 		SRUI varchar,
 		SAB varchar,
 		SL varchar,
@@ -187,7 +191,7 @@ if [ ! -e umls.db ]; then
     )"
 
 	# init the database for MRSAT
-	# MRSAT is largest table in UMLS DB -> No constraint on ATUI (primary key) prior to loading
+	# Skip the constraint (primary key) on ATUI for quicker loading
 	sqlite3 umls.db "CREATE TABLE MRSAT (
 		CUI varchar,
 		LUI varchar,
@@ -195,7 +199,9 @@ if [ ! -e umls.db ]; then
 		METAUI varchar,
 		STYPE varchar,
 		CODE varchar,
-		ATUI varchar,
+		ATUI varchar
+			constraint MRSAT_pk
+				primary key,
 		SATUI varchar,
 		ATN varchar,
 		SAB varchar,
@@ -219,30 +225,32 @@ if [ ! -e umls.db ]; then
 
 	# import tables
 	for f in "$1/META/"*.pipe; do
-		table=$(basename ${f%.pipe})
-		echo "-> Importing $table"
-		sqlite3 umls.db ".import '$f' '$table'"
+			table=$(basename ${f%.pipe})
+			echo "-> Importing $table"
+			sqlite3 umls.db ".import '$f' '$table'"
 	done
 
 	# create indexes
 	echo "-> Creating indexes"
-	sqlite3 umls.db "CREATE INDEX X_CUI_MRCONSO ON MRCONSO(CUI);"
-	sqlite3 umls.db "CREATE INDEX X_SAB_MRCONSO ON MRCONSO(SAB);"
-	sqlite3 umls.db "CREATE INDEX X_CUI_MRSTY ON MRSTY(CUI);"
-	sqlite3 umls.db "CREATE INDEX X_TUI_MRSTY ON MRSTY(TUI);"
-	sqlite3 umls.db "CREATE INDEX X_AUI_MRHIER ON MRHIER(AUI);"
-	sqlite3 umls.db "CREATE INDEX X_PAUI_MRHIER ON MRHIER(PAUI);"
-	sqlite3 umls.db "CREATE INDEX X_CUI1_MRREL ON MRREL(CUI1);"
-	sqlite3 umls.db "CREATE INDEX X_CUI2_MRREL ON MRREL(CUI2);"
-	sqlite3 umls.db "CREATE INDEX X_SAB_MRREL ON MRREL(SAB);"
-	sqlite3 umls.db "CREATE INDEX X_CUI_MRSAT ON MRSAT(CUI);"
-	sqlite3 umls.db "CREATE INDEX X_SAB_MRSAT ON MRSAT(SAB);"
+	sqlite3 umls.db "CREATE INDEX X_CUI_MRCONSO ON MRCONSO (CUI);"
+	# sqlite3 umls.db "CREATE INDEX X_SAB_MRCONSO ON MRCONSO (SAB);"
+	sqlite3 umls.db "CREATE INDEX X_CUI_MRSTY ON MRSTY (CUI);"
+	sqlite3 umls.db "CREATE INDEX X_STY_MRSTY ON MRSTY (STY);"
+	sqlite3 umls.db "CREATE INDEX X_AUI_MRHIER ON MRHIER (AUI);"
+	sqlite3 umls.db "CREATE INDEX X_PAUI_MRHIER ON MRHIER (PAUI);"
+	sqlite3 umls.db "CREATE INDEX X_CUI1_MRREL ON MRREL (CUI1);"
+	sqlite3 umls.db "CREATE INDEX X_CUI2_MRREL ON MRREL (CUI2);"
+	# sqlite3 umls.db "CREATE INDEX X_AUI1_MRREL ON MRREL (AUI1);"
+	# sqlite3 umls.db "CREATE INDEX X_AUI2_MRREL ON MRREL (AUI2);"
+	# sqlite3 umls.db "CREATE INDEX X_SAB_MRREL ON MRREL (SAB);"
+	sqlite3 umls.db "CREATE INDEX X_CUI_MRSAT ON MRSAT (CUI);"
+	# sqlite3 umls.db "CREATE INDEX X_SAB_MRSAT ON MRSAT (SAB);"
 	echo "-> successfully finished creating desired indexes"
 
 	# create faster lookup table
 	echo "-> Creating fast lookup table"
 	sqlite3 umls.db "CREATE TABLE lookup AS SELECT DISTINCT AUI, SUI, LUI, CUI, SCUI, SDUI, SAB, CODE, STR, TTY, ISPREF, TS, STT FROM MRCONSO WHERE SUPPRESS = 'N' AND SAB IN ('ATC', 'GO', 'HGNC', 'HPO', 'ICD9CM', 'ICD10CM', 'ICD10PCS', 'LNC', 'MDR', 'MED-RT', 'NCI', 'NCBI', 'RXNORM', 'SNOMEDCT_US')"
-	sqlite3 umls.db "ALTER TABLE lookup ADD COLUMN STY TEXT"
+	sqlite3 umls.db "ALTER TABLE lookup ADD COLUMN STY text"
 	sqlite3 umls.db "CREATE INDEX X_CUI_lookup ON lookup (CUI)"
 	sqlite3 umls.db "UPDATE lookup SET STY = (SELECT DISTINCT GROUP_CONCAT(MRSTY.STY, '|') FROM MRSTY WHERE MRSTY.CUI = lookup.CUI GROUP BY MRSTY.CUI)"
 else

@@ -6,7 +6,7 @@ authors = ["rcolinp <rcolinpiombino@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.11"
+python = "^3.8,<3.10"
 pandas = "^1.3.2"
 numpy = "^1.21.2"
 SQLAlchemy = "^1.4.23"
@@ -26,7 +26,8 @@ requests = "^2.26.0"
 pysqlite3 = "^0.4.6"
 PyLD = "^2.0.3"
 neographviz = "^0.4.6"
-kglab = "^0.4.0"
+pyvis = "^0.1.9"
+ipyradiant = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"
