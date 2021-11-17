@@ -1,4 +1,4 @@
-# !/bin/bash/env/python
+#!/usr/bin/env python3
 """
 This .py assumes you have created an output directory named 'import' at your root directory (i.e. $HOME/import).
 This .py assumes you are a UMLS license holder & MRHIER.RRF is located at the relative path -> ../UMLS/subset/2021AB/META/MRHIER.RRF
