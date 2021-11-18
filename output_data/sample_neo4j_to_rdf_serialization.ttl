@@ -1,0 +1,180 @@
+@prefix n4sch: <neo4j://graph.schema#> .
+@prefix ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ncit:C11781 a n4sch:Class ;
+    ncit:P107 "RAS Peptide Cancer Vaccine/Sargramostim" ;
+    n4sch:NHC0 "C11781" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "RAS Peptide Cancer Vaccine/Sargramostim" ;
+    n4sch:P207 "C0879276" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "RAS-Peptide-Cancer-Vaccine_Sargramostim" ;
+    n4sch:P90 "RAS Peptide Cancer Vaccine/Sargramostim" ;
+    n4sch:subClassOf <bnode://node1fkmjeuokx1205> .
+
+ncit:C11791 a n4sch:Class ;
+    ncit:P107 "Cisplatin/Fluorouracil/Irinotecan" ;
+    n4sch:NHC0 "C11791" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "Cisplatin/Fluorouracil/Irinotecan" ;
+    n4sch:P207 "C0879498" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Cisplatin_Fluorouracil_Irinotecan" ;
+    n4sch:P90 "Cisplatin/Fluorouracil/Irinotecan" ;
+    n4sch:subClassOf ncit:C61063 .
+
+ncit:C12024 a n4sch:Class ;
+    ncit:P107 "Cisplatin/Docetaxel/Trastuzumab" ;
+    n4sch:NHC0 "C12024" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "Cisplatin/Docetaxel/Trastuzumab" ;
+    n4sch:P207 "C0935899" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Cisplatin_Docetaxel_Trastuzumab" ;
+    n4sch:P90 "Cisplatin/Docetaxel/Trastuzumab" ;
+    n4sch:subClassOf <bnode://node1fkmjeuokx1848> .
+
+ncit:C12146 a n4sch:Class ;
+    ncit:P107 "Cytarabine/Etoposide/Rituximab" ;
+    n4sch:NHC0 "C12146" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "Cytarabine/Etoposide/Rituximab" ;
+    n4sch:P207 "C1134598" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Cytarabine_Etoposide_Rituximab" ;
+    n4sch:P90 "Cytarabine/Etoposide/Rituximab" ;
+    n4sch:subClassOf <bnode://node1fkmjeuokx2214> .
+
+ncit:C12159 a n4sch:Class ;
+    ncit:P107 "Dexamethasone/Thalidomide" ;
+    n4sch:NHC0 "C12159" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "Dexamethasone/Thalidomide" ;
+    n4sch:P207 "C1134614" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Dexamethasone_Thalidomide" ;
+    n4sch:P90 "Dexamethasone/Thalidomide" ;
+    n4sch:subClassOf <bnode://node1fkmjeuokx2246> .
+
+ncit:C12207 a n4sch:Class ;
+    ncit:P107 "Carboplatin/Etoposide/Exisulind" ;
+    n4sch:NHC0 "C12207" ;
+    n4sch:P106 "Therapeutic or Preventive Procedure" ;
+    n4sch:P108 "Carboplatin/Etoposide/Exisulind" ;
+    n4sch:P207 "C1134701" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Carboplatin_Etoposide_Exisulind" ;
+    n4sch:P90 "Carboplatin/Etoposide/Exisulind" ;
+    n4sch:subClassOf <bnode://node1fkmjeuokx2395> .
+
+ncit:C146280 a n4sch:Class ;
+    ncit:P107 "Grade 5 Duodenal Fistula, CTCAE" ;
+    n4sch:NHC0 "C146280" ;
+    n4sch:P106 "Finding" ;
+    n4sch:P108 "Grade 5 Duodenal Fistula, CTCAE" ;
+    n4sch:P200 "C143413" ;
+    n4sch:P310 "Retired_Concept" ;
+    n4sch:P90 "Grade 5 Duodenal Fistula, CTCAE" ;
+    n4sch:P98 "Wed Jan 31 09:52:14 EST 2018 - Retired on: 2018-01-31" ;
+    n4sch:deprecated true ;
+    n4sch:subClassOf ncit:C157491 .
+
+ncit:C21971 a n4sch:Class ;
+    ncit:P107 "Mouse Ganglioglioma" ;
+    n4sch:NHC0 "C21971" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Ganglioglioma" ;
+    n4sch:P108 "Mouse Ganglioglioma" ;
+    n4sch:P207 "C1521924" ;
+    n4sch:P366 "Mouse_Ganglioglioma" ;
+    n4sch:P90 "Mouse Ganglioglioma" ;
+    n4sch:P92 "MMHCC Pathology Committee" ;
+    n4sch:P98 "(CTRM_Note) ICD:9505/1" ;
+    n4sch:subClassOf ncit:C21966 .
+
+ncit:C22974 a n4sch:Class ;
+    ncit:P107 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
+    n4sch:NHC0 "C22974" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Mesenchymal Chondrosarcoma of the Skeletal System" ;
+    n4sch:P108 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
+    n4sch:P207 "C1513144" ;
+    n4sch:P366 "Mesenchymal_Chondrosarcoma_of_the_Mouse_Skeletal_System" ;
+    n4sch:P90 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
+    n4sch:subClassOf ncit:C24018 .
+
+ncit:C23054 a n4sch:Class ;
+    ncit:P107 "Leiomyoma of the Mouse Oral Cavity" ;
+    n4sch:NHC0 "C23054" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Leiomyoma of the Oral Cavity" ;
+    n4sch:P108 "Leiomyoma of the Mouse Oral Cavity" ;
+    n4sch:P207 "C1517760" ;
+    n4sch:P366 "Leiomyoma_of_the_Mouse_Oral_Cavity" ;
+    n4sch:P90 "Leiomyoma of the Mouse Oral Cavity" ;
+    n4sch:subClassOf ncit:C21621 .
+
+<bnode://node1fkmjeuokx1205> a n4sch:Restriction .
+
+<bnode://node1fkmjeuokx1848> a n4sch:Restriction .
+
+<bnode://node1fkmjeuokx2214> a n4sch:Restriction .
+
+<bnode://node1fkmjeuokx2246> a n4sch:Restriction .
+
+<bnode://node1fkmjeuokx2395> a n4sch:Restriction .
+
+ncit:C157491 a n4sch:Class ;
+    ncit:P107 "Retired Concept 2018" ;
+    n4sch:NHC0 "C157491" ;
+    n4sch:P106 "Conceptual Entity" ;
+    n4sch:P108 "Retired Concept 2018" ;
+    n4sch:P200 "C28428" ;
+    n4sch:P310 "Retired_Concept" ;
+    n4sch:P90 "Retired Concept 2018" ;
+    n4sch:P98 "Tue Feb 05 12:21:20 EST 2019 - Retired on: 2019-02-05" ;
+    n4sch:deprecated true .
+
+ncit:C21621 a n4sch:Class ;
+    ncit:P107 "Mouse Leiomyoma" ;
+    n4sch:NHC0 "C21621" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Leiomyoma" ;
+    n4sch:P108 "Mouse Leiomyoma" ;
+    n4sch:P207 "C1521717" ;
+    n4sch:P366 "Mouse_Leiomyoma" ;
+    n4sch:P90 "Mouse Leiomyoma" .
+
+ncit:C21966 a n4sch:Class ;
+    ncit:P107 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
+    n4sch:NHC0 "C21966" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Neuronal and Mixed Neuronal-glial Tumours" ;
+    n4sch:P108 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
+    n4sch:P207 "C1521921" ;
+    n4sch:P366 "Mouse_Neuronal_and_Mixed_Neuronal-glial_Tumours" ;
+    n4sch:P90 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
+    n4sch:P92 "MMHCC Pathology Committee" .
+
+ncit:C24018 a n4sch:Class ;
+    ncit:P107 "Mouse Chondrosarcoma" ;
+    n4sch:NHC0 "C24018" ;
+    n4sch:P106 "Neoplastic Process" ;
+    n4sch:P107 "Chondrosarcoma" ;
+    n4sch:P108 "Mouse Chondrosarcoma" ;
+    n4sch:P207 "C1522081" ;
+    n4sch:P322 "Cellosaurus" ;
+    n4sch:P366 "Mouse_Chondrosarcoma" ;
+    n4sch:P90 "Mouse Chondrosarcoma" .
+
+ncit:C61063 a n4sch:Class ;
+    ncit:P107 "Agent Combination Not Indexed in Open Clinical Trials" ;
+    n4sch:NHC0 "C61063" ;
+    n4sch:P106 "Classification" ;
+    n4sch:P108 "Agent Combination Not Indexed in Open Clinical Trials" ;
+    n4sch:P207 "C1882104" ;
+    n4sch:P310 "Obsolete_Concept" ;
+    n4sch:P366 "Non-Current_Chemotherapy_Regimen_or_Association" ;
+    n4sch:P90 "Agent Combination Not Indexed in Open Clinical Trials" .
+

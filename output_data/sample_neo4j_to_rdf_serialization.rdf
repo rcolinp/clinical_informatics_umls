@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:n4sch="neo4j://graph.schema#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="neo4j://graph.individuals#2763413">
+    <n4sch:ConceptId>C5400033</n4sch:ConceptId>
+    <rdf:type rdf:resource="neo4j://graph.schema#Concept"/>
+    <n4sch:HAS_STY rdf:resource="neo4j://graph.individuals#117"/>
+    <n4sch:HAS_SOURCE_CODE rdf:resource="neo4j://graph.individuals#16524181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="neo4j://graph.individuals#117">
+    <rdf:type rdf:resource="neo4j://graph.schema#SemanticType"/>
+    <n4sch:stn>B2.2.1.2.1.2</n4sch:stn>
+    <n4sch:ISA rdf:resource="neo4j://graph.individuals#40"/>
+    <n4sch:SemanticTypeId>T191</n4sch:SemanticTypeId>
+    <n4sch:sty>Neoplastic Process</n4sch:sty>
+  </rdf:Description>
+  <rdf:Description rdf:about="neo4j://graph.individuals#16524181">
+    <n4sch:vocab>SNOMEDCT_US</n4sch:vocab>
+    <n4sch:HAS_UMLS_AUI rdf:resource="neo4j://graph.individuals#12806640"/>
+    <rdf:type rdf:resource="neo4j://graph.schema#Code"/>
+    <n4sch:code>85956000</n4sch:code>
+    <n4sch:SourceCodeId>SNOMEDCT_US#85956000</n4sch:SourceCodeId>
+    <rdf:type rdf:resource="neo4j://graph.schema#SNOMEDCT_US"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="neo4j://graph.individuals#12806640">
+    <n4sch:AtomId>A3717333</n4sch:AtomId>
+    <rdf:type rdf:resource="neo4j://graph.schema#Atom"/>
+    <n4sch:code>85956000</n4sch:code>
+    <n4sch:ts>P</n4sch:ts>
+    <n4sch:HAS_CUI rdf:resource="neo4j://graph.individuals#2455918"/>
+    <n4sch:isPref>Y</n4sch:isPref>
+    <n4sch:stt>VCW</n4sch:stt>
+    <n4sch:tty>SY</n4sch:tty>
+    <n4sch:vocab>SNOMEDCT_US</n4sch:vocab>
+    <n4sch:name>Squamous cell carcinoma, acantholytic</n4sch:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="neo4j://graph.individuals#40">
+    <rdf:type rdf:resource="neo4j://graph.schema#SemanticType"/>
+    <n4sch:stn>B2.2.1.2.1</n4sch:stn>
+    <n4sch:SemanticTypeId>T047</n4sch:SemanticTypeId>
+    <n4sch:sty>Disease or Syndrome</n4sch:sty>
+  </rdf:Description>
+  <rdf:Description rdf:about="neo4j://graph.individuals#2455918">
+    <rdf:type rdf:resource="neo4j://graph.schema#Concept"/>
+    <n4sch:HAS_STY rdf:resource="neo4j://graph.individuals#117"/>
+    <n4sch:ConceptId>C0334250</n4sch:ConceptId>
+  </rdf:Description>
+</rdf:RDF>

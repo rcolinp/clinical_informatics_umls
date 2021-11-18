@@ -1,0 +1,84 @@
+@prefix n4ind: <neo4j://graph.individuals#> .
+@prefix n4sch: <neo4j://graph.schema#> .
+
+n4ind:1118367 a n4sch:Atom ;
+    n4sch:AtomID "A7589480" ;
+    n4sch:CHILD_OF n4ind:1112747 ;
+    n4sch:code "C1909" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Pharmacologic Substance" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:1057473 n4sch:CHILD_OF n4ind:972805 .
+
+n4ind:1112747 n4sch:CHILD_OF n4ind:1057473,
+        n4ind:1162370,
+        n4ind:989375 .
+
+n4ind:1162364 n4sch:CHILD_OF n4ind:989381 .
+
+n4ind:1162370 n4sch:CHILD_OF n4ind:972795,
+        n4ind:972812 .
+
+n4ind:972795 a n4sch:Atom ;
+    n4sch:AtomID "A17685440" ;
+    n4sch:code "C81453" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Piperidolate Hydrochloride" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:972799 a n4sch:Atom ;
+    n4sch:AtomID "A12811696" ;
+    n4sch:code "C66133" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Metoprolol Fumarate" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:972800 a n4sch:Atom ;
+    n4sch:AtomID "A16763674" ;
+    n4sch:code "C76117" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Bamethan Sulfate" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:972805 a n4sch:Atom ;
+    n4sch:AtomID "A20257552" ;
+    n4sch:code "C95837" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Zuclopenthixol Hydrochloride" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "S" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:972812 a n4sch:Atom ;
+    n4sch:AtomID "A17688354" ;
+    n4sch:code "C81456" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Lachesine Chloride" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:989375 n4sch:CHILD_OF n4ind:1162364,
+        n4ind:989385 .
+
+n4ind:989380 n4sch:CHILD_OF n4ind:972800 .
+
+n4ind:989381 n4sch:CHILD_OF n4ind:972799 .
+
+n4ind:989385 n4sch:CHILD_OF n4ind:989380 .
+
