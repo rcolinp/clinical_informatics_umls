@@ -22,7 +22,23 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 - The source vocabulary concept unique identifier (`UMLS.MRCONSO.CODE` - `SourceCode`)
   - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `GO`, `RXNORM`, `ATC`, etc...
 
-- The entire UMLS semantic network has been integrated into the graph via directed relationships to and from concepts within UMLS's semantic network. The semantic network being the semantic relations across UMLS's semantic types (`UMLS.MRSTY.STY`).
+- The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
+
+      - The semantic network is then related to the actual "concepts" contained in UMLS via the directed relationship `HAS_STY`. Refer to the following cypher code snippet provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
+      - 
+
+```Cypher
+// ConceptID = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
+// We can see Olaparib is a Pharmacologic Substance & Organic Chemical. 
+// Furthermore, we can leverage UMLS's semantic network (context -> ISA relationship) to visualize path to the root SemanticType of interest.
+MATCH path = (concept:Concept)-[:HAS_STY]->(semanticType:SemanticType)-[:ISA*]->(semanticTypeParent:SemanticType) 
+WHERE concept.ConceptID = "C2316164" // ConceptID for the drug "olaparib"
+RETURN path
+```
+
+![UMLS® Semantic Network Relation to UMLS Concepts](images/semantic_network_olaparib.png)
+
+- Here is a related example to the above, but exclusive to only the semantic network --> no concepts.
   
 - Below is a snippet (cypher query) and its associated output visualization demonstrating the utility of the UMLS's semantic network.
   - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf` or `root` `SemanticType` -> `Entity`. Check out following cypher query:
