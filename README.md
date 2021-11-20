@@ -24,8 +24,7 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 
 - The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
 
-      - The semantic network is then related to the actual "concepts" contained in UMLS via the directed relationship `HAS_STY`. Refer to the following cypher code snippet provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
-      - 
+      - The semantic network is then related to the actual "concepts" contained in UMLS via the directed relationship `HAS_STY`. Refer to the following cypher code snippet provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph. 
 
 ```Cypher
 // ConceptID = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
@@ -42,8 +41,12 @@ RETURN path
   
 - Below is a snippet (cypher query) and its associated output visualization demonstrating the utility of the UMLS's semantic network.
   - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf` or `root` `SemanticType` -> `Entity`. Check out following cypher query:
-  - `MATCH path = (to:SemanticType {sty: "Entity"})<-[:ISA*]-(from:SemanticType {sty: "Amino Acid, Peptide, or Protein"}) RETURN path`
-    - Distinct from the `ISA` relationships that exist between concepts, within UMLS the same semantic relationships exist between the concepts semantic definitions/meanings as well.
+  
+```Cypher
+MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
+WHERE to.sty = "Entity" AND from.sty = "Amino Acid, Peptide, or Protein" 
+RETURN path
+```
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
