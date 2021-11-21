@@ -63,8 +63,7 @@ def extract_nodes_edges():
     # **************************************************************
     # GRAPH LABELS:
     # LABELS = ["SemanticType", "SourceCode", "Atom", "Concept",
-    #           "ATC", "CVX", "GO", "ICD9CM", "ICD10CM", "HCPCS",
-    #           "MED-RT", "MVX", "NCI", "RXNORM", "SNOMEDCT_US"]
+    #           "ATC", "ICD9CM", "ICD10CM", "NCI", "RXNORM", "SNOMEDCT_US"]
     # **************************************************************
 
     # Label: SemanticType
@@ -79,7 +78,7 @@ def extract_nodes_edges():
     WHERE MRCONSO.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND MRCONSO.SUPPRESS = 'N'
         AND MRCONSO.LAT = 'ENG';
-    """
+        """
 
     semanticTypeNode = pd.read_sql_query(
         semantic_node, conn).drop_duplicates().replace(np.nan, "")
@@ -158,6 +157,7 @@ def extract_nodes_edges():
         AND SUPPRESS = 'N'
         AND LAT = 'ENG';
         """
+
     codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
         np.nan, '')
     codeNode.columns = ['SourceCodeID:ID', 'vocab', 'code', ':LABEL']
@@ -178,7 +178,7 @@ def extract_nodes_edges():
     WHERE MRCONSO.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND MRCONSO.SUPPRESS = 'N'
         AND MRCONSO.LAT = 'ENG';
-    """
+        """
 
     has_sty_rel = pd.read_sql_query(
         has_sty, conn).drop_duplicates().replace(np.nan, '')
@@ -250,7 +250,7 @@ def extract_nodes_edges():
     WHERE s2.UI != s3.UI
         AND s2.RT = 'STY'
         AND s3.RT = 'STY'
-        AND s.RL = 'ISA'
+        AND s.RL = 'ISA';
         """
 
     tui_tui_rel_df = pd.read_sql_query(
@@ -295,10 +295,10 @@ def extract_nodes_edges():
             JOIN MRREL r ON c.AUI = r.AUI1
             JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
     WHERE c.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-    AND c2.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-    AND c.SUPPRESS = 'N'
-    AND c2.SUPPRESS = 'N';
-    """
+        AND c2.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+        AND c.SUPPRESS = 'N'
+        AND c2.SUPPRESS = 'N';
+        """
     concept_concept_rel = pd.read_sql_query(q, conn)
     concept_concept_rel.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
 
