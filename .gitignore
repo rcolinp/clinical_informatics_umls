@@ -45,7 +45,8 @@ parquet_to_csv.py
 venv/
 
 New Folder With Items/
-
+edges_part2.py
+cuiNode.py
 
 # Installer logs
 pip-log.txt
