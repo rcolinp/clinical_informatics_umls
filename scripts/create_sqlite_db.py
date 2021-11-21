@@ -33,9 +33,6 @@ SRSTRE2_TABLE_FILE = None
 SRSTR_TABLE_FILE = None
 MRSAB_TABLE_FILE = None
 MRSTY_TABLE_FILE = None
-# MRMAP_TABLE_FILE = None
-# MRSMAP_TABLE_FILE = None
-# MRSAT_TABLE_FILE = None
 # this ensure files are closed properly and umls_py.db is removed if not successful
 
 
