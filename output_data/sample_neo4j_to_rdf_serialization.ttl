@@ -1,180 +1,279 @@
+@prefix n4ind: <neo4j://graph.individuals#> .
 @prefix n4sch: <neo4j://graph.schema#> .
-@prefix ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ncit:C11781 a n4sch:Class ;
-    ncit:P107 "RAS Peptide Cancer Vaccine/Sargramostim" ;
-    n4sch:NHC0 "C11781" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "RAS Peptide Cancer Vaccine/Sargramostim" ;
-    n4sch:P207 "C0879276" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "RAS-Peptide-Cancer-Vaccine_Sargramostim" ;
-    n4sch:P90 "RAS Peptide Cancer Vaccine/Sargramostim" ;
-    n4sch:subClassOf <bnode://node1fkmjeuokx1205> .
+n4ind:911472 a n4sch:Atom ;
+    n4sch:AtomID "A7589480" ;
+    n4sch:CHILD_OF n4ind:1082099,
+        n4ind:745063,
+        n4ind:745184,
+        n4ind:749278,
+        n4ind:749292,
+        n4ind:872954,
+        n4ind:886012,
+        n4ind:936909,
+        n4ind:936910 ;
+    n4sch:code "C1909" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Pharmacologic Substance" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C11791 a n4sch:Class ;
-    ncit:P107 "Cisplatin/Fluorouracil/Irinotecan" ;
-    n4sch:NHC0 "C11791" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "Cisplatin/Fluorouracil/Irinotecan" ;
-    n4sch:P207 "C0879498" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Cisplatin_Fluorouracil_Irinotecan" ;
-    n4sch:P90 "Cisplatin/Fluorouracil/Irinotecan" ;
-    n4sch:subClassOf ncit:C61063 .
+n4ind:1039017 n4sch:CHILD_OF n4ind:725979,
+        n4ind:938240 .
 
-ncit:C12024 a n4sch:Class ;
-    ncit:P107 "Cisplatin/Docetaxel/Trastuzumab" ;
-    n4sch:NHC0 "C12024" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "Cisplatin/Docetaxel/Trastuzumab" ;
-    n4sch:P207 "C0935899" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Cisplatin_Docetaxel_Trastuzumab" ;
-    n4sch:P90 "Cisplatin/Docetaxel/Trastuzumab" ;
-    n4sch:subClassOf <bnode://node1fkmjeuokx1848> .
+n4ind:1082099 n4sch:CHILD_OF n4ind:1039017,
+        n4ind:765239 .
 
-ncit:C12146 a n4sch:Class ;
-    ncit:P107 "Cytarabine/Etoposide/Rituximab" ;
-    n4sch:NHC0 "C12146" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "Cytarabine/Etoposide/Rituximab" ;
-    n4sch:P207 "C1134598" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Cytarabine_Etoposide_Rituximab" ;
-    n4sch:P90 "Cytarabine/Etoposide/Rituximab" ;
-    n4sch:subClassOf <bnode://node1fkmjeuokx2214> .
+n4ind:1095153 n4sch:CHILD_OF n4ind:725973 .
 
-ncit:C12159 a n4sch:Class ;
-    ncit:P107 "Dexamethasone/Thalidomide" ;
-    n4sch:NHC0 "C12159" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "Dexamethasone/Thalidomide" ;
-    n4sch:P207 "C1134614" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Dexamethasone_Thalidomide" ;
-    n4sch:P90 "Dexamethasone/Thalidomide" ;
-    n4sch:subClassOf <bnode://node1fkmjeuokx2246> .
+n4ind:1141687 n4sch:CHILD_OF n4ind:726043 .
 
-ncit:C12207 a n4sch:Class ;
-    ncit:P107 "Carboplatin/Etoposide/Exisulind" ;
-    n4sch:NHC0 "C12207" ;
-    n4sch:P106 "Therapeutic or Preventive Procedure" ;
-    n4sch:P108 "Carboplatin/Etoposide/Exisulind" ;
-    n4sch:P207 "C1134701" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Carboplatin_Etoposide_Exisulind" ;
-    n4sch:P90 "Carboplatin/Etoposide/Exisulind" ;
-    n4sch:subClassOf <bnode://node1fkmjeuokx2395> .
+n4ind:702045 a n4sch:Atom ;
+    n4sch:AtomID "A7641888" ;
+    n4sch:code "C1546" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Cryptophycin" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C146280 a n4sch:Class ;
-    ncit:P107 "Grade 5 Duodenal Fistula, CTCAE" ;
-    n4sch:NHC0 "C146280" ;
-    n4sch:P106 "Finding" ;
-    n4sch:P108 "Grade 5 Duodenal Fistula, CTCAE" ;
-    n4sch:P200 "C143413" ;
-    n4sch:P310 "Retired_Concept" ;
-    n4sch:P90 "Grade 5 Duodenal Fistula, CTCAE" ;
-    n4sch:P98 "Wed Jan 31 09:52:14 EST 2018 - Retired on: 2018-01-31" ;
-    n4sch:deprecated true ;
-    n4sch:subClassOf ncit:C157491 .
+n4ind:702047 a n4sch:Atom ;
+    n4sch:AtomID "A12815071" ;
+    n4sch:code "C62478" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "KLH-FITC" ;
+    n4sch:stt "VW" ;
+    n4sch:ts "S" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C21971 a n4sch:Class ;
-    ncit:P107 "Mouse Ganglioglioma" ;
-    n4sch:NHC0 "C21971" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Ganglioglioma" ;
-    n4sch:P108 "Mouse Ganglioglioma" ;
-    n4sch:P207 "C1521924" ;
-    n4sch:P366 "Mouse_Ganglioglioma" ;
-    n4sch:P90 "Mouse Ganglioglioma" ;
-    n4sch:P92 "MMHCC Pathology Committee" ;
-    n4sch:P98 "(CTRM_Note) ICD:9505/1" ;
-    n4sch:subClassOf ncit:C21966 .
+n4ind:702105 a n4sch:Atom ;
+    n4sch:AtomID "A7641550" ;
+    n4sch:code "C1547" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Compound 32" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "S" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C22974 a n4sch:Class ;
-    ncit:P107 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
-    n4sch:NHC0 "C22974" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Mesenchymal Chondrosarcoma of the Skeletal System" ;
-    n4sch:P108 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
-    n4sch:P207 "C1513144" ;
-    n4sch:P366 "Mesenchymal_Chondrosarcoma_of_the_Mouse_Skeletal_System" ;
-    n4sch:P90 "Mesenchymal Chondrosarcoma of the Mouse Skeletal System" ;
-    n4sch:subClassOf ncit:C24018 .
+n4ind:702131 a n4sch:Atom ;
+    n4sch:AtomID "A12802646" ;
+    n4sch:code "C65692" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Flezelastine" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C23054 a n4sch:Class ;
-    ncit:P107 "Leiomyoma of the Mouse Oral Cavity" ;
-    n4sch:NHC0 "C23054" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Leiomyoma of the Oral Cavity" ;
-    n4sch:P108 "Leiomyoma of the Mouse Oral Cavity" ;
-    n4sch:P207 "C1517760" ;
-    n4sch:P366 "Leiomyoma_of_the_Mouse_Oral_Cavity" ;
-    n4sch:P90 "Leiomyoma of the Mouse Oral Cavity" ;
-    n4sch:subClassOf ncit:C21621 .
+n4ind:711441 a n4sch:Atom ;
+    n4sch:AtomID "A29762046" ;
+    n4sch:code "C152130" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Quinterenol" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-<bnode://node1fkmjeuokx1205> a n4sch:Restriction .
+n4ind:725791 a n4sch:Atom ;
+    n4sch:AtomID "A7665221" ;
+    n4sch:code "C2341" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Tumor Cell Derivative Vaccine" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-<bnode://node1fkmjeuokx1848> a n4sch:Restriction .
+n4ind:725869 a n4sch:Atom ;
+    n4sch:AtomID "A7660747" ;
+    n4sch:code "C2342" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Recombinant Soluble Human CD4 Protein" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-<bnode://node1fkmjeuokx2214> a n4sch:Restriction .
+n4ind:725973 a n4sch:Atom ;
+    n4sch:AtomID "A7642937" ;
+    n4sch:code "C2707" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "DHEA Mustard" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-<bnode://node1fkmjeuokx2246> a n4sch:Restriction .
+n4ind:725978 a n4sch:Atom ;
+    n4sch:AtomID "A7666143" ;
+    n4sch:code "C1552" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Vasopressin Tannate in Oil" ;
+    n4sch:stt "VC" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-<bnode://node1fkmjeuokx2395> a n4sch:Restriction .
+n4ind:725979 a n4sch:Atom ;
+    n4sch:AtomID "A7669192" ;
+    n4sch:code "C2348" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Pituitary Agent" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C157491 a n4sch:Class ;
-    ncit:P107 "Retired Concept 2018" ;
-    n4sch:NHC0 "C157491" ;
-    n4sch:P106 "Conceptual Entity" ;
-    n4sch:P108 "Retired Concept 2018" ;
-    n4sch:P200 "C28428" ;
-    n4sch:P310 "Retired_Concept" ;
-    n4sch:P90 "Retired Concept 2018" ;
-    n4sch:P98 "Tue Feb 05 12:21:20 EST 2019 - Retired on: 2019-02-05" ;
-    n4sch:deprecated true .
+n4ind:726071 a n4sch:Atom ;
+    n4sch:AtomID "A7657571" ;
+    n4sch:code "C2350" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Ovine Submaxillary Mucin" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C21621 a n4sch:Class ;
-    ncit:P107 "Mouse Leiomyoma" ;
-    n4sch:NHC0 "C21621" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Leiomyoma" ;
-    n4sch:P108 "Mouse Leiomyoma" ;
-    n4sch:P207 "C1521717" ;
-    n4sch:P366 "Mouse_Leiomyoma" ;
-    n4sch:P90 "Mouse Leiomyoma" .
+n4ind:726162 a n4sch:Atom ;
+    n4sch:AtomID "A7649317" ;
+    n4sch:code "C2351" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Hyperbaric Oxygen" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C21966 a n4sch:Class ;
-    ncit:P107 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
-    n4sch:NHC0 "C21966" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Neuronal and Mixed Neuronal-glial Tumours" ;
-    n4sch:P108 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
-    n4sch:P207 "C1521921" ;
-    n4sch:P366 "Mouse_Neuronal_and_Mixed_Neuronal-glial_Tumours" ;
-    n4sch:P90 "Mouse Neuronal and Mixed Neuronal-glial Tumours" ;
-    n4sch:P92 "MMHCC Pathology Committee" .
+n4ind:728533 a n4sch:Atom ;
+    n4sch:AtomID "A7664519" ;
+    n4sch:code "C2355" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Anti-Adrenal" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C24018 a n4sch:Class ;
-    ncit:P107 "Mouse Chondrosarcoma" ;
-    n4sch:NHC0 "C24018" ;
-    n4sch:P106 "Neoplastic Process" ;
-    n4sch:P107 "Chondrosarcoma" ;
-    n4sch:P108 "Mouse Chondrosarcoma" ;
-    n4sch:P207 "C1522081" ;
-    n4sch:P322 "Cellosaurus" ;
-    n4sch:P366 "Mouse_Chondrosarcoma" ;
-    n4sch:P90 "Mouse Chondrosarcoma" .
+n4ind:731848 a n4sch:Atom ;
+    n4sch:AtomID "A7662816" ;
+    n4sch:code "C2356" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Analgesic and Antipyretic" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
 
-ncit:C61063 a n4sch:Class ;
-    ncit:P107 "Agent Combination Not Indexed in Open Clinical Trials" ;
-    n4sch:NHC0 "C61063" ;
-    n4sch:P106 "Classification" ;
-    n4sch:P108 "Agent Combination Not Indexed in Open Clinical Trials" ;
-    n4sch:P207 "C1882104" ;
-    n4sch:P310 "Obsolete_Concept" ;
-    n4sch:P366 "Non-Current_Chemotherapy_Regimen_or_Association" ;
-    n4sch:P90 "Agent Combination Not Indexed in Open Clinical Trials" .
+n4ind:731858 a n4sch:Atom ;
+    n4sch:AtomID "A7649390" ;
+    n4sch:code "C2357" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "I 131 Antiferritin Immunoglobulin" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:731862 a n4sch:Atom ;
+    n4sch:AtomID "A7654531" ;
+    n4sch:code "C2358" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Monoclonal Antibody T101" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:744790 n4sch:CHILD_OF n4ind:905332 .
+
+n4ind:745063 n4sch:CHILD_OF n4ind:745217 .
+
+n4ind:745168 n4sch:CHILD_OF n4ind:861649 .
+
+n4ind:745184 n4sch:CHILD_OF n4ind:1141691,
+        n4ind:745168,
+        n4ind:746045,
+        n4ind:782241,
+        n4ind:789065 .
+
+n4ind:745217 n4sch:CHILD_OF n4ind:725869 .
+
+n4ind:746045 n4sch:CHILD_OF n4ind:843200 .
+
+n4ind:746065 n4sch:CHILD_OF n4ind:750825 .
+
+n4ind:749278 n4sch:CHILD_OF n4ind:1141691,
+        n4ind:745099,
+        n4ind:801127,
+        n4ind:905386 .
+
+n4ind:749292 n4sch:CHILD_OF n4ind:726071,
+        n4ind:745099,
+        n4ind:765107,
+        n4ind:801127,
+        n4ind:905386 .
+
+n4ind:750825 n4sch:CHILD_OF n4ind:711441 .
+
+n4ind:765107 n4sch:CHILD_OF n4ind:702131 .
+
+n4ind:765239 n4sch:CHILD_OF n4ind:728533 .
+
+n4ind:789065 n4sch:CHILD_OF n4ind:726162 .
+
+n4ind:822173 n4sch:CHILD_OF n4ind:915075 .
+
+n4ind:843200 n4sch:CHILD_OF n4ind:1095153 .
+
+n4ind:845502 n4sch:CHILD_OF n4ind:905384 .
+
+n4ind:861649 n4sch:CHILD_OF n4ind:915719 .
+
+n4ind:872954 n4sch:CHILD_OF n4ind:845502 .
+
+n4ind:878887 n4sch:CHILD_OF n4ind:702047 .
+
+n4ind:886012 n4sch:CHILD_OF n4ind:822173 .
+
+n4ind:905332 n4sch:CHILD_OF n4ind:731848 .
+
+n4ind:915075 n4sch:CHILD_OF n4ind:702105 .
+
+n4ind:915719 n4sch:CHILD_OF n4ind:702045 .
+
+n4ind:936909 n4sch:CHILD_OF n4ind:744790 .
+
+n4ind:936910 n4sch:CHILD_OF n4ind:746065 .
+
+n4ind:938240 n4sch:CHILD_OF n4ind:725978 .
+
+n4ind:1141691 n4sch:CHILD_OF n4ind:1141687 .
+
+n4ind:726043 a n4sch:Atom ;
+    n4sch:AtomID "A7654527" ;
+    n4sch:code "C2349" ;
+    n4sch:ispref "Y" ;
+    n4sch:name "Monoclonal Antibody R24" ;
+    n4sch:stt "PF" ;
+    n4sch:ts "P" ;
+    n4sch:tty "PT" ;
+    n4sch:vocab "NCI" .
+
+n4ind:745099 n4sch:CHILD_OF n4ind:726043,
+        n4ind:731862 .
+
+n4ind:782241 n4sch:CHILD_OF n4ind:725791 .
+
+n4ind:801127 n4sch:CHILD_OF n4ind:782241,
+        n4ind:878887 .
+
+n4ind:905384 n4sch:CHILD_OF n4ind:731858 .
+
+n4ind:905386 n4sch:CHILD_OF n4ind:905384 .
 

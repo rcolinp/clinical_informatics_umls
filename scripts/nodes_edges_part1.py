@@ -52,7 +52,7 @@ def extract_nodes_edges():
 
     """
     # Establish database connection using local SQLite
-    db_name = "umls_py.db" 
+    db_name = "umls_py.db"
     db_dir = "../sqlite/"
     conn = sqlite3.connect(os.path.join(db_dir, db_name))
 
@@ -63,8 +63,7 @@ def extract_nodes_edges():
     # **************************************************************
     # GRAPH LABELS:
     # LABELS = ["SemanticType", "SourceCode", "Atom", "Concept",
-    #           "ATC", "CVX", "GO", "ICD9CM", "ICD10CM", "HCPCS", 
-    #           "MED-RT", "MVX", "NCI", "RXNORM", "SNOMEDCT_US"]
+    #           "ATC", "ICD9CM", "ICD10CM", "NCI", "RXNORM", "SNOMEDCT_US"]
     # **************************************************************
 
     # Label: SemanticType
@@ -72,17 +71,21 @@ def extract_nodes_edges():
     semantic_node = """
     SELECT DISTINCT TUI
                   , STY
-                  , STN  
+                  , STN
                   , 'SemanticType'  as ":LABEL"
-    FROM MRSTY;
-    """
+    FROM MRSTY
+            JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
+    WHERE MRCONSO.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+        AND MRCONSO.SUPPRESS = 'N'
+        AND MRCONSO.LAT = 'ENG';
+        """
 
     semanticTypeNode = pd.read_sql_query(
         semantic_node, conn).drop_duplicates().replace(np.nan, "")
 
     semanticTypeNode.columns = ["SemanticTypeID:ID", "sty", "stn", ":LABEL"]
 
-    semanticTypeNode.to_csv(path_or_buf="../import/semanticTypeNode.csv",
+    semanticTypeNode.to_csv(path_or_buf="../../../../import/semanticTypeNode.csv",
                             header=True,
                             index=False)
     print("semanticTypeNode.csv successfully written out...")
@@ -95,8 +98,7 @@ def extract_nodes_edges():
                   , STR
                   , 'Concept' AS ":LABEL"
     FROM MRCONSO
-    WHERE SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                  'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG'
         AND ISPREF = 'Y'
@@ -109,7 +111,7 @@ def extract_nodes_edges():
 
     conceptNode.columns = ["ConceptID:ID", "name", ":LABEL"]
 
-    conceptNode.to_csv(path_or_buf="../import/conceptNode.csv",
+    conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                        header=True,
                        index=False)
     print("conceptNode.csv successfully written out...")
@@ -127,8 +129,7 @@ def extract_nodes_edges():
                   , c.STT
                   , 'Atom' AS ":LABEL"
     FROM MRCONSO c
-    WHERE c.SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                    'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE c.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND c.SUPPRESS = 'N'
         AND c.LAT = 'ENG';
         """
@@ -139,7 +140,7 @@ def extract_nodes_edges():
     atomNode.columns = ["AtomID:ID", "name", "vocab", "code",
                         "tty", "ispref", "ts", "stt", ":LABEL"]
 
-    atomNode.to_csv(path_or_buf="../import/atomNode.csv",
+    atomNode.to_csv(path_or_buf="../../../../import/atomNode.csv",
                     header=True,
                     index=False)
     print("atomNode.csv successfully written out...")
@@ -152,15 +153,15 @@ def extract_nodes_edges():
                    , MRCONSO.CODE
                    , ('SourceCode' || ';' || MRCONSO.SAB)       AS ":LABEL"
     FROM MRCONSO
-    WHERE SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                  'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG';
         """
+
     codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
         np.nan, '')
     codeNode.columns = ['SourceCodeID:ID', 'vocab', 'code', ':LABEL']
-    codeNode.to_csv(path_or_buf="../import/codeNode.csv",
+    codeNode.to_csv(path_or_buf="../../../../import/codeNode.csv",
                     header=True,
                     index=False)
     print("codeNode.csv successfully written out...")
@@ -169,21 +170,25 @@ def extract_nodes_edges():
     # **************************************************************
     # has_sty.csv
     has_sty = """
-    SELECT DISTINCT CUI
-                  , TUI
-                  , 'HAS_STY' AS ":TYPE" 
-    FROM MRSTY;
-    """
+    SELECT DISTINCT MRCONSO.CUI
+                  , MRSTY.TUI
+                  , 'HAS_STY' AS ":TYPE"
+    FROM MRSTY
+            JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
+    WHERE MRCONSO.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+        AND MRCONSO.SUPPRESS = 'N'
+        AND MRCONSO.LAT = 'ENG';
+        """
 
     has_sty_rel = pd.read_sql_query(
         has_sty, conn).drop_duplicates().replace(np.nan, '')
 
     has_sty_rel.columns = [':START_ID', ':END_ID', ':TYPE']
 
-    has_sty_rel.to_csv(path_or_buf="../import/has_sty_rel.csv",
+    has_sty_rel.to_csv(path_or_buf="../../../../import/has_sty_rel.csv",
                        header=True,
                        index=False)
-    print("has_sty.csv successfully written out...")
+    print("has_sty_rel.csv successfully written out...")
     # **************************************************************
     # import: has_aui_rel.csv
     has_umls_aui = """
@@ -191,8 +196,7 @@ def extract_nodes_edges():
                   , AUI                  AS ":END_ID"
                   , 'HAS_AUI'            AS ":TYPE"
     FROM MRCONSO
-    WHERE SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                  'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG';
         """
@@ -200,12 +204,12 @@ def extract_nodes_edges():
     has_aui_rel = pd.read_sql_query(
         has_umls_aui, conn).drop_duplicates().replace(np.nan, "")
 
-    has_aui_rel.to_csv(path_or_buf="../import/has_aui_rel.csv",
+    has_aui_rel.to_csv(path_or_buf="../../../../import/has_aui_rel.csv",
                        header=True,
                        index=False)
-    print("has_umls_aui.csv successfully written out...")
+    print("has_aui_rel.csv successfully written out...")
     # **************************************************************
-    # has_string.csv
+    # has_cui_rel.csv
     # Each umls_aui within UMLS maps to a single umls_cui (umls_aui is primary key in UMLS.MRCONSO)
     # Each row of UMLS.MRCONSO represents each UMLS Atom (AUI) -> 1 Atom (AUI) can only map to a single UMLS Concept (CUI).
     # Furthermore, each UMLS Concept (CUI) is not limited to mapping to >=1 UMLS Atom (AUI)
@@ -218,10 +222,9 @@ def extract_nodes_edges():
     has_concept = """
     SELECT DISTINCT AUI
                   , CUI
-                  , 'HAS_CUI' AS ":TYPE" 
-    FROM MRCONSO 
-    WHERE SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                  'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                  , 'HAS_CUI' AS ":TYPE"
+    FROM MRCONSO
+    WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG';
         """
@@ -229,12 +232,14 @@ def extract_nodes_edges():
         has_concept, conn).drop_duplicates().replace(np.nan, '')
     has_cui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
-    has_cui_rel.to_csv(path_or_buf="../import/has_cui_rel.csv",
+    has_cui_rel.to_csv(path_or_buf="../../../../import/has_cui_rel.csv",
                        header=True,
                        index=False)
     print("has_cui_rel.csv successfully written out...")
+
     # **************************************************************
     # import: tui_tui_rel.csv
+    # Limit to SRSTR.RL = 'ISA' -> most useful part of semantic network
     tui_tui = """
     SELECT DISTINCT s2.UI
                   , s3.UI
@@ -242,10 +247,10 @@ def extract_nodes_edges():
     FROM SRSTR s
             INNER JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
             INNER JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
-    WHERE s2.UI IS NOT NULL
-        AND s2.UI != s3.UI
+    WHERE s2.UI != s3.UI
         AND s2.RT = 'STY'
         AND s3.RT = 'STY'
+        AND s.RL = 'ISA';
         """
 
     tui_tui_rel_df = pd.read_sql_query(
@@ -256,11 +261,11 @@ def extract_nodes_edges():
     ).replace(np.nan, '')
     tui_tui_rel[':TYPE'] = tui_tui_rel[':TYPE'].str.upper()
 
-    tui_tui_rel.to_csv(path_or_buf="../import/tui_tui_rel.csv",
+    tui_tui_rel.to_csv(path_or_buf="../../../../import/tui_tui_rel.csv",
                        header=True,
                        index=False)
     print("tui_tui_rel.csv successfully written out...")
-    # **************************************************************
+    # # **************************************************************
     # import: concept_concept_rel.csv
 
     # We will filter out REL = 'SIB' as the relationship in UMLS does not provide much utility & will increase size of graph considerably
@@ -272,8 +277,7 @@ def extract_nodes_edges():
     WITH q AS (
         SELECT DISTINCT SAB
         FROM MRCONSO
-        WHERE SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                      'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+        WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
             AND SUPPRESS = 'N'
             AND LAT = 'ENG')
     SELECT DISTINCT r.CUI2
@@ -285,27 +289,27 @@ def extract_nodes_edges():
                   , r.SAB               AS "vocab"
     FROM MRREL r
             INNER JOIN q ON r.SAB = q.SAB
-    WHERE r.SUPPRESS = 'N'
-        AND r.REL NOT IN ('SIB', 'SY');
+    WHERE r.SUPPRESS = 'N';
     """
-
-    concept_concept_rel_df = pd.read_sql_query(concept_concept, conn)
-
-    concept_concept_rel_df.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
+    concept_concept_rel = pd.read_sql_query(concept_concept, conn)
+    concept_concept_rel.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
 
     # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
-    concept_concept_rel = concept_concept_rel_df[concept_concept_rel_df[':START_ID'] !=
-                                                 concept_concept_rel_df[':END_ID']].drop_duplicates().replace(np.nan, "")
+    concept_concept_rel = concept_concept_rel[(
+        concept_concept_rel[':START_ID'] != concept_concept_rel[':END_ID']
+    ) & (
+        concept_concept_rel[':TYPE'] != 'SIB'
+    )].drop_duplicates().replace(np.nan, "")
 
     concept_concept_rel[":TYPE"] = concept_concept_rel[":TYPE"].str.upper()
     concept_concept_rel[':TYPE'] = concept_concept_rel[':TYPE'].str.replace(
         '-', '_')
 
-    concept_concept_rel.to_csv(path_or_buf="../import/concept_concept_rel.csv",
+    concept_concept_rel.to_csv(path_or_buf="../../../../import/concept_concept_rel.csv",
                                header=True,
                                index=False)
     print("concept_concept_rel.csv successfully written out...")
-    # **************************************************************
+    # # **************************************************************
     # import: child_of_rel.csv -> alternative option to running edges_part2.py
     child_of = """
     SELECT DISTINCT h.PAUI     AS PAUI
@@ -314,8 +318,7 @@ def extract_nodes_edges():
     FROM MRHIER h
             JOIN MRCONSO c ON h.AUI = c.AUI
             JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-    WHERE h.SAB IN ('ATC', 'CVX', 'GO', 'ICD9CM', 'ICD10CM', 'HCPCS', 
-                    'MED-RT', 'MVX', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE h.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND c.SUPPRESS = 'N'
         AND c2.SUPPRESS = 'N'
         AND c.LAT = 'ENG'
@@ -331,17 +334,23 @@ def extract_nodes_edges():
     child_of_rel = child_of_rel[child_of_rel[':START_ID'] !=
                                 child_of_rel[':END_ID']].drop_duplicates().replace(np.nan, "")
 
-    child_of_rel.to_csv(path_or_buf="../import/child_of_rel.csv",
+    child_of_rel.to_csv(path_or_buf="../../../../import/child_of_rel.csv",
                         header=True,
                         index=False)
     print("child_of_rel.csv successfully written out...")
-
     # **************************************************************
-extract_nodes_edges()
+
+if __name__ == '__main__':
+    extract_nodes_edges()
 
 ################################################################
 # NOTE: Do not include both output of `edges_part2.py` and the last output .csv via this .py. Both are redundant but one or other should be included.
 ################################################################
+
+
+################################################################
+# Outdated nodes/edges left here for reference
+#################################################################
 
 # # **************************************************************
 # # Label: StringForm
@@ -478,3 +487,30 @@ extract_nodes_edges()
 #                            mode='a',
 #                            header=False,
 #                            index=False)
+# # **************************************************************
+# q = """
+# SELECT DISTINCT CASE
+#                     WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI2
+#                     WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI2
+#                     WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c2.SAB || '#' || c2.CODE)
+#                     WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c2.SAB || '#' || c2.SCUI)
+#                     ELSE r.CUI2 END AS ":START_ID"
+#             , CASE
+#                     WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI1
+#                     WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI1
+#                     WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c.SAB || '#' || c.CODE)
+#                     WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c.SAB || '#' || c.CODE)
+#                     ELSE r.CUI1 END AS ":END_ID"
+#             , CASE
+#                     WHEN r.RELA = ''
+#                         THEN r.REL
+#                     ELSE r.RELA END AS ":TYPE"
+#             , r.SAB               AS "vocab"
+# FROM MRCONSO c
+#         JOIN MRREL r ON c.AUI = r.AUI1
+#         JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
+# WHERE c.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#     AND c2.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#     AND c.SUPPRESS = 'N'
+#     AND c2.SUPPRESS = 'N';
+#     """

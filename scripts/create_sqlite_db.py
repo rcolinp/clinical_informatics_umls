@@ -2,8 +2,11 @@
 """
 Summary:
 --------
-Similar to ../sqlite/create_sqlite_db.sh...
-The following script 'create_sqlite_db.py' provides a means of creating a loaded sqlite3 database containing UMLS's 2021AB release.
+Script quickly creates a loaded sqlite3 database containing a UMLS 2021AB subset.
+
+This script is lightweight version of ../sqlite/create_sqlite_db.sh.
+Python script is quicker and creates a lightweight database. (create_sqlite_db.py) 
+Shell script needs refactoring as it creates a bloated database. (create_sqlite_db.sh)
 
 """
 
@@ -15,7 +18,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 from io import StringIO
 
-umls_tables = "/../UMLS/subset/2021AB/META/"
+umls_tables = "../UMLS/subset/2021AB/META/"
 success = False
 db_path = '../sqlite/umls_py.db'
 conn = None
@@ -30,14 +33,14 @@ SRSTRE2_TABLE_FILE = None
 SRSTR_TABLE_FILE = None
 MRSAB_TABLE_FILE = None
 MRSTY_TABLE_FILE = None
-MRSAT_TABLE_FILE = None
+# MRSAT_TABLE_FILE = None
 # this ensure files are closed properly and umls_py.db is removed if not successful
 
 
 def umls_db_cleanup():
     """"""
-    global success
     global conn
+    global success
     global db_path
 
     global MRCONSO_TABLE_FILE
@@ -50,7 +53,7 @@ def umls_db_cleanup():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
-    global MRSAT_TABLE_FILE
+    # global MRSAT_TABLE_FILE
 
     if conn is not None:
         conn.close()
@@ -84,9 +87,9 @@ def umls_db_cleanup():
 
     if MRSTY_TABLE_FILE is not None:
         MRSTY_TABLE_FILE.close()
-
-    if MRSAT_TABLE_FILE is not None:
-        MRSAT_TABLE_FILE.close()
+        
+    # if MRSAT_TABLE_FILE is not None:
+    #     MRSAT_TABLE_FILE.close()
 
     if success is False:
 
@@ -98,10 +101,15 @@ def umls_db_cleanup():
 
 
 def create_db():
-    """"""
+    """
+    Summary:
+    --------
+    Create a sqlite3 database using .RRF files generated via UMLS MetamorphoSys.
 
-    global success
+    """
+
     global conn
+    global success
     global db_path
 
     global MRCONSO_TABLE_FILE
@@ -114,7 +122,7 @@ def create_db():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
-    global MRSAT_TABLE_FILE
+    # global MRSAT_TABLE_FILE
 
     print("\ncreating umls_py.db")
     db_path = '../sqlite/umls_py.db'
@@ -122,8 +130,6 @@ def create_db():
     conn.text_factory = StringIO
 
     print("opening files")
-    # load data in UMLS RRF files.
-
     try:
         mrsty_path = os.path.join(umls_tables, 'MRSTY.RRF')
         MRSTY_TABLE_FILE = open(mrsty_path, "r")
@@ -194,12 +200,12 @@ def create_db():
         print("\nNo file to use for creating MRSAB table\n")
         sys.exit()
 
-    try:
-        mrsat_path = os.path.join(umls_tables, 'MRSAT.RRF')
-        MRSAT_TABLE_FILE = open(mrsat_path, "r")
-    except IOError:
-        print("\nNo file to use for creating MRSAT table\n")
-        sys.exit()
+    # try:
+    #     mrsat_path = os.path.join(umls_tables, 'MRSAT.RRF')
+    #     MRSAT_TABLE_FILE = open(mrsat_path, "r")
+    # except IOError:
+    #     print("\nNo file to use for creating MRSAT table\n")
+    #     sys.exit()
 
     print("Creating tables")
     c = conn.cursor()
@@ -208,18 +214,15 @@ def create_db():
     c.execute("CREATE TABLE MRSTY( CUI varchar, TUI varchar, STN varchar, STY text, ATUI varchar, CVF varchar  ) ;")
     c.execute("CREATE TABLE MRCONSO( CUI varchar, LAT varchar, TS varchar, LUI varchar, STT varchar, SUI varchar, ISPREF varchar, AUI varchar, SAUI varchar, SCUI varchar, SDUI varchar, SAB varchar, TTY varchar, CODE varchar, STR text, SRL varchar, SUPPRESS varchar, CVF varchar ) ;")
     c.execute("CREATE TABLE MRREL( CUI1 varchar, AUI1 varchar, STYPE1 varchar, REL varchar, CUI2 varchar, AUI2 varchar, STYPE2 varchar, RELA varchar, RUI varchar, SRUI varchar, SAB varchar, SL varchar, RG varchar, DIR varchar, SUPPRESS varchar, CVF varchar ) ;")
-    c.execute(
-        "CREATE TABLE MRHIER( CUI varchar, AUI varchar, CXN varchar, PAUI varchar, SAB varchar, RELA varchar, PTR varchar, HCD varchar, CVF varchar ) ;")
+    c.execute("CREATE TABLE MRHIER( CUI varchar, AUI varchar, CXN varchar, PAUI varchar, SAB varchar, RELA varchar, PTR varchar, HCD varchar, CVF varchar ) ;")
     c.execute(
         "CREATE TABLE MRRANK( MRRANK_RANK varchar, SAB varchar, TTY varchar, SUPPRESS varchar ) ;")
-    c.execute(
-        "CREATE TABLE SRDEF( RT varchar, UI varchar, STY_RL text, STN_RTN varchar, DEF varchar, EX varchar, UN varchar, NH varchar, ABR varchar, RIN varchar ) ;")
+    c.execute("CREATE TABLE SRDEF( RT varchar, UI varchar, STY_RL text, STN_RTN varchar, DEF varchar, EX varchar, UN varchar, NH varchar, ABR varchar, RIN varchar ) ;")
     c.execute(
         "CREATE TABLE SRSTR( STY_RL1 text, RL varchar, STY_RL2 text, LS varchar ) ;")
     c.execute("CREATE TABLE SRSTRE1( UI1 varchar, UI2 varchar, UI3 varchar ) ;")
     c.execute("CREATE TABLE SRSTRE2( STY1 text, RL varchar, STY2 text ) ;")
     c.execute("CREATE TABLE MRSAB( VCUI varchar, RCUI varchar, VSAB varchar, RSAB varchar, SON varchar, SF varchar, SVER varchar, VSTART varchar, VEND varchar, IMETA varchar, RMETA varchar, SLC varchar, SCC varchar, SRL varchar, TRF varchar, CFR varchar, CXTY varchar, TTYL varchar, ATNL varchar, LAT varchar, CENC varchar, CURVER varchar, SABIN varchar, SSN varchar, SCIT varchar ) ;")
-    c.execute("CREATE TABLE MRSAT( CUI varchar, LUI varchar, SUI varchar, METAUI varchar, STYPE varchar, CODE varchar, ATUI varchar, SATUI varchar, ATN varchar, SAB varchar, ATV varchar, SUPPRESS varchar, CVF varchar ) ;")
 
     print("Inserting data into MRSTY table")
     for line in MRSTY_TABLE_FILE:
@@ -326,19 +329,19 @@ def create_db():
         c.execute("""INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, 
             					  IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, 
                    				  LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
-                     VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                         VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
                          	?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""", tuple(line))
 
-    print("Inserting data into MRSAT table")
-    for line in MRSAT_TABLE_FILE:
-        line = line.strip('\n')
-        assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
-        line = line.split('|')
-        line.pop()
-        assert len(line) == 13
-        c.execute("""INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE, 
-                  						ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF ) 
-                     VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""", tuple(line))
+    # print("Inserting data into MRSAT table")
+    # for line in MRSAT_TABLE_FILE:
+    #     line = line.strip('\n')
+    #     assert line[-1] == '|', "str: {}, char: ".format(line, line[-1])
+    #     line = line.split('|')
+    #     line.pop()
+    #     assert len(line) == 13
+    #     c.execute("""INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE,
+    #               						ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
+    #                  VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""", tuple(line))
 
     # create indices for faster queries
     print("Creating indices")
@@ -349,7 +352,7 @@ def create_db():
     c.execute("CREATE INDEX X_mrrel_cui1 ON MRREL (CUI1);")
     c.execute("CREATE INDEX X_mrhier_aui ON MRHIER (AUI);")
     c.execute("CREATE INDEX X_mrhier_paui ON MRHIER (PAUI);")
-    c.execute("CREATE INDEX X_mrsat_cui ON MRSAT (CUI);")
+    # c.execute("CREATE INDEX X_mrsat_cui ON MRSAT (CUI);")
 
     # Commit changes to umls_py.db
     conn.commit()

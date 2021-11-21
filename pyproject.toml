@@ -23,6 +23,9 @@ requests = "^2.26.0"
 pysqlite3 = "^0.4.6"
 PyLD = "^2.0.3"
 rdflib = "^5.0.0"
+neographviz = "^0.4.6"
+neo4jupyter = "^0.2.0"
+igraph = "^0.9.8"
 
 [tool.poetry.dev-dependencies]
 pyproject-toml = "^0.0.11"

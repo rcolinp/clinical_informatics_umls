@@ -1,30 +1,43 @@
 # Clinical Informatics UMLS®
 
-**Repository Summary:**
+**Summary:**
 
-An exploratory, tutorial and analytical view of the Unified Medical Language System (UMLS) & the software/technologies provided via being a free UMLS license holder. This repo will subset 2021AB AND/OR 2021AA UMLS native release, introduce/build upon UMLS provided tools to load a configured subset into first a relational database (load scripts included for --> MySQL, MariaDB, SQLite & Postgres). Next the UMLS subset which is stored in a relational DB will be queried, modeled and lastly loaded into a defined Neo4j label property graph. Lastly, Neo4j database containing UMLS 2021AB AND/OR 2021AA subset in schema promoting intuitive analysis and rich visualization will become the central datastore for analysis. The datastore contains ~5 million distinct nodes & >40 million distinct relationships (edges). Currently, Neo4j is running via Docker but deployment options are NOT limited to Docker. If choosing to deploy via Neo4j Aura, server, Neo4j Desktop, VM etc... Please note and be aware of the specific volumes and environment variables specified within this repository (docker run). The ability for the loaded Neo4j Graph to interact with RDF data (i.e. import/export RDF data to and from Neo4j) may not be possible via all Neo4j deployment avenues (i.e. Neo4j Aura currently does not support RDF integration that is demonstrated in this repository).
+This repository will constitutes a multi-step ETL process with a strong analytical and data science component for a deep analytical dive into the Unified Medical Language System (UMLS). UMLS's native .RRF files generated via MetamorphoSys will first be loaded into a RDBMS-based datastore (SQLite, MySQL, PostgresSQL all covered in this repository).
 
-Note: All functionalities mentioned above currently exist, function & are here to share. Watch the repo for updates, as they will be made over time. Repository is under construction and IS NOT in its final form.
+Next, transformation from the RDBMS of choice to a Neo4j Label Property Graph. The target schema visual can be found in next section of README. If unfamiliar with Neo4j, check out all it has to offer -> [Neo4j](https://neo4j.com/).
 
-## Neo4j Schema Visualized
+The target schema visual can be found in next section of README. to provide a more capable analytical datastore to explore the robust relations which exist within UMLS. Neo4j will serve as the primary datastore for both analysis of UMLS leveraging Neo4j's powerful tooling framework consisting of its native graph query language `Cypher` in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)` and `Neosemantics (N10s)`.
+
+Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such interconnected data where RDBMS simply cannot. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of exposing the Neo4j representation of UMLS as a valid W3C RDF for standard data interchange on the web. Furthermore actually exposing/creating a mapping from Neo4j the largest public schema in the world - schema.org.
+
+If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding [APOC](https://neo4j.com/labs/apoc/4.3/), [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/1.7/) & [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/4.3/).
+
+### Disclaimer
+
+While this repository is open to anyone & has been created to share knowledge, educate & contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. Its free! Just requires a personal application & approval.
+
+Note: All functionalities mentioned above currently exist, function & are here to share. Watch this repo for updates, as they will be made over time. Repo is under construction and is not in its final form.
+
+## Neo4j Schema Representation of UMLS
 
 ![UMLS® Neo4j Graph Schema](images/schema_dark.png)
 
 **Schema Overview:**
 
-Note: The relationship `HAS_SOURCE_CODE` (Concept -> SourceCode relationship) shown in the schema can either be omitted or included per user preference.
+Note: The relationship `HAS_SOURCE_CODE` (`Concept` -> `SourceCode` relationship) shown in the schema can either be omitted or included per user preference.
 
-There are 4 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Property Graph.
+There are 4 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Label Property Graph.
 
-- The UMLS atomic unique identifier (`UMLS.MRCONSO.AUI` - `Atom`)
-- The UMLS concept unique identifier (`UMLS.MRCONSO.CUI` - `Concept`)
-- The UMLS semantic unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
-- The source vocabulary concept unique identifier (`UMLS.MRCONSO.CODE` - `SourceCode`)
-  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `GO`, `RXNORM`, `ATC`, etc...
+- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `Atom`)
+- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `Concept`)
+- The UMLS **semantic** unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
+- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `SourceCode`)
+  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `RXNORM`, `ATC`, `GO`, etc...
 
 - The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
+  - Note: The RDBMS -> Neo4j transformation is achieved through running the following python script (relative directory) -> `./src/nodes_edges_part1.py`. This script can either be ran as is or can be configured many ways to omit or include particular vocabularies and/or relationships.
 
-  - The semantic network is then related to the actual "concepts" contained in UMLS via the directed relationship `HAS_STY`. Refer to the following cypher code snippet provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
+  - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `Concept (umlsCui)`, `Atom (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
 
       ```Cypher
       // ConceptID = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
@@ -38,17 +51,17 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 
 ![UMLS® Semantic Network Relation to UMLS Concepts](images/semantic_network_olaparib.png)
 
-- Here is a related example to the above, but exclusive to only the semantic network --> no concepts.
+- Another related example to the above example (but exclusive to only the semantic network) is as follows:
   
-- Below is a snippet (cypher query) and its associated output visualization demonstrating the utility of the UMLS's semantic network.
-  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf` or `root` `SemanticType` -> `Entity`. Check out following cypher query:
+- Another related example to the above example (but exclusive to only the semantic network) is as follows -> check out cypher & visualization to how the semantic network constitutes its own linked graph structure as a stand-alone part of the entire graph.
+  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf`/`root` `SemanticType` -> `Entity`. See below:
   
-        ```Cypher
-        MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
-        WHERE to.sty = "Entity" 
-        AND from.sty = "Amino Acid, Peptide, or Protein" 
-        RETURN path
-        ```
+      ```Cypher
+      MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
+      WHERE to.sty = "Entity" 
+      AND from.sty = "Amino Acid, Peptide, or Protein" 
+      RETURN path
+      ```
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
@@ -76,22 +89,24 @@ Below is the exact semantic network provided by [UMLS® Semantic Network Referen
     - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/), in addition to the .png representing the graph as RDF.
   
 ![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
+`
+
+- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `output_data`.
+  - While all are valid RDF serializations, work still needs to be done to appropriately map this Neo4j graph to schema.org.  
 
 ## Unified Medical Language System® (UMLS®) & Interoperability
 
-In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies (within the Unified Medical Language System® (UMLS®)).
+In this repository, an exploration of a handful of the largest and/or industry relevant biomedical ontologies and terminologies  (within the Unified Medical Language System® (UMLS®)).
 
 **Disclaimer** - while this repository is open to anyone & has been created to share knowledge, educate & provide to open source community. In order to access the data covered, you must be a UMLS® license holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more.
 
 The scope of material covered in this repository will pertain specifically to healthcare, biotechnology & pharmaceutics. Largely in regards to oncology.
+The terminologies and ontologies used in this repository available have been limited due to the enormous size of UMLS® (UMLS 2021AB containing >200+ terminologies constituting roughly a ~50-60GB MySQL database).
 
-The UMLS® ontologies/vocabularies within the scope of this repository has been limited due to the enormous size of UMLS® (containing >200+ vocabularies). Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interoperability to healthcare. These ontologies contain rich semantics such as concept hierarchies and semantic relationships which leave them at the forefront of industry use.
-
-As described above, a "subset" of the UMLS® 2021AA full release (available as of 05/03/2021 -> next release (2021AB will be available November, 2021), containing pertinent present day industry standard biomedical ontologies have been chosen for this project (complete list to follow in next section). UMLS® License holders are provided an ability to create "subsets" of the data within the UMLS®. These subsets are provided in their native rich release format (RRF) & a relational database structure.
-
-A part of this repository will dedicated to how a subset of UMLS® can be transformed from its native Rich Release Format (RRF) to more intuitive and common relational structures such as MySQL, PostgresSQL & SQLite (all covered in this repository). Additionally, this repository will explore how the relational structure built can be modeled as a noSQL graph (will be using [Neo4j](https://neo4j.com/) - a label property graph & the world's leading graph database).
-
-The UMLS® provides a robust collection of interconnected data. In effort of studying this rich collection of "interconnected data", this repository will explore first creating a UMLS® subset as a relational database (SQLite, MySQL & PostgresSQL), querying that relational model & how to transform the relational model to a Neo4j graph database.
+- Due to the shear size of UMLS the scope has been limited to appropriately 1/3 to 1/4 of entirety of UMLS to uplift inevitable resource constraints and enable local development.
+  - Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interoperability to healthcare (scope mostly being disease, genetics & pharmaceutics). The terminologies covered have been chosen based on their utility and the strong relations that exist among them.
+    - i.e. the terminologies SNOMEDCT_US, ICD9CM, ICD10CM, ICDO3, NCI, RXNORM, ATC all strongly relate to each other and depend on each other in ways in which they promote interoperability within healthcare.
+      - In addition, these terminologies contain among the richest concept hierarchies (parent/child/ancestor/descendant relationships) and semantic relationships (such as SNOMEDCT_US, NCI, GO, RXNORM, ATC).
 
 ## What is the UMLS® & Why is it Important?
 
@@ -179,24 +194,72 @@ The UMLS® provides a robust collection of interconnected data. In effort of stu
 
 Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy switches between multiple versions of Python.
 
-- Python >=3.8 required based on `pyproject.toml`
+- Python >=3.8,<3.10 required based on `pyproject.toml`
 
-- Python v3.8.6 with version management via [pyenv](https://github.com/pyenv/pyenv) & python packing packing and dependency management via [Poetry](https://python-poetry.org/).
-  - [pyenv](https://github.com/pyenv/pyenv) strongly recommended to allow flexibility of which version of python you are using (general recommendation for anyone using Python as-well `:)`!
-    - If unfamiliar with [pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
-      - Check out respective links if unfamiliar as [pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/) setup & use will not be covered within this repository.
+- [Pyenv](https://github.com/pyenv/pyenv) & python packing packing and dependency management via [Poetry](https://python-poetry.org/) have been implemented for python versioning and dependency management.
+  - [Pyenv](https://github.com/pyenv/pyenv) strongly recommended to allow flexibility of which version of python you are using (general recommendation for anyone using Python as-well `:)`!)
+    - If unfamiliar with [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
+      - Check out respective links if unfamiliar as [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/) setup & use will not be covered within this repository.
 
 This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the official documentation provided.
 
-- Execute following command to create a virtual environment within project's root directory: (Note: when using `poetry shell` it will create a virtual environment called `.venv` within projects root directory.)
-
+- Execute following command to create a virtual environment within project's root directory:
   - `poetry shell`
-    - This will create a venv called `.venv` for the project and will be activated immediately within your terminal.
+    - This will create a venv located at root directory of repository -> `.venv`.
 
   - Install all python packaging and dependencies into the virtual environment via:
-  - `poetry install`
-    - This will install all packaging requirements/dependencies from the `pyproject.toml`.
-      - If unfamiliar with Poetry, the `pyproject.toml` file is a bit 'similar' to a `Pipfile` when using pipenv or `environment.yml` file when using a conda environment etc...
+    - `poetry install`
+      - This will install all packaging requirements/dependencies.
+        - Note: If you are not familiar with Poetry AND/OR prefer venv, anaconda, conda, miniconda etc... you can create a venv or conda environment and then install all dependencies into that environment via `poetry install`.
+          - For example, if you want to use conda make sure you have poetry installed via Poetry installer **DO NOT INSTALL VIA PIP**.
+            - Visit [Poetry](https://python-poetry.org/) and follow instructions for using `Poetry Installer`.
+              - Example way of using Poetry using a venv would look like this:
+              - 1). install Poetry via `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -` **(OSX/LINUX)**
+              - 2). `python -m venv venv`
+              - 3). `source venv/bin/activate`
+              - 4). `poetry install`
+              - 5). Good to go! (All `{}`)
+
+To do: Include `requirements.txt`, `environment.yml` & `Pipfile` when/if networkx, spacy, igraph, kglab may be added to dependencies.
+
+## Getting started
+
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd src` & run the python script `create_sqlite_db.py`:
+  - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
+    - The script will create `umls_py.db` within the relative directory `sqlite/`.
+      - Will only take ~5 min to run as MRSAT is being excluded currently.
+  
+    ```SHELL
+    scripts % poetry run python create_sqlite_db.py
+
+    creating umls_py.db
+    opening files
+    Creating tables
+    Inserting data into MRSTY table
+    Inserting data into MRCONSO table
+    Inserting data into MRREL table
+    Inserting data into MRHIER table
+    Inserting data into MRRANK table
+    Inserting data into SRDEF table
+    Inserting data into SRSTR table
+    Inserting data into SRSTRE1 table
+    Inserting data into SRSTRE2 table
+    Inserting data into MRSAB table
+    Creating indices
+
+    SQLite database created - umls_py.db
+    ```
+
+    - If you want to use MySQL, Mariadb or PostgresSQL then refer  to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+- Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` at your home directory. This directory needs to contain all the files that will be loaded into Neo4j as it will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10million nodes & takes only a minute or two).
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `scripts` directory where the sqlite3 database script was ran.
+  - Now we will execute another .py to generate 10 .csv files that constitute 4 node files and 6 relationship files that will write out to `$HOME/import`. This will take ~10 minutes to complete.
+    - `poetry run python nodes_edges_part1.py`
+  - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
+    - Make sure you have docker installed & provide your container a name (`--name=container`) & insert a password for the environment variable `--env=NEO4J_AUTH=neo4j/password`
+      - NOTE: `neo4j` is default username. You can change this after creation of database but keep as `neo4j` for now.
+      - Do not alter any of the mounted volumes or environment variables unless you know what you are doing. Current volumes and environment variables are configured to expose http port on `7474:7474` and bolt on `7687:7687`. These are native to Neo4j.
+      - Both the data and logs volumes are required for data to persist, import volume must be mounted outside the container, plguins, backups must exist within the container and lastly, the rdf extension needs to be mounted within data directory inside the container to be able to expose Neo4j data as RDF.
 
 ## Neo4j Docker Setup & Data Import
 
@@ -207,17 +270,19 @@ docker run -it --name=<insert container name> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
+    --volume=$HOME/neo4j/logs:/logs \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
     --volume=$HOME/neo4j/backups:/backups \
     --volume=$HOME/neo4j/data/rdf:/data/rdf \
     --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
     --env=NEO4J_dbms_backup_enabled=true \
-    --env=apoc_import_file_enabled=true \
-    --env=apoc_export_file_enabled=true \
-    --env=apoc_import_file_use_neo4j__config=true \
-    --env=apoc_export_file_use_neo4j__config=true \
+    --env=NEO4J_apoc_export_file_enabled=true \
+    --env=NEO4J_apoc_import_file_enabled=true \
+    --env=NEO4J_apoc_import_file_use__neo4j__config=true \
+    --env=NEO4J_apoc_export_file_use__neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
+    --env=NEO4J_dbms_security_procedures_unrestricted=apoc.\\\* \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
     --env=NEO4J_AUTH=neo4j/<insert pwd> \
@@ -254,7 +319,7 @@ docker run -it --name=<insert container name> \
 
 - Now the database can be created & imported into. Execute the following:
 
-```shell
+```SHELL
     ./bin/neo4j-admin import \
     --database=neo4j \
     --nodes='import/semanticTypeNode.csv' \
@@ -270,11 +335,11 @@ docker run -it --name=<insert container name> \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
-    ```
+```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
 
-```shell
+```SHELL
 % docker exec -it <CONTAINER ID> /bin/bash
 /var/lib/neo4j# rm -rf data/databases/
 /var/lib/neo4j# rm -rf data/transactions/
@@ -293,11 +358,10 @@ Here are a few snippets of what the above commands should look like (including b
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
-```
 
 Output:
 
-```shell  
+
 Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
   /var/lib/neo4j/import/semanticTypeNode.csv
