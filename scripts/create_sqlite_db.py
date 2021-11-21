@@ -2,8 +2,7 @@
 """
 Summary:
 --------
-Script creates quickly creates a loaded sqlite3 database containing 
-UMLS's 2021AB subset.
+Script quickly creates a loaded sqlite3 database containing a UMLS 2021AB subset.
 
 This script is lightweight version of ../sqlite/create_sqlite_db.sh.
 Python script is quicker and creates a lightweight database. (create_sqlite_db.py) 
@@ -42,8 +41,8 @@ MRSTY_TABLE_FILE = None
 
 def umls_db_cleanup():
     """"""
-    global success
     global conn
+    global success
     global db_path
 
     global MRCONSO_TABLE_FILE
@@ -93,15 +92,6 @@ def umls_db_cleanup():
     if MRSTY_TABLE_FILE is not None:
         MRSTY_TABLE_FILE.close()
 
-    # if MRMAP_TABLE_FILE is not None:
-    #     MRMAP_TABLE_FILE.close()
-
-    # if MRSMAP_TABLE_FILE is not None:
-    #     MRSMAP_TABLE_FILE.close()
-
-    # if MRSAT_TABLE_FILE is not None:
-    #     MRSAT_TABLE_FILE.close()
-
     if success is False:
 
         # remove db
@@ -112,10 +102,15 @@ def umls_db_cleanup():
 
 
 def create_db():
-    """"""
+    """
+    Summary:
+    --------
+    Create a sqlite3 database using .RRF files generated via UMLS MetamorphoSys.
 
-    global success
+    """
+
     global conn
+    global success
     global db_path
 
     global MRCONSO_TABLE_FILE
@@ -128,9 +123,6 @@ def create_db():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
-    # global MRMAP_TABLE_FILE
-    # global MRSMAP_TABLE_FILE
-    # global MRSAT_TABLE_FILE
 
     print("\ncreating umls_py.db")
     db_path = '../sqlite/umls_py.db'
@@ -138,8 +130,6 @@ def create_db():
     conn.text_factory = StringIO
 
     print("opening files")
-    # load data in UMLS RRF files.
-
     try:
         mrsty_path = os.path.join(umls_tables, 'MRSTY.RRF')
         MRSTY_TABLE_FILE = open(mrsty_path, "r")
@@ -210,27 +200,6 @@ def create_db():
         print("\nNo file to use for creating MRSAB table\n")
         sys.exit()
 
-    # try:
-    #     mrmap_path = os.path.join(umls_tables, 'MRMAP.RRF')
-    #     MRMAP_TABLE_FILE = open(mrmap_path, "r")
-    # except IOError:
-    #     print("\nNo file to use for creating MRMAP table\n")
-    #     sys.exit()
-
-    # try:
-    #     mrsmap_path = os.path.join(umls_tables, 'MRMAP.RRF')
-    #     MRSMAP_TABLE_FILE = open(mrsmap_path, "r")
-    # except IOError:
-    #     print("\nNo file to use for creating MRSMAP table\n")
-        sys.exit()
-
-    # try:
-    #     mrsat_path = os.path.join(umls_tables, 'MRSAT.RRF')
-    #     MRSAT_TABLE_FILE = open(mrsat_path, "r")
-    # except IOError:
-    #     print("\nNo file to use for creating MRSAT table\n")
-    #     sys.exit()
-
     print("Creating tables")
     c = conn.cursor()
 
@@ -247,7 +216,6 @@ def create_db():
     c.execute("CREATE TABLE SRSTRE1( UI1 varchar, UI2 varchar, UI3 varchar ) ;")
     c.execute("CREATE TABLE SRSTRE2( STY1 text, RL varchar, STY2 text ) ;")
     c.execute("CREATE TABLE MRSAB( VCUI varchar, RCUI varchar, VSAB varchar, RSAB varchar, SON varchar, SF varchar, SVER varchar, VSTART varchar, VEND varchar, IMETA varchar, RMETA varchar, SLC varchar, SCC varchar, SRL varchar, TRF varchar, CFR varchar, CXTY varchar, TTYL varchar, ATNL varchar, LAT varchar, CENC varchar, CURVER varchar, SABIN varchar, SSN varchar, SCIT varchar ) ;")
-    # c.execute("CREATE TABLE MRSAT( CUI varchar, LUI varchar, SUI varchar, METAUI varchar, STYPE varchar, CODE varchar, ATUI varchar, SATUI varchar, ATN varchar, SAB varchar, ATV varchar, SUPPRESS varchar, CVF varchar ) ;")
 
     print("Inserting data into MRSTY table")
     for line in MRSTY_TABLE_FILE:
