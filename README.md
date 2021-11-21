@@ -43,12 +43,12 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 - Below is a snippet (cypher query) and its associated output visualization demonstrating the utility of the UMLS's semantic network.
   - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf` or `root` `SemanticType` -> `Entity`. Check out following cypher query:
   
-        ```Cypher
-        MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
-        WHERE to.sty = "Entity" 
-        AND from.sty = "Amino Acid, Peptide, or Protein" 
-        RETURN path
-        ```
+      ```Cypher
+      MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
+      WHERE to.sty = "Entity" 
+      AND from.sty = "Amino Acid, Peptide, or Protein" 
+      RETURN path
+      ```
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
@@ -207,17 +207,19 @@ docker run -it --name=<insert container name> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
+    --volume=$HOME/neo4j/logs:/logs \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
     --volume=$HOME/neo4j/backups:/backups \
     --volume=$HOME/neo4j/data/rdf:/data/rdf \
     --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
     --env=NEO4J_dbms_backup_enabled=true \
-    --env=apoc_import_file_enabled=true \
-    --env=apoc_export_file_enabled=true \
-    --env=apoc_import_file_use_neo4j__config=true \
-    --env=apoc_export_file_use_neo4j__config=true \
+    --env=NEO4J_apoc_export_file_enabled=true \
+    --env=NEO4J_apoc_import_file_enabled=true \
+    --env=NEO4J_apoc_import_file_use__neo4j__config=true \
+    --env=NEO4J_apoc_export_file_use__neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
+    --env=NEO4J_dbms_security_procedures_unrestricted=apoc.\\\* \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
     --env=NEO4J_AUTH=neo4j/<insert pwd> \
@@ -254,7 +256,7 @@ docker run -it --name=<insert container name> \
 
 - Now the database can be created & imported into. Execute the following:
 
-```shell
+```SHELL
     ./bin/neo4j-admin import \
     --database=neo4j \
     --nodes='import/semanticTypeNode.csv' \
@@ -270,11 +272,11 @@ docker run -it --name=<insert container name> \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
-    ```
+```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
 
-```shell
+```SHELL
 % docker exec -it <CONTAINER ID> /bin/bash
 /var/lib/neo4j# rm -rf data/databases/
 /var/lib/neo4j# rm -rf data/transactions/
@@ -293,11 +295,10 @@ Here are a few snippets of what the above commands should look like (including b
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
-```
 
 Output:
 
-```shell  
+
 Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
   /var/lib/neo4j/import/semanticTypeNode.csv
