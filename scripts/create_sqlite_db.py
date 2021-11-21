@@ -33,6 +33,7 @@ SRSTRE2_TABLE_FILE = None
 SRSTR_TABLE_FILE = None
 MRSAB_TABLE_FILE = None
 MRSTY_TABLE_FILE = None
+# MRSAT_TABLE_FILE = None
 # this ensure files are closed properly and umls_py.db is removed if not successful
 
 
@@ -52,8 +53,6 @@ def umls_db_cleanup():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
-    # global MRMAP_TABLE_FILE
-    # global MRSMAP_TABLE_FILE
     # global MRSAT_TABLE_FILE
 
     if conn is not None:
@@ -88,6 +87,9 @@ def umls_db_cleanup():
 
     if MRSTY_TABLE_FILE is not None:
         MRSTY_TABLE_FILE.close()
+        
+    # if MRSAT_TABLE_FILE is not None:
+    #     MRSAT_TABLE_FILE.close()
 
     if success is False:
 
@@ -120,6 +122,7 @@ def create_db():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
+    # global MRSAT_TABLE_FILE
 
     print("\ncreating umls_py.db")
     db_path = '../sqlite/umls_py.db'
@@ -196,6 +199,13 @@ def create_db():
     except IOError:
         print("\nNo file to use for creating MRSAB table\n")
         sys.exit()
+
+    # try:
+    #     mrsat_path = os.path.join(umls_tables, 'MRSAT.RRF')
+    #     MRSAT_TABLE_FILE = open(mrsat_path, "r")
+    # except IOError:
+    #     print("\nNo file to use for creating MRSAT table\n")
+    #     sys.exit()
 
     print("Creating tables")
     c = conn.cursor()
