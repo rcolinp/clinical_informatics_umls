@@ -15,7 +15,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 from io import StringIO
 
-umls_tables = "/../UMLS/subset/2021AB/META/"
+umls_tables = "../../../UMLS/subset/2021AB/META/"
 success = False
 db_path = '../sqlite/umls_py.db'
 conn = None
@@ -232,16 +232,12 @@ def create_db():
 
     # Create tables (MRSTY, MRCONSO, MRREL, MRHIER, MRRANK, SRDEF, SRSTR, SRSTRE1, SRSTRE2, MRSAB, MRSAT)
     c.execute("CREATE TABLE MRSTY( CUI varchar, TUI varchar, STN varchar, STY text, ATUI varchar, CVF varchar  ) ;")
-    c.execute("""CREATE TABLE MRCONSO( CUI varchar, LAT varchar, TS varchar, LUI varchar, STT varchar, SUI varchar, ISPREF varchar, AUI varchar, SAUI varchar, SCUI varchar, SDUI varchar, SAB varchar, TTY varchar, CODE varchar, STR text, SRL varchar, SUPPRESS varchar, CVF varchar ) ;""")
+    c.execute("CREATE TABLE MRCONSO( CUI varchar, LAT varchar, TS varchar, LUI varchar, STT varchar, SUI varchar, ISPREF varchar, AUI varchar, SAUI varchar, SCUI varchar, SDUI varchar, SAB varchar, TTY varchar, CODE varchar, STR text, SRL varchar, SUPPRESS varchar, CVF varchar ) ;")
     c.execute("CREATE TABLE MRREL( CUI1 varchar, AUI1 varchar, STYPE1 varchar, REL varchar, CUI2 varchar, AUI2 varchar, STYPE2 varchar, RELA varchar, RUI varchar, SRUI varchar, SAB varchar, SL varchar, RG varchar, DIR varchar, SUPPRESS varchar, CVF varchar ) ;")
-    c.execute(
-        "CREATE TABLE MRHIER( CUI varchar, AUI varchar, CXN varchar, PAUI varchar, SAB varchar, RELA varchar, PTR varchar, HCD varchar, CVF varchar ) ;")
-    c.execute(
-        "CREATE TABLE MRRANK( MRRANK_RANK varchar, SAB varchar, TTY varchar, SUPPRESS varchar ) ;")
-    c.execute(
-        "CREATE TABLE SRDEF( RT varchar, UI varchar, STY_RL text, STN_RTN varchar, DEF varchar, EX varchar, UN varchar, NH varchar, ABR varchar, RIN varchar ) ;")
-    c.execute(
-        "CREATE TABLE SRSTR( STY_RL1 text, RL varchar, STY_RL2 text, LS varchar ) ;")
+    c.execute("CREATE TABLE MRHIER( CUI varchar, AUI varchar, CXN varchar, PAUI varchar, SAB varchar, RELA varchar, PTR varchar, HCD varchar, CVF varchar ) ;")
+    c.execute("CREATE TABLE MRRANK( MRRANK_RANK varchar, SAB varchar, TTY varchar, SUPPRESS varchar ) ;")
+    c.execute("CREATE TABLE SRDEF( RT varchar, UI varchar, STY_RL text, STN_RTN varchar, DEF varchar, EX varchar, UN varchar, NH varchar, ABR varchar, RIN varchar ) ;")
+    c.execute("CREATE TABLE SRSTR( STY_RL1 text, RL varchar, STY_RL2 text, LS varchar ) ;")
     c.execute("CREATE TABLE SRSTRE1( UI1 varchar, UI2 varchar, UI3 varchar ) ;")
     c.execute("CREATE TABLE SRSTRE2( STY1 text, RL varchar, STY2 text ) ;")
     c.execute("CREATE TABLE MRSAB( VCUI varchar, RCUI varchar, VSAB varchar, RSAB varchar, SON varchar, SF varchar, SVER varchar, VSTART varchar, VEND varchar, IMETA varchar, RMETA varchar, SLC varchar, SCC varchar, SRL varchar, TRF varchar, CFR varchar, CXTY varchar, TTYL varchar, ATNL varchar, LAT varchar, CENC varchar, CURVER varchar, SABIN varchar, SSN varchar, SCIT varchar ) ;")

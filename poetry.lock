@@ -260,7 +260,7 @@ pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
 name = "frozendict"
-version = "2.0.7"
+version = "2.1.0"
 description = "A simple immutable dictionary"
 category = "main"
 optional = false
@@ -1775,8 +1775,8 @@ flake8 = [
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
 ]
 frozendict = [
-    {file = "frozendict-2.0.7-py3-none-any.whl", hash = "sha256:d650f9cf3d2c5438b1631488a975a49b3bdd12c7a97eec59b85e57821eebf28a"},
-    {file = "frozendict-2.0.7.tar.gz", hash = "sha256:a68f609d1af67da80b45519fdcfca2d60249c0a8c96e68279c1b6ddd92128204"},
+    {file = "frozendict-2.1.0-py3-none-any.whl", hash = "sha256:1c0de90a47fcfb9abf18458cb82573e817455e45f9e6a250f8988e6725f3973a"},
+    {file = "frozendict-2.1.0.tar.gz", hash = "sha256:0189168749ddea8601afd648146c502533f93ae33840eb76cd71f694742623cd"},
 ]
 getpass2 = [
     {file = "getpass2-1.0.2.zip", hash = "sha256:004d29d797ffdf4b0a04c5a1ab9746cbc4beb212d44a6ec59824cb201259a36c"},

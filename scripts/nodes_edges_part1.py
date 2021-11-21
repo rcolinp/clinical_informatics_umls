@@ -71,7 +71,7 @@ def extract_nodes_edges():
     semantic_node = """
     SELECT DISTINCT TUI
                   , STY
-                  , STN  
+                  , STN
                   , 'SemanticType'  as ":LABEL"
     FROM MRSTY
             JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
@@ -172,7 +172,7 @@ def extract_nodes_edges():
     has_sty = """
     SELECT DISTINCT MRCONSO.CUI
                   , MRSTY.TUI
-                  , 'HAS_STY' AS ":TYPE" 
+                  , 'HAS_STY' AS ":TYPE"
     FROM MRSTY
             JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
     WHERE MRCONSO.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
@@ -222,8 +222,8 @@ def extract_nodes_edges():
     has_concept = """
     SELECT DISTINCT AUI
                   , CUI
-                  , 'HAS_CUI' AS ":TYPE" 
-    FROM MRCONSO 
+                  , 'HAS_CUI' AS ":TYPE"
+    FROM MRCONSO
     WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG';
@@ -273,33 +273,25 @@ def extract_nodes_edges():
     # CASE statement ensures that when RELA is NULL, :TYPE is assigned REL as its value
     # 'vocab' assigned to be a property of the relationship (i.e. Concept -- Concept relationship can be filtered to the vocabulary for which the relationship exists)
 
-    q = """
-    SELECT DISTINCT CASE
-                        WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI2
-                        WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI2
-                        WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c2.SAB || '#' || c2.CODE)
-                        WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c2.SAB || '#' || c2.SCUI)
-                        ELSE r.CUI2 END AS ":START_ID"
-                , CASE
-                        WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI1
-                        WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI1
-                        WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c.SAB || '#' || c.CODE)
-                        WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c.SAB || '#' || c.CODE)
-                        ELSE r.CUI1 END AS ":END_ID"
-                , CASE
+    concept_concept = """
+    WITH q AS (
+        SELECT DISTINCT SAB
+        FROM MRCONSO
+        WHERE SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+            AND SUPPRESS = 'N'
+            AND LAT = 'ENG')
+    SELECT DISTINCT r.CUI2
+                  , r.CUI1
+                  , CASE
                         WHEN r.RELA = ''
                             THEN r.REL
                         ELSE r.RELA END AS ":TYPE"
-                , r.SAB               AS "vocab"
-    FROM MRCONSO c
-            JOIN MRREL r ON c.AUI = r.AUI1
-            JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
-    WHERE c.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-        AND c2.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-        AND c.SUPPRESS = 'N'
-        AND c2.SUPPRESS = 'N';
-        """
-    concept_concept_rel = pd.read_sql_query(q, conn)
+                  , r.SAB               AS "vocab"
+    FROM MRREL r
+            INNER JOIN q ON r.SAB = q.SAB
+    WHERE r.SUPPRESS = 'N';
+    """
+    concept_concept_rel = pd.read_sql_query(concept_concept, conn)
     concept_concept_rel.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
 
     # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
@@ -348,8 +340,8 @@ def extract_nodes_edges():
     print("child_of_rel.csv successfully written out...")
     # **************************************************************
 
-
-extract_nodes_edges()
+if __name__ == '__main__':
+    extract_nodes_edges()
 
 ################################################################
 # NOTE: Do not include both output of `edges_part2.py` and the last output .csv via this .py. Both are redundant but one or other should be included.
@@ -359,6 +351,7 @@ extract_nodes_edges()
 ################################################################
 # Outdated nodes/edges left here for reference
 #################################################################
+
 # # **************************************************************
 # # Label: StringForm
 # # Import: stringNode.csv
@@ -494,3 +487,30 @@ extract_nodes_edges()
 #                            mode='a',
 #                            header=False,
 #                            index=False)
+# # **************************************************************
+# q = """
+# SELECT DISTINCT CASE
+#                     WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI2
+#                     WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI2
+#                     WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c2.SAB || '#' || c2.CODE)
+#                     WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c2.SAB || '#' || c2.SCUI)
+#                     ELSE r.CUI2 END AS ":START_ID"
+#             , CASE
+#                     WHEN r.STYPE1 = 'CUI' OR r.STYPE2 = 'CUI' THEN r.CUI1
+#                     WHEN r.STYPE1 = 'AUI' OR r.STYPE2 = 'AUI' THEN r.AUI1
+#                     WHEN r.STYPE1 = 'CODE' OR r.STYPE2 = 'CODE' THEN (c.SAB || '#' || c.CODE)
+#                     WHEN r.STYPE1 = 'SCUI' OR r.STYPE2 = 'SCUI' THEN (c.SAB || '#' || c.CODE)
+#                     ELSE r.CUI1 END AS ":END_ID"
+#             , CASE
+#                     WHEN r.RELA = ''
+#                         THEN r.REL
+#                     ELSE r.RELA END AS ":TYPE"
+#             , r.SAB               AS "vocab"
+# FROM MRCONSO c
+#         JOIN MRREL r ON c.AUI = r.AUI1
+#         JOIN MRCONSO c2 ON r.AUI2 = c2.AUI
+# WHERE c.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#     AND c2.SAB IN ('ATC', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+#     AND c.SUPPRESS = 'N'
+#     AND c2.SUPPRESS = 'N';
+#     """
