@@ -35,7 +35,7 @@ There are 4 main elements (labels) within the graph which have been extracted fr
   - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `RXNORM`, `ATC`, `GO`, etc...
 
 - The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
-  - Note: The RDBMS -> Neo4j transformation is achieved through running the following python script (relative directory) -> `./src/nodes_edges_part1.py`. This script can either be ran as is or can be configured many ways to omit or include particular vocabularies and/or relationships.
+  - Note: The RDBMS -> Neo4j transformation is achieved through running the following python script (relative directory) -> `clinical_informatics_umls/nodes_edges_part1.py`. This script can either be ran as is or can be configured many ways to omit or include particular vocabularies and/or relationships.
 
   - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `Concept (umlsCui)`, `Atom (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
 
@@ -224,13 +224,13 @@ To do: Include `requirements.txt`, `environment.yml` & `Pipfile` when/if network
 
 ## Getting started
 
-- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd src` & run the python script `create_sqlite_db.py`:
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py`:
   - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
     - The script will create `umls_py.db` within the relative directory `sqlite/`.
       - Will only take ~5 min to run as MRSAT is being excluded currently.
   
     ```SHELL
-    scripts % poetry run python create_sqlite_db.py
+    clinical_informatics_umls % poetry run python create_sqlite_db.py
 
     creating umls_py.db
     opening files
@@ -252,7 +252,7 @@ To do: Include `requirements.txt`, `environment.yml` & `Pipfile` when/if network
 
     - If you want to use MySQL, Mariadb or PostgresSQL then refer  to the load scripts made available in `databases/mysql/` & `databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` at your home directory. This directory needs to contain all the files that will be loaded into Neo4j as it will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10million nodes & takes only a minute or two).
-- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `scripts` directory where the sqlite3 database script was ran.
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `clinical_informatics_umls` directory where the sqlite3 database script was ran.
   - Now we will execute another .py to generate 10 .csv files that constitute 4 node files and 6 relationship files that will write out to `$HOME/import`. This will take ~10 minutes to complete.
     - `poetry run python nodes_edges_part1.py`
   - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
