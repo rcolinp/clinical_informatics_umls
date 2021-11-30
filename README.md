@@ -28,28 +28,28 @@ Note: All functionalities mentioned above currently exist, function & are here t
 
 **Schema Overview:**
 
-Note: The relationship `HAS_SOURCE_CODE` (`Concept` -> `SourceCode` relationship) shown in the schema can either be omitted or included per user preference.
+Note: The relationship `HAS_SOURCE_CODE` (`CUI` -> `CODE` relationship) shown in the schema can either be omitted or included per user preference.
 
 There are 4 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Label Property Graph.
 
-- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `Atom`)
-- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `Concept`)
-- The UMLS **semantic** unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
-- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `SourceCode`)
+- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `AUI`)
+- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `CUI`)
+- The UMLS **semantic** unique identifier (`UMLS.MRCONSO.TUI` - `TUI`)
+- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `CODE`)
   - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `RXNORM`, `ATC`, `GO`, etc...
 
 - The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
   - Note: The RDBMS -> Neo4j transformation is achieved through running the following python script (relative directory) -> `clinical_informatics_umls/nodes_edges_part1.py`. This script can either be ran as is or can be configured many ways to omit or include particular vocabularies and/or relationships.
 
-  - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `Concept (umlsCui)`, `Atom (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
+  - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `CUI (umlsCui)`, `AUI (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
 
       ```Cypher
-      // ConceptID = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
+      // CUI = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
       // We can see Olaparib is a Pharmacologic Substance & Organic Chemical. 
-      // Furthermore, we can leverage UMLS's semantic network (ISA relationship) to visualize path to the root SemanticType.
+      // Furthermore, we can leverage UMLS's semantic network (ISA relationship) to visualize path to the root SemanticType(TUI).
 
-      MATCH path = (concept:Concept)-[:HAS_STY]->(semanticType:SemanticType)-[:ISA*]->(semanticTypeParent:SemanticType) 
-      WHERE concept.ConceptID = "C2316164"
+      MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI) 
+      WHERE concept.CUI = "C2316164"
       RETURN path
       ```
 
@@ -58,12 +58,12 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 - Another related example to the above example (but exclusive to only the semantic network) is as follows:
   
 - Another related example to the above example (but exclusive to only the semantic network) is as follows -> check out cypher & visualization to how the semantic network constitutes its own linked graph structure as a stand-alone part of the entire graph.
-  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType` -> `Amino Acid, Peptide, or Protein` and the `topConceptOf`/`root` `SemanticType` -> `Entity`. See below:
+  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType - (TUI)` -> `Amino Acid, Peptide, or Protein` and the "topConceptOf" OR "root" `SemanticType - (TUI)` -> `Entity - (STY)`. See below:
   
       ```Cypher
-      MATCH path = (to:SemanticType)<-[:ISA*]-(from:SemanticType) 
-      WHERE to.sty = "Entity" 
-      AND from.sty = "Amino Acid, Peptide, or Protein" 
+      MATCH path = (to:TUI)<-[:ISA*]-(from:TUI) 
+      WHERE to.STY = "Entity" 
+      AND from.STY = "Amino Acid, Peptide, or Protein" 
       RETURN path
       ```
 
@@ -223,13 +223,13 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
 
 ## Getting started
 
-- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd src` & run the python script `create_sqlite_db.py`:
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py`:
   - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
     - The script will create `umls_py.db` within the relative directory `.../sqlite`.
       - This will only take ~5 min to run & will look similiar to following:
 
       ```SHELL
-      src % poetry run python create_sqlite_db.py
+      clinical_informatics_umls % poetry run python create_sqlite_db.py
       creating umls_py.db
       opening files
       Creating tables
@@ -250,7 +250,7 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
     - If you want to use MySQL, Mariadb or PostgresSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
 - This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
-- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `src` directory where the sqlite3 database script was ran.
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `clinical_informatics_umls/clinical_informatics_umls`.
   - Now we will execute another python script to generate 11 .csv files that constitute 4 node files and 7 relationship files.
     - The script will write out to all correctly formatted .csv files for import at the following -> `$HOME/import`.
       - `poetry run python nodes_edges_part1.py`

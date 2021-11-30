@@ -25,6 +25,8 @@ rdflib = "^6.0.2"
 kglab = "^0.4.1"
 mysql-connector = "^2.2.9"
 matplotlib = "^3.5.0"
+ipyradiant = "^0.2.0"
+networkx = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
 typing-extensions = "^3.10.0"
