@@ -31,7 +31,6 @@ MANIFEST
 neo4j.cypher
 docker-compose.yml
 .DS_Store
-venv
 wip_*
 docker-entrypoint.sh
 Dockerfile
@@ -42,11 +41,9 @@ parquet_to_csv.py
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-venv/
-
-New Folder With Items/
-edges_part2.py
+misc/
 cuiNode.py
+
 
 # Installer logs
 pip-log.txt
@@ -126,6 +123,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
+import/
+docker/
 
 # Spyder project settings
 .spyderproject

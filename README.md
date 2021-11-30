@@ -2,17 +2,21 @@
 
 **Summary:**
 
-This repository will constitutes a multi-step ETL process with a strong analytical and data science component for a deep analytical dive into the Unified Medical Language System (UMLS). UMLS's native .RRF files generated via MetamorphoSys will first be loaded into a RDBMS-based datastore (SQLite, MySQL, PostgresSQL all covered in this repository).
+This repository will constitutes a multi-step ETL process with a strong analytical and data science component for a deep analytical dive into the Unified Medical Language System (UMLS®). UMLS's native .RRF files generated via MetamorphoSys will first be loaded into a RDBMS-based datastore.
 
-Next, transformation from the RDBMS of choice to a Neo4j Label Property Graph. The target schema visual can be found in next section of README. If unfamiliar with Neo4j, check out all it has to offer -> [Neo4j](https://neo4j.com/).
+Data transformation from the RDBMS of choice to a Neo4j Label Property Graph with the target schema found below (visual can be found in next section of README). If unfamiliar with Neo4j, check out all it has to offer -> [Neo4j](https://neo4j.com/).
 
-The target schema visual can be found in next section of README. to provide a more capable analytical datastore to explore the robust relations which exist within UMLS. Neo4j will serve as the primary datastore for both analysis of UMLS leveraging Neo4j's powerful tooling framework consisting of its native graph query language `Cypher` in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)` and `Neosemantics (N10s)`.
+Neo4j will serve as the primary datastore for both analysis of UMLS leveraging Neo4j's powerful tooling framework consisting of its native graph query language `Cypher` in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)` and `Neosemantics (N10s)`.
 
-Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such interconnected data where RDBMS simply cannot. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of exposing the Neo4j representation of UMLS as a valid W3C RDF for standard data interchange on the web. Furthermore actually exposing/creating a mapping from Neo4j the largest public schema in the world - schema.org.
+Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such interconnected. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of mapping Neo4j LPG schema to a valid W3C RDF serialization & public schema. Furthermore mapping to the largest public schema in the world -> [schema.org](https://schema.org).
 
-If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding [APOC](https://neo4j.com/labs/apoc/4.3/), [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/1.7/) & [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/4.3/).
+If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding the 3 plugins discussed above:
 
-### Disclaimer
+- [APOC](https://neo4j.com/labs/apoc/4.3/)
+- [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/1.7/)
+- [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/4.3/)
+
+*__Disclaimer__*
 
 While this repository is open to anyone & has been created to share knowledge, educate & contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. Its free! Just requires a personal application & approval.
 
@@ -194,72 +198,64 @@ The terminologies and ontologies used in this repository available have been lim
 
 Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy switches between multiple versions of Python.
 
-- Python >=3.8,<3.10 required based on `pyproject.toml`
+- Python >=3.8,<3.11 required based on `pyproject.toml`
 
 - [Pyenv](https://github.com/pyenv/pyenv) & python packing packing and dependency management via [Poetry](https://python-poetry.org/) have been implemented for python versioning and dependency management.
-  - [Pyenv](https://github.com/pyenv/pyenv) strongly recommended to allow flexibility of which version of python you are using (general recommendation for anyone using Python as-well `:)`!)
-    - If unfamiliar with [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
-      - Check out respective links if unfamiliar as [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/) setup & use will not be covered within this repository.
+  - If unfamiliar with [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
 
-This project has an included `pyproject.toml` as the python packaging and dependency management has been setup using [Poetry](https://python-poetry.org/). If unfamiliar with [Poetry](https://python-poetry.org/), please visit the official documentation provided.
+This project has included `pyproject.toml` and `poetry.lock` files as the python packaging and dependency management.
 
 - Execute following command to create a virtual environment within project's root directory:
-  - `poetry shell`
-    - This will create a venv located at root directory of repository -> `.venv`.
+  - `python -m venv .venv`
+  - `source .venv/bin/activate`
+    - This will create a venv (`.venv`) located at root directory of repository -> `.venv`.
 
-  - Install all python packaging and dependencies into the virtual environment via:
+  - Install all python packaging/dependencies into the venv via:
     - `poetry install`
       - This will install all packaging requirements/dependencies.
-        - Note: If you are not familiar with Poetry AND/OR prefer venv, anaconda, conda, miniconda etc... you can create a venv or conda environment and then install all dependencies into that environment via `poetry install`.
-          - For example, if you want to use conda make sure you have poetry installed via Poetry installer **DO NOT INSTALL VIA PIP**.
-            - Visit [Poetry](https://python-poetry.org/) and follow instructions for using `Poetry Installer`.
-              - Example way of using Poetry using a venv would look like this:
-              - 1). install Poetry via `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -` **(OSX/LINUX)**
-              - 2). `python -m venv venv`
-              - 3). `source venv/bin/activate`
-              - 4). `poetry install`
-              - 5). Good to go! (All `{}`)
-
-To do: Include `requirements.txt`, `environment.yml` & `Pipfile` when/if networkx, spacy, igraph, kglab may be added to dependencies.
+        - Visit [Poetry](https://python-poetry.org/) and follow instructions for using `Poetry Installer`.
+          - Example way of using Poetry using a venv would look like this:
+            - 1). install Poetry via `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -` **(OSX/LINUX)**
+            - 2). `python -m venv .venv`
+            - 3). `source .venv/bin/activate`
+            - 4). `poetry install`
+            - 5). Good to go! (All `{}`)
 
 ## Getting started
 
-- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py`:
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd src` & run the python script `create_sqlite_db.py`:
   - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
-    - The script will create `umls_py.db` within the relative directory `sqlite/`.
-      - Will only take ~5 min to run as MRSAT is being excluded currently.
-  
-    ```SHELL
-    clinical_informatics_umls % poetry run python create_sqlite_db.py
+    - The script will create `umls_py.db` within the relative directory `.../sqlite`.
+      - This will only take ~5 min to run & will look similiar to following:
 
-    creating umls_py.db
-    opening files
-    Creating tables
-    Inserting data into MRSTY table
-    Inserting data into MRCONSO table
-    Inserting data into MRREL table
-    Inserting data into MRHIER table
-    Inserting data into MRRANK table
-    Inserting data into SRDEF table
-    Inserting data into SRSTR table
-    Inserting data into SRSTRE1 table
-    Inserting data into SRSTRE2 table
-    Inserting data into MRSAB table
-    Creating indices
+      ```SHELL
+      src % poetry run python create_sqlite_db.py
+      creating umls_py.db
+      opening files
+      Creating tables
+      Inserting data into MRSTY table
+      Inserting data into MRCONSO table
+      Inserting data into MRREL table
+      Inserting data into MRHIER table
+      Inserting data into MRRANK table
+      Inserting data into SRDEF table
+      Inserting data into SRSTR table
+      Inserting data into SRSTRE1 table
+      Inserting data into SRSTRE2 table
+      Inserting data into MRSAB table
+      Creating indices
+      SQLite database created - umls_py.db
+      ```
 
-    SQLite database created - umls_py.db
-    ```
-
-    - If you want to use MySQL, Mariadb or PostgresSQL then refer  to the load scripts made available in `databases/mysql/` & `databases/postgres/`
-- Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` at your home directory. This directory needs to contain all the files that will be loaded into Neo4j as it will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10million nodes & takes only a minute or two).
-- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `clinical_informatics_umls` directory where the sqlite3 database script was ran.
-  - Now we will execute another .py to generate 10 .csv files that constitute 4 node files and 6 relationship files that will write out to `$HOME/import`. This will take ~10 minutes to complete.
-    - `poetry run python nodes_edges_part1.py`
-  - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
-    - Make sure you have docker installed & provide your container a name (`--name=container`) & insert a password for the environment variable `--env=NEO4J_AUTH=neo4j/password`
-      - NOTE: `neo4j` is default username. You can change this after creation of database but keep as `neo4j` for now.
-      - Do not alter any of the mounted volumes or environment variables unless you know what you are doing. Current volumes and environment variables are configured to expose http port on `7474:7474` and bolt on `7687:7687`. These are native to Neo4j.
-      - Both the data and logs volumes are required for data to persist, import volume must be mounted outside the container, plguins, backups must exist within the container and lastly, the rdf extension needs to be mounted within data directory inside the container to be able to expose Neo4j data as RDF.
+    - If you want to use MySQL, Mariadb or PostgresSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+- Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
+- This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the `src` directory where the sqlite3 database script was ran.
+  - Now we will execute another python script to generate 11 .csv files that constitute 4 node files and 7 relationship files.
+    - The script will write out to all correctly formatted .csv files for import at the following -> `$HOME/import`.
+      - `poetry run python nodes_edges_part1.py`
+      - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
+        - Make sure you have docker installed & take a look over the docker run command.
 
 ## Neo4j Docker Setup & Data Import
 
@@ -282,7 +278,6 @@ docker run -it --name=<insert container name> \
     --env=NEO4J_apoc_import_file_use__neo4j__config=true \
     --env=NEO4J_apoc_export_file_use__neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
-    --env=NEO4J_dbms_security_procedures_unrestricted=apoc.\\\* \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
     --env=NEO4J_AUTH=neo4j/<insert pwd> \
@@ -332,6 +327,7 @@ docker run -it --name=<insert container name> \
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/concept_concept_rel.csv' \
     --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
@@ -355,6 +351,7 @@ Here are a few snippets of what the above commands should look like (including b
     --relationships='import/tui_tui_rel.csv' \
     --relationships='import/concept_concept_rel.csv' \
     --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
     --skip-duplicate-nodes=true \
     --trim-strings=true
@@ -376,6 +373,7 @@ Relationships:
   /var/lib/neo4j/import/tui_tui_rel.csv
   /var/lib/neo4j/import/concept_concept_rel.csv
   /var/lib/neo4j/import/child_of_rel.csv
+  /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
   Estimated number of nodes: 17.01 M
