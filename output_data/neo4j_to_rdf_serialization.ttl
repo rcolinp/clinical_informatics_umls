@@ -1,0 +1,498 @@
+@prefix n4ind: <neo4j://graph.individuals#> .
+@prefix n4sch: <neo4j://graph.schema#> .
+
+n4ind:1081618 a n4sch:AUI ;
+    n4sch:AUI "A7589480" ;
+    n4sch:CHILD_OF n4ind:1278148,
+        n4ind:1289479 ;
+    n4sch:CODE "C1909" ;
+    n4sch:HAS_CUI n4ind:216954 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Pharmacologic Substance" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1083133 a n4sch:AUI ;
+    n4sch:AUI "A16752591" ;
+    n4sch:CODE "C78754" ;
+    n4sch:HAS_CUI n4ind:256290 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Capromorelin" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1092319 a n4sch:AUI ;
+    n4sch:AUI "A16765066" ;
+    n4sch:CODE "C74356" ;
+    n4sch:HAS_CUI n4ind:318924 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Pralmorelin Dihydrochloride" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1093642 a n4sch:AUI ;
+    n4sch:AUI "A16768367" ;
+    n4sch:CODE "C78756" ;
+    n4sch:HAS_CUI n4ind:318929 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Capromorelin Tartrate" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1096268 a n4sch:AUI ;
+    n4sch:AUI "A16759741" ;
+    n4sch:CODE "C76092" ;
+    n4sch:HAS_CUI n4ind:67925 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Examorelin" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1111932 a n4sch:AUI ;
+    n4sch:AUI "A17683482" ;
+    n4sch:CHILD_OF n4ind:1317476 ;
+    n4sch:CODE "C84868" ;
+    n4sch:HAS_CUI n4ind:74327 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Ghrelin Peptide Analogue" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1116510 a n4sch:AUI ;
+    n4sch:AUI "A19023431" ;
+    n4sch:CODE "C90852" ;
+    n4sch:HAS_CUI n4ind:362472 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Tesamorelin Acetate" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1137962 a n4sch:AUI ;
+    n4sch:AUI "A19033411" ;
+    n4sch:CODE "C95123" ;
+    n4sch:HAS_CUI n4ind:367211 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Macimorelin" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1179771 a n4sch:AUI ;
+    n4sch:AUI "A16755349" ;
+    n4sch:CHILD_OF n4ind:1083133,
+        n4ind:1092319,
+        n4ind:1093642,
+        n4ind:1096268,
+        n4ind:1111932,
+        n4ind:1116510,
+        n4ind:1137962,
+        n4ind:1234639,
+        n4ind:1441503 ;
+    n4sch:CODE "C76358" ;
+    n4sch:HAS_CUI n4ind:123405 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Growth Hormone-Releasing Hormone Analogue" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:123405 a n4sch:CUI ;
+    n4sch:CUI "C3537207" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4,
+        n4ind:9 ;
+    n4sch:STR "Growth Hormone-Releasing Hormone Analogue" .
+
+n4ind:1234639 a n4sch:AUI ;
+    n4sch:AUI "A16769957" ;
+    n4sch:CODE "C77425" ;
+    n4sch:HAS_CUI n4ind:293692 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Tesamorelin" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1249327 a n4sch:AUI ;
+    n4sch:AUI "A30290963" ;
+    n4sch:CODE "C124131" ;
+    n4sch:HAS_CUI n4ind:329387 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Grapiprant" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1271569 a n4sch:AUI ;
+    n4sch:AUI "A32674180" ;
+    n4sch:CODE "C175764" ;
+    n4sch:HAS_CUI n4ind:147986 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Dapiglutide" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1278148 a n4sch:AUI ;
+    n4sch:AUI "A32672560" ;
+    n4sch:CHILD_OF n4ind:1249327,
+        n4ind:1319286,
+        n4ind:1464646 ;
+    n4sch:CODE "C177182" ;
+    n4sch:HAS_CUI n4ind:148872 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Prostaglandin Receptor Antagonist" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1289479 a n4sch:AUI ;
+    n4sch:AUI "A29171534" ;
+    n4sch:CHILD_OF n4ind:1290221,
+        n4ind:1428936 ;
+    n4sch:CODE "C147908" ;
+    n4sch:HAS_CUI n4ind:273751 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Hormone Therapy Agent" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1290221 a n4sch:AUI ;
+    n4sch:AUI "A7664451" ;
+    n4sch:CHILD_OF n4ind:1179771,
+        n4ind:1271569,
+        n4ind:1354342,
+        n4ind:1354411,
+        n4ind:1370069,
+        n4ind:1390034,
+        n4ind:1464692,
+        n4ind:1472821 ;
+    n4sch:CODE "C548" ;
+    n4sch:HAS_CUI n4ind:239796 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Therapeutic Hormone" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1317476 a n4sch:AUI ;
+    n4sch:AUI "A29766434" ;
+    n4sch:CODE "C152229" ;
+    n4sch:HAS_CUI n4ind:280330 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Rismorelin" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1319286 a n4sch:AUI ;
+    n4sch:AUI "A29748811" ;
+    n4sch:CODE "C152633" ;
+    n4sch:HAS_CUI n4ind:280465 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Timapiprant" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1354342 a n4sch:AUI ;
+    n4sch:AUI "A32400245" ;
+    n4sch:CODE "C171918" ;
+    n4sch:HAS_CUI n4ind:366265 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Dasiglucagon" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1354411 a n4sch:AUI ;
+    n4sch:AUI "A32394071" ;
+    n4sch:CODE "C171917" ;
+    n4sch:HAS_CUI n4ind:366605 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Bremelanotide Acetate" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1370069 a n4sch:AUI ;
+    n4sch:AUI "A31187549" ;
+    n4sch:CODE "C159822" ;
+    n4sch:HAS_CUI n4ind:295794 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "[Leu15] Gastrin-17" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1390034 a n4sch:AUI ;
+    n4sch:AUI "A31615408" ;
+    n4sch:CODE "C166521" ;
+    n4sch:HAS_CUI n4ind:372177 ;
+    n4sch:ISPREF "N" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Afamelanotide Acetate" ;
+    n4sch:STT "VC" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1428936 a n4sch:AUI ;
+    n4sch:AUI "A31611656" ;
+    n4sch:CODE "C166490" ;
+    n4sch:HAS_CUI n4ind:307177 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Dersimelagon" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1441503 a n4sch:AUI ;
+    n4sch:AUI "A32381907" ;
+    n4sch:CODE "C169924" ;
+    n4sch:HAS_CUI n4ind:308380 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Dumorelin" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:145365 a n4sch:CUI ;
+    n4sch:CUI "C5420924" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "Pexopiprant" .
+
+n4ind:145404 a n4sch:CUI ;
+    n4sch:CUI "C5420970" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1,
+        n4ind:9 ;
+    n4sch:STR "Therapeutic Alpha-melanotropin" .
+
+n4ind:145746 a n4sch:CUI ;
+    n4sch:CUI "C5421352" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1,
+        n4ind:9 ;
+    n4sch:STR "Setmelanotide Hydrochloride" .
+
+n4ind:1464646 a n4sch:AUI ;
+    n4sch:AUI "A32400329" ;
+    n4sch:CODE "C174712" ;
+    n4sch:HAS_CUI n4ind:145365 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Pexopiprant" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1464692 a n4sch:AUI ;
+    n4sch:AUI "A32374821" ;
+    n4sch:CODE "C174814" ;
+    n4sch:HAS_CUI n4ind:145404 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Therapeutic Alpha-melanotropin" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1472821 a n4sch:AUI ;
+    n4sch:AUI "A32374817" ;
+    n4sch:CODE "C174581" ;
+    n4sch:HAS_CUI n4ind:145746 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:SAB "NCI" ;
+    n4sch:STR "Setmelanotide Hydrochloride" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:147986 a n4sch:CUI ;
+    n4sch:CUI "C5446724" ;
+    n4sch:HAS_STY n4ind:1 ;
+    n4sch:STR "Dapiglutide" .
+
+n4ind:148872 a n4sch:CUI ;
+    n4sch:CUI "C5447614" ;
+    n4sch:HAS_STY n4ind:1 ;
+    n4sch:STR "Prostaglandin Receptor Antagonist" .
+
+n4ind:216954 a n4sch:CUI ;
+    n4sch:CUI "C1254351" ;
+    n4sch:HAS_STY n4ind:1 ;
+    n4sch:STR "Pharmacologic Substance" .
+
+n4ind:239796 a n4sch:CUI ;
+    n4sch:CUI "C4551674" ;
+    n4sch:HAS_STY n4ind:9 ;
+    n4sch:STR "Therapeutic Hormone" .
+
+n4ind:256290 a n4sch:CUI ;
+    n4sch:CUI "C1259613" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "capromorelin" .
+
+n4ind:273751 a n4sch:CUI ;
+    n4sch:CUI "C4688302" ;
+    n4sch:HAS_STY n4ind:1 ;
+    n4sch:STR "Hormone Therapy Agent" .
+
+n4ind:280330 a n4sch:CUI ;
+    n4sch:CUI "C4726696" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4 ;
+    n4sch:STR "Rismorelin" .
+
+n4ind:280465 a n4sch:CUI ;
+    n4sch:CUI "C4726863" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:8 ;
+    n4sch:STR "Timapiprant" .
+
+n4ind:293692 a n4sch:CUI ;
+    n4sch:CUI "C1876200" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4,
+        n4ind:9 ;
+    n4sch:STR "tesamorelin" .
+
+n4ind:295794 a n4sch:CUI ;
+    n4sch:CUI "C5204720" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "[Leu15] Gastrin-17" .
+
+n4ind:307177 a n4sch:CUI ;
+    n4sch:CUI "C5239527" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "Dersimelagon" .
+
+n4ind:308380 a n4sch:CUI ;
+    n4sch:CUI "C5418358" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "Dumorelin" .
+
+n4ind:318924 a n4sch:CUI ;
+    n4sch:CUI "C2698865" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4 ;
+    n4sch:STR "pralmorelin dihydrochloride" .
+
+n4ind:318929 a n4sch:CUI ;
+    n4sch:CUI "C2698981" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "capromorelin tartrate" .
+
+n4ind:329387 a n4sch:CUI ;
+    n4sch:CUI "C4278621" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "grapiprant" .
+
+n4ind:362472 a n4sch:CUI ;
+    n4sch:CUI "C2955463" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:9 ;
+    n4sch:STR "tesamorelin acetate" .
+
+n4ind:366265 a n4sch:CUI ;
+    n4sch:CUI "C5139868" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4 ;
+    n4sch:STR "dasiglucagon" .
+
+n4ind:366605 a n4sch:CUI ;
+    n4sch:CUI "C5187683" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "bremelanotide acetate" .
+
+n4ind:367211 a n4sch:CUI ;
+    n4sch:CUI "C2986922" ;
+    n4sch:HAS_STY n4ind:6 ;
+    n4sch:STR "macimorelin" .
+
+n4ind:372177 a n4sch:CUI ;
+    n4sch:CUI "C5210504" ;
+    n4sch:HAS_STY n4ind:0,
+        n4ind:1 ;
+    n4sch:STR "afamelanotide acetate" .
+
+n4ind:6 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.1.4" ;
+    n4sch:STY "Indicator, Reagent, or Diagnostic Aid" ;
+    n4sch:TUI "T130" .
+
+n4ind:67925 a n4sch:CUI ;
+    n4sch:CUI "C2700028" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4 ;
+    n4sch:STR "Examorelin" .
+
+n4ind:74327 a n4sch:CUI ;
+    n4sch:CUI "C2827545" ;
+    n4sch:HAS_STY n4ind:1,
+        n4ind:4 ;
+    n4sch:STR "Ghrelin Peptide Analogue" .
+
+n4ind:8 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.1.3.5" ;
+    n4sch:STY "Immunologic Factor" ;
+    n4sch:TUI "T129" .
+
+n4ind:9 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.1.3.2" ;
+    n4sch:STY "Hormone" ;
+    n4sch:TUI "T125" .
+
+n4ind:4 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.2.1.7" ;
+    n4sch:STY "Amino Acid, Peptide, or Protein" ;
+    n4sch:TUI "T116" .
+
+n4ind:0 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.2.1" ;
+    n4sch:STY "Organic Chemical" ;
+    n4sch:TUI "T109" .
+
+n4ind:1 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.1.1" ;
+    n4sch:STY "Pharmacologic Substance" ;
+    n4sch:TUI "T121" .
+
