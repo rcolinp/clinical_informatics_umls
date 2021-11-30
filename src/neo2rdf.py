@@ -3,28 +3,26 @@ import os
 import json
 import requests
 import rdflib
+import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 
 
-def neo_to_rdf(__file__: str) -> rdflib.Graph():
+def neo_to_rdf():
     """
     Summary:
     --------
-    Accurate means of serializing a Neo4j LPGraph to a W3C validated Turtle (.ttl)
-
+    Means of serializing a Neo4j Label Property Graph to a W3C validated RDF graph
     Parameters:
     -----------
     __file__ : str.
         ../.env file containing database authentication and connection information for use of dotenv.
-
     Returns:
     --------
     graph : rdflib.Graph
         RDF serialization (ttl) of a Neo4j LPGraph
-
     """
-    dotenv_path = join(dirname(__file__), '../.env')
+    dotenv_path = join(dirname(__file__), "../.env")
     load_dotenv(dotenv_path)
 
     url = os.environ.get("NEO4J_HTTP_URL")
@@ -37,7 +35,7 @@ def neo_to_rdf(__file__: str) -> rdflib.Graph():
 
     payload = {'cypher': cypher, 'format': 'Turtle'}
 
-    response = requests.post(url,
+    response = requests.post(url=url,
                              auth=(os.environ.get("NEO4J_USERNAME"),
                                    os.environ.get("NEO4J_PASSWORD")),
                              data=json.dumps(payload))
@@ -54,4 +52,4 @@ def neo_to_rdf(__file__: str) -> rdflib.Graph():
 
 
 if __name__ == '__main__':
-    graph = neo_to_rdf(__file__)
+    graph = neo_to_rdf()
