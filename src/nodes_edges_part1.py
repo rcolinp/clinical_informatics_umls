@@ -70,7 +70,6 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     # Establish database connection
     database = os.path.join(os.path.dirname(db_dir), db_name)
-
     conn = sqlite3.connect(database=database)  # Create connection object
 
     ####################################################################
@@ -115,6 +114,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     # Label: Concept
     # Import: conceptNode.csv
+
     concept_node = """
                     SELECT DISTINCT CUI
                                   , STR
@@ -242,7 +242,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
                         )
                     AND MRCONSO.SUPPRESS = 'N'
                     AND MRCONSO.LAT = 'ENG';
-  """
+                    """
 
     has_sty_rel = pd.read_sql_query(
         has_sty_r, conn).drop_duplicates().replace(np.nan, '')
@@ -388,7 +388,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
                          FROM MRREL r
                          JOIN q ON r.SAB = q.SAB
                          WHERE r.SUPPRESS = 'N'
-                         group by r.CUI2, r.CUI1, ":TYPE", r.SAB;
+                         GROUP BY r.CUI2, r.CUI1, ":TYPE", r.SAB;
                          """
 
     concept_concept_rel = pd.read_sql_query(concept_concept, conn)
@@ -524,7 +524,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     ####################################################################
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     extract_nodes_edges(db_dir, db_name)
 
 
