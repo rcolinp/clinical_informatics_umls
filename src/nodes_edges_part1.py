@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
+
 """
 SUMMARY
 -------
-This .py assumes you are querying one of the SQLite databases found at the relative path ->../sqlite/ -> (umls.db or umls_py.db)
-SQLite database can be created via the following python script `create_sqlite_db.py` or via the following shell script ../sqlite/create_sqlite_db.sh.
-  --> invoke that shell script via `sh create_sqlite_db_.sh ../UMLS/subset/2021AB` (where the path argument is path to local .RRF files)
-Note: If using MySQL, Oracle or PostgreSQL, you'll need to adjust the connection object ('conn') appropriately to the datastore of your choice. Dependencies for MySQL, PostgreSQL and MariaDB are all included in the pyproject.toml file. (i.e. PyMySql, mysql.connector, psycopg2-binary, SQLAlchemy, mariadb etc...).
-An example connection object for MySQL & PostgresSQL connection have been included below for reference.
+This .py assumes you are querying one of the SQLite databases found via relative \
+path ->../sqlite/ -> (umls.db or umls_py.db)
+SQLite database can be created via the following python script `create_sqlite_db.py` \
+(or via the following shell script ../sqlite/create_sqlite_db.sh.)
+  --> invoke that shell script via `sh create_sqlite_db_.sh ../UMLS/subset/2021AB`
+Note: If using MySQL, Oracle or PostgreSQL, you'll need to adjust the connection object ('conn') \
+appropriately to the datastore of your choice. 
+
+Dependencies for MySQL, PostgreSQL and MariaDB are all included in the pyproject.toml file. \
+    (i.e. PyMySql, mysql-connector, psycopg2-binary, SQLAlchemy, mariadb etc...).
+An example connection object for MySQL & PostgresSQL connection have been \
+    included below for reference.
+    
 ****************************************************
 MySQL connection:
 import pymysql
@@ -16,7 +25,9 @@ mconn = mysql.connector.connect(
 	password=password,
 	database=database  # <-- schema name with loaded UMLS subset
 )
+
 ****************************************************
+
 PostgresSQL connection (using psycopg2):
 import psycopg2
 pgconn = psycopg2.connect(
@@ -25,7 +36,6 @@ pgconn = psycopg2.connect(
 	password=password,
 	db_name=database
 )
-
 """
 
 import os
