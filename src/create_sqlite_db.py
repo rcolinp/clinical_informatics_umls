@@ -387,9 +387,8 @@ def create_db():
         line.pop()
         assert len(line) == 18
         c.execute(
-            """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, 
-            SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
-			   VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
+			    VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -402,8 +401,8 @@ def create_db():
         assert len(line) == 16
         c.execute(
             """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2, 
-            RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
-			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+                           RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
+			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -415,9 +414,8 @@ def create_db():
         line.pop()
         assert len(line) == 9
         c.execute(
-            """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, 
-            SAB, RELA, PTR, HCD, CVF ) 
-			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, SAB, RELA, PTR, HCD, CVF ) 
+			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -441,9 +439,8 @@ def create_db():
         line.pop()
         assert len(line) == 10
         c.execute(
-            """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, 
-            DEF, EX, UN, NH, ABR, RIN ) 
-			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, DEF, EX, UN, NH, ABR, RIN ) 
+			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -490,11 +487,8 @@ def create_db():
         line.pop()
         assert len(line) == 25
         c.execute(
-            """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, 
-            IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, 
-            LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
-			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
+			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -506,9 +500,8 @@ def create_db():
         line.pop()
         assert len(line) == 13
         c.execute(
-            """INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE,
-				  				  ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
-					 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE, ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
+				VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
