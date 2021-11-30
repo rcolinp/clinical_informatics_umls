@@ -375,7 +375,7 @@ def create_db():
         assert len(line) == 6
         c.execute(
             """INSERT INTO MRSTY( CUI, TUI, STN, STY, ATUI, CVF ) 
-                        VALUES( ?, ?, ?, ?, ?, ?)
+               VALUES( ?, ?, ?, ?, ?, ?)
             """, tuple(line),
         )
 
@@ -388,8 +388,8 @@ def create_db():
         assert len(line) == 18
         c.execute(
             """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, 
-									SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
-					 	VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
+			   VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -402,8 +402,8 @@ def create_db():
         assert len(line) == 16
         c.execute(
             """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2, 
-								  RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
-					    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
+			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -416,8 +416,8 @@ def create_db():
         assert len(line) == 9
         c.execute(
             """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, 
-										 SAB, RELA, PTR, HCD, CVF ) 
-					     VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            SAB, RELA, PTR, HCD, CVF ) 
+			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -442,7 +442,7 @@ def create_db():
         assert len(line) == 10
         c.execute(
             """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, 
-								  DEF, EX, UN, NH, ABR, RIN ) 
+            DEF, EX, UN, NH, ABR, RIN ) 
 			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
@@ -491,10 +491,10 @@ def create_db():
         assert len(line) == 25
         c.execute(
             """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, 
-								  IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, 
-				   				  LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
-				         VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-						 	     ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, 
+            LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
+			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
