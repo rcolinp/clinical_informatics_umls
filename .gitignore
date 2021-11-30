@@ -149,3 +149,6 @@ notebooks/test.ipynb
 UMLS/mrconos_columns.csv
 UMLS/mrrel_columns.csv
 clinical_informatics_umls/umls.py
+notebooks/1.py2neo
+notebooks/1.py2neo.ipynb
+notebooks/1.y2neo.ipynb
