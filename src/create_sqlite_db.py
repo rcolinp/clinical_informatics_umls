@@ -375,8 +375,8 @@ def create_db():
         assert len(line) == 6
         c.execute(
             """INSERT INTO MRSTY( CUI, TUI, STN, STY, ATUI, CVF ) 
-			   VALUES( ?, ?, ?, ?, ?, ?)""",
-            tuple(line),
+                        VALUES( ?, ?, ?, ?, ?, ?)
+            """, tuple(line),
         )
 
     print("Inserting data into MRCONSO table")
@@ -389,8 +389,8 @@ def create_db():
         c.execute(
             """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, 
 									SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
-					 	VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+					 	VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     print("Inserting data into MRREL table")
@@ -403,8 +403,8 @@ def create_db():
         c.execute(
             """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2, 
 								  RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
-					 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+					    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     print("Inserting data into MRHIER table")
@@ -417,8 +417,8 @@ def create_db():
         c.execute(
             """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, 
 										 SAB, RELA, PTR, HCD, CVF ) 
-					 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+					     VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     print("Inserting data into MRRANK table")
@@ -443,8 +443,8 @@ def create_db():
         c.execute(
             """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, 
 								  DEF, EX, UN, NH, ABR, RIN ) 
-			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+			   VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     print("Inserting data into SRSTR table")
@@ -493,9 +493,9 @@ def create_db():
             """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, 
 								  IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, 
 				   				  LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
-						 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-						 	?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+				         VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+						 	     ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     print("Inserting data into MRSAT table")
@@ -507,9 +507,9 @@ def create_db():
         assert len(line) == 13
         c.execute(
             """INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE,
-				  						ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
-					 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
-            tuple(line),
+				  				  ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
+					 VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """, tuple(line),
         )
 
     # create indices for faster queries
