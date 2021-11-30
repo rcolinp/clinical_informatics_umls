@@ -4,10 +4,10 @@ import json
 import requests
 import rdflib
 from os.path import join, dirname
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 
-def neo_to_rdf(__file__: str):
+def neo_to_rdf(__file__ : str):
     """
     Summary:
     --------
