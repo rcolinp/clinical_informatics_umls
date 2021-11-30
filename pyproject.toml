@@ -30,16 +30,12 @@ matplotlib = "^3.5.0"
 typing-extensions = "^3.10.0"
 notebook = "^6.4.6"
 ipykernel = "^6.5.1"
-pylint = "^2.12.1"
 autopep8 = "^1.6.0"
 toml = "^0.10.2"
 jupyter = "^1.0.0"
 ipywidgets = "^7.6.5"
 pip = "^21.3.1"
 python-dotenv = "^0.19.2"
-docker = "^5.0.3"
-docker-compose = "^1.29.2"
-pep8 = "^1.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
