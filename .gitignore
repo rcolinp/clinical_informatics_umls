@@ -44,8 +44,8 @@ parquet_to_csv.py
 *.spec
 venv/
 
-New Folder With Items/
-edges_part2.py
+misc/
+
 cuiNode.py
 
 # Installer logs
@@ -148,3 +148,4 @@ sqlite/umls_py.db
 notebooks/test.ipynb
 UMLS/mrconos_columns.csv
 UMLS/mrrel_columns.csv
+clinical_informatics_umls/umls.py
