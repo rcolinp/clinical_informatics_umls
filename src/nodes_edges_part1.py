@@ -33,12 +33,12 @@ import sys
 
 if not sys.warnoptions:
     import warnings
-    warnings.simplefilter("ignore")
 
-import sqlite3
+    warnings.simplefilter("ignore")
 
 import numpy as np
 import pandas as pd
+import sqlite3
 
 
 # umls_py.db SQLite database path (db_dir : str) & name (db_name : str)
@@ -68,10 +68,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     """
 
-    # Establish database connection using local SQLite
+    # Establish database connection
     database = os.path.join(os.path.dirname(db_dir), db_name)
-    # Create connection object
-    conn = sqlite3.connect(database=database)
+
+    conn = sqlite3.connect(database=database)  # Create connection object
 
     ####################################################################
     # GRAPH LABELS:
@@ -81,17 +81,25 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     # Label: SemanticType
     # Import: semanticTypeNode.csv
+
     semantic_node = """
-	SELECT DISTINCT TUI
-				  , STY
-				  , STN
-      			  , 'TUI'  as ":LABEL"
-	FROM MRSTY
-			JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
-	WHERE MRCONSO.SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND MRCONSO.SUPPRESS = 'N'
-		AND MRCONSO.LAT = 'ENG';
-  """
+                    SELECT DISTINCT MRSTY.TUI,
+                                    MRSTY.STY,
+                                    MRSTY.STN,
+                                    'TUI' AS ":LABEL"
+                    FROM MRSTY
+                    JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
+                    WHERE MRCONSO.SAB IN (
+                                        'ATC',
+                                        'GO',
+                                        'ICD10CM',
+                                        'NCI',
+                                        'RXNORM',
+                                        'SNOMEDCT_US'
+                          )
+                        AND MRCONSO.SUPPRESS = 'N'
+                        AND MRCONSO.LAT = 'ENG';
+                    """
 
     semanticTypeNode = pd.read_sql_query(
         semantic_node, conn).drop_duplicates().replace(np.nan, "")
@@ -104,20 +112,28 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     print("semanticTypeNode.csv successfully written out...")
 
    ####################################################################
+
     # Label: Concept
     # Import: conceptNode.csv
     concept_node = """
-	SELECT DISTINCT CUI
-				  , STR
-				  , 'CUI' AS ":LABEL"
-	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND SUPPRESS = 'N'
-		AND LAT = 'ENG'
-		AND ISPREF = 'Y'
-		AND TS = 'P'
-		AND STT = 'PF';
-  """
+                    SELECT DISTINCT CUI
+                                  , STR
+                                  , 'CUI' AS ":LABEL"
+                    FROM MRCONSO
+                    WHERE MRCONSO.SAB IN (
+                                        'ATC',
+                                        'GO',
+                                        'ICD10CM',
+                                        'NCI',
+                                        'RXNORM',
+                                        'SNOMEDCT_US'
+                            )
+                        AND SUPPRESS = 'N'
+                        AND LAT = 'ENG'
+                        AND ISPREF = 'Y'
+                        AND TS = 'P'
+                        AND STT = 'PF';
+                        """
 
     conceptNode = pd.read_sql_query(
         concept_node, conn).drop_duplicates().replace(np.nan, '')
@@ -127,25 +143,36 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     conceptNode.to_csv(path_or_buf="../../../../import/conceptNode.csv",
                        header=True,
                        index=False)
+
     print("conceptNode.csv successfully written out...")
+
     ####################################################################
+
     # Label: Atom
     # Import: atomNode.csv
+
     atom_node = """
-	SELECT DISTINCT c.AUI
-				  , c.STR
-				  , c.SAB
-				  , c.CODE
-				  , c.TTY
-				  , c.ISPREF
-				  , c.TS
-				  , c.STT
-				  , 'AUI' AS ":LABEL"
-	FROM MRCONSO c
-	WHERE c.SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND c.SUPPRESS = 'N'
-		AND c.LAT = 'ENG';
- """
+                SELECT DISTINCT MRCONSO.AUI
+                              , MRCONSO.STR
+                              , MRCONSO.SAB
+                              , MRCONSO.CODE
+                              , MRCONSO.TTY
+                              , MRCONSO.ISPREF
+                              , MRCONSO.TS
+                              , MRCONSO.STT
+                              , 'AUI' AS ":LABEL"
+                FROM MRCONSO
+                WHERE MRCONSO.SAB IN (
+                                    'ATC',
+                                    'GO',
+                                    'ICD10CM',
+                                    'NCI',
+                                    'RXNORM',
+                                    'SNOMEDCT_US'
+                            )
+                    AND MRCONSO.SUPPRESS = 'N'
+                    AND MRCONSO.LAT = 'ENG';
+                    """
 
     atomNode = pd.read_sql_query(atom_node, conn).drop_duplicates(
         subset=['AUI']).replace(np.nan, "")
@@ -156,72 +183,111 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     atomNode.to_csv(path_or_buf="../../../../import/atomNode.csv",
                     header=True,
                     index=False)
+
     print("atomNode.csv successfully written out...")
+
     ####################################################################
+
     # Label: Code
     # Import: codeNode.csv
-    code = """
- 	SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE) AS "SourceCodeID:ID"
-				   , MRCONSO.SAB
-				   , MRCONSO.CODE
-				   , ('CODE' || ';' || MRCONSO.SAB)       AS ":LABEL"
-	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND SUPPRESS = 'N'
-		AND LAT = 'ENG';
-  """
 
-    codeNode = pd.read_sql_query(code, conn).drop_duplicates().replace(
+    code_node = """
+                SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE)
+                              , MRCONSO.SAB
+                              , MRCONSO.CODE
+                              , ('CODE' || ';' || MRCONSO.SAB) AS ":LABEL"
+                FROM MRCONSO
+                WHERE MRCONSO.SAB IN (
+                                    'ATC',
+                                    'GO',
+                                    'ICD10CM',
+                                    'NCI',
+                                    'RXNORM',
+                                    'SNOMEDCT_US'
+                        )
+                    AND MRCONSO.SUPPRESS = 'N'
+                    AND MRCONSO.LAT = 'ENG';
+                """
+
+    codeNode = pd.read_sql_query(code_node, conn).drop_duplicates().replace(
         np.nan, '')
+
     codeNode.columns = ['CODE:ID', 'SAB', 'CODE', ':LABEL']
+
     codeNode.to_csv(path_or_buf="../../../../import/codeNode.csv",
                     header=True,
                     index=False)
+
     print("codeNode.csv successfully written out...")
+
     ####################################################################
     # GRAPH EDGES/RELATIONSHIPS
     ####################################################################
+
     # has_sty.csv
-    has_sty = """
-	SELECT DISTINCT MRCONSO.CUI
-				  , MRSTY.TUI
-				  , 'HAS_STY' AS ":TYPE"
-	FROM MRSTY
-			JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
-	WHERE MRCONSO.SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND MRCONSO.SUPPRESS = 'N'
-		AND MRCONSO.LAT = 'ENG';
+
+    has_sty_r = """
+                SELECT DISTINCT MRCONSO.CUI
+                              , MRSTY.TUI
+                              , 'HAS_STY' AS ":TYPE"
+                FROM MRSTY
+                JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
+                WHERE MRCONSO.SAB IN (
+                                    'ATC',
+                                    'GO',
+                                    'ICD10CM',
+                                    'NCI',
+                                    'RXNORM',
+                                    'SNOMEDCT_US'
+                        )
+                    AND MRCONSO.SUPPRESS = 'N'
+                    AND MRCONSO.LAT = 'ENG';
   """
 
     has_sty_rel = pd.read_sql_query(
-        has_sty, conn).drop_duplicates().replace(np.nan, '')
+        has_sty_r, conn).drop_duplicates().replace(np.nan, '')
 
     has_sty_rel.columns = [':START_ID', ':END_ID', ':TYPE']
 
     has_sty_rel.to_csv(path_or_buf="../../../../import/has_sty_rel.csv",
                        header=True,
                        index=False)
+
     print("has_sty_rel.csv successfully written out...")
+
     ####################################################################
+
     # import: has_aui_rel.csv
+
     has_umls_aui = """
-	SELECT DISTINCT (SAB || '#' || CODE) AS ":START_ID"
-				  , AUI                  AS ":END_ID"
-				  , 'HAS_AUI'            AS ":TYPE"
-	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND SUPPRESS = 'N'
-		AND LAT = 'ENG';
-  """
+                    SELECT DISTINCT (MRCONSO.SAB || '#' || MRCONSO.CODE)
+                                  , MRCONSO.AUI
+                                  , 'HAS_AUI'
+                    FROM MRCONSO
+                    WHERE MRCONSO.SAB IN (
+                                        'ATC',
+                                        'GO',
+                                        'ICD10CM',
+                                        'NCI',
+                                        'RXNORM',
+                                        'SNOMEDCT_US'
+                            )
+                        AND MRCONSO.SUPPRESS = 'N'
+                        AND MRCONSO.LAT = 'ENG';
+                        """
 
     has_aui_rel = pd.read_sql_query(
         has_umls_aui, conn).drop_duplicates().replace(np.nan, "")
+
+    has_aui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
     has_aui_rel.to_csv(path_or_buf="../../../../import/has_aui_rel.csv",
                        header=True,
                        index=False)
     print("has_aui_rel.csv successfully written out...")
+
     ####################################################################
+
     # has_cui_rel.csv
     # Each umls_aui within UMLS maps to a single umls_cui (umls_aui is primary key in UMLS.MRCONSO)
     # Each row of UMLS.MRCONSO represents each UMLS Atom (AUI) -> 1 Atom (AUI) can only map to a single UMLS Concept (CUI).
@@ -233,16 +299,25 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # --> Adding only 'has_string' (AUI)-[has_string]->(CUI) OR exact cypher being: `(Atom)-[:has_string]->(Concept)`
 
     has_concept = """
-	SELECT DISTINCT AUI
-				  , CUI
-				  , 'HAS_CUI' AS ":TYPE"
-	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND SUPPRESS = 'N'
-		AND LAT = 'ENG';
-  """
+                    SELECT DISTINCT MRCONSO.AUI
+                                  , MRCONSO.CUI
+                                  , 'HAS_CUI'
+                    FROM MRCONSO
+                    WHERE MRCONSO.SAB IN (
+                                        'ATC',
+                                        'GO',
+                                        'ICD10CM',
+                                        'NCI',
+                                        'RXNORM',
+                                        'SNOMEDCT_US'
+                            )
+                        AND MRCONSO.SUPPRESS = 'N'
+                        AND MRCONSO.LAT = 'ENG';
+                        """
+
     has_cui_rel = pd.read_sql_query(
         has_concept, conn).drop_duplicates().replace(np.nan, '')
+
     has_cui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
     has_cui_rel.to_csv(path_or_buf="../../../../import/has_cui_rel.csv",
@@ -251,20 +326,20 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     print("has_cui_rel.csv successfully written out...")
 
     ####################################################################
+
     # import: tui_tui_rel.csv
     # Limit to SRSTR.RL = 'ISA' -> most useful part of semantic network
+
     tui_tui = """
-	SELECT DISTINCT s2.UI
-				  , s3.UI
-				  , s.RL
-	FROM SRSTR s
-			INNER JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
-			INNER JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
-	WHERE s2.UI != s3.UI
-		AND s2.RT = 'STY'
-		AND s3.RT = 'STY'
-		AND s.RL = 'ISA';
-  """
+                SELECT DISTINCT s2.UI
+                              , s3.UI
+                              , s.RL
+                FROM SRSTR s
+                JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
+                JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
+                WHERE s2.UI != s3.UI
+                    AND s.RL = 'isa';
+                    """
 
     tui_tui_rel_df = pd.read_sql_query(
         tui_tui, conn).drop_duplicates().replace(np.nan, "")
@@ -278,7 +353,9 @@ def extract_nodes_edges(db_dir: str, db_name: str):
                        header=True,
                        index=False)
     print("tui_tui_rel.csv successfully written out...")
+
     # ####################################################################
+
     # import: concept_concept_rel.csv
 
     # We will filter out REL = 'SIB' as the relationship in UMLS does not provide much utility & will increase size of graph considerably
@@ -287,24 +364,35 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # 'vocab' assigned to be a property of the relationship (i.e. Concept -- Concept relationship can be filtered to the vocabulary for which the relationship exists)
 
     concept_concept = """
-	WITH q AS (
-		SELECT DISTINCT SAB
-		FROM MRCONSO
-		WHERE SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-			AND SUPPRESS = 'N'
-			AND LAT = 'ENG')
-	SELECT DISTINCT r.CUI2
-				  , r.CUI1
-				  , CASE
-						WHEN r.RELA = ''
-							THEN r.REL
-						ELSE r.RELA END AS ":TYPE"
-				  , r.SAB               AS "vocab"
-	FROM MRREL r
-			INNER JOIN q ON r.SAB = q.SAB
-	WHERE r.SUPPRESS = 'N';
- """
+                         WITH q AS (
+                                SELECT DISTINCT SAB
+                                FROM MRCONSO
+                                WHERE SAB IN (
+                                            'ATC',
+                                            'GO',
+                                            'ICD10CM',
+                                            'NCI',
+                                            'RXNORM',
+                                            'SNOMEDCT_US'
+                                        )
+                                    AND SUPPRESS = 'N'
+                                    AND LAT = 'ENG'
+                                )
+                         SELECT r.CUI2
+                              , r.CUI1
+                              , CASE
+                                 WHEN r.RELA = ''
+                                     THEN r.REL
+                                 ELSE r.RELA END AS ":TYPE"
+                              , r.SAB
+                         FROM MRREL r
+                         JOIN q ON r.SAB = q.SAB
+                         WHERE r.SUPPRESS = 'N'
+                         group by r.CUI2, r.CUI1, ":TYPE", r.SAB;
+                         """
+
     concept_concept_rel = pd.read_sql_query(concept_concept, conn)
+
     concept_concept_rel.columns = [":START_ID", ":END_ID", ":TYPE", "vocab"]
 
     # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
@@ -321,29 +409,41 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     concept_concept_rel.to_csv(path_or_buf="../../../../import/concept_concept_rel.csv",
                                header=True,
                                index=False)
+
     print("concept_concept_rel.csv successfully written out...")
+
     # ####################################################################
+
     # import: child_of_rel.csv -> alternative option to running edges_part2.py
+
     child_of = """
-	SELECT DISTINCT h.PAUI     AS PAUI
-				  , c.AUI      AS AUI2
-				  , 'CHILD_OF' AS ":TYPE"
-	FROM MRHIER h
-			JOIN MRCONSO c ON h.AUI = c.AUI
-			JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-	WHERE h.SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND c.SUPPRESS = 'N'
-		AND c2.SUPPRESS = 'N'
-		AND c.LAT = 'ENG'
-		AND c2.LAT = 'ENG'
-		AND c.CODE != c2.CODE;
-  """
+	            SELECT DISTINCT h.PAUI
+				              , c.AUI 
+				              , 'CHILD_OF'
+	            FROM MRHIER h
+			    JOIN MRCONSO c ON h.AUI = c.AUI
+			    JOIN MRCONSO c2 ON h.PAUI = c2.AUI
+	            WHERE h.SAB IN (
+                              'ATC',
+                              'GO',
+                              'ICD10CM',
+                              'NCI',
+                              'RXNORM',
+                              'SNOMEDCT_US'
+                        )
+                    AND c.SUPPRESS = 'N'
+                    AND c2.SUPPRESS = 'N'
+                    AND c.LAT = 'ENG'
+                    AND c2.LAT = 'ENG'
+                    AND c.CODE != c2.CODE;
+                    """
 
     child_of_rel = pd.read_sql_query(child_of, conn)
 
     child_of_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
 
     # start_id should not equal end_id -> remove them & then drop duplicates and replace nan with ''
+
     child_of_rel = child_of_rel[child_of_rel[':START_ID'] !=
                                 child_of_rel[':END_ID']].drop_duplicates().replace(np.nan, "")
 
@@ -351,17 +451,27 @@ def extract_nodes_edges(db_dir: str, db_name: str):
                         header=True,
                         index=False)
     print("child_of_rel.csv successfully written out...")
+
     ####################################################################
+
     # import: cui_code_rel.csv
+
     cui_code_rel = """
-	SELECT DISTINCT CUI
-				, (SAB || '#' || CODE)  AS ":END_ID"
-				, 'HAS_SOURCE_CODE'     AS ":TYPE"
-	FROM MRCONSO
-	WHERE SUPPRESS = 'N'
-		AND SAB IN ('ATC', 'GO', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-		AND LAT = 'ENG';
-  """
+                    SELECT DISTINCT MRCONSO.CUI,
+                                    (MRCONSO.SAB || '#' || MRCONSO.CODE),
+                                    'HAS_SOURCE_CODE'
+                    FROM MRCONSO
+                    WHERE MRCONSO.SUPPRESS = 'N'
+                    AND MRCONSO.SAB IN (
+                                        'ATC',
+                                        'GO',
+                                        'ICD10CM',
+                                        'NCI',
+                                        'RXNORM',
+                                        'SNOMEDCT_US'
+                        )
+                    AND MRCONSO.LAT = 'ENG';
+                    """
 
     has_source_code = pd.read_sql_query(
         cui_code_rel, conn).drop_duplicates().replace(np.nan, '')
@@ -373,24 +483,20 @@ def extract_nodes_edges(db_dir: str, db_name: str):
         header=True,
         index=False
     )
-
-    # Keep a copy to use to add ICDO3 as SAB/LABEL to codeNode.csv & create rel to CUI
     has_source_code_copy = has_source_code.copy()
     print("cui_code_rel.csv successfully written out...")
     ####################################################################
-    # Append both codeNode.csv & cui_code_rel.csv w/ ICDO3T & ICDO3M CODEs \
-    # that are attributes of NCI Thesaurus (NCI)
-    # to do: Incorporate all of ICDO3 via its native release.
+    # Append both codeNode.csv & cui_code_rel.csv w/ ICDO3T & ICDO3M CODEs
+
     icdo = """
-	SELECT DISTINCT ATV
-				, (SAB||'#'||CODE)
-				, SAB
-	FROM MRSAT
-	WHERE SAB = 'NCI'
-		AND ATN = 'ICD-O-3_CODE'
-		AND SUPPRESS = 'N'
-		AND ATV != '0000/0';
-  """
+	        SELECT DISTINCT ATV
+				         , (SAB||'#'||CODE)
+				         , SAB
+	        FROM MRSAT
+	        WHERE SAB = 'NCI'
+		        AND ATN = 'ICD-O-3_CODE'
+		        AND SUPPRESS = 'N'
+		        AND ATV != '0000/0';"""
 
     icdo_df = pd.read_sql_query(
         icdo, conn).drop_duplicates().replace(np.nan, '')
