@@ -247,7 +247,7 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
       SQLite database created - umls_py.db
       ```
 
-    - If you want to use MySQL, Mariadb or PostgresSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+    - If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
 - This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
 - Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `clinical_informatics_umls/clinical_informatics_umls`.
