@@ -8,7 +8,7 @@ Data transformation from the RDBMS of choice to a Neo4j Label Property Graph wit
 
 Neo4j will serve as the primary datastore for both analysis of UMLS leveraging Neo4j's powerful tooling framework consisting of its native graph query language `Cypher` in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)` and `Neosemantics (N10s)`.
 
-Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such interconnected. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of mapping Neo4j LPG schema to a valid W3C RDF serialization & public schema. Furthermore mapping to the largest public schema in the world -> [schema.org](https://schema.org).
+Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such richly interconnected data. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of mapping Neo4j LPG schema to a valid W3C RDF serialization & public schema. Furthermore mapping to the largest public schema in the world -> [schema.org](https://schema.org).
 
 If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding the 3 plugins discussed above:
 
@@ -247,7 +247,7 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
       SQLite database created - umls_py.db
       ```
 
-    - If you want to use MySQL, Mariadb or PostgresSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+    - If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
 - This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
 - Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `clinical_informatics_umls/clinical_informatics_umls`.
