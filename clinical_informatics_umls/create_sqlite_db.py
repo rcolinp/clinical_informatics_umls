@@ -23,7 +23,7 @@ from io import StringIO
 from os.path import join, dirname
 
 
-umls_tables = "../../../UMLS/subset/2021AB/META/"
+umls_tables = "../UMLS/subset/2021AB/META/"
 conn = None
 success = False
 db_path = "../sqlite/umls_py.db"
