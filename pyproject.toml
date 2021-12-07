@@ -22,11 +22,13 @@ mariadb = "^1.0.8"
 PyMySQL = "^1.0.2"
 psycopg2-binary = "^2.9.2"
 rdflib = "^6.0.2"
-kglab = "^0.4.1"
 mysql-connector = "^2.2.9"
 matplotlib = "^3.5.0"
 ipyradiant = "^0.2.0"
-networkx = "^2.6.3"
+Owlready2 = "^0.35"
+lxml = "^4.6.4"
+pyvis = "^0.1.9"
+mysql-connector-python = "^8.0.27"
 
 [tool.poetry.dev-dependencies]
 typing-extensions = "^3.10.0"
@@ -38,6 +40,11 @@ jupyter = "^1.0.0"
 ipywidgets = "^7.6.5"
 pip = "^21.3.1"
 python-dotenv = "^0.19.2"
+docker-compose = "^1.29.2"
+jupyterlab = "^3.2.4"
+flake8 = "^4.0.1"
+tox = "^3.24.4"
+twine = "^3.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

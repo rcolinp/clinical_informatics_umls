@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """
-Summary:
--------
 Script quickly creates a loaded sqlite3 database containing a UMLS 2021AB subset
 
 This script is lightweight version of ../sqlite/create_sqlite_db.sh.
@@ -22,9 +20,10 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 from io import StringIO
+from os.path import join, dirname
 
 
-umls_tables = "../UMLS/subset/2021AB/META/"
+umls_tables = "../../../UMLS/subset/2021AB/META/"
 conn = None
 success = False
 db_path = "../sqlite/umls_py.db"
@@ -135,77 +134,77 @@ def create_db():
 
     print("opening files")
     try:
-        mrsty_path = os.path.join(umls_tables, "MRSTY.RRF")
+        mrsty_path = join(dirname(umls_tables), "MRSTY.RRF")
         MRSTY_TABLE_FILE = open(mrsty_path, "r")
     except IOError:
         print("No file to use for creating MRSTY.RRF table")
         sys.exit()
 
     try:
-        mrconso_path = os.path.join(umls_tables, "MRCONSO.RRF")
+        mrconso_path = join(dirname(umls_tables), "MRCONSO.RRF")
         MRCONSO_TABLE_FILE = open(mrconso_path, "r")
     except IOError:
         print("\nNo file to use for creating MRCONSO.RRF table\n")
         sys.exit()
 
     try:
-        mrhier_path = os.path.join(umls_tables, "MRHIER.RRF")
+        mrhier_path = join(dirname(umls_tables), "MRHIER.RRF")
         MRHIER_TABLE_FILE = open(mrhier_path, "r")
     except IOError:
         print("\nNo file to use for creating MRHIER.RRF table\n")
         sys.exit()
 
     try:
-        mrrank_path = os.path.join(umls_tables, "MRRANK.RRF")
+        mrrank_path = join(dirname(umls_tables), "MRRANK.RRF")
         MRRANK_TABLE_FILE = open(mrrank_path, "r")
     except IOError:
         print("\nNo file to use for creating MRRANK.RRF table\n")
         sys.exit()
 
     try:
-        mrrel_path = os.path.join(umls_tables, "MRREL.RRF")
+        mrrel_path = join(dirname(umls_tables), "MRREL.RRF")
         MRREL_TABLE_FILE = open(mrrel_path, "r")
     except IOError:
         print("\nNo file to use for creating MRREL.RRF table\n")
         sys.exit()
 
     try:
-        srdef_path = os.path.join(umls_tables, "SRDEF")
+        srdef_path = join(dirname(umls_tables), "SRDEF")
         SRDEF_TABLE_FILE = open(srdef_path, "r")
     except IOError:
         print("\nNo file to use for creating SRDEF table\n")
         sys.exit()
 
     try:
-        srstr_path = os.path.join(umls_tables, "SRSTR")
+        srstr_path = join(dirname(umls_tables), "SRSTR")
         SRSTR_TABLE_FILE = open(srstr_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTR table\n")
         sys.exit()
 
     try:
-        srstre1_path = os.path.join(umls_tables, "SRSTRE1")
+        srstre1_path = join(dirname(umls_tables), "SRSTRE1")
         SRSTRE1_TABLE_FILE = open(srstre1_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTRE1 table\n")
         sys.exit()
 
     try:
-        srstre2_path = os.path.join(umls_tables, "SRSTRE2")
+        srstre2_path = join(dirname(umls_tables), "SRSTRE2")
         SRSTRE2_TABLE_FILE = open(srstre2_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTRE2 table\n")
         sys.exit()
 
     try:
-        mrsab_path = os.path.join(umls_tables, "MRSAB.RRF")
+        mrsab_path = join(dirname(umls_tables), "MRSAB.RRF")
         MRSAB_TABLE_FILE = open(mrsab_path, "r")
     except IOError:
         print("\nNo file to use for creating MRSAB table\n")
         sys.exit()
 
     try:
-        mrsat_path = os.path.join(umls_tables, "MRSAT.RRF")
+        mrsat_path = join(dirname(umls_tables), "MRSAT.RRF")
         MRSAT_TABLE_FILE = open(mrsat_path, "r")
     except IOError:
         print("\nNo file to use for creating MRSAT table\n")
@@ -296,7 +295,7 @@ def create_db():
     )
 
     c.execute(
-        """CREATE TABLE SRDEF( 
+        """CREATE TABLE SRDEF(
               RT varchar, 
               UI varchar, 
               STY_RL text, 
@@ -305,7 +304,7 @@ def create_db():
               EX varchar, 
               UN varchar, 
               NH varchar, 
-              BR varchar, 
+              ABR varchar, 
               RIN varchar 
       );"""
     )
@@ -440,8 +439,8 @@ def create_db():
         assert len(line) == 10
         c.execute(
             """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, DEF, EX, UN, NH, ABR, RIN ) 
-			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
+			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
+            tuple(line),
         )
 
     print("Inserting data into SRSTR table")
