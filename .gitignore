@@ -42,6 +42,7 @@ parquet_to_csv.py
 *.manifest
 *.spec
 misc/
+output/
 cuiNode.py
 
 
