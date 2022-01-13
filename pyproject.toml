@@ -24,12 +24,11 @@ rdflib = "^6.0.2"
 mysql-connector = "^2.2.9"
 matplotlib = "^3.5.0"
 ipyradiant = "^0.2.0"
-Owlready2 = "^0.35"
 lxml = "^4.6.5"
 pyvis = "^0.1.9"
 mysql-connector-python = "^8.0.27"
-kglab = "^0.4.1"
 numpy = "^1.21.4"
+Pillow = "9.0.0"
 
 [tool.poetry.dev-dependencies]
 typing-extensions = "^3.10.0"
