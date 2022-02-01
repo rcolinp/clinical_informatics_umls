@@ -27,6 +27,8 @@ lxml = "^4.6.5"
 pyvis = "^0.1.9"
 numpy = "^1.21.4"
 Pillow = "9.0.0"
+trove = "^16.0.0"
+pyquery = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
 typing-extensions = "^3.10.0"
