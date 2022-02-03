@@ -98,7 +98,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     semanticTypeNode = (
-        pd.read_sql_query(semantic_node, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            semantic_node, conn).drop_duplicates().replace(np.nan, "")
     )
 
     semanticTypeNode.columns = ["TUI:ID", "STY", "STN", ":LABEL"]
@@ -128,7 +129,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     conceptNode = (
-        pd.read_sql_query(concept_node, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            concept_node, conn).drop_duplicates().replace(np.nan, "")
     )
 
     conceptNode.columns = ["Concept:ID", "STR", ":LABEL"]
@@ -165,7 +167,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
         .replace(np.nan, "")
     )
 
-    atomNode.columns = ["AUI:ID", "STR", "SAB", "CODE", "TTY", "ISPREF", "TS", ":LABEL"]
+    atomNode.columns = ["AUI:ID", "STR", "SAB",
+                        "CODE", "TTY", "ISPREF", "TS", ":LABEL"]
 
     atomNode.to_csv(
         path_or_buf="../../../../import/atomNode.csv", header=True, index=False
@@ -186,7 +189,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 					AND LAT = 'ENG';
 	"""
 
-    codeNode = pd.read_sql_query(code_node, conn).drop_duplicates().replace(np.nan, "")
+    codeNode = pd.read_sql_query(
+        code_node, conn).drop_duplicates().replace(np.nan, "")
 
     codeNode.columns = ["Code:ID", "SAB", "CODE", ":LABEL"]
 
@@ -211,7 +215,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     has_sty_rel = (
-        pd.read_sql_query(has_sty_r, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            has_sty_r, conn).drop_duplicates().replace(np.nan, "")
     )
 
     has_sty_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
@@ -236,7 +241,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     has_aui_rel = (
-        pd.read_sql_query(has_umls_aui, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            has_umls_aui, conn).drop_duplicates().replace(np.nan, "")
     )
 
     has_aui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
@@ -275,7 +281,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     has_cui_rel = (
-        pd.read_sql_query(has_concept, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            has_concept, conn).drop_duplicates().replace(np.nan, "")
     )
 
     has_cui_rel.columns = [":START_ID", ":END_ID", ":TYPE"]
@@ -305,7 +312,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     tui_tui_rel_df.columns = [":START_ID", ":END_ID", ":TYPE"]
     tui_tui_rel = (
-        tui_tui_rel_df[tui_tui_rel_df[":START_ID"] != tui_tui_rel_df[":END_ID"]]
+        tui_tui_rel_df[tui_tui_rel_df[":START_ID"]
+                       != tui_tui_rel_df[":END_ID"]]
         .drop_duplicates()
         .replace(np.nan, "")
     )
@@ -363,7 +371,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     concept_concept_rel = (
         concept_concept_rel[
-            (concept_concept_rel[":START_ID"] != concept_concept_rel[":END_ID"])
+            (concept_concept_rel[":START_ID"]
+             != concept_concept_rel[":END_ID"])
             & (concept_concept_rel[":TYPE"] != "SIB")
         ]
         .drop_duplicates()
@@ -371,7 +380,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     )
 
     concept_concept_rel[":TYPE"] = concept_concept_rel[":TYPE"].str.upper()
-    concept_concept_rel[":TYPE"] = concept_concept_rel[":TYPE"].str.replace("-", "_")
+    concept_concept_rel[":TYPE"] = concept_concept_rel[":TYPE"].str.replace(
+        "-", "_")
 
     concept_concept_rel.to_csv(
         path_or_buf="../../../../import/concept_concept_rel.csv",
@@ -431,7 +441,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	"""
 
     has_source_code = (
-        pd.read_sql_query(cui_code_rel, conn).drop_duplicates().replace(np.nan, "")
+        pd.read_sql_query(
+            cui_code_rel, conn).drop_duplicates().replace(np.nan, "")
     )
 
     has_source_code.columns = [":START_ID", ":END_ID", ":TYPE"]
@@ -456,7 +467,8 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 				AND ATV != '0000/0';
 	"""
 
-    icdo_df = pd.read_sql_query(icdo, conn).drop_duplicates().replace(np.nan, "")
+    icdo_df = pd.read_sql_query(
+        icdo, conn).drop_duplicates().replace(np.nan, "")
 
     icdo_df.columns = ["CODE", ":END_ID", "SAB"]
     icdo_df["SAB"] = "ICDO3"
