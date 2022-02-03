@@ -90,8 +90,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     semantic_node = """SELECT DISTINCT s.TUI, s.STY, s.STN, 'TUI' AS ":LABEL"
 	FROM MRSTY s
 	JOIN MRCONSO c ON s.CUI = c.CUI
-	WHERE c.SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM',
-					'NCI','RXNORM', 'SNOMEDCT_US')
+	WHERE c.SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 	    AND c.SUPPRESS = 'N'
 		AND c.LAT = 'ENG';"""
 
@@ -113,8 +112,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: conceptNode.csv
     concept_node = """SELECT DISTINCT CUI, STR, 'Concept' AS ':LABEL'
     FROM MRCONSO
-    WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM',
-                'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+    WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
         AND SUPPRESS = 'N'
         AND LAT = 'ENG'
         AND ISPREF = 'Y'
@@ -139,8 +137,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: atomNode.csv
     atom_node = """SELECT DISTINCT AUI,STR,SAB,CODE,TTY,ISPREF,TS,'AUI'
 	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-				  'RXNORM', 'SNOMEDCT_US')
+	WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 		AND SUPPRESS = 'N'
 		AND LAT = 'ENG';"""
 
@@ -164,8 +161,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: codeNode.csv
     code_node = """SELECT DISTINCT (SAB||'#'||CODE), SAB, CODE, ('Code'||';'||SAB)
 	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-			      'RXNORM', 'SNOMEDCT_US')
+	WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 		AND SUPPRESS = 'N'
 		AND LAT = 'ENG';"""
 
@@ -186,8 +182,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     has_sty_r = """SELECT DISTINCT MRCONSO.CUI, MRSTY.TUI, 'HAS_STY' AS ":TYPE"
 	FROM MRSTY
 	JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
-	WHERE MRCONSO.SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-						'RXNORM', 'SNOMEDCT_US')
+	WHERE MRCONSO.SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 	    AND MRCONSO.SUPPRESS = 'N'
 	    AND MRCONSO.LAT = 'ENG';"""
 
@@ -209,8 +204,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     has_umls_aui = """SELECT DISTINCT (SAB || '#' || CODE), AUI, 'HAS_AUI'
 	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-				  'RXNORM', 'SNOMEDCT_US')
+	WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 		AND SUPPRESS = 'N'
 		AND LAT = 'ENG';"""
 
@@ -246,8 +240,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     has_concept = """SELECT DISTINCT AUI, CUI, 'HAS_CUI'
 	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-				  'RXNORM', 'SNOMEDCT_US')
+	WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 		AND SUPPRESS = 'N'
 		AND LAT = 'ENG';"""
 
@@ -305,23 +298,27 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # 'vocab' assigned to be a property of the relationship \
     # (i.e. Concept -- Concept relationship can be filtered to \
     # the vocabulary for which the relationship exists)
-    concept_concept = """WITH q AS
+    concept_concept = """
+                        WITH q AS
 	                        (SELECT DISTINCT SAB
-						    FROM MRCONSO
-						    WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
-						    AND SUPPRESS = 'N'
-						    AND LAT = 'ENG')
-	SELECT r.CUI2,
-		   r.CUI1,
-		   CASE
-			    WHEN r.RELA = '' 
-                    THEN r.REL
-				ELSE r.RELA END AS ":TYPE",
-			r.SAB
+						     FROM MRCONSO
+						     WHERE SAB IN (
+                                            'ATC',
+                                            'GO',
+                                            'HPO',
+                                            'ICD9CM',
+                                            'ICD10CM',
+                                            'NCI',
+                                            'RXNORM',
+                                            'SNOMEDCT_US'
+                                            )
+						     AND SUPPRESS = 'N'
+						     AND LAT = 'ENG')
+	SELECT r.CUI2, r.CUI1, CASE WHEN r.RELA = '' THEN r.REL ELSE r.RELA END AS ":TYPE", r.SAB
 	FROM MRREL r
 	JOIN q ON r.SAB = q.SAB
 	WHERE r.SUPPRESS = 'N'
-	GROUP BY r.CUI2, r.CUI1, ":TYPE", r.SAB;"""
+	GROUP BY r.CUI2,r.CUI1,":TYPE",r.SAB;"""
 
     concept_concept_rel = pd.read_sql_query(concept_concept, conn)
 
@@ -357,8 +354,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 	FROM MRHIER h
 	JOIN MRCONSO c ON h.AUI = c.AUI
     JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-	WHERE h.SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-                    'RXNORM', 'SNOMEDCT_US')
+	WHERE h.SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 	    AND c.SUPPRESS = 'N'
 		AND c2.SUPPRESS = 'N'
 		AND c.LAT = 'ENG'
@@ -386,8 +382,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # import: cui_code_rel.csv
     cui_code_rel = """SELECT DISTINCT CUI, (SAB || '#' || CODE), 'HAS_SOURCE_CODE'
 	FROM MRCONSO
-	WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM',
-				  'NCI', 'RXNORM', 'SNOMEDCT_US')
+	WHERE SAB IN ('ATC','GO','HPO','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
 	    AND SUPPRESS = 'N'
 		AND LAT = 'ENG';"""
 
