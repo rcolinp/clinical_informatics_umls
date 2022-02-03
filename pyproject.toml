@@ -41,6 +41,9 @@ jupyter-core = "^4.9.1"
 pyproject-toml = "^0.0.11"
 pylint = "^2.12.2"
 jupyter-client = "^7.1.2"
+flake8 = "^4.0.1"
+mypy = "^0.931"
+sqlparse = "^0.4.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
