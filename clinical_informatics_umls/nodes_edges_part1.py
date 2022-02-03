@@ -90,12 +90,12 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     semantic_node = """
 					SELECT DISTINCT s.TUI, s.STY, s.STN, 'TUI' AS ":LABEL"
 					FROM MRSTY s
-						JOIN MRCONSO c ON s.CUI = c.CUI
-					WHERE c.SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 
+					JOIN MRCONSO c ON s.CUI = c.CUI
+					WHERE c.SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM',
 					                'NCI','RXNORM', 'SNOMEDCT_US')
 					AND c.SUPPRESS = 'N'
 					AND c.LAT = 'ENG';
-	"""
+	    """
 
     semanticTypeNode = (
         pd.read_sql_query(
@@ -115,18 +115,16 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Label: Concept
     # Import: conceptNode.csv
     concept_node = """
-					SELECT DISTINCT CUI,
-									STR,
-									'Concept' AS ':LABEL'
-					FROM MRCONSO
-					WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-								  'RXNORM', 'SNOMEDCT_US')
-					AND SUPPRESS = 'N'
-					AND LAT = 'ENG'
-					AND ISPREF = 'Y'
-					AND TS = 'P'
-					AND STT = 'PF';
-	"""
+	               SELECT DISTINCT CUI, STR, 'Concept' AS ':LABEL'
+                   FROM MRCONSO
+                   WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM',
+                                'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
+                    AND SUPPRESS = 'N'
+                    AND LAT = 'ENG'
+                    AND ISPREF = 'Y'
+                    AND TS = 'P'
+                    AND STT = 'PF';
+        """
 
     conceptNode = (
         pd.read_sql_query(
@@ -159,7 +157,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 							  'RXNORM', 'SNOMEDCT_US')
 					AND SUPPRESS = 'N'
 					AND LAT = 'ENG';
-	"""
+	    """
 
     atomNode = (
         pd.read_sql_query(atom_node, conn)
@@ -187,7 +185,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 							  'RXNORM', 'SNOMEDCT_US')
 					AND SUPPRESS = 'N'
 					AND LAT = 'ENG';
-	"""
+	    """
 
     codeNode = pd.read_sql_query(
         code_node, conn).drop_duplicates().replace(np.nan, "")
@@ -212,7 +210,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 									  'RXNORM', 'SNOMEDCT_US')
 				AND MRCONSO.SUPPRESS = 'N'
 				AND MRCONSO.LAT = 'ENG';
-	"""
+	    """
 
     has_sty_rel = (
         pd.read_sql_query(
@@ -232,13 +230,13 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # import: has_aui_rel.csv
 
     has_umls_aui = """
-					SELECT DISTINCT (SAB || '#' || CODE), AUI, 'HAS_AUI'
-					FROM MRCONSO
-					WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
-							  	  'RXNORM', 'SNOMEDCT_US')
-					AND SUPPRESS = 'N'
+				   SELECT DISTINCT (SAB || '#' || CODE), AUI, 'HAS_AUI'
+				   FROM MRCONSO
+				   WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
+							    'RXNORM', 'SNOMEDCT_US')
+				    AND SUPPRESS = 'N'
 					AND LAT = 'ENG';
-	"""
+	    """
 
     has_aui_rel = (
         pd.read_sql_query(
@@ -272,13 +270,13 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # `(Atom)-[:has_string]->(Concept)`
 
     has_concept = """
-					SELECT DISTINCT AUI, CUI, 'HAS_CUI'
-					FROM MRCONSO
+				  SELECT DISTINCT AUI, CUI, 'HAS_CUI'
+				  FROM MRCONSO
 					WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI',
 								  'RXNORM', 'SNOMEDCT_US')
 						AND SUPPRESS = 'N'
 						AND LAT = 'ENG';
-	"""
+        """
 
     has_cui_rel = (
         pd.read_sql_query(
@@ -298,13 +296,13 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # import: tui_tui_rel.csv
     # Limit to SRSTR.RL = 'ISA' -> most useful part of semantic network
     tui_tui = """
-				SELECT DISTINCT s2.UI, s3.UI, s.RL
-				FROM SRSTR s
-				JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
-				JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
-				WHERE s2.UI != s3.UI
-					AND s.RL = 'isa';
-	"""
+			  SELECT DISTINCT s2.UI, s3.UI, s.RL
+			  FROM SRSTR s
+			  JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
+			  JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
+			  WHERE s2.UI != s3.UI
+			    AND s.RL = 'isa';
+        """
 
     tui_tui_rel_df = (
         pd.read_sql_query(tui_tui, conn).drop_duplicates().replace(np.nan, "")
