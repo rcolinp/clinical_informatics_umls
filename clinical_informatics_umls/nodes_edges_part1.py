@@ -308,8 +308,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     concept_concept = """WITH q AS
 	                        (SELECT DISTINCT SAB
 						    FROM MRCONSO
-						    WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM',
-						                  'NCI', 'RXNORM', 'SNOMEDCT_US')
+						    WHERE SAB IN ('ATC', 'GO', 'HPO', 'ICD9CM', 'ICD10CM', 'NCI', 'RXNORM', 'SNOMEDCT_US')
 						    AND SUPPRESS = 'N'
 						    AND LAT = 'ENG')
 	SELECT r.CUI2,
