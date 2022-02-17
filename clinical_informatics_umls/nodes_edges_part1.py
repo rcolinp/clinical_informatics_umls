@@ -1,42 +1,44 @@
 # !/usr/bin/env python
 
 """
-This .py assumes you are querying one of the SQLite databases found via relative
-path ->../sqlite/ -> (umls.db or umls_py.db)
+This .py assumes you are querying one of the SQLite databases found \
+via relative path ->../sqlite/ -> (umls.db or umls_py.db)
 SQLite database can be created via the following python script \
 `create_sqlite_db.py`
 (or via the following shell script ../sqlite/create_sqlite_db.sh.)
---> invoke that shell script via `sh create_sqlite_db_.sh ../UMLS/subset/2021AB`
+--> invoke that shell script via \
+`sh create_sqlite_db_.sh ../UMLS/subset/2021AB`
 Note: If using MySQL, Oracle or PostgreSQL, you'll need to adjust the \
 connection object ('conn')
 appropriately to the datastore of your choice.
 
 Dependencies for MySQL, PostgreSQL and MariaDB are all included in the \
 pyproject.toml file.
-	(i.e. PyMySql, mysql-connector, psycopg2-binary, SQLAlchemy, mariadb etc...)
-An example connection object for MySQL & PostgresSQL connection have been
-	included below for reference.
+(i.e. PyMySql, mysql-connector, psycopg2-binary, SQLAlchemy, \
+mariadb etc...)
+An example connection object for MySQL & PostgresSQL connection have \
+been included below for reference.
 
 ****************************************************
 MySQL connection:
 import pymysql
 mconn = pymysql.connect(
-	hostname=hostname,
-	user=username,
-	password=password,
-	database=database  # <-- schema name with loaded UMLS subset
-)
+    hostname=hostname,
+    user=username,
+    password=password,
+    database=database
+    )
 
 ****************************************************
 
 PostgresSQL connection (using psycopg2):
 import psycopg2
 pgconn = psycopg2.connect(
-	host=hostname,
-	username=username,
-	password=password,
-	db_name=database
-)
+    hostname=hostname,
+    username=username,
+    password=password,
+    database=database
+    )
 """
 
 import sys
@@ -45,7 +47,8 @@ import os
 if not sys.warnoptions:
     import warnings
 
-    warnings.simplefilter("ignore")
+warnings.simplefilter("ignore")
+
 
 import numpy as np
 import pandas as pd
@@ -64,7 +67,7 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     """
     Summary:
     --------
-    Query sqlite3 database created and extract all nodes/edges into .csv format.
+    Query sqlite3 database created and extract all nodes/edges into .csv format
 
     Parameters:
     -----------
@@ -89,11 +92,11 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: semanticTypeNode.csv
     semantic_node = """
     SELECT DISTINCT s.TUI, s.STY, s.STN, 'TUI' AS ":LABEL"
-	FROM MRSTY s
-	JOIN MRCONSO c ON s.CUI = c.CUI
-	WHERE c.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND c.SUPPRESS = 'N'
-	AND c.LAT = 'ENG';
+    FROM MRSTY s
+    JOIN MRCONSO c ON s.CUI = c.CUI
+    WHERE c.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND c.SUPPRESS = 'N'
+    AND c.LAT = 'ENG';
     """
 
     semanticTypeNode = (
@@ -141,10 +144,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: atomNode.csv
     atom_node = """
     SELECT DISTINCT AUI,STR,SAB,CODE,TTY,ISPREF,TS,'AUI'
-	FROM MRCONSO
-	WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND SUPPRESS = 'N'
-	AND LAT = 'ENG'
+    FROM MRCONSO
+    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI', 'RXNORM', 'SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG'
     AND STT = 'PF';
     """
 
@@ -168,10 +171,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Import: codeNode.csv
     code_node = """
     SELECT DISTINCT (SAB||'#'||CODE), SAB, CODE, ('Code'||';'||SAB)
-	FROM MRCONSO
-	WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND SUPPRESS = 'N'
-	AND LAT = 'ENG';
+    FROM MRCONSO
+    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     """
 
     codeNode = pd.read_sql_query(code_node, conn).drop_duplicates().replace(np.nan, "")
@@ -190,11 +193,11 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # has_sty.csv
     has_sty_r = """
     SELECT DISTINCT MRCONSO.CUI, MRSTY.TUI, 'HAS_STY' AS ":TYPE"
-	FROM MRSTY
-	JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
-	WHERE MRCONSO.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND MRCONSO.SUPPRESS = 'N'
-	AND MRCONSO.LAT = 'ENG';
+    FROM MRSTY
+    JOIN MRCONSO ON MRSTY.CUI = MRCONSO.CUI
+    WHERE MRCONSO.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND MRCONSO.SUPPRESS = 'N'
+    AND MRCONSO.LAT = 'ENG';
     """
 
     has_sty_rel = (
@@ -215,10 +218,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     has_umls_aui = """
     SELECT DISTINCT (SAB || '#' || CODE), AUI, 'HAS_AUI'
-	FROM MRCONSO
-	WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND SUPPRESS = 'N'
-	AND LAT = 'ENG';
+    FROM MRCONSO
+    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     """
 
     has_aui_rel = (
@@ -253,10 +256,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
 
     has_concept = """
     SELECT DISTINCT AUI, CUI, 'HAS_CUI'
-	FROM MRCONSO
-	WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND SUPPRESS = 'N'
-	AND LAT = 'ENG';
+    FROM MRCONSO
+    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     """
 
     has_cui_rel = (
@@ -277,11 +280,11 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Limit to SRSTR.RL = 'ISA' -> most useful part of semantic network
     tui_tui = """
     SELECT DISTINCT s2.UI, s3.UI, s.RL
-	FROM SRSTR s
-	JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
-	JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
-	WHERE s2.UI != s3.UI
-	AND s.RL = 'isa';
+    FROM SRSTR s
+    JOIN SRDEF s2 ON s.STY_RL1 = s2.STY_RL
+    JOIN SRDEF s3 ON s.STY_RL2 = s3.STY_RL
+    WHERE s2.UI != s3.UI
+    AND s.RL = 'isa';
     """
 
     tui_tui_rel_df = (
@@ -319,14 +322,14 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     WITH q AS (
         SELECT DISTINCT SAB
         FROM MRCONSO
-	    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	    AND SUPPRESS = 'N'
-		AND LAT = 'ENG')
-	SELECT r.CUI2, r.CUI1, CASE WHEN r.RELA = '' THEN r.REL ELSE r.RELA END AS ":TYPE"
-	FROM MRREL r
-	JOIN q ON r.SAB = q.SAB
-	WHERE r.SUPPRESS = 'N'
-	GROUP BY r.CUI2, r.CUI1, ":TYPE";
+        WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+        AND SUPPRESS = 'N'
+        AND LAT = 'ENG')
+    SELECT CUI2, CUI1, CASE WHEN RELA = '' THEN REL ELSE RELA END AS ":TYPE"
+    FROM MRREL r
+    JOIN q ON r.SAB = q.SAB
+    WHERE r.SUPPRESS = 'N'
+    GROUP BY CUI2, CUI1, ":TYPE";
     """
 
     concept_concept_rel = pd.read_sql_query(concept_concept, conn)
@@ -362,15 +365,15 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # import: child_of_rel.csv -> alternative option to running edges_part2.py
     child_of = """
     SELECT DISTINCT h.PAUI, c.AUI, 'CHILD_OF'
-	FROM MRHIER h
-	JOIN MRCONSO c ON h.AUI = c.AUI
+    FROM MRHIER h
+    JOIN MRCONSO c ON h.AUI = c.AUI
     JOIN MRCONSO c2 ON h.PAUI = c2.AUI
-	WHERE h.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND c.SUPPRESS = 'N'
-	AND c2.SUPPRESS = 'N'
-	AND c.LAT = 'ENG'
-	AND c2.LAT = 'ENG'
-	AND c.CODE != c2.CODE
+    WHERE h.SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND c.SUPPRESS = 'N'
+    AND c2.SUPPRESS = 'N'
+    AND c.LAT = 'ENG'
+    AND c2.LAT = 'ENG'
+    AND c.CODE != c2.CODE
     AND c.CUI != c2.CUI;
     """
 
@@ -395,10 +398,10 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # import: cui_code_rel.csv
     cui_code_rel = """
     SELECT DISTINCT CUI, (SAB || '#' || CODE), 'HAS_SOURCE_CODE'
-	FROM MRCONSO
-	WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
-	AND SUPPRESS = 'N'
-	AND LAT = 'ENG';
+    FROM MRCONSO
+    WHERE SAB IN ('ATC','HGNC','ICD9CM','ICD10CM','NCI','RXNORM','SNOMEDCT_US')
+    AND SUPPRESS = 'N'
+    AND LAT = 'ENG';
     """
 
     has_source_code = (
@@ -420,11 +423,11 @@ def extract_nodes_edges(db_dir: str, db_name: str):
     # Append both codeNode.csv & cui_code_rel.csv w/ ICDO3T & ICDO3M CODEs
     icdo = """
     SELECT DISTINCT ATV, (SAB||'#'||CODE), SAB
-	FROM MRSAT
-	WHERE SAB = 'NCI'
-	AND ATN = 'ICD-O-3_CODE'
-	AND SUPPRESS = 'N'
-	AND ATV != '0000/0';
+    FROM MRSAT
+    WHERE SAB = 'NCI'
+    AND ATN = 'ICD-O-3_CODE'
+    AND SUPPRESS = 'N'
+    AND ATV != '0000/0';
     """
 
     icdo_df = pd.read_sql_query(icdo, conn).drop_duplicates().replace(np.nan, "")
