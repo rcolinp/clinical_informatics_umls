@@ -18,17 +18,17 @@ neographviz = "^0.4.6"
 neo4jupyter = "^0.2.0"
 mariadb = "^1.0.8"
 PyMySQL = "^1.0.2"
-psycopg2-binary = "^2.9.2"
 rdflib = "^6.1.1"
 matplotlib = "^3.5.0"
 ipyradiant = "^0.2.0"
 lxml = "^4.6.3"
-pyvis = "^0.1.9"
 numpy = "^1.20.3"
 pronto = "^2.4.4"
 SPARQLWrapper = "^1.8.5"
 sparql-dataframe = "^0.4"
 tqdm = "^4.62.3"
+obonet = "^0.3.0"
+networkx = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
 typing-extensions = "^3.10.0"
@@ -39,10 +39,8 @@ jupyter = "^1.0.0"
 python-dotenv = "^0.19.2"
 pyproject-toml = "^0.0.11"
 pylint = "^2.12.2"
-sqlparse = "^0.4.2"
 black = "^22.1.0"
 isort = "^5.10.1"
-mypy = "^0.931"
 flake8 = "^4.0.1"
 tox = "^3.24.5"
 
@@ -50,8 +48,7 @@ tox = "^3.24.5"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-# https://pycqa.github.io/isort/docs/configuration/config_files.html
-[tool.isort]
+[tool.black]
 profile = "black"
 multi_line_output = 3
 include_trailing_comma = true
