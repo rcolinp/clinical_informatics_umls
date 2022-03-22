@@ -16,7 +16,7 @@ If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check ou
 - [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/1.7/)
 - [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/4.3/)
 
-*__Disclaimer__*
+***Disclaimer***
 
 While this repository is open to anyone & has been created to share knowledge, educate & contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. Its free! Just requires a personal application & approval.
 
@@ -262,27 +262,26 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
 Docker Image:
 
 ```shell
-docker run -it --name=<insert container name> \
+docker run --name=<insert name> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
-    --volume=$HOME/neo4j/logs:/logs \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
     --volume=$HOME/neo4j/backups:/backups \
     --volume=$HOME/neo4j/data/rdf:/data/rdf \
     --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
     --env=NEO4J_dbms_backup_enabled=true \
-    --env=NEO4J_apoc_export_file_enabled=true \
-    --env=NEO4J_apoc_import_file_enabled=true \
-    --env=NEO4J_apoc_import_file_use__neo4j__config=true \
-    --env=NEO4J_apoc_export_file_use__neo4j__config=true \
+    --env=apoc_export_file_enabled=true \
+    --env=apoc_import_file_enabled=true \
+    --env=apoc_import_file_use__neo4j__config=true \
+    --env=apoc_export_file_use__neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
     --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
     --env=NEO4J_AUTH=neo4j/<insert pwd> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
-    neo4j:4.3.4-enterprise
+    neo4j:4.3-enterprise
 ```
 
 ## Import Data Into Neo4j Graph
