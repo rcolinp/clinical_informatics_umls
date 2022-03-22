@@ -24,7 +24,7 @@ Note: All functionalities mentioned above currently exist, function & are here t
 
 ## Neo4j Schema Representation of UMLS
 
-![UMLS® Neo4j Graph Schema](images/schema_dark.png)
+![UMLS® Neo4j Graph Schema](images/schema.png)
 
 **Schema Overview:**
 
