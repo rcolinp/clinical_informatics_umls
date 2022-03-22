@@ -147,3 +147,7 @@ sqlite/umls_py.db
 mrconso_columns.csv
 mrrel_columns.csv
 clinical_informatics_umls/umls_api_key.py
+requirements.txt
+requirements-dev.txt
+clinical_informatics_umls/import_neo.py
+clinical_informatics_umls/neo4j_to_rdf.py
