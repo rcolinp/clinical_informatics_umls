@@ -10,9 +10,9 @@ Shell script needs refactoring as it creates a bloated database.
 
 """
 
-import sys
 import os
 import sqlite3
+import sys
 
 if not sys.warnoptions:
     import warnings
@@ -20,8 +20,7 @@ if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 from io import StringIO
-from os.path import join, dirname
-
+from os.path import dirname, join
 
 umls_tables = "../UMLS/subset/2021AB/META/"
 conn = None
@@ -38,6 +37,8 @@ SRSTRE2_TABLE_FILE = None
 SRSTR_TABLE_FILE = None
 MRSAB_TABLE_FILE = None
 MRSTY_TABLE_FILE = None
+MRSMAP_TABLE_FILE = None
+MRDEF_TABLE_FILE = None
 MRSAT_TABLE_FILE = None
 
 
@@ -57,6 +58,8 @@ def umls_db_cleanup():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
+    global MRSMAP_TABLE_FILE
+    global MRDEF_TABLE_FILE
     global MRSAT_TABLE_FILE
 
     if conn is not None:
@@ -92,6 +95,12 @@ def umls_db_cleanup():
     if MRSTY_TABLE_FILE is not None:
         MRSTY_TABLE_FILE.close()
 
+    if MRSMAP_TABLE_FILE is not None:
+        MRSAB_TABLE_FILE.close()
+
+    if MRDEF_TABLE_FILE is not None:
+        MRDEF_TABLE_FILE.close()
+
     if MRSAT_TABLE_FILE is not None:
         MRSAT_TABLE_FILE.close()
 
@@ -125,6 +134,8 @@ def create_db():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
+    global MRSMAP_TABLE_FILE
+    global MRDEF_TABLE_FILE
     global MRSAT_TABLE_FILE
 
     print("\ncreating umls_py.db")
@@ -204,6 +215,20 @@ def create_db():
         sys.exit()
 
     try:
+        mrsmap_path = join(dirname(umls_tables), "MRSMAP.RRF")
+        MRSMAP_TABLE_FILE = open(mrsmap_path, 'r')
+    except IOError:
+        print("\nNo file to use for creating MRSMAP table\n")
+        sys.exit()
+
+    try:
+        mrdef_path = join(dirname(umls_tables), "MRDEF.RRF")
+        MRDEF_TABLE_FILE = open(mrdef_path, 'r')
+    except IOError:
+        print("\nNo file to use for creating MRDEF table\n")
+        sys.exit()
+
+    try:
         mrsat_path = join(dirname(umls_tables), "MRSAT.RRF")
         MRSAT_TABLE_FILE = open(mrsat_path, "r")
     except IOError:
@@ -218,95 +243,95 @@ def create_db():
 
     c.execute(
         """CREATE TABLE MRSTY(
-			  CUI varchar,
-			  TUI varchar,
-			  STN varchar,
-			  STY text,
-			  ATUI varchar,
-			  CVF varchar
-      );"""
+			CUI varchar,
+			TUI varchar,
+			STN varchar,
+			STY text,
+			ATUI varchar,
+			CVF varchar
+        );"""
     )
 
     c.execute(
-        """CREATE TABLE MRCONSO( 
-        	  CUI varchar, 
-              LAT varchar, 
-              TS varchar, 
-              LUI varchar,
-              STT varchar, 
-              SUI varchar, 
-              ISPREF varchar, 
-              AUI varchar, 
-              SAUI varchar, 
-              SCUI varchar, 
-              SDUI varchar, 
-              SAB varchar, 
-              TTY varchar, 
-              CODE varchar, 
-              STR text, 
-              SRL varchar, 
-              SUPPRESS varchar, 
-              CVF varchar 
-      );"""
+        """CREATE TABLE MRCONSO(
+            CUI varchar,
+            LAT varchar,
+            TS varchar,
+            LUI varchar,
+            STT varchar,
+            SUI varchar,
+            ISPREF varchar,
+            AUI varchar,
+            SAUI varchar,
+            SCUI varchar,
+            SDUI varchar,
+            SAB varchar,
+            TTY varchar,
+            CODE varchar,
+            STR text,
+            SRL varchar,
+            SUPPRESS varchar,
+            CVF varchar
+        );"""
     )
 
     c.execute(
-        """CREATE TABLE MRREL( 
-      		  CUI1 varchar, 
-              AUI1 varchar, 
-              STYPE1 varchar, 
-              REL varchar, 
-              CUI2 varchar, 
-              AUI2 varchar, 
-              STYPE2 varchar, 
-              RELA varchar, 
-              RUI varchar, 
-              SRUI varchar, 
-              SAB varchar, 
-              SL varchar, 
-              RG varchar, 
-              DIR varchar, 
-              SUPPRESS varchar, 
-              CVF varchar
-      );"""
+        """CREATE TABLE MRREL(
+            CUI1 varchar,
+            AUI1 varchar,
+            STYPE1 varchar,
+            REL varchar,
+            CUI2 varchar,
+            AUI2 varchar,
+            STYPE2 varchar,
+            RELA varchar,
+            RUI varchar,
+            SRUI varchar,
+            SAB varchar,
+            SL varchar,
+            RG varchar,
+            DIR varchar,
+            SUPPRESS varchar,
+            CVF varchar
+        );"""
     )
 
     c.execute(
-        """CREATE TABLE MRHIER( 
-        	  CUI varchar, 
-              AUI varchar, 
-              CXN varchar, 
-              PAUI varchar, 
-              SAB varchar, 
-              RELA varchar, 
-              PTR varchar, 
-              HCD varchar, 
-              CVF varchar
-      );"""
+        """CREATE TABLE MRHIER(
+            CUI varchar,
+            AUI varchar,
+            CXN varchar,
+            PAUI varchar,
+            SAB varchar,
+            RELA varchar,
+            PTR varchar,
+            HCD varchar,
+            CVF varchar
+        );"""
     )
 
     c.execute(
-        """CREATE TABLE MRRANK( 
-              MRRANK_RANK varchar, 
-              SAB varchar, 
-              TTY varchar, 
-              SUPPRESS varchar 
-      );"""
+        """CREATE TABLE MRRANK(
+            MRRANK_RANK varchar,
+            SAB varchar,
+            TTY varchar,
+            SUPPRESS varchar
+        );"""
     )
 
     c.execute(
         """CREATE TABLE SRDEF(
-              RT varchar, 
-              UI varchar, 
-              STY_RL text, 
-              STN_RTN varchar, 
-              DEF varchar, 
-              EX varchar, 
-              UN varchar, 
-              NH varchar, 
-              ABR varchar, 
-              RIN varchar 
-      );"""
+            RT varchar,
+            UI varchar,
+            STY_RL text,
+            STN_RTN varchar,
+            DEF varchar,
+            EX varchar,
+            UN varchar,
+            NH varchar,
+            ABR varchar,
+            RIN varchar
+        );"""
     )
 
     c.execute(
@@ -318,51 +343,80 @@ def create_db():
     c.execute("CREATE TABLE SRSTRE2( STY1 text, RL varchar, STY2 text ) ;")
 
     c.execute(
-        """CREATE TABLE MRSAB( 
-              VCUI varchar, 
-              RCUI varchar, 
-              VSAB varchar, 
-              RSAB varchar, 
-              SON varchar, 
-              SF varchar, 
-              SVER varchar, 
-              VSTART varchar, 
-              VEND varchar, 
-              IMETA varchar, 
-              RMETA varchar, 
-              SLC varchar, 
-              SCC varchar, 
-              SRL varchar, 
-              TRF varchar, 
-              CFR varchar, 
-              CXTY varchar, 
-              TTYL varchar, 
-              ATNL varchar, 
-              LAT varchar, 
-              CENC varchar, 
-              CURVER varchar, 
-              SABIN varchar, 
-              SSN varchar, 
-              SCIT varchar 
-      );"""
+        """CREATE TABLE MRSAB(
+            VCUI varchar,
+            RCUI varchar,
+            VSAB varchar,
+            RSAB varchar,
+            SON varchar,
+            SF varchar,
+            SVER varchar,
+            VSTART varchar,
+            VEND varchar,
+            IMETA varchar,
+            RMETA varchar,
+            SLC varchar,
+            SCC varchar,
+            SRL varchar,
+            TRF varchar,
+            CFR varchar,
+            CXTY varchar,
+            TTYL varchar,
+            ATNL varchar,
+            LAT varchar,
+            CENC varchar,
+            CURVER varchar,
+            SABIN varchar,
+            SSN varchar,
+            SCIT varchar
+        );"""
     )
 
     c.execute(
-        """CREATE TABLE MRSAT( 
-              CUI varchar, 
-              LUI varchar, 
-              SUI varchar, 
-              METAUI varchar, 
-              STYPE varchar, 
-              CODE varchar, 
-              ATUI varchar, 
-              SATUI varchar, 
-              ATN varchar, 
-              SAB varchar, 
-              ATV varchar, 
-              SUPPRESS varchar, 
-              CVF varchar
-      );"""
+        """CREATE TABLE MRSMAP(
+            MAPSETCUI varchar,
+            MAPSETSAB varchar,
+            MAPID varchar,
+            MAPSID varchar,
+            FROMEXPR varchar,
+            FROMTYPE varchar,
+            REL varchar,
+            RELA varchar,
+            TOEXPR varchar,
+            TOTYPE varchar,
+            CVF varchar
+        );"""
+    )
+
+    c.execute(
+        """CREATE TABLE MRDEF(
+            CUI varchar,
+            AUI varchar,
+            ATUI varchar,
+            SATUI varchar,
+            SAB varchar,
+            DEF varchar,
+            SUPPRESS varchar,
+            CVF varchar
+        );"""
+    )
+
+    c.execute(
+        """CREATE TABLE MRSAT(
+            CUI varchar,
+            LUI varchar,
+            SUI varchar,
+            METAUI varchar,
+            STYPE varchar,
+            CODE varchar,
+            ATUI varchar,
+            SATUI varchar,
+            ATN varchar,
+            SAB varchar,
+            ATV varchar,
+            SUPPRESS varchar,
+            CVF varchar
+        );"""
     )
 
     print("Inserting data into MRSTY table")
@@ -373,8 +427,7 @@ def create_db():
         line.pop()
         assert len(line) == 6
         c.execute(
-            """INSERT INTO MRSTY( CUI, TUI, STN, STY, ATUI, CVF ) 
-               VALUES( ?, ?, ?, ?, ?, ?)
+            """INSERT INTO MRSTY( CUI, TUI, STN, STY, ATUI, CVF ) VALUES( ?, ?, ?, ?, ?, ?)
             """, tuple(line),
         )
 
@@ -387,7 +440,7 @@ def create_db():
         assert len(line) == 18
         c.execute(
             """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
-			    VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -399,9 +452,8 @@ def create_db():
         line.pop()
         assert len(line) == 16
         c.execute(
-            """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2, 
-                           RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) 
-			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2,
+            RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -413,8 +465,8 @@ def create_db():
         line.pop()
         assert len(line) == 9
         c.execute(
-            """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, SAB, RELA, PTR, HCD, CVF ) 
-			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
+            """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, SAB, RELA, PTR, HCD, CVF )
+            VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
         )
 
@@ -438,8 +490,8 @@ def create_db():
         line.pop()
         assert len(line) == 10
         c.execute(
-            """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, DEF, EX, UN, NH, ABR, RIN ) 
-			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
+            """INSERT INTO SRDEF( RT, UI, STY_RL, STN_RTN, DEF, EX, UN, NH, ABR, RIN )
+            VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );""",
             tuple(line),
         )
 
@@ -487,8 +539,32 @@ def create_db():
         assert len(line) == 25
         c.execute(
             """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
-			    VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+			VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
             """, tuple(line),
+        )
+
+    print("Inserting data into MRSMAP table")
+    for line in MRSMAP_TABLE_FILE:
+        line = line.strip("\n")
+        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        line = line.split("|")
+        line.pop()
+        assert len(line) == 11
+        c.execute(
+            "INSERT INTO MRSMAP( MAPSETCUI, MAPSETSAB, MAPID, MAPSID, FROMEXPR, FROMTYPE, REL, RELA, TOEXPR, TOTYPE, CVF ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );",
+            tuple(line),
+        )
+
+    print("Inserting data into MRDEF table")
+    for line in MRDEF_TABLE_FILE:
+        line = line.strip("\n")
+        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        line = line.split("|")
+        line.pop()
+        assert len(line) == 8
+        c.execute(
+            "INSERT INTO MRDEF( CUI, AUI, ATUI, SATUI, SAB, DEF, SUPPRESS, CVF) VALUES( ?, ?, ?, ?, ?, ?, ?, ? );",
+            tuple(line),
         )
 
     print("Inserting data into MRSAT table")

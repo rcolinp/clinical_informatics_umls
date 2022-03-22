@@ -1,1136 +1,1405 @@
 @prefix n4ind: <neo4j://graph.individuals#> .
 @prefix n4sch: <neo4j://graph.schema#> .
 
-n4ind:2895339 a n4sch:CODE,
-        n4sch:NCI ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_AUI n4ind:1081618,
-        n4ind:1081619,
-        n4ind:1081620,
-        n4ind:1081621,
-        n4ind:1081622,
-        n4ind:1081623,
-        n4ind:1081624,
-        n4ind:1081625 ;
-    n4sch:SAB "NCI" .
+n4ind:2287005 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162696005" ;
+    n4sch:Code "SNOMEDCT_US#1162696005" ;
+    n4sch:HAS_AUI n4ind:1929690,
+        n4ind:1929691 ;
+    n4sch:SAB "SNOMEDCT_US" .
 
-n4ind:1013110 a n4sch:AUI ;
-    n4sch:AUI "A7650401" ;
-    n4sch:CODE "C29121" ;
-    n4sch:HAS_CUI n4ind:239625 ;
+n4ind:2287006 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162698006" ;
+    n4sch:Code "SNOMEDCT_US#1162698006" ;
+    n4sch:HAS_AUI n4ind:1929692,
+        n4ind:1929693 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287007 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162699003" ;
+    n4sch:Code "SNOMEDCT_US#1162699003" ;
+    n4sch:HAS_AUI n4ind:1929694,
+        n4ind:1929695 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287008 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162701003" ;
+    n4sch:Code "SNOMEDCT_US#1162701003" ;
+    n4sch:HAS_AUI n4ind:1929696,
+        n4ind:1929697 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287009 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162703000" ;
+    n4sch:Code "SNOMEDCT_US#1162703000" ;
+    n4sch:HAS_AUI n4ind:1929698,
+        n4ind:1929699 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287010 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162704006" ;
+    n4sch:Code "SNOMEDCT_US#1162704006" ;
+    n4sch:HAS_AUI n4ind:1929700,
+        n4ind:1929701 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287011 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162705007" ;
+    n4sch:Code "SNOMEDCT_US#1162705007" ;
+    n4sch:HAS_AUI n4ind:1929702,
+        n4ind:1929703 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287012 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162707004" ;
+    n4sch:Code "SNOMEDCT_US#1162707004" ;
+    n4sch:HAS_AUI n4ind:1929704,
+        n4ind:1929705 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287013 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162709001" ;
+    n4sch:Code "SNOMEDCT_US#1162709001" ;
+    n4sch:HAS_AUI n4ind:1929706,
+        n4ind:1929707 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287014 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162711005" ;
+    n4sch:Code "SNOMEDCT_US#1162711005" ;
+    n4sch:HAS_AUI n4ind:1929708,
+        n4ind:1929709 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287015 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162712003" ;
+    n4sch:Code "SNOMEDCT_US#1162712003" ;
+    n4sch:HAS_AUI n4ind:1929710,
+        n4ind:1929711 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287016 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162713008" ;
+    n4sch:Code "SNOMEDCT_US#1162713008" ;
+    n4sch:HAS_AUI n4ind:1929712,
+        n4ind:1929713 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287017 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162714002" ;
+    n4sch:Code "SNOMEDCT_US#1162714002" ;
+    n4sch:HAS_AUI n4ind:1929714,
+        n4ind:1929715 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287018 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "512001000004108" ;
+    n4sch:Code "SNOMEDCT_US#512001000004108" ;
+    n4sch:HAS_AUI n4ind:1929716,
+        n4ind:1929717 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287019 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1660001000004100" ;
+    n4sch:Code "SNOMEDCT_US#1660001000004100" ;
+    n4sch:HAS_AUI n4ind:1929718,
+        n4ind:1929719 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287020 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "4520001000004105" ;
+    n4sch:Code "SNOMEDCT_US#4520001000004105" ;
+    n4sch:HAS_AUI n4ind:1929720,
+        n4ind:1929721 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287021 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "2820001000004104" ;
+    n4sch:Code "SNOMEDCT_US#2820001000004104" ;
+    n4sch:HAS_AUI n4ind:1929722,
+        n4ind:1929723,
+        n4ind:1929724 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287022 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "3010001000004101" ;
+    n4sch:Code "SNOMEDCT_US#3010001000004101" ;
+    n4sch:HAS_AUI n4ind:1929725,
+        n4ind:1929726 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287023 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1870001000004104" ;
+    n4sch:Code "SNOMEDCT_US#1870001000004104" ;
+    n4sch:HAS_AUI n4ind:1929727,
+        n4ind:1929728 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287024 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1850001000004102" ;
+    n4sch:Code "SNOMEDCT_US#1850001000004102" ;
+    n4sch:HAS_AUI n4ind:1929729,
+        n4ind:1929730 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287025 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1505281000004101" ;
+    n4sch:Code "SNOMEDCT_US#1505281000004101" ;
+    n4sch:HAS_AUI n4ind:1929731,
+        n4ind:1929732 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287026 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "2100001000004103" ;
+    n4sch:Code "SNOMEDCT_US#2100001000004103" ;
+    n4sch:HAS_AUI n4ind:1929733,
+        n4ind:1929734 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287027 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911750741000004104" ;
+    n4sch:Code "SNOMEDCT_US#911750741000004104" ;
+    n4sch:HAS_AUI n4ind:1929735,
+        n4ind:1929736 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287028 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "5730001000004102" ;
+    n4sch:Code "SNOMEDCT_US#5730001000004102" ;
+    n4sch:HAS_AUI n4ind:1929737,
+        n4ind:1929738 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287029 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753701000004109" ;
+    n4sch:Code "SNOMEDCT_US#911753701000004109" ;
+    n4sch:HAS_AUI n4ind:1929739,
+        n4ind:1929740 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287030 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753591000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753591000004105" ;
+    n4sch:HAS_AUI n4ind:1929741,
+        n4ind:1929742 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287031 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753671000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753671000004108" ;
+    n4sch:HAS_AUI n4ind:1929743,
+        n4ind:1929744 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287032 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753681000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753681000004106" ;
+    n4sch:HAS_AUI n4ind:1929745,
+        n4ind:1929746 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287033 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753471000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753471000004105" ;
+    n4sch:HAS_AUI n4ind:1929747,
+        n4ind:1929748 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287034 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753691000004109" ;
+    n4sch:Code "SNOMEDCT_US#911753691000004109" ;
+    n4sch:HAS_AUI n4ind:1929749,
+        n4ind:1929750 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287035 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753481000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753481000004108" ;
+    n4sch:HAS_AUI n4ind:1929751,
+        n4ind:1929752 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287036 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753531000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753531000004106" ;
+    n4sch:HAS_AUI n4ind:1929753,
+        n4ind:1929754 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287037 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753711000004107" ;
+    n4sch:Code "SNOMEDCT_US#911753711000004107" ;
+    n4sch:HAS_AUI n4ind:1929755,
+        n4ind:1929756 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287038 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753551000004103" ;
+    n4sch:Code "SNOMEDCT_US#911753551000004103" ;
+    n4sch:HAS_AUI n4ind:1929757,
+        n4ind:1929758 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287039 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753731000004100" ;
+    n4sch:Code "SNOMEDCT_US#911753731000004100" ;
+    n4sch:HAS_AUI n4ind:1929759,
+        n4ind:1929760 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287040 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753721000004103" ;
+    n4sch:Code "SNOMEDCT_US#911753721000004103" ;
+    n4sch:HAS_AUI n4ind:1929761,
+        n4ind:1929762 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287041 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753741000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753741000004106" ;
+    n4sch:HAS_AUI n4ind:1929763,
+        n4ind:1929764 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287042 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753751000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753751000004108" ;
+    n4sch:HAS_AUI n4ind:1929765,
+        n4ind:1929766 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287043 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753511000004104" ;
+    n4sch:Code "SNOMEDCT_US#911753511000004104" ;
+    n4sch:HAS_AUI n4ind:1929767,
+        n4ind:1929768 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287044 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753761000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753761000004105" ;
+    n4sch:HAS_AUI n4ind:1929769,
+        n4ind:1929770 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287045 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753521000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753521000004108" ;
+    n4sch:HAS_AUI n4ind:1929771,
+        n4ind:1929772 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287046 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753501000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753501000004102" ;
+    n4sch:HAS_AUI n4ind:1929773,
+        n4ind:1929774 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287047 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753491000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753491000004106" ;
+    n4sch:HAS_AUI n4ind:1929775,
+        n4ind:1929776 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287048 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753781000004104" ;
+    n4sch:Code "SNOMEDCT_US#911753781000004104" ;
+    n4sch:HAS_AUI n4ind:1929777,
+        n4ind:1929778 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287049 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753631000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753631000004105" ;
+    n4sch:HAS_AUI n4ind:1929779,
+        n4ind:1929780 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287050 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753801000004100" ;
+    n4sch:Code "SNOMEDCT_US#911753801000004100" ;
+    n4sch:HAS_AUI n4ind:1929781,
+        n4ind:1929782 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287051 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753461000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753461000004102" ;
+    n4sch:HAS_AUI n4ind:1929783,
+        n4ind:1929784 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287052 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753771000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753771000004102" ;
+    n4sch:HAS_AUI n4ind:1929785,
+        n4ind:1929786 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:1929690 a n4sch:Atom ;
+    n4sch:AUI "A33285822" ;
+    n4sch:HAS_CUI n4ind:127 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin, 70/30" ;
+    n4sch:STR "Imdevimab only product" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1033668 a n4sch:AUI ;
-    n4sch:AUI "A12802941" ;
-    n4sch:CODE "C65923" ;
-    n4sch:HAS_CUI n4ind:189776 ;
+n4ind:1929691 a n4sch:Atom ;
+    n4sch:AUI "A33299304" ;
+    n4sch:HAS_CUI n4ind:127 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Pork" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1033959 a n4sch:AUI ;
-    n4sch:AUI "A16766866" ;
-    n4sch:CODE "C74584" ;
-    n4sch:HAS_CUI n4ind:189966 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Lanreotide Acetate" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1034501 a n4sch:AUI ;
-    n4sch:AUI "A12812292" ;
-    n4sch:CODE "C62555" ;
-    n4sch:HAS_CUI n4ind:545045 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Parathyroid Hormone" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1034936 a n4sch:AUI ;
-    n4sch:AUI "A7589183" ;
-    n4sch:CODE "C29125" ;
-    n4sch:HAS_CUI n4ind:195827 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin, Regular" ;
-    n4sch:STT "VC" ;
+    n4sch:STR "Product containing only imdevimab (medicinal product)" ;
+    n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "PT" .
+    n4sch:TTY "FN" .
 
-n4ind:1060670 a n4sch:AUI ;
-    n4sch:AUI "A16769656" ;
-    n4sch:CHILD_OF n4ind:1064329,
-        n4ind:1064377 ;
-    n4sch:CODE "C578" ;
-    n4sch:HAS_CUI n4ind:265701 ;
+n4ind:1929692 a n4sch:Atom ;
+    n4sch:AUI "A33282082" ;
+    n4sch:HAS_CUI n4ind:128 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Inhibin" ;
+    n4sch:STR "Imdevimab only product in parenteral dose form" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1064329 a n4sch:AUI ;
-    n4sch:AUI "A7660683" ;
-    n4sch:CODE "C1349" ;
-    n4sch:HAS_CUI n4ind:268794 ;
+n4ind:1929693 a n4sch:Atom ;
+    n4sch:AUI "A33309669" ;
+    n4sch:HAS_CUI n4ind:128 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Inhibin B" ;
+    n4sch:STR "Product containing only imdevimab in parenteral dose form (medicinal product form)" ;
     n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1064377 a n4sch:AUI ;
-    n4sch:AUI "A7660682" ;
-    n4sch:CODE "C1631" ;
-    n4sch:HAS_CUI n4ind:268817 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Inhibin A" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1064387 a n4sch:AUI ;
-    n4sch:AUI "A7660744" ;
-    n4sch:CODE "C1203" ;
-    n4sch:HAS_CUI n4ind:268822 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Prothymosin Alpha" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1064448 a n4sch:AUI ;
-    n4sch:AUI "A16767670" ;
-    n4sch:CODE "C926" ;
-    n4sch:HAS_CUI n4ind:268848 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Argipressin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1064508 a n4sch:AUI ;
-    n4sch:AUI "A7660754" ;
-    n4sch:CHILD_OF n4ind:1452935 ;
-    n4sch:CODE "C883" ;
-    n4sch:HAS_CUI n4ind:268866 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Thymosin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1067615 a n4sch:AUI ;
-    n4sch:AUI "A16756406" ;
-    n4sch:CHILD_OF n4ind:1013110,
-        n4ind:1033668,
-        n4ind:1034936,
-        n4ind:1080982,
-        n4ind:1240023,
-        n4ind:1248349,
-        n4ind:1412139,
-        n4ind:1441563,
-        n4ind:1464695,
-        n4ind:1472671 ;
-    n4sch:CODE "C581" ;
-    n4sch:HAS_CUI n4ind:268996 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Therapeutic Insulin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:107327 a n4sch:CUI ;
-    n4sch:CUI "C3273082" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Aspartocin" .
-
-n4ind:1078440 a n4sch:AUI ;
-    n4sch:AUI "A16767273" ;
-    n4sch:CODE "C80257" ;
-    n4sch:HAS_CUI n4ind:167726 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pralmorelin" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1080982 a n4sch:AUI ;
-    n4sch:AUI "A21423901" ;
-    n4sch:CODE "C90960" ;
-    n4sch:HAS_CUI n4ind:527538 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Beef" ;
-    n4sch:STT "VCW" ;
     n4sch:TS "S" ;
-    n4sch:TTY "PT" .
+    n4sch:TTY "FN" .
 
-n4ind:1081618 a n4sch:AUI ;
-    n4sch:AUI "A7589480" ;
-    n4sch:CHILD_OF n4ind:1278148,
-        n4ind:1289479 ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929694 a n4sch:Atom ;
+    n4sch:AUI "A33310314" ;
+    n4sch:HAS_CUI n4ind:129 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pharmacologic Substance" ;
+    n4sch:STR "Imdevimab 120 mg/mL solution for injection" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1081619 a n4sch:AUI ;
-    n4sch:AUI "A10759581" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929695 a n4sch:Atom ;
+    n4sch:AUI "A33300502" ;
+    n4sch:HAS_CUI n4ind:129 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Drug" ;
+    n4sch:STR "Product containing precisely imdevimab 120 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929696 a n4sch:Atom ;
+    n4sch:AUI "A33274793" ;
+    n4sch:HAS_CUI n4ind:130 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab only product" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929697 a n4sch:Atom ;
+    n4sch:AUI "A33287092" ;
+    n4sch:HAS_CUI n4ind:130 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab (medicinal product)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929698 a n4sch:Atom ;
+    n4sch:AUI "A33296250" ;
+    n4sch:HAS_CUI n4ind:131 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab only product in parenteral dose form" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929699 a n4sch:Atom ;
+    n4sch:AUI "A33277133" ;
+    n4sch:HAS_CUI n4ind:131 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab in parenteral dose form (medicinal product form)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929700 a n4sch:Atom ;
+    n4sch:AUI "A33297519" ;
+    n4sch:HAS_CUI n4ind:132 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab 120 mg/mL solution for injection" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929701 a n4sch:Atom ;
+    n4sch:AUI "A33288364" ;
+    n4sch:HAS_CUI n4ind:132 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing precisely casirivimab 120 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929702 a n4sch:Atom ;
+    n4sch:AUI "A33281481" ;
+    n4sch:HAS_CUI n4ind:133 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab and imdevimab only product" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929703 a n4sch:Atom ;
+    n4sch:AUI "A33293236" ;
+    n4sch:HAS_CUI n4ind:133 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab and imdevimab (medicinal product)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929704 a n4sch:Atom ;
+    n4sch:AUI "A33301130" ;
+    n4sch:HAS_CUI n4ind:134 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab and imdevimab only product in parenteral dose form" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929705 a n4sch:Atom ;
+    n4sch:AUI "A33302903" ;
+    n4sch:HAS_CUI n4ind:134 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab and imdevimab in parenteral dose form (medicinal product form)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929706 a n4sch:Atom ;
+    n4sch:AUI "A33278335" ;
+    n4sch:HAS_CUI n4ind:135 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab 60 mg/mL and imdevimab 60 mg/mL solution for injection" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929707 a n4sch:Atom ;
+    n4sch:AUI "A33277134" ;
+    n4sch:HAS_CUI n4ind:135 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing precisely casirivimab 60 milligram/1 milliliter and imdevimab 60 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929708 a n4sch:Atom ;
+    n4sch:AUI "A33287093" ;
+    n4sch:HAS_CUI n4ind:136 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of sotrovimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929709 a n4sch:Atom ;
+    n4sch:AUI "A33275356" ;
+    n4sch:HAS_CUI n4ind:136 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of sotrovimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929710 a n4sch:Atom ;
+    n4sch:AUI "A33287702" ;
+    n4sch:HAS_CUI n4ind:137 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929711 a n4sch:Atom ;
+    n4sch:AUI "A33310955" ;
+    n4sch:HAS_CUI n4ind:137 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929712 a n4sch:Atom ;
+    n4sch:AUI "A33280834" ;
+    n4sch:HAS_CUI n4ind:138 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of imdevimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929713 a n4sch:Atom ;
+    n4sch:AUI "A33305395" ;
+    n4sch:HAS_CUI n4ind:138 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of imdevimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929714 a n4sch:Atom ;
+    n4sch:AUI "A33301710" ;
+    n4sch:HAS_CUI n4ind:139 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab and imdevimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929715 a n4sch:Atom ;
+    n4sch:AUI "A33291974" ;
+    n4sch:HAS_CUI n4ind:139 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab and imdevimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929716 a n4sch:Atom ;
+    n4sch:AUI "A33273002" ;
+    n4sch:HAS_CUI n4ind:140 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929717 a n4sch:Atom ;
+    n4sch:AUI "A33309050" ;
+    n4sch:HAS_CUI n4ind:140 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929718 a n4sch:Atom ;
+    n4sch:AUI "A33297520" ;
+    n4sch:HAS_CUI n4ind:141 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929719 a n4sch:Atom ;
+    n4sch:AUI "A33287703" ;
+    n4sch:HAS_CUI n4ind:141 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929720 a n4sch:Atom ;
+    n4sch:AUI "A33283378" ;
+    n4sch:HAS_CUI n4ind:142 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham nuclear pleomorphism score of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929721 a n4sch:Atom ;
+    n4sch:AUI "A33293823" ;
+    n4sch:HAS_CUI n4ind:142 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham nuclear pleomorphism score of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929722 a n4sch:Atom ;
+    n4sch:AUI "A33299305" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929723 a n4sch:Atom ;
+    n4sch:AUI "A33308445" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929724 a n4sch:Atom ;
+    n4sch:AUI "A33305397" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of breast cancer" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
     n4sch:TTY "SY" .
 
-n4ind:1081620 a n4sch:AUI ;
-    n4sch:AUI "A10768731" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929725 a n4sch:Atom ;
+    n4sch:AUI "A33305398" ;
+    n4sch:HAS_CUI n4ind:144 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Agent" ;
+    n4sch:STR "Nottingham mitotic count in primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929726 a n4sch:Atom ;
+    n4sch:AUI "A33302905" ;
+    n4sch:HAS_CUI n4ind:144 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic count in primary malignant neoplasm of breast (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1081621 a n4sch:AUI ;
-    n4sch:AUI "A7589129" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929727 a n4sch:Atom ;
+    n4sch:AUI "A33310315" ;
+    n4sch:HAS_CUI n4ind:145 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pharmaceuticals" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm of colon" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929728 a n4sch:Atom ;
+    n4sch:AUI "A33294426" ;
+    n4sch:HAS_CUI n4ind:145 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm of colon (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1081622 a n4sch:AUI ;
-    n4sch:AUI "A21399815" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929729 a n4sch:Atom ;
+    n4sch:AUI "A33299885" ;
+    n4sch:HAS_CUI n4ind:146 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Drug Substance" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929730 a n4sch:Atom ;
+    n4sch:AUI "A33288365" ;
+    n4sch:HAS_CUI n4ind:146 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1081623 a n4sch:AUI ;
-    n4sch:AUI "A7658565" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929731 a n4sch:Atom ;
+    n4sch:AUI "A33290169" ;
+    n4sch:HAS_CUI n4ind:147 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pharmaceutical Agent" ;
+    n4sch:STR "Direct local invasion" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929732 a n4sch:Atom ;
+    n4sch:AUI "A33308446" ;
+    n4sch:HAS_CUI n4ind:147 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Direct local invasion (qualifier value)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1081624 a n4sch:AUI ;
-    n4sch:AUI "A7658572" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929733 a n4sch:Atom ;
+    n4sch:AUI "A33300504" ;
+    n4sch:HAS_CUI n4ind:148 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pharmacological Substance" ;
+    n4sch:STR "Histologic type of malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929734 a n4sch:Atom ;
+    n4sch:AUI "A33277740" ;
+    n4sch:HAS_CUI n4ind:148 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of malignant neoplasm (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1081625 a n4sch:AUI ;
-    n4sch:AUI "A10813989" ;
-    n4sch:CODE "C1909" ;
-    n4sch:HAS_CUI n4ind:216954 ;
+n4ind:1929735 a n4sch:Atom ;
+    n4sch:AUI "A33307810" ;
+    n4sch:HAS_CUI n4ind:149 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pharmacologic Agent" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of lung" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929736 a n4sch:Atom ;
+    n4sch:AUI "A33281483" ;
+    n4sch:HAS_CUI n4ind:149 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of lung (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "SY" .
+    n4sch:TTY "FN" .
 
-n4ind:1086098 a n4sch:AUI ;
-    n4sch:AUI "A17685138" ;
-    n4sch:CHILD_OF n4ind:1064448,
-        n4ind:1098758,
-        n4ind:1464765 ;
-    n4sch:CODE "C80212" ;
-    n4sch:HAS_CUI n4ind:62066 ;
+n4ind:1929737 a n4sch:Atom ;
+    n4sch:AUI "A33301713" ;
+    n4sch:HAS_CUI n4ind:150 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Antidiuretic Hormone Analogue" ;
+    n4sch:STR "Histologic type of malignant melanoma of skin" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1091789 a n4sch:AUI ;
-    n4sch:AUI "A7657001" ;
-    n4sch:CODE "C2402" ;
-    n4sch:HAS_CUI n4ind:205017 ;
+n4ind:1929738 a n4sch:Atom ;
+    n4sch:AUI "A33280245" ;
+    n4sch:HAS_CUI n4ind:150 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Octreotide Pamoate" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1092319 a n4sch:AUI ;
-    n4sch:AUI "A16765066" ;
-    n4sch:CODE "C74356" ;
-    n4sch:HAS_CUI n4ind:318924 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pralmorelin Dihydrochloride" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1093642 a n4sch:AUI ;
-    n4sch:AUI "A16768367" ;
-    n4sch:CODE "C78756" ;
-    n4sch:HAS_CUI n4ind:318929 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Capromorelin Tartrate" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1096156 a n4sch:AUI ;
-    n4sch:AUI "A16765434" ;
-    n4sch:CODE "C76367" ;
-    n4sch:HAS_CUI n4ind:67858 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Thyrotropin-Releasing Hormone Analogue" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1096268 a n4sch:AUI ;
-    n4sch:AUI "A16759741" ;
-    n4sch:CODE "C76092" ;
-    n4sch:HAS_CUI n4ind:67925 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Examorelin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1098758 a n4sch:AUI ;
-    n4sch:AUI "A20256098" ;
-    n4sch:CODE "C99153" ;
-    n4sch:HAS_CUI n4ind:590272 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Terlipressin Acetate" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1101188 a n4sch:AUI ;
-    n4sch:AUI "A12812410" ;
-    n4sch:CHILD_OF n4ind:1033959,
-        n4ind:1091789,
-        n4ind:1138314,
-        n4ind:1153786,
-        n4ind:1165844,
-        n4ind:1217420,
-        n4ind:1319377,
-        n4ind:1412120,
-        n4ind:1441628 ;
-    n4sch:CODE "C62799" ;
-    n4sch:HAS_CUI n4ind:68420 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Somatostatin Receptor Agonist" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1111932 a n4sch:AUI ;
-    n4sch:AUI "A17683482" ;
-    n4sch:CHILD_OF n4ind:1317476 ;
-    n4sch:CODE "C84868" ;
-    n4sch:HAS_CUI n4ind:74327 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Ghrelin Peptide Analogue" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1116510 a n4sch:AUI ;
-    n4sch:AUI "A19023431" ;
-    n4sch:CODE "C90852" ;
-    n4sch:HAS_CUI n4ind:362472 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Tesamorelin Acetate" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1123967 a n4sch:AUI ;
-    n4sch:AUI "A10793574" ;
-    n4sch:CODE "C52659" ;
-    n4sch:HAS_CUI n4ind:22897 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Therapeutic Vasoactive Intestinal Peptide" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1138314 a n4sch:AUI ;
-    n4sch:AUI "A19033514" ;
-    n4sch:CODE "C95320" ;
-    n4sch:HAS_CUI n4ind:98730 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Vapreotide Acetate" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1150263 a n4sch:AUI ;
-    n4sch:AUI "A20245766" ;
-    n4sch:CODE "C96857" ;
-    n4sch:HAS_CUI n4ind:107327 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Aspartocin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1153786 a n4sch:AUI ;
-    n4sch:AUI "A23940744" ;
-    n4sch:CODE "C113656" ;
-    n4sch:HAS_CUI n4ind:153101 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Long-acting Release Pasireotide" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1165844 a n4sch:AUI ;
-    n4sch:AUI "A12811484" ;
-    n4sch:CODE "C53437" ;
-    n4sch:HAS_CUI n4ind:35971 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Lanreotide Acetate Copolymer Microparticles" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1179771 a n4sch:AUI ;
-    n4sch:AUI "A16755349" ;
-    n4sch:CHILD_OF n4ind:1078440,
-        n4ind:1092319,
-        n4ind:1093642,
-        n4ind:1096268,
-        n4ind:1111932,
-        n4ind:1116510,
-        n4ind:1441503 ;
-    n4sch:CODE "C76358" ;
-    n4sch:HAS_CUI n4ind:123405 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Growth Hormone-Releasing Hormone Analogue" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:121 a n4sch:TUI ;
-    n4sch:STN "A1.3.3" ;
-    n4sch:STY "Clinical Drug" ;
-    n4sch:TUI "T200" .
-
-n4ind:1217420 a n4sch:AUI ;
-    n4sch:AUI "A12815669" ;
-    n4sch:CODE "C65111" ;
-    n4sch:HAS_CUI n4ind:44562 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Lanreotide Long-Acting Aqueous Gel" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:123405 a n4sch:CUI ;
-    n4sch:CUI "C3537207" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Growth Hormone-Releasing Hormone Analogue" .
-
-n4ind:1240023 a n4sch:AUI ;
-    n4sch:AUI "A31589963" ;
-    n4sch:CODE "C167008" ;
-    n4sch:HAS_CUI n4ind:322544 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Argine" ;
-    n4sch:STT "VC" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1247915 a n4sch:AUI ;
-    n4sch:AUI "A12785868" ;
-    n4sch:CODE "C836" ;
-    n4sch:HAS_CUI n4ind:48174 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Recombinant Somatostatin" ;
-    n4sch:STT "PF" ;
-    n4sch:TS "P" ;
-    n4sch:TTY "PT" .
-
-n4ind:1248349 a n4sch:AUI ;
-    n4sch:AUI "A32380738" ;
-    n4sch:CODE "C170355" ;
-    n4sch:HAS_CUI n4ind:150853 ;
-    n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Proinsulin Human" ;
+    n4sch:STR "Histologic type of malignant melanoma of skin (observable entity)" ;
     n4sch:STT "PF" ;
     n4sch:TS "S" ;
-    n4sch:TTY "PT" .
+    n4sch:TTY "FN" .
 
-n4ind:1271569 a n4sch:AUI ;
-    n4sch:AUI "A32674180" ;
-    n4sch:CODE "C175764" ;
-    n4sch:HAS_CUI n4ind:147986 ;
+n4ind:1929739 a n4sch:Atom ;
+    n4sch:AUI "A33285825" ;
+    n4sch:HAS_CUI n4ind:151 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Dapiglutide" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of kidney" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1278148 a n4sch:AUI ;
-    n4sch:AUI "A32672560" ;
-    n4sch:CHILD_OF n4ind:1319286,
-        n4ind:1464646 ;
-    n4sch:CODE "C177182" ;
-    n4sch:HAS_CUI n4ind:148872 ;
+n4ind:1929740 a n4sch:Atom ;
+    n4sch:AUI "A33306002" ;
+    n4sch:HAS_CUI n4ind:151 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Prostaglandin Receptor Antagonist" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of kidney (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929741 a n4sch:Atom ;
+    n4sch:AUI "A33311573" ;
+    n4sch:HAS_CUI n4ind:152 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of adrenal gland" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1289479 a n4sch:AUI ;
-    n4sch:AUI "A29171534" ;
-    n4sch:CHILD_OF n4ind:1290221,
-        n4ind:1428936 ;
-    n4sch:CODE "C147908" ;
-    n4sch:HAS_CUI n4ind:273751 ;
+n4ind:1929742 a n4sch:Atom ;
+    n4sch:AUI "A33308447" ;
+    n4sch:HAS_CUI n4ind:152 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Hormone Therapy Agent" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of adrenal gland (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929743 a n4sch:Atom ;
+    n4sch:AUI "A33295613" ;
+    n4sch:HAS_CUI n4ind:153 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ampulla of Vater" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1290221 a n4sch:AUI ;
-    n4sch:AUI "A7664451" ;
-    n4sch:CHILD_OF n4ind:1034501,
-        n4ind:1060670,
-        n4ind:1064387,
-        n4ind:1064508,
-        n4ind:1067615,
-        n4ind:1086098,
-        n4ind:1096156,
-        n4ind:1101188,
-        n4ind:1123967,
-        n4ind:1150263,
-        n4ind:1179771,
-        n4ind:1247915,
-        n4ind:1271569,
-        n4ind:1370069,
-        n4ind:1464692,
-        n4ind:1472821 ;
-    n4sch:CODE "C548" ;
-    n4sch:HAS_CUI n4ind:239796 ;
+n4ind:1929744 a n4sch:Atom ;
+    n4sch:AUI "A33282083" ;
+    n4sch:HAS_CUI n4ind:153 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Therapeutic Hormone" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ampulla of Vater (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929745 a n4sch:Atom ;
+    n4sch:AUI "A33293240" ;
+    n4sch:HAS_CUI n4ind:154 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of appendix" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1317476 a n4sch:AUI ;
-    n4sch:AUI "A29766434" ;
-    n4sch:CODE "C152229" ;
-    n4sch:HAS_CUI n4ind:280330 ;
+n4ind:1929746 a n4sch:Atom ;
+    n4sch:AUI "A33301714" ;
+    n4sch:HAS_CUI n4ind:154 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Rismorelin" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of appendix (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929747 a n4sch:Atom ;
+    n4sch:AUI "A33282754" ;
+    n4sch:HAS_CUI n4ind:155 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of bone" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1319286 a n4sch:AUI ;
-    n4sch:AUI "A29748811" ;
-    n4sch:CODE "C152633" ;
-    n4sch:HAS_CUI n4ind:280465 ;
+n4ind:1929748 a n4sch:Atom ;
+    n4sch:AUI "A33287706" ;
+    n4sch:HAS_CUI n4ind:155 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Timapiprant" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of bone (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929749 a n4sch:Atom ;
+    n4sch:AUI "A33288967" ;
+    n4sch:HAS_CUI n4ind:156 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of brain" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1319377 a n4sch:AUI ;
-    n4sch:AUI "A29770893" ;
-    n4sch:CODE "C152846" ;
-    n4sch:HAS_CUI n4ind:280535 ;
+n4ind:1929750 a n4sch:Atom ;
+    n4sch:AUI "A33293825" ;
+    n4sch:HAS_CUI n4ind:156 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Veldoreotide" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of brain (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929751 a n4sch:Atom ;
+    n4sch:AUI "A33298722" ;
+    n4sch:HAS_CUI n4ind:157 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of esophagus" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1370069 a n4sch:AUI ;
-    n4sch:AUI "A31187549" ;
-    n4sch:CODE "C159822" ;
-    n4sch:HAS_CUI n4ind:295794 ;
+n4ind:1929752 a n4sch:Atom ;
+    n4sch:AUI "A33295614" ;
+    n4sch:HAS_CUI n4ind:157 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "[Leu15] Gastrin-17" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of esophagus (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929753 a n4sch:Atom ;
+    n4sch:AUI "A33277135" ;
+    n4sch:HAS_CUI n4ind:158 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of gallbladder" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1412120 a n4sch:AUI ;
-    n4sch:AUI "A31593550" ;
-    n4sch:CODE "C166660" ;
-    n4sch:HAS_CUI n4ind:304691 ;
+n4ind:1929754 a n4sch:Atom ;
+    n4sch:AUI "A33273004" ;
+    n4sch:HAS_CUI n4ind:158 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Ilatreotide" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of gallbladder (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929755 a n4sch:Atom ;
+    n4sch:AUI "A33305400" ;
+    n4sch:HAS_CUI n4ind:159 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of larynx" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1412139 a n4sch:AUI ;
-    n4sch:AUI "A31607928" ;
-    n4sch:CODE "C166716" ;
-    n4sch:HAS_CUI n4ind:304706 ;
+n4ind:1929756 a n4sch:Atom ;
+    n4sch:AUI "A33303525" ;
+    n4sch:HAS_CUI n4ind:159 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Dalanated Insulin" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of larynx (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929757 a n4sch:Atom ;
+    n4sch:AUI "A33304797" ;
+    n4sch:HAS_CUI n4ind:160 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of liver" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1428936 a n4sch:AUI ;
-    n4sch:AUI "A31611656" ;
-    n4sch:CODE "C166490" ;
-    n4sch:HAS_CUI n4ind:307177 ;
+n4ind:1929758 a n4sch:Atom ;
+    n4sch:AUI "A33282755" ;
+    n4sch:HAS_CUI n4ind:160 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Dersimelagon" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of liver (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929759 a n4sch:Atom ;
+    n4sch:AUI "A33309051" ;
+    n4sch:HAS_CUI n4ind:161 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of maxilla" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1441503 a n4sch:AUI ;
-    n4sch:AUI "A32381907" ;
-    n4sch:CODE "C169924" ;
-    n4sch:HAS_CUI n4ind:308380 ;
+n4ind:1929760 a n4sch:Atom ;
+    n4sch:AUI "A33290170" ;
+    n4sch:HAS_CUI n4ind:161 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Dumorelin" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of maxilla (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929761 a n4sch:Atom ;
+    n4sch:AUI "A33302906" ;
+    n4sch:HAS_CUI n4ind:162 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of omentum" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1441563 a n4sch:AUI ;
-    n4sch:AUI "A32392807" ;
-    n4sch:CODE "C170070" ;
-    n4sch:HAS_CUI n4ind:308435 ;
+n4ind:1929762 a n4sch:Atom ;
+    n4sch:AUI "A33291364" ;
+    n4sch:HAS_CUI n4ind:162 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Defalan (Bovine)" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of omentum (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929763 a n4sch:Atom ;
+    n4sch:AUI "A33282084" ;
+    n4sch:HAS_CUI n4ind:163 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of oral mucosa" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1441628 a n4sch:AUI ;
-    n4sch:AUI "A32409895" ;
-    n4sch:CODE "C170240" ;
-    n4sch:HAS_CUI n4ind:309586 ;
+n4ind:1929764 a n4sch:Atom ;
+    n4sch:AUI "A33275360" ;
+    n4sch:HAS_CUI n4ind:163 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Octreotide Hydrochloride" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of oral mucosa (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929765 a n4sch:Atom ;
+    n4sch:AUI "A33288368" ;
+    n4sch:HAS_CUI n4ind:164 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ovary" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1452935 a n4sch:AUI ;
-    n4sch:AUI "A32391664" ;
-    n4sch:CODE "C171894" ;
-    n4sch:HAS_CUI n4ind:311530 ;
+n4ind:1929766 a n4sch:Atom ;
+    n4sch:AUI "A33302907" ;
+    n4sch:HAS_CUI n4ind:164 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Timbetasin Acetate" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ovary (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929767 a n4sch:Atom ;
+    n4sch:AUI "A33273623" ;
+    n4sch:HAS_CUI n4ind:165 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of pancreas" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:145365 a n4sch:CUI ;
-    n4sch:CUI "C5420924" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Pexopiprant" .
-
-n4ind:145404 a n4sch:CUI ;
-    n4sch:CUI "C5420970" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1,
-        n4ind:9 ;
-    n4sch:STR "Therapeutic Alpha-melanotropin" .
-
-n4ind:145407 a n4sch:CUI ;
-    n4sch:CUI "C5420973" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Insulin Efsitora Alfa" .
-
-n4ind:145467 a n4sch:CUI ;
-    n4sch:CUI "C5421043" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Velmupressin" .
-
-n4ind:145677 a n4sch:CUI ;
-    n4sch:CUI "C5421277" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Insulin Defalan (Porcine)" .
-
-n4ind:145746 a n4sch:CUI ;
-    n4sch:CUI "C5421352" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1,
-        n4ind:9 ;
-    n4sch:STR "Setmelanotide Hydrochloride" .
-
-n4ind:1464646 a n4sch:AUI ;
-    n4sch:AUI "A32400329" ;
-    n4sch:CODE "C174712" ;
-    n4sch:HAS_CUI n4ind:145365 ;
+n4ind:1929768 a n4sch:Atom ;
+    n4sch:AUI "A33294429" ;
+    n4sch:HAS_CUI n4ind:165 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Pexopiprant" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of pancreas (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929769 a n4sch:Atom ;
+    n4sch:AUI "A33289570" ;
+    n4sch:HAS_CUI n4ind:166 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of penis" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1464692 a n4sch:AUI ;
-    n4sch:AUI "A32374821" ;
-    n4sch:CODE "C174814" ;
-    n4sch:HAS_CUI n4ind:145404 ;
+n4ind:1929770 a n4sch:Atom ;
+    n4sch:AUI "A33277136" ;
+    n4sch:HAS_CUI n4ind:166 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Therapeutic Alpha-melanotropin" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of penis (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929771 a n4sch:Atom ;
+    n4sch:AUI "A33293826" ;
+    n4sch:HAS_CUI n4ind:167 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of prostate" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1464695 a n4sch:AUI ;
-    n4sch:AUI "A32374822" ;
-    n4sch:CODE "C174820" ;
-    n4sch:HAS_CUI n4ind:145407 ;
+n4ind:1929772 a n4sch:Atom ;
+    n4sch:AUI "A33279585" ;
+    n4sch:HAS_CUI n4ind:167 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Efsitora Alfa" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of prostate (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929773 a n4sch:Atom ;
+    n4sch:AUI "A33293827" ;
+    n4sch:HAS_CUI n4ind:168 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of small intestine" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1464765 a n4sch:AUI ;
-    n4sch:AUI "A32412415" ;
-    n4sch:CODE "C174947" ;
-    n4sch:HAS_CUI n4ind:145467 ;
+n4ind:1929774 a n4sch:Atom ;
+    n4sch:AUI "A33292641" ;
+    n4sch:HAS_CUI n4ind:168 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Velmupressin" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of small intestine (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929775 a n4sch:Atom ;
+    n4sch:AUI "A33304798" ;
+    n4sch:HAS_CUI n4ind:169 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of stomach" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1472671 a n4sch:AUI ;
-    n4sch:AUI "A32384334" ;
-    n4sch:CODE "C170071" ;
-    n4sch:HAS_CUI n4ind:145677 ;
+n4ind:1929776 a n4sch:Atom ;
+    n4sch:AUI "A33308448" ;
+    n4sch:HAS_CUI n4ind:169 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Insulin Defalan (Porcine)" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of stomach (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929777 a n4sch:Atom ;
+    n4sch:AUI "A33273624" ;
+    n4sch:HAS_CUI n4ind:170 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of testis" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:1472821 a n4sch:AUI ;
-    n4sch:AUI "A32374817" ;
-    n4sch:CODE "C174581" ;
-    n4sch:HAS_CUI n4ind:145746 ;
+n4ind:1929778 a n4sch:Atom ;
+    n4sch:AUI "A33306616" ;
+    n4sch:HAS_CUI n4ind:170 ;
     n4sch:ISPREF "Y" ;
-    n4sch:SAB "NCI" ;
-    n4sch:STR "Setmelanotide Hydrochloride" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of testis (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929779 a n4sch:Atom ;
+    n4sch:AUI "A33288369" ;
+    n4sch:HAS_CUI n4ind:171 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of thyroid" ;
     n4sch:STT "PF" ;
     n4sch:TS "P" ;
     n4sch:TTY "PT" .
 
-n4ind:147986 a n4sch:CUI ;
-    n4sch:CUI "C5446724" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Dapiglutide" .
+n4ind:1929780 a n4sch:Atom ;
+    n4sch:AUI "A33284599" ;
+    n4sch:HAS_CUI n4ind:171 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of thyroid (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
 
-n4ind:148872 a n4sch:CUI ;
-    n4sch:CUI "C5447614" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Prostaglandin Receptor Antagonist" .
+n4ind:1929781 a n4sch:Atom ;
+    n4sch:AUI "A33273005" ;
+    n4sch:HAS_CUI n4ind:172 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of uterus" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
 
-n4ind:150853 a n4sch:CUI ;
-    n4sch:CUI "C3813208" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Proinsulin" .
+n4ind:1929782 a n4sch:Atom ;
+    n4sch:AUI "A33280246" ;
+    n4sch:HAS_CUI n4ind:172 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of uterus (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
 
-n4ind:153101 a n4sch:CUI ;
-    n4sch:CUI "C3826869" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Long-acting Release Pasireotide" .
+n4ind:1929783 a n4sch:Atom ;
+    n4sch:AUI "A33305176" ;
+    n4sch:HAS_CUI n4ind:173 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of urinary bladder" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
 
-n4ind:167726 a n4sch:CUI ;
-    n4sch:CUI "C0293969" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "pralmorelin" .
+n4ind:1929784 a n4sch:Atom ;
+    n4sch:AUI "A33293828" ;
+    n4sch:HAS_CUI n4ind:173 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of urinary bladder (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
 
-n4ind:189776 a n4sch:CUI ;
-    n4sch:CUI "C0770206" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "insulin, pork" .
+n4ind:1929785 a n4sch:Atom ;
+    n4sch:AUI "A33280247" ;
+    n4sch:HAS_CUI n4ind:174 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of peritoneum" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
 
-n4ind:189966 a n4sch:CUI ;
-    n4sch:CUI "C0771414" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "lanreotide acetate" .
+n4ind:1929786 a n4sch:Atom ;
+    n4sch:AUI "A33304799" ;
+    n4sch:HAS_CUI n4ind:174 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of peritoneum (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
 
-n4ind:195827 a n4sch:CUI ;
-    n4sch:CUI "C0795635" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "insulin, regular, human" .
+n4ind:127 a n4sch:Concept ;
+    n4sch:CUI "C5548584" .
 
-n4ind:205017 a n4sch:CUI ;
-    n4sch:CUI "C0338271" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Octreotide Pamoate" .
+n4ind:128 a n4sch:Concept ;
+    n4sch:CUI "C5548585" .
 
-n4ind:22897 a n4sch:CUI ;
-    n4sch:CUI "C1704757" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Therapeutic Vasoactive Intestinal Peptide" .
+n4ind:129 a n4sch:Concept ;
+    n4sch:CUI "C5548586" .
 
-n4ind:239625 a n4sch:CUI ;
-    n4sch:CUI "C1512802" ;
-    n4sch:HAS_STY n4ind:121 ;
-    n4sch:STR "Insulin, 70/30" .
+n4ind:130 a n4sch:Concept ;
+    n4sch:CUI "C5548587" .
 
-n4ind:239796 a n4sch:CUI ;
-    n4sch:CUI "C4551674" ;
-    n4sch:HAS_STY n4ind:9 ;
-    n4sch:STR "Therapeutic Hormone" .
+n4ind:131 a n4sch:Concept ;
+    n4sch:CUI "C5548588" .
 
-n4ind:265701 a n4sch:CUI ;
-    n4sch:CUI "C1522403" ;
-    n4sch:HAS_STY n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Recombinant Inhibin" .
+n4ind:132 a n4sch:Concept ;
+    n4sch:CUI "C5548589" .
 
-n4ind:268794 a n4sch:CUI ;
-    n4sch:CUI "C1527008" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Recombinant Inhibin B" .
+n4ind:133 a n4sch:Concept ;
+    n4sch:CUI "C5548590" .
 
-n4ind:268817 a n4sch:CUI ;
-    n4sch:CUI "C1527057" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Recombinant Inhibin A" .
+n4ind:134 a n4sch:Concept ;
+    n4sch:CUI "C5548591" .
 
-n4ind:268822 a n4sch:CUI ;
-    n4sch:CUI "C1527078" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Recombinant Prothymosin Alpha" .
+n4ind:135 a n4sch:Concept ;
+    n4sch:CUI "C5548592" .
 
-n4ind:268848 a n4sch:CUI ;
-    n4sch:CUI "C1527128" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Argipressin" .
+n4ind:136 a n4sch:Concept ;
+    n4sch:CUI "C5548593" .
 
-n4ind:268866 a n4sch:CUI ;
-    n4sch:CUI "C1527153" ;
-    n4sch:HAS_STY n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Recombinant Thymosin" .
+n4ind:137 a n4sch:Concept ;
+    n4sch:CUI "C5548594" .
 
-n4ind:268996 a n4sch:CUI ;
-    n4sch:CUI "C1533581" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Therapeutic Insulin" .
+n4ind:138 a n4sch:Concept ;
+    n4sch:CUI "C5548595" .
 
-n4ind:273751 a n4sch:CUI ;
-    n4sch:CUI "C4688302" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Hormone Therapy Agent" .
+n4ind:139 a n4sch:Concept ;
+    n4sch:CUI "C5548596" .
 
-n4ind:280330 a n4sch:CUI ;
-    n4sch:CUI "C4726696" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Rismorelin" .
+n4ind:140 a n4sch:Concept ;
+    n4sch:CUI "C5548597" .
 
-n4ind:280465 a n4sch:CUI ;
-    n4sch:CUI "C4726863" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:8 ;
-    n4sch:STR "Timapiprant" .
+n4ind:141 a n4sch:Concept ;
+    n4sch:CUI "C5548598" .
 
-n4ind:280535 a n4sch:CUI ;
-    n4sch:CUI "C4726952" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Veldoreotide" .
+n4ind:142 a n4sch:Concept ;
+    n4sch:CUI "C5548599" .
 
-n4ind:295794 a n4sch:CUI ;
-    n4sch:CUI "C5204720" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "[Leu15] Gastrin-17" .
+n4ind:144 a n4sch:Concept ;
+    n4sch:CUI "C5548601" .
 
-n4ind:304691 a n4sch:CUI ;
-    n4sch:CUI "C5238078" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1,
-        n4ind:9 ;
-    n4sch:STR "Ilatreotide" .
+n4ind:145 a n4sch:Concept ;
+    n4sch:CUI "C5548602" .
 
-n4ind:304706 a n4sch:CUI ;
-    n4sch:CUI "C5238097" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1,
-        n4ind:9 ;
-    n4sch:STR "Dalanated Insulin" .
+n4ind:146 a n4sch:Concept ;
+    n4sch:CUI "C5548603" .
 
-n4ind:307177 a n4sch:CUI ;
-    n4sch:CUI "C5239527" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Dersimelagon" .
+n4ind:147 a n4sch:Concept ;
+    n4sch:CUI "C5548604" .
 
-n4ind:308380 a n4sch:CUI ;
-    n4sch:CUI "C5418358" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Dumorelin" .
+n4ind:148 a n4sch:Concept ;
+    n4sch:CUI "C5548605" .
 
-n4ind:308435 a n4sch:CUI ;
-    n4sch:CUI "C5418418" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Insulin Defalan (Bovine)" .
+n4ind:149 a n4sch:Concept ;
+    n4sch:CUI "C5548606" .
 
-n4ind:309586 a n4sch:CUI ;
-    n4sch:CUI "C5418482" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Octreotide Hydrochloride" .
+n4ind:150 a n4sch:Concept ;
+    n4sch:CUI "C5548607" .
 
-n4ind:311530 a n4sch:CUI ;
-    n4sch:CUI "C5419358" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Timbetasin Acetate" .
+n4ind:151 a n4sch:Concept ;
+    n4sch:CUI "C5548608" .
 
-n4ind:318924 a n4sch:CUI ;
-    n4sch:CUI "C2698865" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "pralmorelin dihydrochloride" .
+n4ind:152 a n4sch:Concept ;
+    n4sch:CUI "C5548609" .
 
-n4ind:318929 a n4sch:CUI ;
-    n4sch:CUI "C2698981" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "capromorelin tartrate" .
+n4ind:153 a n4sch:Concept ;
+    n4sch:CUI "C5548610" .
 
-n4ind:322544 a n4sch:CUI ;
-    n4sch:CUI "C4083762" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "insulin argine" .
+n4ind:154 a n4sch:Concept ;
+    n4sch:CUI "C5548611" .
 
-n4ind:35971 a n4sch:CUI ;
-    n4sch:CUI "C1708642" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Lanreotide Acetate Copolymer Microparticles" .
+n4ind:155 a n4sch:Concept ;
+    n4sch:CUI "C5548612" .
 
-n4ind:362472 a n4sch:CUI ;
-    n4sch:CUI "C2955463" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:9 ;
-    n4sch:STR "tesamorelin acetate" .
+n4ind:156 a n4sch:Concept ;
+    n4sch:CUI "C5548613" .
 
-n4ind:44562 a n4sch:CUI ;
-    n4sch:CUI "C1831852" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Lanreotide Long-Acting Aqueous Gel" .
+n4ind:157 a n4sch:Concept ;
+    n4sch:CUI "C5548614" .
 
-n4ind:48174 a n4sch:CUI ;
-    n4sch:CUI "C1881011" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Recombinant Somatostatin" .
+n4ind:158 a n4sch:Concept ;
+    n4sch:CUI "C5548615" .
 
-n4ind:527538 a n4sch:CUI ;
-    n4sch:CUI "C0304866" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Beef insulin-containing product" .
+n4ind:159 a n4sch:Concept ;
+    n4sch:CUI "C5548616" .
 
-n4ind:545045 a n4sch:CUI ;
-    n4sch:CUI "C1882913" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Recombinant parathyroid hormone" .
+n4ind:160 a n4sch:Concept ;
+    n4sch:CUI "C5548617" .
 
-n4ind:590272 a n4sch:CUI ;
-    n4sch:CUI "C2702117" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Terlipressin acetate" .
+n4ind:161 a n4sch:Concept ;
+    n4sch:CUI "C5548618" .
 
-n4ind:62066 a n4sch:CUI ;
-    n4sch:CUI "C2698158" ;
-    n4sch:HAS_STY n4ind:4 ;
-    n4sch:STR "Antidiuretic Hormone Analogue" .
+n4ind:162 a n4sch:Concept ;
+    n4sch:CUI "C5548619" .
 
-n4ind:67858 a n4sch:CUI ;
-    n4sch:CUI "C2699938" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4,
-        n4ind:9 ;
-    n4sch:STR "Thyrotropin-Releasing Hormone Analogue" .
+n4ind:163 a n4sch:Concept ;
+    n4sch:CUI "C5548620" .
 
-n4ind:67925 a n4sch:CUI ;
-    n4sch:CUI "C2700028" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Examorelin" .
+n4ind:164 a n4sch:Concept ;
+    n4sch:CUI "C5548621" .
 
-n4ind:68420 a n4sch:CUI ;
-    n4sch:CUI "C2746073" ;
-    n4sch:HAS_STY n4ind:0,
-        n4ind:1 ;
-    n4sch:STR "Somatostatin Receptor Agonist" .
+n4ind:165 a n4sch:Concept ;
+    n4sch:CUI "C5548622" .
 
-n4ind:74327 a n4sch:CUI ;
-    n4sch:CUI "C2827545" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Ghrelin Peptide Analogue" .
+n4ind:166 a n4sch:Concept ;
+    n4sch:CUI "C5548623" .
 
-n4ind:8 a n4sch:TUI ;
-    n4sch:STN "A1.4.1.1.3.5" ;
-    n4sch:STY "Immunologic Factor" ;
-    n4sch:TUI "T129" .
+n4ind:167 a n4sch:Concept ;
+    n4sch:CUI "C5548624" .
 
-n4ind:98730 a n4sch:CUI ;
-    n4sch:CUI "C2987052" ;
-    n4sch:HAS_STY n4ind:1,
-        n4ind:4 ;
-    n4sch:STR "Vapreotide Acetate" .
+n4ind:168 a n4sch:Concept ;
+    n4sch:CUI "C5548625" .
 
-n4ind:216954 a n4sch:CUI ;
-    n4sch:CUI "C1254351" ;
-    n4sch:HAS_STY n4ind:1 ;
-    n4sch:STR "Pharmacologic Substance" .
+n4ind:169 a n4sch:Concept ;
+    n4sch:CUI "C5548626" .
 
-n4ind:0 a n4sch:TUI ;
-    n4sch:STN "A1.4.1.2.1" ;
-    n4sch:STY "Organic Chemical" ;
-    n4sch:TUI "T109" .
+n4ind:170 a n4sch:Concept ;
+    n4sch:CUI "C5548627" .
 
-n4ind:9 a n4sch:TUI ;
-    n4sch:STN "A1.4.1.1.3.2" ;
-    n4sch:STY "Hormone" ;
-    n4sch:TUI "T125" .
+n4ind:171 a n4sch:Concept ;
+    n4sch:CUI "C5548628" .
 
-n4ind:4 a n4sch:TUI ;
-    n4sch:STN "A1.4.1.2.1.7" ;
-    n4sch:STY "Amino Acid, Peptide, or Protein" ;
-    n4sch:TUI "T116" .
+n4ind:172 a n4sch:Concept ;
+    n4sch:CUI "C5548629" .
 
-n4ind:1 a n4sch:TUI ;
-    n4sch:STN "A1.4.1.1.1" ;
-    n4sch:STY "Pharmacologic Substance" ;
-    n4sch:TUI "T121" .
+n4ind:173 a n4sch:Concept ;
+    n4sch:CUI "C5548630" .
+
+n4ind:174 a n4sch:Concept ;
+    n4sch:CUI "C5548631" .
+
+n4ind:143 a n4sch:Concept ;
+    n4sch:CUI "C5548600" .
 
