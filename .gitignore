@@ -146,3 +146,4 @@ dmypy.json
 sqlite/umls_py.db
 mrconso_columns.csv
 mrrel_columns.csv
+clinical_informatics_umls/umls_api_key.py
