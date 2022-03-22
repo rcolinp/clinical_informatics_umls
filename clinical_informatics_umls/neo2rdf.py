@@ -15,9 +15,9 @@ def neo_to_rdf(dot: str):
 
     Parameters:
     -----------
-    dotenv_file : str.
+    dot : str.
         .env file via python-dotenv containing database authentication information
-        and uts apikey.
+            and uts apikey.
 
     Returns:
     --------
