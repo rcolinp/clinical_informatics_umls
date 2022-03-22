@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import argparse
 import os
@@ -17,7 +17,8 @@ def download_umls_full(__doc__):
     # Obtain a Ticket Granting Ticket - (TGT)
     session = requests.session()
     response = requests.post(
-        "https://utslogin.nlm.nih.gov/cas/v1/api-key", data={"apikey": args.apikey}
+        "https://utslogin.nlm.nih.gov/cas/v1/api-key",
+        data={"apikey": args.apikey},
     )
 
     # Extract the TGT
@@ -40,7 +41,10 @@ def download_umls_full(__doc__):
 
     with open(os.path.basename(args.url), "wb") as outfile:
         with tqdm(
-            total=size / (512 * 1024.0), unit="B", unit_scale=True, unit_divisor=1024
+            total=size / (512 * 1024.0),
+            unit="B",
+            unit_scale=True,
+            unit_divisor=1024,
         ) as progress_bar:
             for chunk in r.iter_content(chunk_size=512 * 1024):
                 if chunk:  # filter out keep-alive new chunks
