@@ -32,18 +32,12 @@ neo4j.cypher
 docker-compose.yml
 .DS_Store
 wip_*
-docker-entrypoint.sh
-Dockerfile
-neo4jlabs_plugins.json
-parquet_to_csv.py
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 misc/
-output/
-cuiNode.py
 
 
 # Installer logs
@@ -127,6 +121,10 @@ venv.bak/
 .venv/
 import/
 docker/
+output_data/
+
+src/
+script/
 
 # Spyder project settings
 .spyderproject
@@ -146,44 +144,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 sqlite/umls_py.db
-notebooks/test.ipynb
-UMLS/mrconos_columns.csv
-UMLS/mrrel_columns.csv
-clinical_informatics_umls/umls.py
-notebooks/1.py2neo
-notebooks/1.py2neo.ipynb
-notebooks/1.y2neo.ipynb
-output/ATC.ttl
-output/catalog-v001.xml
-output/COSTART.ttl
-output/CRISP.ttl
-output/HCPCS.ttl
-output/HL7.ttl
-output/ICD10.ttl
-output/ICD10CM.ttl
-output/ICD10PCS.ttl
-output/ICD9CM.ttl
-output/ICPC.ttl
-output/ICPC2P.ttl
-output/ICPCFRE.ttl
-output/LOINC.ttl
-output/MDRFRE.ttl
-output/MDRGER.ttl
-output/MED-RT.ttl
-output/MEDDRA.ttl
-output/MEDLINEPLUS.ttl
-output/MESH.ttl
-output/MSHFRE.ttl
-output/MSHSPA.ttl
-output/MSTDE-FRE.ttl
-output/MSTDE.ttl
-output/NCBITAXON.ttl
-output/NCI.ttl
-output/NDDF.ttl
-output/OMIM.ttl
-output/PDQ.ttl
-output/RXNORM.ttl
-output/SNOMEDCT.ttl
-output/umls_semantictypes.ttl
-output/VANDF.ttl
-cluster_init_aura.sh
+mrconso_columns.csv
+mrrel_columns.csv
