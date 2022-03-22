@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-import os
 import json
-import requests
+import os
+
 import rdflib
-from os.path import join, dirname
+import requests
 from dotenv import load_dotenv
 
 
-def neo_to_rdf(__file__ : str):
+def neo_to_rdf(dot: str):
     """
     Summary:
     --------
@@ -15,46 +15,44 @@ def neo_to_rdf(__file__ : str):
 
     Parameters:
     -----------
-    __file__ : str.
-        .env file via python-dotenv containing db auth and connection information.
+    dotenv_file : str.
+        .env file via python-dotenv containing database authentication information
+        and uts apikey.
 
     Returns:
     --------
     graph : rdflib.Graph
-        RDF serialization (ttl) of a Neo4j LPGraph. 
+        RDF serialization (ttl) of a Neo4j LPGraph.
 
     """
-    dotenv_path = join(dirname(__file__), "../.env")
-    load_dotenv(dotenv_path)
 
-    url = os.environ.get("NEO4J_HTTP_URL")
+    load_dotenv(dot)
 
-    cypher = """
-    MATCH path = (n:NCI)-[r:HAS_AUI]->(x:AUI)-[r1:CHILD_OF*0..]->(y:AUI)-[r2:HAS_CUI]->(z:CUI)-[r3:HAS_STY]->(v:TUI)
-    WHERE y.ISPREF = 'Y' AND x.ISPREF = 'Y' AND n.CODE = 'C1909'
-    RETURN path LIMIT 125
-    """
+    url = os.getenv("NEO4J_HTTP_URL")
 
-    payload = {'cypher': cypher, 'format': 'Turtle*'}
+    cypher = "MATCH (x:Code)-[r0:HAS_AUI]->(y:Atom)-[r1:HAS_CUI]->(z:Concept)<-[r2:HAS_CUI]-(v:Atom)<-[r3:HAS_AUI]-(k:Code) RETURN * LIMIT 100"
+
+    payload = {"cypher": cypher, "format": "Turtle*"}
 
     response = requests.post(
         url,
-        data=json.dumps(payload),
         auth=(
-            os.environ.get("NEO4J_USERNAME"),
-            os.environ.get("NEO4J_PASSWORD")
+            os.getenv("NEO4J_USERNAME"),
+            os.getenv("NEO4J_PASSWORD"),
         ),
+        data=json.dumps(payload),
     )
     response.raise_for_status()  # raise an error on unsuccessful status codes
     graph = rdflib.Graph()
-    graph.parse(data=response.text, format="ttl").serialize(
-        destination="../output_data/sample_neo4j_to_rdf_serialization.ttl", 
-        format='ttl', 
-        encoding="utf-8"
-        )
+    graph.parse(data=response.text, format="turtle").serialize(
+        destination="../output_data/sample_neo4j_to_rdf_serialization.ttl",
+        format="ttl",
+        encoding="utf-8",
+    )
     print("complete serialization")
+
     return graph
 
 
 if __name__ == "__main__":
-    graph = neo_to_rdf(__file__)
+    neo_to_rdf(dot="../.env")
