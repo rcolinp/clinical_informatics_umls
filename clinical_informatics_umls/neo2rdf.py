@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 
 
-def neo_to_rdf(dot: str):
+def neo_to_rdf(dot: str) -> rdflib.Graph:
     """
     Summary:
     --------
