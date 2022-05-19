@@ -1,0 +1,1405 @@
+@prefix n4ind: <neo4j://graph.individuals#> .
+@prefix n4sch: <neo4j://graph.schema#> .
+
+n4ind:2287005 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162696005" ;
+    n4sch:Code "SNOMEDCT_US#1162696005" ;
+    n4sch:HAS_AUI n4ind:1929690,
+        n4ind:1929691 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287006 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162698006" ;
+    n4sch:Code "SNOMEDCT_US#1162698006" ;
+    n4sch:HAS_AUI n4ind:1929692,
+        n4ind:1929693 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287007 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162699003" ;
+    n4sch:Code "SNOMEDCT_US#1162699003" ;
+    n4sch:HAS_AUI n4ind:1929694,
+        n4ind:1929695 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287008 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162701003" ;
+    n4sch:Code "SNOMEDCT_US#1162701003" ;
+    n4sch:HAS_AUI n4ind:1929696,
+        n4ind:1929697 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287009 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162703000" ;
+    n4sch:Code "SNOMEDCT_US#1162703000" ;
+    n4sch:HAS_AUI n4ind:1929698,
+        n4ind:1929699 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287010 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162704006" ;
+    n4sch:Code "SNOMEDCT_US#1162704006" ;
+    n4sch:HAS_AUI n4ind:1929700,
+        n4ind:1929701 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287011 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162705007" ;
+    n4sch:Code "SNOMEDCT_US#1162705007" ;
+    n4sch:HAS_AUI n4ind:1929702,
+        n4ind:1929703 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287012 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162707004" ;
+    n4sch:Code "SNOMEDCT_US#1162707004" ;
+    n4sch:HAS_AUI n4ind:1929704,
+        n4ind:1929705 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287013 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162709001" ;
+    n4sch:Code "SNOMEDCT_US#1162709001" ;
+    n4sch:HAS_AUI n4ind:1929706,
+        n4ind:1929707 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287014 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162711005" ;
+    n4sch:Code "SNOMEDCT_US#1162711005" ;
+    n4sch:HAS_AUI n4ind:1929708,
+        n4ind:1929709 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287015 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162712003" ;
+    n4sch:Code "SNOMEDCT_US#1162712003" ;
+    n4sch:HAS_AUI n4ind:1929710,
+        n4ind:1929711 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287016 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162713008" ;
+    n4sch:Code "SNOMEDCT_US#1162713008" ;
+    n4sch:HAS_AUI n4ind:1929712,
+        n4ind:1929713 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287017 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1162714002" ;
+    n4sch:Code "SNOMEDCT_US#1162714002" ;
+    n4sch:HAS_AUI n4ind:1929714,
+        n4ind:1929715 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287018 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "512001000004108" ;
+    n4sch:Code "SNOMEDCT_US#512001000004108" ;
+    n4sch:HAS_AUI n4ind:1929716,
+        n4ind:1929717 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287019 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1660001000004100" ;
+    n4sch:Code "SNOMEDCT_US#1660001000004100" ;
+    n4sch:HAS_AUI n4ind:1929718,
+        n4ind:1929719 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287020 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "4520001000004105" ;
+    n4sch:Code "SNOMEDCT_US#4520001000004105" ;
+    n4sch:HAS_AUI n4ind:1929720,
+        n4ind:1929721 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287021 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "2820001000004104" ;
+    n4sch:Code "SNOMEDCT_US#2820001000004104" ;
+    n4sch:HAS_AUI n4ind:1929722,
+        n4ind:1929723,
+        n4ind:1929724 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287022 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "3010001000004101" ;
+    n4sch:Code "SNOMEDCT_US#3010001000004101" ;
+    n4sch:HAS_AUI n4ind:1929725,
+        n4ind:1929726 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287023 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1870001000004104" ;
+    n4sch:Code "SNOMEDCT_US#1870001000004104" ;
+    n4sch:HAS_AUI n4ind:1929727,
+        n4ind:1929728 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287024 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1850001000004102" ;
+    n4sch:Code "SNOMEDCT_US#1850001000004102" ;
+    n4sch:HAS_AUI n4ind:1929729,
+        n4ind:1929730 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287025 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "1505281000004101" ;
+    n4sch:Code "SNOMEDCT_US#1505281000004101" ;
+    n4sch:HAS_AUI n4ind:1929731,
+        n4ind:1929732 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287026 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "2100001000004103" ;
+    n4sch:Code "SNOMEDCT_US#2100001000004103" ;
+    n4sch:HAS_AUI n4ind:1929733,
+        n4ind:1929734 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287027 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911750741000004104" ;
+    n4sch:Code "SNOMEDCT_US#911750741000004104" ;
+    n4sch:HAS_AUI n4ind:1929735,
+        n4ind:1929736 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287028 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "5730001000004102" ;
+    n4sch:Code "SNOMEDCT_US#5730001000004102" ;
+    n4sch:HAS_AUI n4ind:1929737,
+        n4ind:1929738 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287029 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753701000004109" ;
+    n4sch:Code "SNOMEDCT_US#911753701000004109" ;
+    n4sch:HAS_AUI n4ind:1929739,
+        n4ind:1929740 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287030 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753591000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753591000004105" ;
+    n4sch:HAS_AUI n4ind:1929741,
+        n4ind:1929742 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287031 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753671000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753671000004108" ;
+    n4sch:HAS_AUI n4ind:1929743,
+        n4ind:1929744 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287032 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753681000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753681000004106" ;
+    n4sch:HAS_AUI n4ind:1929745,
+        n4ind:1929746 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287033 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753471000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753471000004105" ;
+    n4sch:HAS_AUI n4ind:1929747,
+        n4ind:1929748 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287034 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753691000004109" ;
+    n4sch:Code "SNOMEDCT_US#911753691000004109" ;
+    n4sch:HAS_AUI n4ind:1929749,
+        n4ind:1929750 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287035 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753481000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753481000004108" ;
+    n4sch:HAS_AUI n4ind:1929751,
+        n4ind:1929752 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287036 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753531000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753531000004106" ;
+    n4sch:HAS_AUI n4ind:1929753,
+        n4ind:1929754 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287037 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753711000004107" ;
+    n4sch:Code "SNOMEDCT_US#911753711000004107" ;
+    n4sch:HAS_AUI n4ind:1929755,
+        n4ind:1929756 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287038 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753551000004103" ;
+    n4sch:Code "SNOMEDCT_US#911753551000004103" ;
+    n4sch:HAS_AUI n4ind:1929757,
+        n4ind:1929758 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287039 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753731000004100" ;
+    n4sch:Code "SNOMEDCT_US#911753731000004100" ;
+    n4sch:HAS_AUI n4ind:1929759,
+        n4ind:1929760 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287040 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753721000004103" ;
+    n4sch:Code "SNOMEDCT_US#911753721000004103" ;
+    n4sch:HAS_AUI n4ind:1929761,
+        n4ind:1929762 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287041 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753741000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753741000004106" ;
+    n4sch:HAS_AUI n4ind:1929763,
+        n4ind:1929764 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287042 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753751000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753751000004108" ;
+    n4sch:HAS_AUI n4ind:1929765,
+        n4ind:1929766 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287043 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753511000004104" ;
+    n4sch:Code "SNOMEDCT_US#911753511000004104" ;
+    n4sch:HAS_AUI n4ind:1929767,
+        n4ind:1929768 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287044 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753761000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753761000004105" ;
+    n4sch:HAS_AUI n4ind:1929769,
+        n4ind:1929770 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287045 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753521000004108" ;
+    n4sch:Code "SNOMEDCT_US#911753521000004108" ;
+    n4sch:HAS_AUI n4ind:1929771,
+        n4ind:1929772 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287046 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753501000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753501000004102" ;
+    n4sch:HAS_AUI n4ind:1929773,
+        n4ind:1929774 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287047 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753491000004106" ;
+    n4sch:Code "SNOMEDCT_US#911753491000004106" ;
+    n4sch:HAS_AUI n4ind:1929775,
+        n4ind:1929776 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287048 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753781000004104" ;
+    n4sch:Code "SNOMEDCT_US#911753781000004104" ;
+    n4sch:HAS_AUI n4ind:1929777,
+        n4ind:1929778 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287049 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753631000004105" ;
+    n4sch:Code "SNOMEDCT_US#911753631000004105" ;
+    n4sch:HAS_AUI n4ind:1929779,
+        n4ind:1929780 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287050 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753801000004100" ;
+    n4sch:Code "SNOMEDCT_US#911753801000004100" ;
+    n4sch:HAS_AUI n4ind:1929781,
+        n4ind:1929782 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287051 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753461000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753461000004102" ;
+    n4sch:HAS_AUI n4ind:1929783,
+        n4ind:1929784 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:2287052 a n4sch:Code,
+        n4sch:SNOMEDCT_US ;
+    n4sch:CODE "911753771000004102" ;
+    n4sch:Code "SNOMEDCT_US#911753771000004102" ;
+    n4sch:HAS_AUI n4ind:1929785,
+        n4ind:1929786 ;
+    n4sch:SAB "SNOMEDCT_US" .
+
+n4ind:1929690 a n4sch:Atom ;
+    n4sch:AUI "A33285822" ;
+    n4sch:HAS_CUI n4ind:127 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Imdevimab only product" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929691 a n4sch:Atom ;
+    n4sch:AUI "A33299304" ;
+    n4sch:HAS_CUI n4ind:127 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only imdevimab (medicinal product)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929692 a n4sch:Atom ;
+    n4sch:AUI "A33282082" ;
+    n4sch:HAS_CUI n4ind:128 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Imdevimab only product in parenteral dose form" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929693 a n4sch:Atom ;
+    n4sch:AUI "A33309669" ;
+    n4sch:HAS_CUI n4ind:128 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only imdevimab in parenteral dose form (medicinal product form)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929694 a n4sch:Atom ;
+    n4sch:AUI "A33310314" ;
+    n4sch:HAS_CUI n4ind:129 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Imdevimab 120 mg/mL solution for injection" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929695 a n4sch:Atom ;
+    n4sch:AUI "A33300502" ;
+    n4sch:HAS_CUI n4ind:129 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing precisely imdevimab 120 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929696 a n4sch:Atom ;
+    n4sch:AUI "A33274793" ;
+    n4sch:HAS_CUI n4ind:130 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab only product" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929697 a n4sch:Atom ;
+    n4sch:AUI "A33287092" ;
+    n4sch:HAS_CUI n4ind:130 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab (medicinal product)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929698 a n4sch:Atom ;
+    n4sch:AUI "A33296250" ;
+    n4sch:HAS_CUI n4ind:131 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab only product in parenteral dose form" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929699 a n4sch:Atom ;
+    n4sch:AUI "A33277133" ;
+    n4sch:HAS_CUI n4ind:131 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab in parenteral dose form (medicinal product form)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929700 a n4sch:Atom ;
+    n4sch:AUI "A33297519" ;
+    n4sch:HAS_CUI n4ind:132 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab 120 mg/mL solution for injection" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929701 a n4sch:Atom ;
+    n4sch:AUI "A33288364" ;
+    n4sch:HAS_CUI n4ind:132 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing precisely casirivimab 120 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929702 a n4sch:Atom ;
+    n4sch:AUI "A33281481" ;
+    n4sch:HAS_CUI n4ind:133 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab and imdevimab only product" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929703 a n4sch:Atom ;
+    n4sch:AUI "A33293236" ;
+    n4sch:HAS_CUI n4ind:133 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab and imdevimab (medicinal product)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929704 a n4sch:Atom ;
+    n4sch:AUI "A33301130" ;
+    n4sch:HAS_CUI n4ind:134 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab and imdevimab only product in parenteral dose form" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929705 a n4sch:Atom ;
+    n4sch:AUI "A33302903" ;
+    n4sch:HAS_CUI n4ind:134 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing only casirivimab and imdevimab in parenteral dose form (medicinal product form)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929706 a n4sch:Atom ;
+    n4sch:AUI "A33278335" ;
+    n4sch:HAS_CUI n4ind:135 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Casirivimab 60 mg/mL and imdevimab 60 mg/mL solution for injection" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929707 a n4sch:Atom ;
+    n4sch:AUI "A33277134" ;
+    n4sch:HAS_CUI n4ind:135 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Product containing precisely casirivimab 60 milligram/1 milliliter and imdevimab 60 milligram/1 milliliter conventional release solution for injection (clinical drug)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929708 a n4sch:Atom ;
+    n4sch:AUI "A33287093" ;
+    n4sch:HAS_CUI n4ind:136 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of sotrovimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929709 a n4sch:Atom ;
+    n4sch:AUI "A33275356" ;
+    n4sch:HAS_CUI n4ind:136 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of sotrovimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929710 a n4sch:Atom ;
+    n4sch:AUI "A33287702" ;
+    n4sch:HAS_CUI n4ind:137 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929711 a n4sch:Atom ;
+    n4sch:AUI "A33310955" ;
+    n4sch:HAS_CUI n4ind:137 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929712 a n4sch:Atom ;
+    n4sch:AUI "A33280834" ;
+    n4sch:HAS_CUI n4ind:138 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of imdevimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929713 a n4sch:Atom ;
+    n4sch:AUI "A33305395" ;
+    n4sch:HAS_CUI n4ind:138 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of imdevimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929714 a n4sch:Atom ;
+    n4sch:AUI "A33301710" ;
+    n4sch:HAS_CUI n4ind:139 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab and imdevimab" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929715 a n4sch:Atom ;
+    n4sch:AUI "A33291974" ;
+    n4sch:HAS_CUI n4ind:139 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Administration of casirivimab and imdevimab (procedure)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929716 a n4sch:Atom ;
+    n4sch:AUI "A33273002" ;
+    n4sch:HAS_CUI n4ind:140 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929717 a n4sch:Atom ;
+    n4sch:AUI "A33309050" ;
+    n4sch:HAS_CUI n4ind:140 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929718 a n4sch:Atom ;
+    n4sch:AUI "A33297520" ;
+    n4sch:HAS_CUI n4ind:141 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929719 a n4sch:Atom ;
+    n4sch:AUI "A33287703" ;
+    n4sch:HAS_CUI n4ind:141 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929720 a n4sch:Atom ;
+    n4sch:AUI "A33283378" ;
+    n4sch:HAS_CUI n4ind:142 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham nuclear pleomorphism score of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929721 a n4sch:Atom ;
+    n4sch:AUI "A33293823" ;
+    n4sch:HAS_CUI n4ind:142 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham nuclear pleomorphism score of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929722 a n4sch:Atom ;
+    n4sch:AUI "A33299305" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929723 a n4sch:Atom ;
+    n4sch:AUI "A33308445" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929724 a n4sch:Atom ;
+    n4sch:AUI "A33305397" ;
+    n4sch:HAS_CUI n4ind:143 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic rate score of breast cancer" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "SY" .
+
+n4ind:1929725 a n4sch:Atom ;
+    n4sch:AUI "A33305398" ;
+    n4sch:HAS_CUI n4ind:144 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic count in primary malignant neoplasm of breast" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929726 a n4sch:Atom ;
+    n4sch:AUI "A33302905" ;
+    n4sch:HAS_CUI n4ind:144 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Nottingham mitotic count in primary malignant neoplasm of breast (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929727 a n4sch:Atom ;
+    n4sch:AUI "A33310315" ;
+    n4sch:HAS_CUI n4ind:145 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm of colon" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929728 a n4sch:Atom ;
+    n4sch:AUI "A33294426" ;
+    n4sch:HAS_CUI n4ind:145 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm of colon (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929729 a n4sch:Atom ;
+    n4sch:AUI "A33299885" ;
+    n4sch:HAS_CUI n4ind:146 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929730 a n4sch:Atom ;
+    n4sch:AUI "A33288365" ;
+    n4sch:HAS_CUI n4ind:146 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic grade of primary malignant neoplasm (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929731 a n4sch:Atom ;
+    n4sch:AUI "A33290169" ;
+    n4sch:HAS_CUI n4ind:147 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Direct local invasion" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929732 a n4sch:Atom ;
+    n4sch:AUI "A33308446" ;
+    n4sch:HAS_CUI n4ind:147 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Direct local invasion (qualifier value)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929733 a n4sch:Atom ;
+    n4sch:AUI "A33300504" ;
+    n4sch:HAS_CUI n4ind:148 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of malignant neoplasm" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929734 a n4sch:Atom ;
+    n4sch:AUI "A33277740" ;
+    n4sch:HAS_CUI n4ind:148 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of malignant neoplasm (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929735 a n4sch:Atom ;
+    n4sch:AUI "A33307810" ;
+    n4sch:HAS_CUI n4ind:149 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of lung" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929736 a n4sch:Atom ;
+    n4sch:AUI "A33281483" ;
+    n4sch:HAS_CUI n4ind:149 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of lung (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929737 a n4sch:Atom ;
+    n4sch:AUI "A33301713" ;
+    n4sch:HAS_CUI n4ind:150 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of malignant melanoma of skin" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929738 a n4sch:Atom ;
+    n4sch:AUI "A33280245" ;
+    n4sch:HAS_CUI n4ind:150 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of malignant melanoma of skin (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929739 a n4sch:Atom ;
+    n4sch:AUI "A33285825" ;
+    n4sch:HAS_CUI n4ind:151 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of kidney" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929740 a n4sch:Atom ;
+    n4sch:AUI "A33306002" ;
+    n4sch:HAS_CUI n4ind:151 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of kidney (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929741 a n4sch:Atom ;
+    n4sch:AUI "A33311573" ;
+    n4sch:HAS_CUI n4ind:152 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of adrenal gland" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929742 a n4sch:Atom ;
+    n4sch:AUI "A33308447" ;
+    n4sch:HAS_CUI n4ind:152 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of adrenal gland (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929743 a n4sch:Atom ;
+    n4sch:AUI "A33295613" ;
+    n4sch:HAS_CUI n4ind:153 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ampulla of Vater" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929744 a n4sch:Atom ;
+    n4sch:AUI "A33282083" ;
+    n4sch:HAS_CUI n4ind:153 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ampulla of Vater (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929745 a n4sch:Atom ;
+    n4sch:AUI "A33293240" ;
+    n4sch:HAS_CUI n4ind:154 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of appendix" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929746 a n4sch:Atom ;
+    n4sch:AUI "A33301714" ;
+    n4sch:HAS_CUI n4ind:154 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of appendix (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929747 a n4sch:Atom ;
+    n4sch:AUI "A33282754" ;
+    n4sch:HAS_CUI n4ind:155 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of bone" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929748 a n4sch:Atom ;
+    n4sch:AUI "A33287706" ;
+    n4sch:HAS_CUI n4ind:155 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of bone (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929749 a n4sch:Atom ;
+    n4sch:AUI "A33288967" ;
+    n4sch:HAS_CUI n4ind:156 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of brain" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929750 a n4sch:Atom ;
+    n4sch:AUI "A33293825" ;
+    n4sch:HAS_CUI n4ind:156 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of brain (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929751 a n4sch:Atom ;
+    n4sch:AUI "A33298722" ;
+    n4sch:HAS_CUI n4ind:157 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of esophagus" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929752 a n4sch:Atom ;
+    n4sch:AUI "A33295614" ;
+    n4sch:HAS_CUI n4ind:157 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of esophagus (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929753 a n4sch:Atom ;
+    n4sch:AUI "A33277135" ;
+    n4sch:HAS_CUI n4ind:158 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of gallbladder" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929754 a n4sch:Atom ;
+    n4sch:AUI "A33273004" ;
+    n4sch:HAS_CUI n4ind:158 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of gallbladder (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929755 a n4sch:Atom ;
+    n4sch:AUI "A33305400" ;
+    n4sch:HAS_CUI n4ind:159 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of larynx" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929756 a n4sch:Atom ;
+    n4sch:AUI "A33303525" ;
+    n4sch:HAS_CUI n4ind:159 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of larynx (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929757 a n4sch:Atom ;
+    n4sch:AUI "A33304797" ;
+    n4sch:HAS_CUI n4ind:160 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of liver" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929758 a n4sch:Atom ;
+    n4sch:AUI "A33282755" ;
+    n4sch:HAS_CUI n4ind:160 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of liver (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929759 a n4sch:Atom ;
+    n4sch:AUI "A33309051" ;
+    n4sch:HAS_CUI n4ind:161 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of maxilla" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929760 a n4sch:Atom ;
+    n4sch:AUI "A33290170" ;
+    n4sch:HAS_CUI n4ind:161 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of maxilla (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929761 a n4sch:Atom ;
+    n4sch:AUI "A33302906" ;
+    n4sch:HAS_CUI n4ind:162 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of omentum" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929762 a n4sch:Atom ;
+    n4sch:AUI "A33291364" ;
+    n4sch:HAS_CUI n4ind:162 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of omentum (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929763 a n4sch:Atom ;
+    n4sch:AUI "A33282084" ;
+    n4sch:HAS_CUI n4ind:163 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of oral mucosa" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929764 a n4sch:Atom ;
+    n4sch:AUI "A33275360" ;
+    n4sch:HAS_CUI n4ind:163 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of oral mucosa (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929765 a n4sch:Atom ;
+    n4sch:AUI "A33288368" ;
+    n4sch:HAS_CUI n4ind:164 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ovary" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929766 a n4sch:Atom ;
+    n4sch:AUI "A33302907" ;
+    n4sch:HAS_CUI n4ind:164 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of ovary (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929767 a n4sch:Atom ;
+    n4sch:AUI "A33273623" ;
+    n4sch:HAS_CUI n4ind:165 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of pancreas" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929768 a n4sch:Atom ;
+    n4sch:AUI "A33294429" ;
+    n4sch:HAS_CUI n4ind:165 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of pancreas (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929769 a n4sch:Atom ;
+    n4sch:AUI "A33289570" ;
+    n4sch:HAS_CUI n4ind:166 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of penis" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929770 a n4sch:Atom ;
+    n4sch:AUI "A33277136" ;
+    n4sch:HAS_CUI n4ind:166 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of penis (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929771 a n4sch:Atom ;
+    n4sch:AUI "A33293826" ;
+    n4sch:HAS_CUI n4ind:167 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of prostate" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929772 a n4sch:Atom ;
+    n4sch:AUI "A33279585" ;
+    n4sch:HAS_CUI n4ind:167 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of prostate (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929773 a n4sch:Atom ;
+    n4sch:AUI "A33293827" ;
+    n4sch:HAS_CUI n4ind:168 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of small intestine" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929774 a n4sch:Atom ;
+    n4sch:AUI "A33292641" ;
+    n4sch:HAS_CUI n4ind:168 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of small intestine (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929775 a n4sch:Atom ;
+    n4sch:AUI "A33304798" ;
+    n4sch:HAS_CUI n4ind:169 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of stomach" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929776 a n4sch:Atom ;
+    n4sch:AUI "A33308448" ;
+    n4sch:HAS_CUI n4ind:169 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of stomach (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929777 a n4sch:Atom ;
+    n4sch:AUI "A33273624" ;
+    n4sch:HAS_CUI n4ind:170 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of testis" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929778 a n4sch:Atom ;
+    n4sch:AUI "A33306616" ;
+    n4sch:HAS_CUI n4ind:170 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of testis (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929779 a n4sch:Atom ;
+    n4sch:AUI "A33288369" ;
+    n4sch:HAS_CUI n4ind:171 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of thyroid" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929780 a n4sch:Atom ;
+    n4sch:AUI "A33284599" ;
+    n4sch:HAS_CUI n4ind:171 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of thyroid (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929781 a n4sch:Atom ;
+    n4sch:AUI "A33273005" ;
+    n4sch:HAS_CUI n4ind:172 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of uterus" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929782 a n4sch:Atom ;
+    n4sch:AUI "A33280246" ;
+    n4sch:HAS_CUI n4ind:172 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of uterus (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929783 a n4sch:Atom ;
+    n4sch:AUI "A33305176" ;
+    n4sch:HAS_CUI n4ind:173 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of urinary bladder" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929784 a n4sch:Atom ;
+    n4sch:AUI "A33293828" ;
+    n4sch:HAS_CUI n4ind:173 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of urinary bladder (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:1929785 a n4sch:Atom ;
+    n4sch:AUI "A33280247" ;
+    n4sch:HAS_CUI n4ind:174 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of peritoneum" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "P" ;
+    n4sch:TTY "PT" .
+
+n4ind:1929786 a n4sch:Atom ;
+    n4sch:AUI "A33304799" ;
+    n4sch:HAS_CUI n4ind:174 ;
+    n4sch:ISPREF "Y" ;
+    n4sch:STR "Histologic type of primary malignant neoplasm of peritoneum (observable entity)" ;
+    n4sch:STT "PF" ;
+    n4sch:TS "S" ;
+    n4sch:TTY "FN" .
+
+n4ind:127 a n4sch:Concept ;
+    n4sch:CUI "C5548584" .
+
+n4ind:128 a n4sch:Concept ;
+    n4sch:CUI "C5548585" .
+
+n4ind:129 a n4sch:Concept ;
+    n4sch:CUI "C5548586" .
+
+n4ind:130 a n4sch:Concept ;
+    n4sch:CUI "C5548587" .
+
+n4ind:131 a n4sch:Concept ;
+    n4sch:CUI "C5548588" .
+
+n4ind:132 a n4sch:Concept ;
+    n4sch:CUI "C5548589" .
+
+n4ind:133 a n4sch:Concept ;
+    n4sch:CUI "C5548590" .
+
+n4ind:134 a n4sch:Concept ;
+    n4sch:CUI "C5548591" .
+
+n4ind:135 a n4sch:Concept ;
+    n4sch:CUI "C5548592" .
+
+n4ind:136 a n4sch:Concept ;
+    n4sch:CUI "C5548593" .
+
+n4ind:137 a n4sch:Concept ;
+    n4sch:CUI "C5548594" .
+
+n4ind:138 a n4sch:Concept ;
+    n4sch:CUI "C5548595" .
+
+n4ind:139 a n4sch:Concept ;
+    n4sch:CUI "C5548596" .
+
+n4ind:140 a n4sch:Concept ;
+    n4sch:CUI "C5548597" .
+
+n4ind:141 a n4sch:Concept ;
+    n4sch:CUI "C5548598" .
+
+n4ind:142 a n4sch:Concept ;
+    n4sch:CUI "C5548599" .
+
+n4ind:144 a n4sch:Concept ;
+    n4sch:CUI "C5548601" .
+
+n4ind:145 a n4sch:Concept ;
+    n4sch:CUI "C5548602" .
+
+n4ind:146 a n4sch:Concept ;
+    n4sch:CUI "C5548603" .
+
+n4ind:147 a n4sch:Concept ;
+    n4sch:CUI "C5548604" .
+
+n4ind:148 a n4sch:Concept ;
+    n4sch:CUI "C5548605" .
+
+n4ind:149 a n4sch:Concept ;
+    n4sch:CUI "C5548606" .
+
+n4ind:150 a n4sch:Concept ;
+    n4sch:CUI "C5548607" .
+
+n4ind:151 a n4sch:Concept ;
+    n4sch:CUI "C5548608" .
+
+n4ind:152 a n4sch:Concept ;
+    n4sch:CUI "C5548609" .
+
+n4ind:153 a n4sch:Concept ;
+    n4sch:CUI "C5548610" .
+
+n4ind:154 a n4sch:Concept ;
+    n4sch:CUI "C5548611" .
+
+n4ind:155 a n4sch:Concept ;
+    n4sch:CUI "C5548612" .
+
+n4ind:156 a n4sch:Concept ;
+    n4sch:CUI "C5548613" .
+
+n4ind:157 a n4sch:Concept ;
+    n4sch:CUI "C5548614" .
+
+n4ind:158 a n4sch:Concept ;
+    n4sch:CUI "C5548615" .
+
+n4ind:159 a n4sch:Concept ;
+    n4sch:CUI "C5548616" .
+
+n4ind:160 a n4sch:Concept ;
+    n4sch:CUI "C5548617" .
+
+n4ind:161 a n4sch:Concept ;
+    n4sch:CUI "C5548618" .
+
+n4ind:162 a n4sch:Concept ;
+    n4sch:CUI "C5548619" .
+
+n4ind:163 a n4sch:Concept ;
+    n4sch:CUI "C5548620" .
+
+n4ind:164 a n4sch:Concept ;
+    n4sch:CUI "C5548621" .
+
+n4ind:165 a n4sch:Concept ;
+    n4sch:CUI "C5548622" .
+
+n4ind:166 a n4sch:Concept ;
+    n4sch:CUI "C5548623" .
+
+n4ind:167 a n4sch:Concept ;
+    n4sch:CUI "C5548624" .
+
+n4ind:168 a n4sch:Concept ;
+    n4sch:CUI "C5548625" .
+
+n4ind:169 a n4sch:Concept ;
+    n4sch:CUI "C5548626" .
+
+n4ind:170 a n4sch:Concept ;
+    n4sch:CUI "C5548627" .
+
+n4ind:171 a n4sch:Concept ;
+    n4sch:CUI "C5548628" .
+
+n4ind:172 a n4sch:Concept ;
+    n4sch:CUI "C5548629" .
+
+n4ind:173 a n4sch:Concept ;
+    n4sch:CUI "C5548630" .
+
+n4ind:174 a n4sch:Concept ;
+    n4sch:CUI "C5548631" .
+
+n4ind:143 a n4sch:Concept ;
+    n4sch:CUI "C5548600" .
+

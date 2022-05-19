@@ -1,0 +1,408 @@
+@prefix n4ind: <neo4j://graph.individuals#> .
+@prefix n4sch: <neo4j://graph.schema#> .
+
+n4ind:227435 a n4sch:Concept ;
+    n4sch:CUI "C0555880" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227436 a n4sch:Concept ;
+    n4sch:CUI "C0555881" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227439 a n4sch:Concept ;
+    n4sch:CUI "C0555891" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227592 a n4sch:Concept ;
+    n4sch:CUI "C0556144" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227593 a n4sch:Concept ;
+    n4sch:CUI "C0556147" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227594 a n4sch:Concept ;
+    n4sch:CUI "C0556148" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227595 a n4sch:Concept ;
+    n4sch:CUI "C0556151" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227596 a n4sch:Concept ;
+    n4sch:CUI "C0556152" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227597 a n4sch:Concept ;
+    n4sch:CUI "C0556153" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227598 a n4sch:Concept ;
+    n4sch:CUI "C0556154" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:227680 a n4sch:Concept ;
+    n4sch:CUI "C0556242" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:228015 a n4sch:Concept ;
+    n4sch:CUI "C0556607" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:228016 a n4sch:Concept ;
+    n4sch:CUI "C0556609" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:235174 a n4sch:Concept ;
+    n4sch:CUI "C0559519" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:245109 a n4sch:Concept ;
+    n4sch:CUI "C0563235" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:245159 a n4sch:Concept ;
+    n4sch:CUI "C0563296" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266661 a n4sch:Concept ;
+    n4sch:CUI "C0576728" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266664 a n4sch:Concept ;
+    n4sch:CUI "C0576731" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266665 a n4sch:Concept ;
+    n4sch:CUI "C0576732" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266666 a n4sch:Concept ;
+    n4sch:CUI "C0576733" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266668 a n4sch:Concept ;
+    n4sch:CUI "C0576735" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266669 a n4sch:Concept ;
+    n4sch:CUI "C0576736" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266670 a n4sch:Concept ;
+    n4sch:CUI "C0576738" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266671 a n4sch:Concept ;
+    n4sch:CUI "C0576739" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266711 a n4sch:Concept ;
+    n4sch:CUI "C0576781" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266712 a n4sch:Concept ;
+    n4sch:CUI "C0576782" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266713 a n4sch:Concept ;
+    n4sch:CUI "C0576783" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266714 a n4sch:Concept ;
+    n4sch:CUI "C0576784" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266716 a n4sch:Concept ;
+    n4sch:CUI "C0576786" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266717 a n4sch:Concept ;
+    n4sch:CUI "C0576787" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266718 a n4sch:Concept ;
+    n4sch:CUI "C0576788" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266722 a n4sch:Concept ;
+    n4sch:CUI "C0576793" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266723 a n4sch:Concept ;
+    n4sch:CUI "C0576794" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266724 a n4sch:Concept ;
+    n4sch:CUI "C0576795" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266725 a n4sch:Concept ;
+    n4sch:CUI "C0576796" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266726 a n4sch:Concept ;
+    n4sch:CUI "C0576797" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266727 a n4sch:Concept ;
+    n4sch:CUI "C0576798" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266728 a n4sch:Concept ;
+    n4sch:CUI "C0576799" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266729 a n4sch:Concept ;
+    n4sch:CUI "C0576802" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266730 a n4sch:Concept ;
+    n4sch:CUI "C0576803" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266731 a n4sch:Concept ;
+    n4sch:CUI "C0576804" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266732 a n4sch:Concept ;
+    n4sch:CUI "C0576805" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:266734 a n4sch:Concept ;
+    n4sch:CUI "C0576807" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275056 a n4sch:Concept ;
+    n4sch:CUI "C0577552" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275142 a n4sch:Concept ;
+    n4sch:CUI "C0577665" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275145 a n4sch:Concept ;
+    n4sch:CUI "C0577670" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275146 a n4sch:Concept ;
+    n4sch:CUI "C0577671" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275147 a n4sch:Concept ;
+    n4sch:CUI "C0577672" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275148 a n4sch:Concept ;
+    n4sch:CUI "C0577673" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275149 a n4sch:Concept ;
+    n4sch:CUI "C0577675" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275150 a n4sch:Concept ;
+    n4sch:CUI "C0577676" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275151 a n4sch:Concept ;
+    n4sch:CUI "C0577677" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275152 a n4sch:Concept ;
+    n4sch:CUI "C0577678" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275153 a n4sch:Concept ;
+    n4sch:CUI "C0577680" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275216 a n4sch:Concept ;
+    n4sch:CUI "C0577755" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275218 a n4sch:Concept ;
+    n4sch:CUI "C0577758" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275241 a n4sch:Concept ;
+    n4sch:CUI "C0577784" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275529 a n4sch:Concept ;
+    n4sch:CUI "C0578117" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275554 a n4sch:Concept ;
+    n4sch:CUI "C0578145" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275557 a n4sch:Concept ;
+    n4sch:CUI "C0578148" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275799 a n4sch:Concept ;
+    n4sch:CUI "C0578399" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275878 a n4sch:Concept ;
+    n4sch:CUI "C0578483" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275883 a n4sch:Concept ;
+    n4sch:CUI "C0578490" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275884 a n4sch:Concept ;
+    n4sch:CUI "C0578495" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275886 a n4sch:Concept ;
+    n4sch:CUI "C0578498" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275887 a n4sch:Concept ;
+    n4sch:CUI "C0578499" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275888 a n4sch:Concept ;
+    n4sch:CUI "C0578500" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275889 a n4sch:Concept ;
+    n4sch:CUI "C0578501" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275904 a n4sch:Concept ;
+    n4sch:CUI "C0578518" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275905 a n4sch:Concept ;
+    n4sch:CUI "C0578520" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275906 a n4sch:Concept ;
+    n4sch:CUI "C0578521" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:275910 a n4sch:Concept ;
+    n4sch:CUI "C0578526" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:276271 a n4sch:Concept ;
+    n4sch:CUI "C0579032" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278333 a n4sch:Concept ;
+    n4sch:CUI "C0581779" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278353 a n4sch:Concept ;
+    n4sch:CUI "C0581803" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278368 a n4sch:Concept ;
+    n4sch:CUI "C0581819" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278369 a n4sch:Concept ;
+    n4sch:CUI "C0581820" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278370 a n4sch:Concept ;
+    n4sch:CUI "C0581821" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278373 a n4sch:Concept ;
+    n4sch:CUI "C0581824" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278588 a n4sch:Concept ;
+    n4sch:CUI "C0582110" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278601 a n4sch:Concept ;
+    n4sch:CUI "C0582125" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278602 a n4sch:Concept ;
+    n4sch:CUI "C0582126" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278603 a n4sch:Concept ;
+    n4sch:CUI "C0582127" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278604 a n4sch:Concept ;
+    n4sch:CUI "C0582128" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278633 a n4sch:Concept ;
+    n4sch:CUI "C0582160" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278683 a n4sch:Concept ;
+    n4sch:CUI "C0582212" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278714 a n4sch:Concept ;
+    n4sch:CUI "C0582244" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278715 a n4sch:Concept ;
+    n4sch:CUI "C0582246" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278719 a n4sch:Concept ;
+    n4sch:CUI "C0582250" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:278720 a n4sch:Concept ;
+    n4sch:CUI "C0582251" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:279122 a n4sch:Concept ;
+    n4sch:CUI "C0582727" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:295997 a n4sch:Concept ;
+    n4sch:CUI "C0588177" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296156 a n4sch:Concept ;
+    n4sch:CUI "C0588989" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296160 a n4sch:Concept ;
+    n4sch:CUI "C0588993" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296161 a n4sch:Concept ;
+    n4sch:CUI "C0588994" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296165 a n4sch:Concept ;
+    n4sch:CUI "C0588998" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296217 a n4sch:Concept ;
+    n4sch:CUI "C0589068" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296448 a n4sch:Concept ;
+    n4sch:CUI "C0589335" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296556 a n4sch:Concept ;
+    n4sch:CUI "C0589505" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:296679 a n4sch:Concept ;
+    n4sch:CUI "C0589765" ;
+    n4sch:HAS_STY n4ind:0 .
+
+n4ind:0 a n4sch:TUI ;
+    n4sch:STN "A1.4.1.2.1" ;
+    n4sch:STY "Organic Chemical" ;
+    n4sch:TUI "T109" .
+
