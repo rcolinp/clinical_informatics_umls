@@ -1,14 +1,4 @@
-#!/usr/bin/env python3
-"""
-Script quickly creates a loaded sqlite3 database containing a UMLS 2021AB subset
-
-This script is lightweight version of ../sqlite/create_sqlite_db.sh.
-Python script is quicker and creates a lightweight database.
-(create_sqlite_db.py)
-Shell script needs refactoring as it creates a bloated database.
-(create_sqlite_db.sh)
-
-"""
+#!/usr/bin/env python
 
 import os
 import sqlite3
@@ -22,11 +12,12 @@ if not sys.warnoptions:
 from io import StringIO
 from os.path import dirname, join
 
-umls_tables = "../UMLS/subset/2021AB/META/"
+umls_tables = "../UMLS/subset/2022AA/META/"
 conn = None
 success = False
 db_path = "../sqlite/umls_py.db"
 
+MRSTY_TABLE_FILE = None
 MRCONSO_TABLE_FILE = None
 MRHIER_TABLE_FILE = None
 MRRANK_TABLE_FILE = None
@@ -36,18 +27,17 @@ SRSTRE1_TABLE_FILE = None
 SRSTRE2_TABLE_FILE = None
 SRSTR_TABLE_FILE = None
 MRSAB_TABLE_FILE = None
-MRSTY_TABLE_FILE = None
-MRSMAP_TABLE_FILE = None
 MRDEF_TABLE_FILE = None
 MRSAT_TABLE_FILE = None
+SRGRP_TABLE_FILE = None
 
 
 def umls_db_cleanup():
-    """[summary]"""
     global conn
     global success
     global db_path
 
+    global MRSTY_TABLE_FILE
     global MRCONSO_TABLE_FILE
     global MRHIER_TABLE_FILE
     global MRRANK_TABLE_FILE
@@ -57,13 +47,15 @@ def umls_db_cleanup():
     global SRSTRE2_TABLE_FILE
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
-    global MRSTY_TABLE_FILE
-    global MRSMAP_TABLE_FILE
     global MRDEF_TABLE_FILE
     global MRSAT_TABLE_FILE
+    global SRGRP_TABLE_FILE
 
     if conn is not None:
         conn.close()
+
+    if MRSTY_TABLE_FILE is not None:
+        MRSTY_TABLE_FILE.close()
 
     if MRCONSO_TABLE_FILE is not None:
         MRCONSO_TABLE_FILE.close()
@@ -92,24 +84,19 @@ def umls_db_cleanup():
     if MRSAB_TABLE_FILE is not None:
         MRSAB_TABLE_FILE.close()
 
-    if MRSTY_TABLE_FILE is not None:
-        MRSTY_TABLE_FILE.close()
-
-    if MRSMAP_TABLE_FILE is not None:
-        MRSAB_TABLE_FILE.close()
-
     if MRDEF_TABLE_FILE is not None:
         MRDEF_TABLE_FILE.close()
 
     if MRSAT_TABLE_FILE is not None:
         MRSAT_TABLE_FILE.close()
 
-    if success is False:
-        # remove db
-        if db_path is not None:
-            os.remove(db_path)
+    if SRGRP_TABLE_FILE is not None:
+        SRGRP_TABLE_FILE.close()
 
-            print("\n\tError: umls_py.db was not created successfully.\n")
+    if success is False and db_path is not None:
+        os.remove(db_path)
+
+        print("\n\tError: umls_py.db was not created successfully.\n")
 
 
 def create_db():
@@ -134,9 +121,9 @@ def create_db():
     global SRSTR_TABLE_FILE
     global MRSAB_TABLE_FILE
     global MRSTY_TABLE_FILE
-    global MRSMAP_TABLE_FILE
     global MRDEF_TABLE_FILE
     global MRSAT_TABLE_FILE
+    global SRGRP_TABLE_FILE
 
     print("\ncreating umls_py.db")
     db_path = "../sqlite/umls_py.db"
@@ -180,28 +167,28 @@ def create_db():
         sys.exit()
 
     try:
-        srdef_path = join(dirname(umls_tables), "SRDEF")
+        srdef_path = join(dirname(umls_tables), "SRDEF.pipe")
         SRDEF_TABLE_FILE = open(srdef_path, "r")
     except IOError:
         print("\nNo file to use for creating SRDEF table\n")
         sys.exit()
 
     try:
-        srstr_path = join(dirname(umls_tables), "SRSTR")
+        srstr_path = join(dirname(umls_tables), "SRSTR.pipe")
         SRSTR_TABLE_FILE = open(srstr_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTR table\n")
         sys.exit()
 
     try:
-        srstre1_path = join(dirname(umls_tables), "SRSTRE1")
+        srstre1_path = join(dirname(umls_tables), "SRSTRE1.pipe")
         SRSTRE1_TABLE_FILE = open(srstre1_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTRE1 table\n")
         sys.exit()
 
     try:
-        srstre2_path = join(dirname(umls_tables), "SRSTRE2")
+        srstre2_path = join(dirname(umls_tables), "SRSTRE2.pipe")
         SRSTRE2_TABLE_FILE = open(srstre2_path, "r")
     except IOError:
         print("\nNo file to use for creating SRSTRE2 table\n")
@@ -215,15 +202,8 @@ def create_db():
         sys.exit()
 
     try:
-        mrsmap_path = join(dirname(umls_tables), "MRSMAP.RRF")
-        MRSMAP_TABLE_FILE = open(mrsmap_path, 'r')
-    except IOError:
-        print("\nNo file to use for creating MRSMAP table\n")
-        sys.exit()
-
-    try:
         mrdef_path = join(dirname(umls_tables), "MRDEF.RRF")
-        MRDEF_TABLE_FILE = open(mrdef_path, 'r')
+        MRDEF_TABLE_FILE = open(mrdef_path, "r")
     except IOError:
         print("\nNo file to use for creating MRDEF table\n")
         sys.exit()
@@ -235,11 +215,18 @@ def create_db():
         print("\nNo file to use for creating MRSAT table\n")
         sys.exit()
 
+    try:
+        srgrp_path = join(dirname(umls_tables), "semantic_groups.pipe")
+        SRGRP_TABLE_FILE = open(srgrp_path, "r")
+    except IOError:
+        print("\nNo file to use for creating SRGRP table\n")
+        sys.exit()
+
     print("Creating tables")
     c = conn.cursor()
 
     # Create tables (MRSTY, MRCONSO, MRREL, MRHIER, MRRANK, SRDEF, SRSTR,
-    #                SRSTRE1, SRSTRE2, MRSAB, MRSAT)
+    #                SRSTRE1, SRSTRE2, MRSAB, MRSAT, SRGRP)
 
     c.execute(
         """CREATE TABLE MRSTY(
@@ -373,22 +360,6 @@ def create_db():
     )
 
     c.execute(
-        """CREATE TABLE MRSMAP(
-            MAPSETCUI varchar,
-            MAPSETSAB varchar,
-            MAPID varchar,
-            MAPSID varchar,
-            FROMEXPR varchar,
-            FROMTYPE varchar,
-            REL varchar,
-            RELA varchar,
-            TOEXPR varchar,
-            TOTYPE varchar,
-            CVF varchar
-        );"""
-    )
-
-    c.execute(
         """CREATE TABLE MRDEF(
             CUI varchar,
             AUI varchar,
@@ -419,61 +390,69 @@ def create_db():
         );"""
     )
 
+    c.execute(
+        "CREATE TABLE SRGRP( STY_GROUP_ABBREV text, STY_GROUP text, TUI varchar, STY text ) ;"
+    )
+
     print("Inserting data into MRSTY table")
     for line in MRSTY_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 6
         c.execute(
             """INSERT INTO MRSTY( CUI, TUI, STN, STY, ATUI, CVF ) VALUES( ?, ?, ?, ?, ?, ?)
-            """, tuple(line),
+            """,
+            tuple(line),
         )
 
     print("Inserting data into MRCONSO table")
     for line in MRCONSO_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 18
         c.execute(
             """INSERT INTO MRCONSO( CUI, LAT, TS, LUI, STT, SUI, ISPREF, AUI, SAUI, SCUI, SDUI, SAB, TTY, CODE, STR, SRL, SUPPRESS, CVF )
             VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
+            """,
+            tuple(line),
         )
 
     print("Inserting data into MRREL table")
     for line in MRREL_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 16
         c.execute(
             """INSERT INTO MRREL( CUI1, AUI1, STYPE1, REL, CUI2, AUI2, STYPE2,
             RELA, RUI, SRUI, SAB, SL, RG, DIR, SUPPRESS, CVF ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
+            """,
+            tuple(line),
         )
 
     print("Inserting data into MRHIER table")
     for line in MRHIER_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 9
         c.execute(
             """INSERT INTO MRHIER( CUI, AUI, CXN, PAUI, SAB, RELA, PTR, HCD, CVF )
             VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
+            """,
+            tuple(line),
         )
 
     print("Inserting data into MRRANK table")
     for line in MRRANK_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 4
@@ -485,7 +464,7 @@ def create_db():
     print("Inserting data into SRDEF table")
     for line in SRDEF_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 10
@@ -498,7 +477,7 @@ def create_db():
     print("Inserting data into SRSTR table")
     for line in SRSTR_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 4
@@ -510,74 +489,78 @@ def create_db():
     print("Inserting data into SRSTRE1 table")
     for line in SRSTRE1_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 3
         c.execute(
-            "INSERT INTO SRSTRE1( UI1, UI2, UI3 ) VALUES( ?, ?, ? );", tuple(
-                line)
+            "INSERT INTO SRSTRE1( UI1, UI2, UI3 ) VALUES( ?, ?, ? );", tuple(line)
         )
     print("Inserting data into SRSTRE2 table")
     for line in SRSTRE2_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 3
         c.execute(
-            "INSERT INTO SRSTRE2( STY1, RL, STY2 ) VALUES( ?, ?, ? );", tuple(
-                line)
+            "INSERT INTO SRSTRE2( STY1, RL, STY2 ) VALUES( ?, ?, ? );", tuple(line)
         )
 
     print("Inserting data into MRSAB table")
     for line in MRSAB_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 25
         c.execute(
-            """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, LAT, CENC, CURVER, SABIN, SSN, SCIT ) 
+            """INSERT INTO MRSAB( VCUI, RCUI, VSAB, RSAB, SON, SF, SVER, VSTART, VEND, IMETA, RMETA, SLC, SCC, SRL, TRF, CFR, CXTY, TTYL, ATNL, LAT, CENC, CURVER, SABIN, SSN, SCIT )
 			VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
-        )
-
-    print("Inserting data into MRSMAP table")
-    for line in MRSMAP_TABLE_FILE:
-        line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
-        line = line.split("|")
-        line.pop()
-        assert len(line) == 11
-        c.execute(
-            "INSERT INTO MRSMAP( MAPSETCUI, MAPSETSAB, MAPID, MAPSID, FROMEXPR, FROMTYPE, REL, RELA, TOEXPR, TOTYPE, CVF ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );",
+            """,
             tuple(line),
         )
 
     print("Inserting data into MRDEF table")
     for line in MRDEF_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 8
         c.execute(
-            "INSERT INTO MRDEF( CUI, AUI, ATUI, SATUI, SAB, DEF, SUPPRESS, CVF) VALUES( ?, ?, ?, ?, ?, ?, ?, ? );",
+            """INSERT INTO MRDEF( CUI, AUI, ATUI, SATUI, SAB, DEF, SUPPRESS, CVF ) 
+                VALUES( ?, ?, ?, ?, ?, ?, ?, ? ) ;""",
             tuple(line),
         )
 
     print("Inserting data into MRSAT table")
     for line in MRSAT_TABLE_FILE:
         line = line.strip("\n")
-        assert line[-1] == "|", "str: {}, char: ".format(line, line[-1])
+        assert line[-1] == "|", f"str: {line}, char: "
         line = line.split("|")
         line.pop()
         assert len(line) == 13
         c.execute(
             """INSERT INTO MRSAT( CUI, LUI, SUI, METAUI, STYPE, CODE, ATUI, SATUI, ATN, SAB, ATV, SUPPRESS, CVF )
 				VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-            """, tuple(line),
+            """,
+            tuple(line),
+        )
+
+    print("Inserting data into SRGRP table")
+    for line in SRGRP_TABLE_FILE:
+        line = line.strip("\n")
+        assert line[-1] == "|", f"str: {line}, char: "
+        line = line.split("|")
+        line.pop()
+        assert len(line) == 4
+        c.execute(
+            """ INSERT INTO SRGRP ( STY_GROUP_ABBREV, STY_GROUP, TUI, STY )
+                VALUES ( ?, ?, ?, ? ); 
+            """,
+            tuple(line),
         )
 
     # create indices for faster queries
@@ -587,6 +570,8 @@ def create_db():
     c.execute("CREATE INDEX X_mrconso_sab ON MRCONSO (SAB);")
     c.execute("CREATE INDEX X_mrrel_cui2 ON MRREL (CUI2);")
     c.execute("CREATE INDEX X_mrrel_cui1 ON MRREL (CUI1);")
+    c.execute("CREATE INDEX X_mrrel_aui1 ON MRREL (AUI1);")
+    c.execute("CREATE INDEX X_mrrel_aui2 ON MRREL (AUI2);")
     c.execute("CREATE INDEX X_mrhier_aui ON MRHIER (AUI);")
     c.execute("CREATE INDEX X_mrhier_paui ON MRHIER (PAUI);")
     c.execute("CREATE INDEX X_mrsat_cui ON MRSAT (CUI);")
