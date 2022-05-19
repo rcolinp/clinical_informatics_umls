@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+UMLS/2022AA-full/
 
 # Distribution / packaging
 .Python
@@ -29,7 +30,6 @@ MANIFEST
 .vscode/
 .idea
 neo4j.cypher
-docker-compose.yml
 .DS_Store
 wip_*
 # PyInstaller
@@ -119,12 +119,6 @@ ENV/
 env.bak/
 venv.bak/
 .venv/
-import/
-docker/
-output_data/
-
-src/
-script/
 
 # Spyder project settings
 .spyderproject
@@ -144,10 +138,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 sqlite/umls_py.db
-mrconso_columns.csv
-mrrel_columns.csv
 clinical_informatics_umls/umls_api_key.py
 requirements.txt
 requirements-dev.txt
-clinical_informatics_umls/import_neo.py
-clinical_informatics_umls/neo4j_to_rdf.py
