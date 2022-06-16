@@ -141,3 +141,4 @@ sqlite/umls_py.db
 clinical_informatics_umls/umls_api_key.py
 requirements.txt
 requirements-dev.txt
+*.zip
