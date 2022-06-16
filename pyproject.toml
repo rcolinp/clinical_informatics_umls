@@ -24,6 +24,7 @@ SQLAlchemy = "^1.4.36"
 mariadb = "^1.0.11"
 PyMySQL = "^1.0.2"
 networkx = "^2.8.4"
+simplejson = "^3.17.6"
 
 
 [tool.poetry.dev-dependencies]
