@@ -252,7 +252,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "dask"
-version = "2022.3.0"
+version = "2022.6.0"
 description = "Parallel PyData with Task Scheduling"
 category = "main"
 optional = false
@@ -261,7 +261,7 @@ python-versions = ">=3.8"
 [package.dependencies]
 bokeh = {version = ">=2.4.2", optional = true, markers = "extra == \"complete\""}
 cloudpickle = ">=1.1.1"
-distributed = {version = "2022.03.0", optional = true, markers = "extra == \"complete\""}
+distributed = {version = "2022.6.0", optional = true, markers = "extra == \"complete\""}
 fsspec = ">=0.6.0"
 jinja2 = {version = "*", optional = true, markers = "extra == \"complete\""}
 numpy = {version = ">=1.18", optional = true, markers = "extra == \"complete\""}
@@ -273,10 +273,10 @@ toolz = ">=0.8.2"
 
 [package.extras]
 array = ["numpy (>=1.18)"]
-complete = ["bokeh (>=2.4.2)", "distributed (==2022.03.0)", "jinja2", "numpy (>=1.18)", "pandas (>=1.0)"]
+complete = ["bokeh (>=2.4.2)", "distributed (==2022.6.0)", "jinja2", "numpy (>=1.18)", "pandas (>=1.0)"]
 dataframe = ["numpy (>=1.18)", "pandas (>=1.0)"]
 diagnostics = ["bokeh (>=2.4.2)", "jinja2"]
-distributed = ["distributed (==2022.03.0)"]
+distributed = ["distributed (==2022.6.0)"]
 test = ["pytest", "pytest-rerunfailures", "pytest-xdist", "pre-commit"]
 
 [[package]]
@@ -365,7 +365,7 @@ python-versions = "*"
 
 [[package]]
 name = "distributed"
-version = "2022.3.0"
+version = "2022.6.0"
 description = "Distributed scheduler for Dask"
 category = "main"
 optional = false
@@ -374,8 +374,9 @@ python-versions = ">=3.8"
 [package.dependencies]
 click = ">=6.6"
 cloudpickle = ">=1.5.0"
-dask = "2022.03.0"
+dask = "2022.6.0"
 jinja2 = "*"
+locket = ">=1.0.0"
 msgpack = ">=0.6.0"
 packaging = ">=20.0"
 psutil = ">=5.0"
@@ -384,6 +385,7 @@ sortedcontainers = "<2.0.0 || >2.0.0,<2.0.1 || >2.0.1"
 tblib = ">=1.6.0"
 toolz = ">=0.8.2"
 tornado = ">=6.0.3"
+urllib3 = "*"
 zict = ">=0.1.3"
 
 [[package]]
@@ -933,8 +935,8 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "locket"
-version = "0.2.1"
-description = "File-based locks for Python for Linux and Windows"
+version = "1.0.0"
+description = "File-based locks for Python on Linux and Windows"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
@@ -1215,11 +1217,11 @@ test = ["pytest (>=7.0)", "pytest-cov (>=3.0)", "codecov (>=2.1)"]
 
 [[package]]
 name = "notebook"
-version = "6.4.10"
+version = "6.4.12"
 description = "A web-based notebook environment for interactive computing"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 argon2-cffi = "*"
@@ -1241,7 +1243,7 @@ traitlets = ">=4.2.1"
 [package.extras]
 docs = ["sphinx", "nbsphinx", "sphinxcontrib-github-alt", "sphinx-rtd-theme", "myst-parser"]
 json-logging = ["json-logging"]
-test = ["pytest", "coverage", "requests", "nbval", "selenium", "pytest-cov", "requests-unixsocket"]
+test = ["pytest", "coverage", "requests", "testpath", "nbval", "selenium", "pytest-cov", "requests-unixsocket"]
 
 [[package]]
 name = "numba"
@@ -2405,8 +2407,8 @@ cycler = [
     {file = "cycler-0.11.0.tar.gz", hash = "sha256:9c87405839a19696e837b3b818fed3f5f69f16f1eec1a1ad77e043dcea9c772f"},
 ]
 dask = [
-    {file = "dask-2022.3.0-py3-none-any.whl", hash = "sha256:52e9f8a4b798439f01a02a07fa7e66004d024c3f9fb6f1f5d3ecc11642298597"},
-    {file = "dask-2022.3.0.tar.gz", hash = "sha256:9e0188dd4397099f148e80e04902703c465e577c747591f0e9b801998ad3abf0"},
+    {file = "dask-2022.6.0-py3-none-any.whl", hash = "sha256:5b9ed36af86e609af8466221a29287c020cecfb5b692fb1d65188a6c126ddb8f"},
+    {file = "dask-2022.6.0.tar.gz", hash = "sha256:9f30f0652588140c2a345b72b35a400e59c44fff9ae14dd5097c7633d994d9cc"},
 ]
 datashader = [
     {file = "datashader-0.13.0-py2.py3-none-any.whl", hash = "sha256:7888740956213f4bc27816dfbb5bfc5d3f8fd92d583632d688ccbad167e657dc"},
@@ -2452,8 +2454,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 distributed = [
-    {file = "distributed-2022.3.0-py3-none-any.whl", hash = "sha256:458be00cec9710047b1650cde4ebd783ab5d041b5c9c46db6a37c86ae184b315"},
-    {file = "distributed-2022.3.0.tar.gz", hash = "sha256:e3d8053720cd58a3a254e8862900fec1e0940e9e34b044482142d836cd1ed892"},
+    {file = "distributed-2022.6.0-py3-none-any.whl", hash = "sha256:80c63a1ee3efb38c6f8634daaaa00f7992b246914a003202b687cedd6299b9c9"},
+    {file = "distributed-2022.6.0.tar.gz", hash = "sha256:2050d7cf9479766a6f4ad9cf85e97dee548401a19f8bb97af6a73dda9ffd3d05"},
 ]
 entrypoints = [
     {file = "entrypoints-0.4-py3-none-any.whl", hash = "sha256:f174b5ff827504fd3cd97cc3f8649f3693f51538c7e4bdf3ef002c8429d42f9f"},
@@ -2742,8 +2744,8 @@ llvmlite = [
     {file = "llvmlite-0.34.0.tar.gz", hash = "sha256:f03ee0d19bca8f2fe922bb424a909d05c28411983b0c2bc58b020032a0d11f63"},
 ]
 locket = [
-    {file = "locket-0.2.1-py2.py3-none-any.whl", hash = "sha256:12b6ada59d1f50710bca9704dbadd3f447dbf8dac6664575c1281cadab8e6449"},
-    {file = "locket-0.2.1.tar.gz", hash = "sha256:3e1faba403619fe201552f083f1ecbf23f550941bc51985ac6ed4d02d25056dd"},
+    {file = "locket-1.0.0-py2.py3-none-any.whl", hash = "sha256:b6c819a722f7b6bd955b80781788e4a66a55628b858d347536b7e81325a3a5e3"},
+    {file = "locket-1.0.0.tar.gz", hash = "sha256:5c0d4c052a8bbbf750e056a8e65ccd309086f4f0f18a2eac306a8dfa4112a632"},
 ]
 lxml = [
     {file = "lxml-4.8.0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:e1ab2fac607842ac36864e358c42feb0960ae62c34aa4caaf12ada0a1fb5d99b"},
@@ -3019,8 +3021,8 @@ networkx = [
     {file = "networkx-2.7.1.tar.gz", hash = "sha256:d1194ba753e5eed07cdecd1d23c5cd7a3c772099bd8dbd2fea366788cf4de7ba"},
 ]
 notebook = [
-    {file = "notebook-6.4.10-py3-none-any.whl", hash = "sha256:49cead814bff0945fcb2ee07579259418672ac175d3dc3d8102a4b0a656ed4df"},
-    {file = "notebook-6.4.10.tar.gz", hash = "sha256:2408a76bc6289283a8eecfca67e298ec83c67db51a4c2e1b713dd180bb39e90e"},
+    {file = "notebook-6.4.12-py3-none-any.whl", hash = "sha256:8c07a3bb7640e371f8a609bdbb2366a1976c6a2589da8ef917f761a61e3ad8b1"},
+    {file = "notebook-6.4.12.tar.gz", hash = "sha256:6268c9ec9048cff7a45405c990c29ac9ca40b0bc3ec29263d218c5e01f2b4e86"},
 ]
 numba = [
     {file = "numba-0.51.2-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:af798310eeb318c56cdb83254abbe9a938cc0182d08671d7f9f032dc817e064d"},
