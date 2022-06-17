@@ -7,41 +7,39 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-SQLAlchemy = "^1.4.23"
-getpass2 = "^1.0.2"
-neo4j = "^4.3.4"
-py2neo = "^2021.2.0"
-jedi = "^0.18.0"
-requests = "^2.22.0"
-pysqlite3 = "^0.4.6"
-neo4jupyter = "^0.2.0"
-mariadb = "^1.0.8"
-pandas = "1.2.5"
-PyMySQL = "^1.0.2"
-psycopg2-binary = "^2.9.2"
-rdflib = "^6.0.2"
+pysqlite3 = "^0.4.7"
+requests = "^2.27.1"
+numpy = "^1.22.3"
+pandas = "^1.4.2"
+psycopg2-binary = "^2.9.3"
+rdflib = "^6.1.1"
 mysql-connector = "^2.2.9"
-matplotlib = "^3.5.0"
-ipyradiant = "^0.2.0"
-lxml = "^4.6.5"
-mysql-connector-python = "^8.0.27"
-numpy = "^1.21.4"
-tqdm = "^4.62.3"
+matplotlib = "^3.5.2"
+lxml = "^4.8.0"
+tqdm = "^4.64.0"
+graphdatascience = "^1.0.0"
+neo4j = "^4.4.3"
+py2neo = "^2021.2.3"
+SQLAlchemy = "^1.4.36"
+mariadb = "^1.0.11"
+PyMySQL = "^1.0.2"
+networkx = "^2.8.4"
+simplejson = "^3.17.6"
 
 
 [tool.poetry.dev-dependencies]
-typing-extensions = "^3.10.0"
+pytest = "^7.1.2"
+pylint = "^2.12.2"
+python-dotenv = "^0.19.2"
+black = {extras = ["jupyter"], version = "^22.3.0"}
+tox = "^3.25.0"
+flake8 = "^4.0.1"
 ipykernel = "^6.5.1"
+jupyter = "^1.0.0"
 autopep8 = "^1.6.0"
 toml = "^0.10.2"
-jupyter = "^1.0.0"
-python-dotenv = "^0.19.2"
-pyproject-toml = "^0.0.11"
-pylint = "^2.12.2"
-black = {version = "^22.1.0", allow-prereleases = true}
 isort = "^5.10.1"
-flake8 = "^4.0.1"
-tox = "^3.24.5"
+notebook = "^6.4.12"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -53,4 +51,6 @@ line_length = 88
 include_trailing_comma = true
 
 [tool.black]
+multi_line_output = 3
 line_length = 88
+include_trailing_comma = true

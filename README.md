@@ -44,11 +44,11 @@ There are 4 main elements (labels) within the graph which have been extracted fr
   - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `CUI (umlsCui)`, `AUI (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
 
       ```Cypher
-      // CUI = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib". 
-      // We can see Olaparib is a Pharmacologic Substance & Organic Chemical. 
+      // CUI = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib".
+      // We can see Olaparib is a Pharmacologic Substance & Organic Chemical.
       // Furthermore, we can leverage UMLS's semantic network (ISA relationship) to visualize path to the root SemanticType(TUI).
 
-      MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI) 
+      MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI)
       WHERE concept.CUI = "C2316164"
       RETURN path
       ```
@@ -56,14 +56,14 @@ There are 4 main elements (labels) within the graph which have been extracted fr
 ![UMLS® Semantic Network Relation to UMLS Concepts](images/semantic_network_olaparib.png)
 
 - Another related example to the above example (but exclusive to only the semantic network) is as follows:
-  
+
 - Another related example to the above example (but exclusive to only the semantic network) is as follows -> check out cypher & visualization to how the semantic network constitutes its own linked graph structure as a stand-alone part of the entire graph.
   - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType - (TUI)` -> `Amino Acid, Peptide, or Protein` and the "topConceptOf" OR "root" `SemanticType - (TUI)` -> `Entity - (STY)`. See below:
-  
+
       ```Cypher
-      MATCH path = (to:TUI)<-[:ISA*]-(from:TUI) 
-      WHERE to.STY = "Entity" 
-      AND from.STY = "Amino Acid, Peptide, or Protein" 
+      MATCH path = (to:TUI)<-[:ISA*]-(from:TUI)
+      WHERE to.STY = "Entity"
+      AND from.STY = "Amino Acid, Peptide, or Protein"
       RETURN path
       ```
 
@@ -91,7 +91,7 @@ Below is the exact semantic network provided by [UMLS® Semantic Network Referen
     - You can find the .rdf file here:
       - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
     - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/), in addition to the .png representing the graph as RDF.
-  
+
 ![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
 `
 
@@ -262,7 +262,7 @@ This project has included `pyproject.toml` and `poetry.lock` files as the python
 Docker Image:
 
 ```shell
-docker run --name=<insert name> \
+docker run --name=<INSERT NAME> \
     -p7474:7474 -p7687:7687 \
     -d \
     --volume=$HOME/neo4j/data:/data \
@@ -272,16 +272,19 @@ docker run --name=<insert name> \
     --volume=$HOME/neo4j/data/rdf:/data/rdf \
     --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
     --env=NEO4J_dbms_backup_enabled=true \
-    --env=apoc_export_file_enabled=true \
-    --env=apoc_import_file_enabled=true \
-    --env=apoc_import_file_use__neo4j__config=true \
-    --env=apoc_export_file_use__neo4j__config=true \
+    --env=NEO4J_apoc_export_file_enabled=true \
+    --env=NEO4J_apoc_import_file_enabled=true \
+    --env=NEO4J_apoc_import_file_use__neo4j__config=true \
+    --env=NEO4J_apoc_export_file_use__neo4j__config=true \
     --env=NEO4JLABS_PLUGINS='["apoc", "graph-data-science", "n10s"]' \
-    --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
+    --env=NEO4J_dbms_memory_pagecache_size=4G \
+    --env NEO4J_dbms_memory_heap_initial__size=8G \
+    --env NEO4J_dbms_memory_heap_max__size=8G \
     --env=NEO4J__dbms_jvm_additional=-Dunsupported.dbms.udc.source=debian \
-    --env=NEO4J_AUTH=neo4j/<insert pwd> \
+    --env=NEO4J_dbms_memory_heap_initial_tx_state_memory__allocation=ON_HEAP \
+    --env=NEO4J_AUTH=neo4j/<INSERT PWD> \
     --env=NEO4J_dbms_unmanaged__extension__classes=n10s.endpoint=/rdf \
-    neo4j:4.3-enterprise
+    neo4j:4.4.6-enterprise
 ```
 
 ## Import Data Into Neo4j Graph
