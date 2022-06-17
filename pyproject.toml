@@ -14,7 +14,6 @@ pandas = "^1.4.2"
 psycopg2-binary = "^2.9.3"
 rdflib = "^6.1.1"
 mysql-connector = "^2.2.9"
-matplotlib = "^3.5.2"
 lxml = "^4.8.0"
 tqdm = "^4.64.0"
 graphdatascience = "^1.0.0"
@@ -23,8 +22,6 @@ py2neo = "^2021.2.3"
 SQLAlchemy = "^1.4.36"
 mariadb = "^1.0.11"
 PyMySQL = "^1.0.2"
-networkx = "^2.8.4"
-simplejson = "^3.17.6"
 
 
 [tool.poetry.dev-dependencies]
