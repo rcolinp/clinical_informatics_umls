@@ -12,9 +12,10 @@ Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical 
 
 If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding the 3 plugins discussed above:
 
-- [APOC](https://neo4j.com/labs/apoc/4.3/)
-- [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/1.7/)
-- [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/4.3/)
+- [APOC](https://neo4j.com/labs/apoc/)
+- [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/current/)
+- [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/)
+- [The Neo4j Cypher Manual](https://neo4j.com/docs/cypher-manual/current/)
 
 ***Disclaimer***
 
