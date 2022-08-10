@@ -11,17 +11,12 @@ pysqlite3 = "^0.4.7"
 requests = "^2.27.1"
 numpy = "^1.22.3"
 pandas = "^1.4.2"
-psycopg2-binary = "^2.9.3"
 rdflib = "^6.1.1"
 mysql-connector = "^2.2.9"
-lxml = "^4.9.1"
 tqdm = "^4.64.0"
 graphdatascience = "^1.0.0"
 neo4j = "^4.4.3"
-py2neo = "^2021.2.3"
 SQLAlchemy = "^1.4.36"
-mariadb = "^1.0.11"
-PyMySQL = "^1.0.2"
 
 
 [tool.poetry.dev-dependencies]
@@ -32,11 +27,9 @@ black = {extras = ["jupyter"], version = "^22.3.0"}
 tox = "^3.25.0"
 flake8 = "^4.0.1"
 ipykernel = "^6.5.1"
-jupyter = "^1.0.0"
 autopep8 = "^1.6.0"
 toml = "^0.10.2"
 isort = "^5.10.1"
-notebook = "^6.4.12"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
