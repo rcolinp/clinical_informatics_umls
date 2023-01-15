@@ -38,6 +38,8 @@ Creating a configuration file and running the program is quite intuitive. If you
 
 I have provided sample configurations at `../conf/` to reference or use if you'd like to.
 
+__Note: This may take anywhere from 30 minutes to 3+ hours depending on how big of a subset you have defined in your configuration along with the machine you are running this on.__
+
 [def]: "https://www.ncbi.nlm.nih.gov/books/NBK9683/"
 [def2]: "http://www.gnu.org/copyleft/gpl.html"
 [def3]: "http://www.nlm.nih.gov/research/umls/implementation_resources/metamorphosys/RRF_Browser.html"
