@@ -22,7 +22,7 @@ Please visit [MetamorphoSys - The UMLS Installation and Customization Program][d
 1. run `clinical_informatics_umls/umls_downloader.py` to download latest full release of the UMLS.
 2. This is a large .zip file (>40GB) - once downloaded unzip the downloaded .zip and `mmsys.zip` and ensure root directory of 2022AB-full looks as follows:
 
-<img src="../images/2022AB-full_directory.jpg?raw=true">
+<img src="../images/2022AB-full_directory.jpg">
 
 ---
 
