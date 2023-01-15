@@ -12,6 +12,10 @@ We use `APOC` and `Graph Data Science (GDS)` for powerful analytical approaches,
 
 If you are not familiar with Neo4j product/plugin offerings via `Neo4j Labs`, please check out the documentation for the following plugins:
 
+- [APOC]("https://neo4j.com/labs/apoc/")
+- [Graph Data Science (GDS)]("https://neo4j.com/docs/graph-data-science/current/")
+- [Neosemantics]("https://neo4j.com/labs/neosemantics/")
+
 ## Disclaimer
 
 While this repository is open to anyone and has been created to share knowledge, educate, and contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. It is free, but requires a personal application and approval.
@@ -26,14 +30,14 @@ Note: All functionalities mentioned above currently
 
 The schema shows the main elements (labels) of the graph that have been extracted from UMLS and transformed into a Neo4j Label Property Graph. These include:
 
-- The UMLS <u>**atomic**</u> unique identifier (`UMLS.MRCONSO.AUI` - `Aui`)
-- The UMLS <u>**concept**</u> unique identifier (`UMLS.MRCONSO.CUI` - `Cui`)
-- The UMLS <u>**semantic**</u> unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
-- The <u>**source vocabulary**</u> concept unique identifier (`UMLS.MRCONSO.CODE` - `Code`)
+- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `Aui`)
+- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `Cui`)
+- The UMLS **semantic**  unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
+- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `Code`)
 
 The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network. The RDBMS to Neo4j transformation is achieved by running the python script `clinical_informatics_umls/create_nodes_edges.py`. This script can be configured to include or omit particular vocabularies and/or relationships.
 
-The semantic network is related to the actual "concepts" contained in UMLS (i.e. `CUI`, `AUI` etc...) via the directed relationship `HAS_STY`. An example of how the semantic network relates to the actual "concepts" contained in the graph is provided in the Cypher query below:
+The semantic network is related to the actual "concepts" contained in UMLS (i.e. `Cui`, `Aui` etc...) via the directed relationship `HAS_STY`. An example of how the semantic network relates to the actual "concepts" contained in the graph is provided in the Cypher query below:
 
 ```Cypher
 MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI)
@@ -74,9 +78,9 @@ Below is the exact semantic network provided by [UMLS® Semantic Network Referen
     - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
   - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/)
 
-- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `./output_data`.
+- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `./output_data`. 
 
-![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
+[neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
 
 ## Unified Medical Language System® (UMLS®) & Interoperability
 
