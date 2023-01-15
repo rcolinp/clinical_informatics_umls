@@ -28,7 +28,15 @@ Run `sh.run_mach.sh` or the appropriate .sh or .bat file depending if running Wi
 
 <img src="../images/welcome_to_metamorphosys.png" alt="../images/welcome_to_metamorphosys.png">
 
+Unless you have a .prop configuration file you will need to Install UMLS. You will be prompted to select both input & output directories of UMLS files (this will be where you have the `2022AB-full` directory) and an output location of your choosing. For simplicity I recommend `./clinical_informatics_umls/UMLS/subset/` as this will ensure you don't have to change any path variables and will work as this codebase is setup.
+
 Go ahead and check out helpful [Instructional UMLS Learning Resources]("https://www.nlm.nih.gov/research/umls/user_education/learning_resources.html") on how to work the program to create your UMLS subset.
+
+Creating a configuration file and running the program is quite intuitive. If you have done everything correctly you will see something quite similar to below screanshot. I have same configurations at `../conf/` to reference or use.
+
+<img src="../images/MetamorphoSys_progress.png" alt="../images/welcome_to_metamorphosys.png">
+
+I have provided sample configurations at `../conf/` to reference or use if you'd like to.
 
 [def]: "https://www.ncbi.nlm.nih.gov/books/NBK9683/"
 [def2]: "http://www.gnu.org/copyleft/gpl.html"
