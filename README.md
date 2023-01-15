@@ -74,7 +74,7 @@ Below is the exact semantic network provided by [UMLS® Semantic Network Referen
     - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
   - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/)
 
-- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `output_data`.
+- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `./output_data`.
 
 ![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
 
@@ -195,39 +195,35 @@ Install the dependencies by running:
 
 ## Getting started
 
-- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py`:
-  - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
-    - The script will create `umls_py.db` within the relative directory `.../sqlite`.
-      - This will only take ~5 min to run & will look similiar to following:
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py` or run `./sqlite/create_sqlite_db.sh` (refer to code and modify as needed):
+- This will create a SQLite database containing all required tables, indexes and constraints needed to create the Neo4j Graph schema defined.
 
-      ```SHELL
-      clinical_informatics_umls % poetry run python create_sqlite_db.py
-      creating umls_py.db
-      opening files
-      Creating tables
-      Inserting data into MRSTY table
-      Inserting data into MRCONSO table
-      Inserting data into MRREL table
-      Inserting data into MRHIER table
-      Inserting data into MRRANK table
-      Inserting data into SRDEF table
-      Inserting data into SRSTR table
-      Inserting data into SRSTRE1 table
-      Inserting data into SRSTRE2 table
-      Inserting data into MRSAB table
-      Creating indices
-      SQLite database created - umls_py.db
-      ```
+```SHELL
+clinical_informatics_umls % poetry run python create_sqlite_db.py
+creating umls_py.db
+opening files
+Creating tables
+Inserting data into MRSTY table
+Inserting data into MRCONSO table
+Inserting data into MRREL table
+Inserting data into MRHIER table
+Inserting data into MRRANK table
+Inserting data into SRDEF table
+Inserting data into SRSTR table
+Inserting data into SRSTRE1 table
+Inserting data into SRSTRE2 table
+Inserting data into MRSAB table
+Creating indices
+SQLite database created - umls_py.db
+```
 
-    - If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+- If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts available in `./databases/mysql/` & `./databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
 - This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
-- Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `clinical_informatics_umls/clinical_informatics_umls`.
-  - Now we will execute another python script to generate 11 .csv files that constitute 4 node files and 7 relationship files.
-    - The script will write out to all correctly formatted .csv files for import at the following -> `$HOME/import`.
-      - `poetry run python nodes_edges_part1.py` or revised `poetry run python create_nodes_edges.py`
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `./clinical_informatics_umls/clinical_informatics_umls`.
+  - Now we will execute another python script to generate csv files that constitute the node files and relationship files.
+    - The script will write out to all correctly formatted csv files for import but look over the docker run command along with your personal directory structure (i.e. import directory to be mounted).
       - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
-        - Make sure you have docker installed & take a look over the docker run command along with your personal directory structure (i.e. import directory to be mounted).
 
 ## Neo4j Docker Setup & Data Import
 
@@ -236,7 +232,7 @@ Docker Image:
 ```shell
 docker run --name=<INSERT NAME> \
     -p7474:7474 -p7687:7687 \
-    -d \
+    --detach \
     --volume=$HOME/neo4j/data:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
@@ -291,20 +287,19 @@ docker run --name=<INSERT NAME> \
 ```SHELL
     ./bin/neo4j-admin import \
     --database=neo4j \
-    --nodes='import/semanticTypeNode.csv' \
-    --nodes='import/conceptNode.csv' \
-    --nodes='import/atomNode.csv' \
-    --nodes='import/codeNode.csv' \
+    --nodes='import/styNodes.csv' \
+    --nodes='import/cuiNodes.csv' \
+    --nodes='import/auiNodes.csv' \
+    --nodes='import/codeNodes.csv' \
     --relationships='import/has_sty_rel.csv' \
     --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/parent_child_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
-    --skip-duplicate-nodes=true \
-    --trim-strings=true
+    --skip-duplicate-nodes=true
 ```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
@@ -315,38 +310,37 @@ Here are a few snippets of what the above commands should look like (including b
 /var/lib/neo4j# rm -rf data/transactions/
 /var/lib/neo4j# ./bin/neo4j-admin import \
     --database=neo4j \
-    --nodes='import/semanticTypeNode.csv' \
-    --nodes='import/conceptNode.csv' \
-    --nodes='import/atomNode.csv' \
-    --nodes='import/codeNode.csv' \
+    --nodes='import/styNodes.csv' \
+    --nodes='import/cuiNodes.csv' \
+    --nodes='import/auiNodes.csv' \
+    --nodes='import/codeNodes.csv' \
     --relationships='import/has_sty_rel.csv' \
     --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/parent_child_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
-    --skip-duplicate-nodes=true \
-    --trim-strings=true
+    --skip-duplicate-nodes=true
 
 Output:
 
 
 Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
-  /var/lib/neo4j/import/semanticTypeNode.csv
-  /var/lib/neo4j/import/conceptNode.csv
-  /var/lib/neo4j/import/atomNode.csv
-  /var/lib/neo4j/import/codeNode.csv
+  /var/lib/neo4j/import/styNodes.csv
+  /var/lib/neo4j/import/cuiNodes.csv
+  /var/lib/neo4j/import/auiNodes.csv
+  /var/lib/neo4j/import/codeNodes.csv
 
 Relationships:
-  /var/lib/neo4j/import/has_sty.csv
+  /var/lib/neo4j/import/has_sty_rel.csv
   /var/lib/neo4j/import/has_aui_rel.csv
   /var/lib/neo4j/import/has_cui_rel.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
-  /var/lib/neo4j/import/concept_concept_rel.csv
-  /var/lib/neo4j/import/child_of_rel.csv
+  /var/lib/neo4j/import/cui_cui_rel.csv
+  /var/lib/neo4j/import/parent_child_rel.csv
   /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
