@@ -17,26 +17,33 @@ There are no license restrictions on the MetamorphoSys code. We hope that users 
 
 Please visit [MetamorphoSys - The UMLS Installation and Customization Program][def] to follow along to run MetamorphoSys and create a subset of data from the UMLS.
 
-## TLDR; MetamorphoSys
+## MetamorphoSys 101
 
 1. run `clinical_informatics_umls/umls_downloader.py` to download latest full release of the UMLS.
 2. This is a large .zip file (>40GB) - once downloaded unzip the downloaded .zip and `mmsys.zip` and ensure root directory of 2022AB-full looks as follows:
 
-<img src="https://github.com/rcolinp/clinical_informatics_umls/blob/develop/images/2022AB-full_directory.jpg?raw=true" alt="2022AB-full_directory.jpg">
+<img src="../images/2022AB-full_directory.jpg?raw=true">
+
+---
 
 Run `sh.run_mach.sh` or the appropriate .sh or .bat file depending if running Windows, MacOS etc. This will run the java program MetamorphoSys:
 
-<img src="../images/welcome_to_metamorphosys.png" alt="../images/welcome_to_metamorphosys.png">
+<img src="../images/welcome_to_metamorphosys.png">
 
-Unless you have a .prop configuration file you will need to Install UMLS. You will be prompted to select both input & output directories of UMLS files (this will be where you have the `2022AB-full` directory) and an output location of your choosing. For simplicity I recommend `./clinical_informatics_umls/UMLS/subset/` as this will ensure you don't have to change any path variables and will work as this codebase is setup.
+---
+
+Unless you have a .prop configuration file you will need to go through all the steps of creating one within the program. Don't worry it is quite intuitive. 
+
+- You will be prompted to select both input & output directories of UMLS files (this will be where you have the `2022AB-full` directory) and an output location of your choosing.
+  - For simplicity I recommend `./clinical_informatics_umls/UMLS/subset/` as this will ensure you don't have to change any path variables and will work as this codebase is setup.
 
 Go ahead and check out helpful [Instructional UMLS Learning Resources]("https://www.nlm.nih.gov/research/umls/user_education/learning_resources.html") on how to work the program to create your UMLS subset.
 
-Creating a configuration file and running the program is quite intuitive. If you have done everything correctly you will see something quite similar to below screanshot. I have same configurations at `../conf/` to reference or use.
+If you have done everything correctly you will see something quite similar to below screenshot. If you are having diffculty creating your config or do not feel like creating your own I have same configurations at `../conf/` to reference AND/OR use.
 
 <img src="../images/MetamorphoSys_progress.png" alt="../images/welcome_to_metamorphosys.png">
 
-I have provided sample configurations at `../conf/` to reference or use if you'd like to.
+---
 
 __Note: This may take anywhere from 30 minutes to 3+ hours depending on how big of a subset you have defined in your configuration along with the machine you are running this on.__
 
