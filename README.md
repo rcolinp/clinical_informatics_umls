@@ -1,27 +1,26 @@
 # Clinical Informatics UMLS®
 
-**Summary:**
+## Summary
 
-This repository will constitutes a multi-step ETL process with a strong analytical and data science component for a deep analytical dive into the Unified Medical Language System (UMLS®). UMLS's native .RRF files generated via MetamorphoSys will first be loaded into a RDBMS-based datastore.
+This repository contains a multi-step ETL process with a strong analytical and data science component for a deep dive into the Unified Medical Language System (UMLS®). The native .RRF files generated via MetamorphoSys will be loaded into a RDBMS-based datastore.
 
-Data transformation from the RDBMS of choice to a Neo4j Label Property Graph with the target schema found below (visual can be found in next section of README). If unfamiliar with Neo4j, check out all it has to offer -> [Neo4j](https://neo4j.com/).
+Data is transformed from the RDBMS to a Neo4j Label Property Graph with the target schema found in the next section of the README. If you are not familiar with Neo4j, you can check out all it has to offer at [Neo4j](https://neo4j.com/).
 
-Neo4j will serve as the primary datastore for both analysis of UMLS leveraging Neo4j's powerful tooling framework consisting of its native graph query language `Cypher` in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)` and `Neosemantics (N10s)`.
+Neo4j serves as the primary datastore for analysis of UMLS using Neo4j's powerful tooling framework, including its native graph query language `Cypher`, in conjunction with three powerful Neo4j product/plugin offerings - `APOC`, `Graph Data Science (GDS)`, and `Neosemantics (N10s)`.
 
-Usage of `APOC` and `Graph Data Science (GDS)` will provide powerful analytical approaches which extend Neo4j's un-matched ability to analyze, aggregate and visualize rich interconnected data. As the World's leading graph database - Neo4j provides industry leading performance, flexibility and versatility to analyze and make sense of such richly interconnected data. Neo4j's product offering `Neosemantics (N10s)` will be utilized as a means of mapping Neo4j LPG schema to a valid W3C RDF serialization & public schema. Furthermore mapping to the largest public schema in the world -> [schema.org](https://schema.org).
+We use `APOC` and `Graph Data Science (GDS)` for powerful analytical approaches, which extend Neo4j's unmatched ability to analyze, aggregate, and visualize rich interconnected data. As the world's leading graph database, Neo4j provides industry-leading performance, flexibility, and versatility to analyze and make sense of such data. We use Neo4j's product offering `Neosemantics (N10s)` to map the Neo4j LPG schema to a valid W3C RDF serialization and public schema, specifically [schema.org](https://schema.org).
 
-If unfamiliar with Neo4j product/plugin offerings  via `Neo4j Labs`, go check out the awesome documentation regarding the 3 plugins discussed above:
+If you are not familiar with Neo4j product/plugin offerings via `Neo4j Labs`, please check out the documentation for the following plugins:
 
-- [APOC](https://neo4j.com/labs/apoc/)
-- [Graph Data Science (GDS)](https://neo4j.com/docs/graph-data-science/current/)
-- [Neosemantics (N10s)](https://neo4j.com/labs/neosemantics/)
-- [The Neo4j Cypher Manual](https://neo4j.com/docs/cypher-manual/current/)
+- [APOC]("https://neo4j.com/labs/apoc/")
+- [Graph Data Science (GDS)]("https://neo4j.com/docs/graph-data-science/current/")
+- [Neosemantics]("https://neo4j.com/labs/neosemantics/")
 
-***Disclaimer***
+## Disclaimer
 
-While this repository is open to anyone & has been created to share knowledge, educate & contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. Its free! Just requires a personal application & approval.
+While this repository is open to anyone and has been created to share knowledge, educate, and contribute to the open source community, in order to access the source data from UMLS, you must be a UMLS® License Holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more. It is free, but requires a personal application and approval.
 
-Note: All functionalities mentioned above currently exist, function & are here to share. Watch this repo for updates, as they will be made over time. Repo is under construction and is not in its final form.
+Note: All functionalities mentioned above currently
 
 ## Neo4j Schema Representation of UMLS
 
@@ -29,44 +28,38 @@ Note: All functionalities mentioned above currently exist, function & are here t
 
 **Schema Overview:**
 
-Note: The relationship `HAS_SOURCE_CODE` (`CUI` -> `CODE` relationship) shown in the schema can either be omitted or included per user preference.
+The schema shows the main elements (labels) of the graph that have been extracted from UMLS and transformed into a Neo4j Label Property Graph. These include:
 
-There are 4 main elements (labels) within the graph which have been extracted from UMLS and transformed as a Neo4j Label Property Graph.
+- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `Aui`)
+- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `Cui`)
+- The UMLS **semantic**  unique identifier (`UMLS.MRCONSO.TUI` - `SemanticType`)
+- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `Code`)
 
-- The UMLS **atomic** unique identifier (`UMLS.MRCONSO.AUI` - `AUI`)
-- The UMLS **concept** unique identifier (`UMLS.MRCONSO.CUI` - `CUI`)
-- The UMLS **semantic** unique identifier (`UMLS.MRCONSO.TUI` - `TUI`)
-- The **source vocabulary** concept unique identifier (`UMLS.MRCONSO.CODE` - `CODE`)
-  - Source vocabularies within UMLS which are demonstrated within this v1 graph can be found in the schema illustration above. I.e. `NCI Thesaurus (NCI)`, `SNOMEDCT_US`, `ICDO3`, `ICD10CM`, `RXNORM`, `ATC`, `GO`, etc...
+The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network. The RDBMS to Neo4j transformation is achieved by running the python script `clinical_informatics_umls/create_nodes_edges.py`. This script can be configured to include or omit particular vocabularies and/or relationships.
 
-- The entire UMLS semantic network has been integrated into the graph via directed relationships to and from all semantic types within UMLS's semantic network.
-  - Note: The RDBMS -> Neo4j transformation is achieved through running the following python script (relative directory) -> `clinical_informatics_umls/nodes_edges_part1.py`. This script can either be ran as is or can be configured many ways to omit or include particular vocabularies and/or relationships.
+The semantic network is related to the actual "concepts" contained in UMLS (i.e. `Cui`, `Aui` etc...) via the directed relationship `HAS_STY`. An example of how the semantic network relates to the actual "concepts" contained in the graph is provided in the Cypher query below:
 
-  - The semantic network is then related to the actual "concepts" contained in UMLS (i.e. `CUI (umlsCui)`, `AUI (umlsAui)` etc...) via the directed relationship `HAS_STY`. Refer to the following cypher query provided below as an example of how the semantic network relates to the actual "concepts" contained in the graph.
+```Cypher
+MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI)
+WHERE concept.CUI = "C2316164"
+RETURN path
+```
 
-      ```Cypher
-      // CUI = "C2316164" -> Concept Unique Identifier (umls_cui) for the concept "olaparib".
-      // We can see Olaparib is a Pharmacologic Substance & Organic Chemical.
-      // Furthermore, we can leverage UMLS's semantic network (ISA relationship) to visualize path to the root SemanticType(TUI).
+Another example of the semantic network is as follows:
 
-      MATCH path = (concept:CUI)-[:HAS_STY]->(semanticType:TUI)-[:ISA*]->(semanticTypeParent:TUI)
-      WHERE concept.CUI = "C2316164"
-      RETURN path
-      ```
+The query illustrates the shortest path (amongst ISA relations only) between the descendant SemanticType - (TUI) -> Amino Acid, Peptide, or Protein and the "topConceptOf" OR "root" SemanticType - (TUI) -> Entity - (STY). See below:
 
 ![UMLS® Semantic Network Relation to UMLS Concepts](images/semantic_network_olaparib.png)
 
-- Another related example to the above example (but exclusive to only the semantic network) is as follows:
+- The following is another example that illustrates how the semantic network constitutes its own linked graph structure as a stand-alone part of the entire graph.
+- The query illustrates the shortest path between the descendant `SemanticType - (TUI)` -> `Amino Acid, Peptide, or Protein` and the root `SemanticType - (TUI)` -> `Entity - (STY)`. See below.
 
-- Another related example to the above example (but exclusive to only the semantic network) is as follows -> check out cypher & visualization to how the semantic network constitutes its own linked graph structure as a stand-alone part of the entire graph.
-  - The query illustrates the shortest path (amongst `ISA` relations only) between the descendant `SemanticType - (TUI)` -> `Amino Acid, Peptide, or Protein` and the "topConceptOf" OR "root" `SemanticType - (TUI)` -> `Entity - (STY)`. See below:
-
-      ```Cypher
-      MATCH path = (to:TUI)<-[:ISA*]-(from:TUI)
-      WHERE to.STY = "Entity"
-      AND from.STY = "Amino Acid, Peptide, or Protein"
-      RETURN path
-      ```
+```cypher
+MATCH path = (to:TUI)<-[:ISA*]-(from:TUI)
+WHERE to.STY = "Entity"
+AND from.STY = "Amino Acid, Peptide, or Protein"
+RETURN path
+```
 
 ![UMLS® Semantic Network Example](images/amino_acid_peptide_protein_to_root.png)
 
@@ -76,28 +69,18 @@ Below is the exact semantic network provided by [UMLS® Semantic Network Referen
 
 ![UMLS Semantic Network](https://www.ncbi.nlm.nih.gov/books/NBK9679/bin/ch05-Image003.jpg)
 
-- All `ISA` and `NON-ISA` relations seen in image above exist within this Neo4j schema of UMLS.
-
-  - A noteworthy disclaimer provided by NIH is that the semantic relationships within the semantic network may or may not may hold true at the concept point of view AND/OR perspective.
-    - For example, the relationship `Clinical Drug` `causes` `Disease or Syndrome` does not hold at the concept level for `Aspirin` and `Cancer`. (Aspirin does not cause Cancer)
-      - This is anticipated, as within the semantic network produced by UMLS, Clinical Drug(s) are related to Diseases and Syndromes via multiple relationships (one of those being `causes`).
-        - When this specific relationship is examined at the concept level, it can be assumed aspirin does not cause cancer. This is not to be a problem or cause confusion. Rather, the semantic network's ability to interrelate all concepts within the UMLS under 127 'broad' semantic types provides a useful means for labeling, categorizing AND/OR creating subgraphs of concepts based on semantic criteria.
-          - The semantic network should only help navigate the graph of concepts and not for explicit relationship creation of between concepts.
-
 ## (In Progress) - Neo4j Schema Mapped to RDF - The W3C Standard Model for Data Interchange on the Web
 
-- An on-going additional objective is to be able to appropriately map this Neo4j UMLS Graph (label property graph) to the W3C standard model for data interchange on the web - RDF (Resource Description Framework)
+- An on-going additional objective is to map this Neo4j UMLS Graph (label property graph) to the W3C standard model for data interchange on the web - RDF (Resource Description Framework).
 
-  - Here is a sample (very small sample) of a v0 W3C validated RDF representation of this Neo4j Graph of UMLS created in this repository.
-    - You can find the .rdf file here:
-      - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
-    - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/), in addition to the .png representing the graph as RDF.
+- Here is a sample (very small sample) of a v0 W3C validated RDF representation of this Neo4j Graph of UMLS created in this repository.
+  - You can find the .rdf file here:
+    - [neo4j_umls_graph_to_rdf_sample.rdf](./output_data/v0_neo4j_umls_graph_mapped_to_rdf_sample.rdf)
+  - The validation was performed via [W3C RDF Validation](https://www.w3.org/RDF/Validator/)
 
-![neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
-`
+- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `./output_data`. 
 
-- Additional W3C valid RDF serializations exposing small portions of the graph can be found within the following directory -> `output_data`.
-  - While all are valid RDF serializations, work still needs to be done to appropriately map this Neo4j graph to schema.org.  
+[neo4j_umls_graph_to_RDF](./images/neo4j_graph_sample_transformed_to_rdf.png)
 
 ## Unified Medical Language System® (UMLS®) & Interoperability
 
@@ -106,7 +89,7 @@ In this repository, an exploration of a handful of the largest and/or industry r
 **Disclaimer** - while this repository is open to anyone & has been created to share knowledge, educate & provide to open source community. In order to access the data covered, you must be a UMLS® license holder. Please visit [How to License and Access the Unified Medical Language System® (UMLS®) Data](https://www.nlm.nih.gov/databases/umls.html) to learn more.
 
 The scope of material covered in this repository will pertain specifically to healthcare, biotechnology & pharmaceutics. Largely in regards to oncology.
-The terminologies and ontologies used in this repository available have been limited due to the enormous size of UMLS® (UMLS 2021AB containing >200+ terminologies constituting roughly a ~50-60GB MySQL database).
+The terminologies and ontologies used in this repository available have been limited due to the enormous size of UMLS® (UMLS 2022AB containing >200+ terminologies constituting roughly a ~50-60GB MySQL database).
 
 - Due to the shear size of UMLS the scope has been limited to appropriately 1/3 to 1/4 of entirety of UMLS to uplift inevitable resource constraints and enable local development.
   - Despite the "limited" scope, the vocabularies chosen to be included all live at the forefront of bringing interoperability to healthcare (scope mostly being disease, genetics & pharmaceutics). The terminologies covered have been chosen based on their utility and the strong relations that exist among them.
@@ -197,66 +180,54 @@ The terminologies and ontologies used in this repository available have been lim
 
 ## Python Environment Setup
 
-Strongly recommend use of [pyenv](https://github.com/pyenv/pyenv) to enable easy switches between multiple versions of Python.
+We recommend using [pyenv](https://github.com/pyenv/pyenv) for easy switching between multiple versions of Python. This project requires Python 3.8 and above.
 
-- Python >=3.8,<3.11 required based on `pyproject.toml`
+This project uses [Poetry](https://python-poetry.org/) for dependency management. If you are not familiar with Poetry, please refer to their official documentation.
 
-- [Pyenv](https://github.com/pyenv/pyenv) & python packing packing and dependency management via [Poetry](https://python-poetry.org/) have been implemented for python versioning and dependency management.
-  - If unfamiliar with [Pyenv](https://github.com/pyenv/pyenv) AND/OR [Poetry](https://python-poetry.org/), please check out their respective official docs.
+To set up the Python environment for this project, follow these steps:
 
-This project has included `pyproject.toml` and `poetry.lock` files as the python packaging and dependency management.
+1. Install [pyenv](https://github.com/pyenv/pyenv) and use it to install a version of Python 3.8 or above.
 
-- Execute following command to create a virtual environment within project's root directory:
-  - `python -m venv .venv`
-  - `source .venv/bin/activate`
-    - This will create a venv (`.venv`) located at root directory of repository -> `.venv`.
+2. Create a virtual environment in the root directory of the project:
 
-  - Install all python packaging/dependencies into the venv via:
-    - `poetry install`
-      - This will install all packaging requirements/dependencies.
-        - Visit [Poetry](https://python-poetry.org/) and follow instructions for using `Poetry Installer`.
-          - Example way of using Poetry using a venv would look like this:
-            - 1). install Poetry via `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -` **(OSX/LINUX)**
-            - 2). `python -m venv .venv`
-            - 3). `source .venv/bin/activate`
-            - 4). `poetry install`
-            - 5). Good to go! (All `{}`)
+`python -m venv .venv`
+`source .venv/bin/activate`
+
+Install the dependencies by running:
+
+`poetry install`
 
 ## Getting started
 
-- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py`:
-  - `poetry run python create_sqlite_db.py` -> This will create a sqlite3 database containing all required tables, indexes and constraints required to create our Neo4j Graph.
-    - The script will create `umls_py.db` within the relative directory `.../sqlite`.
-      - This will only take ~5 min to run & will look similiar to following:
+- After running UMLS metamorphoSys (have source files) and your python environment has been setup. Navigate to relative directory `cd clinical_informatics_umls` & run the python script `create_sqlite_db.py` or run `./sqlite/create_sqlite_db.sh` (refer to code and modify as needed):
+- This will create a SQLite database containing all required tables, indexes and constraints needed to create the Neo4j Graph schema defined.
 
-      ```SHELL
-      clinical_informatics_umls % poetry run python create_sqlite_db.py
-      creating umls_py.db
-      opening files
-      Creating tables
-      Inserting data into MRSTY table
-      Inserting data into MRCONSO table
-      Inserting data into MRREL table
-      Inserting data into MRHIER table
-      Inserting data into MRRANK table
-      Inserting data into SRDEF table
-      Inserting data into SRSTR table
-      Inserting data into SRSTRE1 table
-      Inserting data into SRSTRE2 table
-      Inserting data into MRSAB table
-      Creating indices
-      SQLite database created - umls_py.db
-      ```
+```SHELL
+clinical_informatics_umls % poetry run python create_sqlite_db.py
+creating umls_py.db
+opening files
+Creating tables
+Inserting data into MRSTY table
+Inserting data into MRCONSO table
+Inserting data into MRREL table
+Inserting data into MRHIER table
+Inserting data into MRRANK table
+Inserting data into SRDEF table
+Inserting data into SRSTR table
+Inserting data into SRSTRE1 table
+Inserting data into SRSTRE2 table
+Inserting data into MRSAB table
+Creating indices
+SQLite database created - umls_py.db
+```
 
-    - If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts made available in `databases/mysql/` & `databases/postgres/`
+- If you want to use MySQL, Mariadb or PostgreSQL then refer to the load scripts available in `./databases/mysql/` & `./databases/postgres/`
 - Once you have loaded a RDBMS with your UMLS 2021AB subset, create a an directory called `import` (at your home directory) - This directory needs to contain all the files that will be loaded into Neo4j.
 - This directory will be mounted outside the container to leverage using `neo4j-admin import` tool. (Required for imports of >10 million nodes & takes only a minute or two).
-- Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `clinical_informatics_umls/clinical_informatics_umls`.
-  - Now we will execute another python script to generate 11 .csv files that constitute 4 node files and 7 relationship files.
-    - The script will write out to all correctly formatted .csv files for import at the following -> `$HOME/import`.
-      - `poetry run python nodes_edges_part1.py`
+- Once you have created the directory (i.e. `$HOME/import`) navigate back to the following directory `./clinical_informatics_umls/clinical_informatics_umls`.
+  - Now we will execute another python script to generate csv files that constitute the node files and relationship files.
+    - The script will write out to all correctly formatted csv files for import but look over the docker run command along with your personal directory structure (i.e. import directory to be mounted).
       - Upon the completion of the scripts execution we are ready to proceed with steps that follow `Neo4j Docker Setup & Data Import`.
-        - Make sure you have docker installed & take a look over the docker run command.
 
 ## Neo4j Docker Setup & Data Import
 
@@ -265,7 +236,7 @@ Docker Image:
 ```shell
 docker run --name=<INSERT NAME> \
     -p7474:7474 -p7687:7687 \
-    -d \
+    --detach \
     --volume=$HOME/neo4j/data:/data \
     --volume=$HOME/import:/var/lib/neo4j/import \
     --volume=$HOME/neo4j/plugins:/plugins \
@@ -320,20 +291,19 @@ docker run --name=<INSERT NAME> \
 ```SHELL
     ./bin/neo4j-admin import \
     --database=neo4j \
-    --nodes='import/semanticTypeNode.csv' \
-    --nodes='import/conceptNode.csv' \
-    --nodes='import/atomNode.csv' \
-    --nodes='import/codeNode.csv' \
+    --nodes='import/styNodes.csv' \
+    --nodes='import/cuiNodes.csv' \
+    --nodes='import/auiNodes.csv' \
+    --nodes='import/codeNodes.csv' \
     --relationships='import/has_sty_rel.csv' \
     --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/parent_child_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
-    --skip-duplicate-nodes=true \
-    --trim-strings=true
+    --skip-duplicate-nodes=true
 ```
 
 Here are a few snippets of what the above commands should look like (including both inputs & outputs):
@@ -344,38 +314,37 @@ Here are a few snippets of what the above commands should look like (including b
 /var/lib/neo4j# rm -rf data/transactions/
 /var/lib/neo4j# ./bin/neo4j-admin import \
     --database=neo4j \
-    --nodes='import/semanticTypeNode.csv' \
-    --nodes='import/conceptNode.csv' \
-    --nodes='import/atomNode.csv' \
-    --nodes='import/codeNode.csv' \
+    --nodes='import/styNodes.csv' \
+    --nodes='import/cuiNodes.csv' \
+    --nodes='import/auiNodes.csv' \
+    --nodes='import/codeNodes.csv' \
     --relationships='import/has_sty_rel.csv' \
     --relationships='import/has_aui_rel.csv' \
     --relationships='import/has_cui_rel.csv' \
     --relationships='import/tui_tui_rel.csv' \
-    --relationships='import/concept_concept_rel.csv' \
-    --relationships='import/child_of_rel.csv' \
+    --relationships='import/cui_cui_rel.csv' \
+    --relationships='import/parent_child_rel.csv' \
     --relationships='import/cui_code_rel.csv' \
     --skip-bad-relationships=true \
-    --skip-duplicate-nodes=true \
-    --trim-strings=true
+    --skip-duplicate-nodes=true
 
 Output:
 
 
 Importing the contents of these files into /var/lib/neo4j/data/databases/neo4j:
 Nodes:
-  /var/lib/neo4j/import/semanticTypeNode.csv
-  /var/lib/neo4j/import/conceptNode.csv
-  /var/lib/neo4j/import/atomNode.csv
-  /var/lib/neo4j/import/codeNode.csv
+  /var/lib/neo4j/import/styNodes.csv
+  /var/lib/neo4j/import/cuiNodes.csv
+  /var/lib/neo4j/import/auiNodes.csv
+  /var/lib/neo4j/import/codeNodes.csv
 
 Relationships:
-  /var/lib/neo4j/import/has_sty.csv
+  /var/lib/neo4j/import/has_sty_rel.csv
   /var/lib/neo4j/import/has_aui_rel.csv
   /var/lib/neo4j/import/has_cui_rel.csv
   /var/lib/neo4j/import/tui_tui_rel.csv
-  /var/lib/neo4j/import/concept_concept_rel.csv
-  /var/lib/neo4j/import/child_of_rel.csv
+  /var/lib/neo4j/import/cui_cui_rel.csv
+  /var/lib/neo4j/import/parent_child_rel.csv
   /var/lib/neo4j/import/cui_code_rel.csv
   ...
 
@@ -414,4 +383,4 @@ Need to restart the container:
 
 ## Querying the UMLS as a Neo4j Graph
 
-Checkout the notebooks directory where the graph will be queried via both official `neo4j` python driver & community supported python driver `py2neo`.
+More to come...
