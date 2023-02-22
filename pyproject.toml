@@ -18,15 +18,9 @@ SQLAlchemy = "^1.4.36"
 
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.2.0"
-pylint = "^2.12.2"
 python-dotenv = "^0.19.2"
 black = {extras = ["jupyter"], version = "^22.3.0"}
-tox = "^3.25.0"
-flake8 = "^4.0.1"
-ipykernel = "^6.5.1"
 autopep8 = "^1.6.0"
-toml = "^0.10.2"
 isort = "^5.10.1"
 
 [tool.poetry.group.dev.dependencies]
