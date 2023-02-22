@@ -38,6 +38,8 @@ wip_*
 *.manifest
 *.spec
 misc/
+umls.db
+docs/
 
 
 # Installer logs
