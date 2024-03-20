@@ -19,7 +19,7 @@ SQLAlchemy = "^1.4.36"
 
 [tool.poetry.dev-dependencies]
 python-dotenv = "^0.19.2"
-black = {extras = ["jupyter"], version = "^22.3.0"}
+black = {extras = ["jupyter"], version = "^24.3.0"}
 autopep8 = "^1.6.0"
 isort = "^5.10.1"
 
